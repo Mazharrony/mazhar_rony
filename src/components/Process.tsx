@@ -8,9 +8,21 @@ const Process: React.FC = () => {
   const isInView = useInView(ref, { once: false, margin: "-80px" });
 
   const steps = [
-    { number: '01', title: 'Discovery', description: 'Understanding your goals and audience' },
-    { number: '02', title: 'Strategy', description: 'Planning the approach and creative direction' },
-    { number: '03', title: 'Execution', description: 'Bringing the vision to life with precision' }
+    { 
+      number: '01', 
+      title: 'Freelance Creative Manager', 
+      description: 'JNK Nutrition, Dubai | May 2025–Present. Managing creative direction, digital strategy, content production, and campaign optimization for fitness & supplement brands.' 
+    },
+    { 
+      number: '02', 
+      title: 'Marketing & IT Coordinator', 
+      description: 'Avion Realty Properties, Dubai | Jan 2023–Apr 2025. Directed digital marketing operations, property portal management, and lead generation strategies.' 
+    },
+    { 
+      number: '03', 
+      title: 'Admin & Digital Marketing Executive', 
+      description: 'Gheroub Al Shams Auto Workshop, Sharjah | Feb 2022–Nov 2022. Managed digital presence, content creation, and customer engagement.' 
+    }
   ];
 
   const stepVariant = {
@@ -42,13 +54,13 @@ const Process: React.FC = () => {
               variants={fadeInLeft}
               transition={{ delay: 0.1 }}
             >
-              Professional<br/>Expertise &<br/>Experience
+              Professional<br/>Experience &<br/>Track Record
             </motion.h2>
             <motion.p
               variants={fadeInLeft}
               transition={{ delay: 0.2 }}
             >
-              Comprehensive background in digital marketing, creative design, and brand management across high-growth brands and industries.
+              3+ years managing digital marketing and creative operations across fitness, supplement, real estate, and automotive industries. Proven expertise in brand strategy, content production, and performance marketing.
             </motion.p>
             <motion.button 
               className="btn btn-primary"

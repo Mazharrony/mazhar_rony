@@ -1,17 +1,15 @@
-import React, { useState, useRef } from 'react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
-import { calculate3DTilt, reset3DTilt } from '../utils/motion';
+import React, { useRef, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Services.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Services: React.FC = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-100px" });
-  
-  // Scroll-scrubbed animation
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
+  const panelRef = useRef<HTMLElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(panelRef, { once: false, margin: "-100px" });
 
   const services = [
     {
@@ -46,52 +44,39 @@ const Services: React.FC = () => {
     }
   ];
 
-  const [tiltStyles, setTiltStyles] = useState<{ [key: number]: React.CSSProperties }>({});
+  useEffect(() => {
+    if (!panelRef.current || !trackRef.current) return;
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
-    setTiltStyles(prev => ({
-      ...prev,
-      [index]: calculate3DTilt(e, 4)
-    }));
-  };
+    const panel = panelRef.current;
+    const track = trackRef.current;
 
-  const handleMouseLeave = (index: number) => {
-    setTiltStyles(prev => ({
-      ...prev,
-      [index]: reset3DTilt
-    }));
-  };
+    // Calculate horizontal scroll distance
+    const totalWidth = track.scrollWidth;
+    const viewportWidth = panel.offsetWidth;
+    const distance = totalWidth - viewportWidth;
 
-  // Create scroll-scrubbed transforms for each card (must be at top level, not in loops)
-  const card0X = useTransform(scrollYProgress, [0.2, 0.6], [-120, 0]);
-  const card0Opacity = useTransform(scrollYProgress, [0.2, 0.6], [0, 1]);
-  
-  const card1X = useTransform(scrollYProgress, [0.15, 0.55], [0, 0]);
-  const card1Opacity = useTransform(scrollYProgress, [0.15, 0.55], [0, 1]);
-  
-  const card2X = useTransform(scrollYProgress, [0.1, 0.5], [120, 0]);
-  const card2Opacity = useTransform(scrollYProgress, [0.1, 0.5], [0, 1]);
-  
-  const card3X = useTransform(scrollYProgress, [0.05, 0.45], [-120, 0]);
-  const card3Opacity = useTransform(scrollYProgress, [0.05, 0.45], [0, 1]);
-  
-  const card4X = useTransform(scrollYProgress, [0, 0.4], [0, 0]);
-  const card4Opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
-  
-  const card5X = useTransform(scrollYProgress, [0, 0.35], [120, 0]);
-  const card5Opacity = useTransform(scrollYProgress, [0, 0.35], [0, 1]);
-  
-  const cardTransforms = [
-    { x: card0X, opacity: card0Opacity },
-    { x: card1X, opacity: card1Opacity },
-    { x: card2X, opacity: card2Opacity },
-    { x: card3X, opacity: card3Opacity },
-    { x: card4X, opacity: card4Opacity },
-    { x: card5X, opacity: card5Opacity },
-  ];
+    // GSAP ScrollTrigger: pin section and scrub horizontal movement
+    const scrollTrigger = gsap.to(track, {
+      x: -distance,
+      ease: "none",
+      scrollTrigger: {
+        trigger: panel,
+        start: "top top",
+        end: () => `+=${distance}`,
+        scrub: true,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      },
+    });
+
+    return () => {
+      scrollTrigger.kill();
+    };
+  }, []);
 
   return (
-    <section className="fold services" ref={ref}>
+    <section ref={panelRef} className="fold services services-panel">
       <div className="container">
         <motion.div 
           className="section-header"
@@ -124,55 +109,16 @@ const Services: React.FC = () => {
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-3">
-          {services.map((service, index) => {
-            const { x, opacity } = cardTransforms[index];
-            
-            return (
-              <motion.div 
-                key={index} 
-                className="card service-card"
-                style={{ 
-                  x, 
-                  opacity,
-                  ...tiltStyles[index] 
-                }}
-                onMouseMove={(e) => handleMouseMove(e, index)}
-                onMouseLeave={() => handleMouseLeave(index)}
-                whileHover={{
-                  y: -8,
-                  scale: 1.02,
-                  boxShadow: '0 16px 48px rgba(0,0,0,0.15)',
-                  transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
-                }}
-              >
-                <motion.h3
-                  initial={{ opacity: 0 }}
-                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ delay: 0.4 + index * 0.08 }}
-                >
-                  {service.title}
-                </motion.h3>
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ delay: 0.5 + index * 0.08 }}
-                >
-                  {service.description}
-                </motion.p>
-                <motion.a 
-                  href="#" 
-                  className="service-link"
-                  whileHover={{ 
-                    x: 6,
-                    transition: { duration: 0.22 }
-                  }}
-                >
-                  {service.link} →
-                </motion.a>
-              </motion.div>
-            );
-          })}
+        <div ref={trackRef} className="services-track">
+          {services.map((service) => (
+            <div key={service.title} className="card service-card">
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+              <a href="#" className="service-link">
+                {service.link} →
+              </a>
+            </div>
+          ))}
         </div>
       </div>
     </section>

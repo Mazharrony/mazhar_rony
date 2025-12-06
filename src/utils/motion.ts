@@ -143,6 +143,8 @@ export const buttonHover = {
 // 3D tilt effect (returns dynamic style based on mouse position)
 export const calculate3DTilt = (e: React.MouseEvent<HTMLElement>, intensity: number = 10) => {
   const card = e.currentTarget;
+  if (!card) return reset3DTilt;
+  
   const rect = card.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
