@@ -1,0 +1,107 @@
+.filter-pills {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.filter-pill {
+  padding: 8px 20px;
+  border: 2px solid var(--border-color);
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--text-primary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.9rem;
+}
+
+.filter-pill:hover {
+  border-color: var(--text-primary);
+}
+
+.filter-pill.active {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+}
+
+.portfolio-card {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.portfolio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+}
+
+.portfolio-card.selected {
+  box-shadow: var(--shadow-hover);
+}
+
+.portfolio-image {
+  width: 100%;
+  aspect-ratio: 1;
+  background-size: cover;
+  background-position: center;
+  transition: var(--transition);
+  border-radius: 24px;
+}
+
+.portfolio-card:hover .portfolio-image {
+  filter: grayscale(0%);
+}
+
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+  display: flex;
+  align-items: flex-end;
+  padding: 32px;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 24px;
+  color: white;
+}
+
+.portfolio-card:hover .portfolio-overlay,
+.portfolio-card.selected .portfolio-overlay {
+  opacity: 1;
+}
+
+.portfolio-overlay h4 {
+  margin-bottom: 4px;
+  color: white;
+}
+
+.category-tag {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 12px;
+  text-transform: capitalize;
+}
+
+.view-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+  display: inline-block;
+}
+
+.view-link:hover {
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .filter-pills {
+    margin-bottom: 40px;
+  }
+}

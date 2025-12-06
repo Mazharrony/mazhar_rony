@@ -1,0 +1,99 @@
+/* Quick Color Palette Reference */
+/* Edit these in src/index.css under :root */
+
+Primary Colors:
+  --primary: #6366f1    (Indigo - main buttons, links)
+  --secondary: #ec4899  (Pink - accents, hover)
+
+Neutrals:
+  --dark: #1a1a1a       (Footer background)
+  --light: #f5f5f5      (Section backgrounds)
+  --text: #333          (Text color)
+  --border: #e0e0e0     (Borders)
+
+========================================
+
+/* File Modification Guide */
+
+1. PERSONAL INFORMATION
+   File: src/components/Resume.tsx
+   - Skills array
+   - Tools array
+   - Experience array (job history)
+   - Education array
+   - Contact info
+
+2. HERO SECTION
+   File: src/components/Hero.tsx
+   - Change title: "Creative Motion Designer..."
+   - Change subtitle text
+   - Button text
+   - Background gradient
+
+3. COLORS & THEME
+   File: src/index.css
+   - :root variables
+   - Animation timing
+
+4. NAVIGATION LINKS
+   File: src/components/Navigation.tsx
+   - Nav links (Home, Resume, Portfolio, Contact)
+
+5. CONTACT FORM
+   File: src/components/Contact.tsx
+   - Phone number
+   - Email address
+   - Website
+   - Location
+
+6. SOCIAL LINKS
+   File: src/components/Footer.tsx
+   - Instagram URL
+   - LinkedIn URL
+   - Twitter URL
+
+========================================
+
+/* File Organization */
+
+Images:  public/portfolio/images/
+Videos:  public/portfolio/videos/
+
+Add files there and refresh page to see them.
+
+========================================
+
+/* Terminal Commands */
+
+npm start           - Run dev server (port 3000)
+npm run build       - Create production build
+npm test            - Run tests
+npm install         - Install dependencies
+
+========================================
+
+/* Keyboard Shortcuts in Browser */
+
+Ctrl/Cmd + Shift + I  - Open DevTools
+F12                   - Toggle DevTools
+Ctrl/Cmd + K          - Search in DevTools
+
+========================================
+
+/* CSS Animation Classes */
+
+@keyframes fadeInUp        - Fade in with slide up
+@keyframes scaleIn         - Scale from smaller
+@keyframes float           - Floating animation
+@keyframes slideDown       - Slide down
+@keyframes countUp         - Count number animation
+
+========================================
+
+REMEMBER:
+- Changes to .tsx files: Refresh browser automatically
+- Changes to .css files: Refresh browser automatically
+- To see portfolio items: Add to public/portfolio/ folders
+- Test on mobile: http://localhost:3000 on phone/tablet
+
+========================================

@@ -1,0 +1,67 @@
+.process-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.process-left {
+  animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-top: 40px;
+}
+
+.process-left h2 {
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.process-left p {
+  margin-bottom: 32px;
+  max-width: 400px;
+}
+
+.process-right {
+  animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.step-card {
+  padding: 24px;
+  background-color: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.step-card:hover {
+  transform: translateX(8px);
+  box-shadow: var(--shadow-hover);
+}
+
+.step-badge {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.step-card h4 {
+  margin-bottom: 8px;
+}
+
+.step-card p {
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .process-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
