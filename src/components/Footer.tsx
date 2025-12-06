@@ -1,50 +1,215 @@
 import React from 'react';
+import { motion, useInView } from 'framer-motion';
+import { motionConfig } from '../utils/motion';
 import './Footer.css';
 
 const Footer: React.FC = () => {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: false, margin: "-50px" });
+
+  const sectionVariant = {
+    hidden: { opacity: 0, y: 30, filter: 'blur(6px)' },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      transition: {
+        duration: 0.65,
+        delay: i * 0.12,
+        ease: motionConfig.easing.smooth,
+      },
+    }),
+  };
+
+  const linkVariant = {
+    rest: { x: 0, color: 'inherit' },
+    hover: { 
+      x: 6,
+      color: 'var(--accent)',
+      transition: { duration: 0.3 }
+    }
+  };
+
   return (
-    <footer className="footer">
+    <footer className="footer" ref={ref}>
       <div className="container">
         <div className="footer-content">
-          <div className="footer-section">
-            <h4>Mazhar Roni</h4>
-            <p>Digital Marketing & Creative Specialist</p>
-          </div>
+          <motion.div 
+            className="footer-section"
+            custom={0}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={sectionVariant}
+          >
+            <motion.h4
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              Mazhar Roni
+            </motion.h4>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              Digital Marketing & Creative Specialist
+            </motion.p>
+          </motion.div>
 
-          <div className="footer-section">
-            <h4>Navigate</h4>
+          <motion.div 
+            className="footer-section"
+            custom={1}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={sectionVariant}
+          >
+            <motion.h4
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              Navigate
+            </motion.h4>
             <ul>
-              <li><a href="#hero">Home</a></li>
-              <li><a href="#portfolio">Work</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              {['Home', 'Work', 'About', 'Contact'].map((item, idx) => (
+                <motion.li
+                  key={item}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                  transition={{ delay: 0.3 + idx * 0.05 }}
+                >
+                  <motion.a 
+                    href={`#${item.toLowerCase()}`}
+                    variants={linkVariant}
+                    initial="rest"
+                    whileHover="hover"
+                  >
+                    {item}
+                  </motion.a>
+                </motion.li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
 
-          <div className="footer-section">
-            <h4>Services</h4>
+          <motion.div 
+            className="footer-section"
+            custom={2}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={sectionVariant}
+          >
+            <motion.h4
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              Services
+            </motion.h4>
             <ul>
-              <li><a href="#">Product Design</a></li>
-              <li><a href="#">Brand Identity</a></li>
-              <li><a href="#">Web Design</a></li>
-              <li><a href="#">Strategy</a></li>
+              {['Product Design', 'Brand Identity', 'Web Design', 'Strategy'].map((item, idx) => (
+                <motion.li
+                  key={item}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                  transition={{ delay: 0.4 + idx * 0.05 }}
+                >
+                  <motion.a 
+                    href="#"
+                    variants={linkVariant}
+                    initial="rest"
+                    whileHover="hover"
+                  >
+                    {item}
+                  </motion.a>
+                </motion.li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
 
-          <div className="footer-section">
-            <h4>Contact</h4>
+          <motion.div 
+            className="footer-section"
+            custom={3}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={sectionVariant}
+          >
+            <motion.h4
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              Contact
+            </motion.h4>
             <ul>
-              <li><a href="mailto:hello@meetmazhar.site">hello@meetmazhar.site</a></li>
-              <li><a href="tel:+971507217156">+971 50 721 7156</a></li>
-              <li><a href="#">LinkedIn</a></li>
-              <li><a href="#">Twitter</a></li>
+              <motion.li
+                initial={{ opacity: 0, x: -10 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                transition={{ delay: 0.5 }}
+              >
+                <motion.a 
+                  href="mailto:hello@meetmazhar.site"
+                  variants={linkVariant}
+                  initial="rest"
+                  whileHover="hover"
+                >
+                  hello@meetmazhar.site
+                </motion.a>
+              </motion.li>
+              <motion.li
+                initial={{ opacity: 0, x: -10 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                transition={{ delay: 0.55 }}
+              >
+                <motion.a 
+                  href="tel:+971507217156"
+                  variants={linkVariant}
+                  initial="rest"
+                  whileHover="hover"
+                >
+                  +971 50 721 7156
+                </motion.a>
+              </motion.li>
+              <motion.li
+                initial={{ opacity: 0, x: -10 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                transition={{ delay: 0.6 }}
+              >
+                <motion.a 
+                  href="#"
+                  variants={linkVariant}
+                  initial="rest"
+                  whileHover="hover"
+                >
+                  LinkedIn
+                </motion.a>
+              </motion.li>
+              <motion.li
+                initial={{ opacity: 0, x: -10 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                transition={{ delay: 0.65 }}
+              >
+                <motion.a 
+                  href="#"
+                  variants={linkVariant}
+                  initial="rest"
+                  whileHover="hover"
+                >
+                  Twitter
+                </motion.a>
+              </motion.li>
             </ul>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="footer-bottom">
+        <motion.div 
+          className="footer-bottom"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ delay: 0.7, duration: 0.5 }}
+        >
           <p>&copy; 2025 Mazhar Roni. Currently in Dubai, UAE | www.meetmazhar.site</p>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
