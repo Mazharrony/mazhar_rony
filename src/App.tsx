@@ -6,7 +6,6 @@ import Services from './components/Services';
 import Process from './components/Process';
 import Portfolio from './components/Portfolio';
 import About from './components/About';
-import Team from './components/Team';
 import Testimonials from './components/Testimonials';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
@@ -37,7 +36,6 @@ function App() {
         <Process />
         <Portfolio />
         <About />
-        <Team />
         <Testimonials />
         <FinalCTA />
       </main>

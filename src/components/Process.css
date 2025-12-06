@@ -1,67 +1,281 @@
 .process-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 80px;
   align-items: flex-start;
 }
 
 .process-left {
-  animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   padding-top: 40px;
+  position: sticky;
+  top: 120px;
 }
 
 .process-left h2 {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   line-height: 1.2;
+  font-size: 2.5rem;
 }
 
 .process-left p {
-  margin-bottom: 32px;
-  max-width: 400px;
+  margin-bottom: 36px;
+  max-width: 420px;
+  line-height: 1.7;
+  color: var(--text-secondary);
 }
 
 .process-right {
-  animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
 
-.steps-container {
+/* Timeline Wrapper */
+.timeline-wrapper {
+  position: relative;
+  padding-left: 0;
+}
+
+/* Vertical Timeline Line */
+.timeline-line {
+  position: absolute;
+  left: 30px;
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  transform-origin: top;
+}
+
+.App.dark .timeline-line {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+}
+
+/* Experience List */
+.experience-list {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 48px;
+  position: relative;
 }
 
-.step-card {
-  padding: 24px;
-  background-color: var(--bg-card);
+/* Experience Item */
+.experience-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+/* Timeline Node */
+.timeline-node {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  z-index: 2;
+}
+
+.node-inner {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 0 0 6px var(--bg-primary),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.App.dark .node-inner {
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 
+    0 0 0 6px var(--bg-primary),
+    0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-node:hover .node-inner {
+  transform: scale(1.05);
+  border-color: rgba(0, 0, 0, 0.18);
+  box-shadow: 
+    0 0 0 6px var(--bg-primary),
+    0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+.App.dark .timeline-node:hover .node-inner {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 0 0 6px var(--bg-primary),
+    0 3px 12px rgba(0, 0, 0, 0.3);
+}
+
+.node-number {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Experience Card */
+.experience-card {
+  flex: 1;
+  margin-left: 92px;
+  padding: 32px;
+  background: var(--bg-card);
   border-radius: 16px;
-  border: 1px solid var(--border-color);
-  transition: var(--transition);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
 }
 
-.step-card:hover {
-  transform: translateX(8px);
-  box-shadow: var(--shadow-hover);
+.App.dark .experience-card {
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
 }
 
-.step-badge {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--text-secondary);
-  margin-bottom: 12px;
+.experience-card:hover {
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
-.step-card h4 {
-  margin-bottom: 8px;
+.App.dark .experience-card:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-.step-card p {
+/* Card Header */
+.card-header {
+  margin-bottom: 16px;
+}
+
+.job-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.company-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.company-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.location {
   font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.location::before {
+  content: '|';
+  margin-right: 8px;
+  opacity: 0.5;
+}
+
+.period {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.job-description {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
   margin: 0;
 }
 
-@media (max-width: 768px) {
+.App.dark .job-description {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
   .process-inner {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 50px;
+  }
+
+  .process-left {
+    position: relative;
+    top: 0;
+  }
+
+  .timeline-line {
+    left: 20px;
+  }
+
+  .node-inner {
+    width: 50px;
+    height: 50px;
+  }
+
+  .node-number {
+    font-size: 1.1rem;
+  }
+
+  .experience-card {
+    margin-left: 72px;
+    padding: 24px;
+  }
+
+  .job-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .experience-list {
+    gap: 36px;
+  }
+
+  .timeline-line {
+    left: 15px;
+  }
+
+  .node-inner {
+    width: 42px;
+    height: 42px;
+  }
+
+  .node-number {
+    font-size: 1rem;
+  }
+
+  .experience-card {
+    margin-left: 58px;
+    padding: 20px;
+  }
+
+  .job-title {
+    font-size: 1.1rem;
+  }
+
+  .company-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .location::before {
+    display: none;
   }
 }

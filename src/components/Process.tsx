@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll, useVelocity, useSpring, useTransform, useMotionValue } from 'framer-motion';
 import { fadeInLeft, motionConfig } from '../utils/motion';
 import './Process.css';
 
@@ -7,37 +7,140 @@ const Process: React.FC = () => {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-80px" });
 
-  const steps = [
+  const experiences = [
     { 
       number: '01', 
-      title: 'Freelance Creative Manager', 
-      description: 'JNK Nutrition, Dubai | May 2025–Present. Managing creative direction, digital strategy, content production, and campaign optimization for fitness & supplement brands.' 
+      title: 'Freelance Creative Manager',
+      company: 'JNK Nutrition',
+      location: 'Dubai',
+      period: 'May 2025–Present',
+      description: 'Managing creative direction, digital strategy, content production, and campaign optimization for fitness & supplement brands.' 
     },
     { 
       number: '02', 
-      title: 'Marketing & IT Coordinator', 
-      description: 'Avion Realty Properties, Dubai | Jan 2023–Apr 2025. Directed digital marketing operations, property portal management, and lead generation strategies.' 
+      title: 'Marketing & IT Coordinator',
+      company: 'Avion Realty Properties',
+      location: 'Dubai',
+      period: 'Jan 2023–Apr 2025',
+      description: 'Directed digital marketing operations, property portal management, and lead generation strategies.' 
     },
     { 
       number: '03', 
-      title: 'Admin & Digital Marketing Executive', 
-      description: 'Gheroub Al Shams Auto Workshop, Sharjah | Feb 2022–Nov 2022. Managed digital presence, content creation, and customer engagement.' 
+      title: 'Admin & Digital Marketing Executive',
+      company: 'Gheroub Al Shams Auto Workshop',
+      location: 'Sharjah',
+      period: 'Feb 2022–Nov 2022',
+      description: 'Managed digital presence, content creation, and customer engagement.' 
     }
   ];
 
-  const stepVariant = {
-    hidden: { opacity: 0, x: 60, scale: 0.9, filter: 'blur(6px)' },
+  const timelineNodeVariant = {
+    hidden: { opacity: 0, scale: 0.8 },
     visible: (i: number) => ({
       opacity: 1,
-      x: 0,
       scale: 1,
-      filter: 'blur(0px)',
       transition: {
-        duration: 0.7,
-        delay: i * 0.18,
-        ease: motionConfig.easing.smooth,
+        duration: 0.4,
+        delay: i * 0.12 + 0.15,
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     }),
+  };
+
+  const { scrollY } = useScroll();
+  const velocity = useVelocity(scrollY);
+  const smoothVelocity = useSpring(velocity, { damping: 35, stiffness: 150 });
+  const velocityX = useTransform(smoothVelocity, [-1000, 0, 1000], [40, 0, -40]);
+
+  const ExperienceItem: React.FC<{ exp: typeof experiences[number]; index: number }> = ({ exp, index }) => {
+    const cardRef = React.useRef<HTMLDivElement | null>(null);
+    const cardInView = useInView(cardRef, { amount: 0.45, margin: "-10% 0px -10% 0px" });
+
+    const baseX = useMotionValue(80);
+
+    React.useEffect(() => {
+      if (cardInView) {
+        const timer = setTimeout(() => baseX.set(0), 120 + index * 60);
+        return () => clearTimeout(timer);
+      }
+      baseX.set(80);
+      return undefined;
+    }, [cardInView, index, baseX]);
+
+    const baseSpring = useSpring(baseX, { damping: 26, stiffness: 190, mass: 0.7 });
+    const x = useTransform([baseSpring, velocityX], (vals) => {
+      const [b, v] = vals as number[];
+      const combined = b + v * 0.12;
+      if (combined > 80) return 80;
+      if (combined < -60) return -60;
+      return combined;
+    });
+
+    const opacity = useTransform(x, [-60, 0, 80], [0.4, 1, 0]);
+    const scale = useTransform(x, [-60, 0, 80], [0.98, 1, 0.96]);
+
+    return (
+      <div className="experience-item">
+        <motion.div 
+          className="timeline-node"
+          custom={index}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={timelineNodeVariant}
+        >
+          <div className="node-inner">
+            <span className="node-number">{exp.number}</span>
+          </div>
+        </motion.div>
+
+        <motion.div 
+          className="experience-card"
+          ref={cardRef}
+          initial={false}
+          style={{ x, opacity, scale }}
+          whileHover={{
+            y: -2,
+            transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] as const }
+          }}
+        >
+          <div className="card-header">
+            <motion.h4 
+              className="job-title"
+              initial={{ opacity: 0, y: 10 }}
+              animate={cardInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+              transition={{ delay: index * 0.15 + 0.3 }}
+            >
+              {exp.title}
+            </motion.h4>
+            <motion.div 
+              className="company-info"
+              initial={{ opacity: 0 }}
+              animate={cardInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ delay: index * 0.15 + 0.4 }}
+            >
+              <span className="company-name">{exp.company}</span>
+              <span className="location">{exp.location}</span>
+            </motion.div>
+            <motion.div 
+              className="period"
+              initial={{ opacity: 0 }}
+              animate={cardInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ delay: index * 0.15 + 0.45 }}
+            >
+              {exp.period}
+            </motion.div>
+          </div>
+          <motion.p 
+            className="job-description"
+            initial={{ opacity: 0 }}
+            animate={cardInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ delay: index * 0.15 + 0.5 }}
+          >
+            {exp.description}
+          </motion.p>
+        </motion.div>
+      </div>
+    );
   };
 
   return (
@@ -79,50 +182,19 @@ const Process: React.FC = () => {
           </motion.div>
 
           <div className="process-right">
-            <div className="steps-container">
-              {steps.map((step, index) => (
-                <motion.div 
-                  key={index} 
-                  className="step-card"
-                  custom={index}
-                  initial="hidden"
-                  animate={isInView ? "visible" : "hidden"}
-                  variants={stepVariant}
-                  whileHover={{
-                    x: -10,
-                    scale: 1.02,
-                    boxShadow: '0 12px 40px rgba(0,0,0,0.12)',
-                    transition: { duration: 0.35 }
-                  }}
-                >
-                  <motion.div 
-                    className="step-badge"
-                    initial={{ scale: 0, rotate: -180 }}
-                    animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
-                    transition={{ 
-                      delay: index * 0.15 + 0.2,
-                      duration: 0.5,
-                      ease: motionConfig.easing.smooth 
-                    }}
-                  >
-                    {step.number}
-                  </motion.div>
-                  <motion.h4
-                    initial={{ opacity: 0 }}
-                    animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                    transition={{ delay: index * 0.15 + 0.3 }}
-                  >
-                    {step.title}
-                  </motion.h4>
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                    transition={{ delay: index * 0.15 + 0.4 }}
-                  >
-                    {step.description}
-                  </motion.p>
-                </motion.div>
-              ))}
+            <div className="timeline-wrapper">
+              <motion.div 
+                className="timeline-line"
+                initial={{ scaleY: 0 }}
+                animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              />
+              
+              <div className="experience-list">
+                {experiences.map((exp, index) => (
+                  <ExperienceItem key={index} exp={exp} index={index} />
+                ))}
+              </div>
             </div>
           </div>
         </div>

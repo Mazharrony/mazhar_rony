@@ -62,72 +62,91 @@
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.25);
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.42));
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
 }
 
 .modal-box {
   position: relative;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)), var(--bg-card);
+  background: 
+    radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.08), transparent 45%),
+    radial-gradient(circle at 100% 100%, rgba(0, 0, 0, 0.03), transparent 60%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)), 
+    var(--bg-card);
   padding: 48px;
   border-radius: 24px;
   max-width: 720px;
   width: min(720px, 92vw);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 32px 96px rgba(0, 0, 0, 0.2), 
+    0 12px 40px rgba(0, 0, 0, 0.14);
+  backdrop-filter: blur(20px);
 }
 
 .modal-box h2 {
   margin-bottom: 12px;
   font-size: 2rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
 }
 
 .modal-box p {
   margin-bottom: 18px;
   color: var(--text-secondary);
   line-height: 1.6;
+  letter-spacing: -0.01em;
+  opacity: 0.92;
 }
 
 .modal-header-block {
   display: grid;
-  gap: 8px;
+  gap: 10px;
+  margin-bottom: 4px;
 }
 
 .modal-divider {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, rgba(0,0,0,0.08), rgba(0,0,0,0.04), rgba(0,0,0,0.08));
-  margin: 16px 0 24px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.02));
+  margin: 20px 0 28px;
+  transform-origin: center;
 }
 
 .skills-grid {
   display: grid;
-  gap: 24px;
+  gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   margin-top: 8px;
 }
 
 .skill-card {
   background: var(--bg-card);
-  border: 1px solid var(--border-color);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
   padding: 20px;
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 12px;
   align-items: flex-start;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.28s cubic-bezier(0.17, 0.67, 0.3, 1), 
+              box-shadow 0.28s cubic-bezier(0.17, 0.67, 0.3, 1),
+              border-color 0.28s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  will-change: transform;
 }
 
 .skill-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transform: scale(1.02) translateY(-2px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.16),
+    0 0 24px var(--card-glow, rgba(99, 102, 241, 0.15));
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .skill-icon {
@@ -139,6 +158,12 @@
   justify-content: center;
   font-size: 18px;
   font-weight: 600;
+  transition: filter 0.28s ease, transform 0.28s cubic-bezier(0.17, 0.67, 0.3, 1);
+}
+
+.skill-card:hover .skill-icon {
+  filter: brightness(1.15) drop-shadow(0 0 8px currentColor);
+  transform: scale(1.05);
 }
 
 .skill-body {
@@ -150,12 +175,16 @@
   font-weight: 700;
   font-size: 1rem;
   color: var(--text-primary);
+  letter-spacing: -0.01em;
+  line-height: 1.4;
 }
 
 .skill-detail {
   font-size: 0.93rem;
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.6;
+  letter-spacing: -0.005em;
+  opacity: 0.88;
 }
 
 .modal-close {
@@ -173,12 +202,15 @@
   align-items: center;
   justify-content: center;
   color: var(--text-primary);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition: 
+    transform 0.32s cubic-bezier(0.17, 0.67, 0.3, 1), 
+    box-shadow 0.28s ease, 
+    background 0.28s ease;
 }
 
 .modal-close:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  background: rgba(0, 0, 0, 0.1);
+  transform: scale(1.08) rotate(90deg);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.16);
+  background: rgba(0, 0, 0, 0.12);
 }
 

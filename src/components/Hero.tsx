@@ -1,6 +1,82 @@
-import React, { useRef } from 'react';
-import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useInView, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 import './Hero.css';
+
+const PRIMARY_TOOLS = ['photoshop', 'illustrator', 'figma', 'canva', 'capcut'];
+const SECONDARY_TOOLS = ['googleads', 'meta', 'analytics', 'shopify', 'wordpress'];
+const ALL_TOOLS = [...PRIMARY_TOOLS, ...SECONDARY_TOOLS];
+
+interface FloatingIconProps {
+  className: string;
+  mouseX: any;
+  mouseY: any;
+  xMultiplier: number;
+  yMultiplier: number;
+  delay: number;
+  rotationInterval: number;
+}
+
+const FloatingIcon: React.FC<FloatingIconProps> = ({ 
+  className, 
+  mouseX, 
+  mouseY, 
+  xMultiplier, 
+  yMultiplier,
+  delay,
+  rotationInterval
+}) => {
+  const [currentToolIndex, setCurrentToolIndex] = useState(Math.floor(Math.random() * ALL_TOOLS.length));
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const transformX = useTransform(mouseX, [0, 20], [0, xMultiplier]);
+  const transformY = useTransform(mouseY, [0, 20], [0, yMultiplier]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setCurrentToolIndex((prev) => (prev + 1) % ALL_TOOLS.length);
+        setIsAnimating(false);
+      }, 300);
+    }, rotationInterval);
+
+    return () => clearInterval(interval);
+  }, [rotationInterval]);
+
+  const currentTool = ALL_TOOLS[currentToolIndex];
+
+  return (
+    <motion.div 
+      className={`floating-icon-badge ${className}`}
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      style={{
+        x: transformX,
+        y: transformY,
+      }}
+      whileHover={{ scale: 1.05 }}
+    >
+      <motion.div
+        className="icon-container"
+        animate={{
+          opacity: isAnimating ? 0 : 1,
+          scale: isAnimating ? 0.85 : 1,
+        }}
+        transition={{ 
+          duration: 0.25,
+          ease: isAnimating ? [0.17, 0.67, 0.3, 1] : [0.17, 0.67, 0.3, 1.08]
+        }}
+      >
+        <img 
+          src={`https://cdn.simpleicons.org/${currentTool}`}
+          alt={currentTool}
+          className="tool-icon"
+        />
+      </motion.div>
+    </motion.div>
+  );
+};
 
 const Hero: React.FC = () => {
   const containerRef = useRef(null);
@@ -114,47 +190,55 @@ const Hero: React.FC = () => {
                 }}
               />
               
-              <motion.div 
-                className="floating-badge badge-1"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.6, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                style={{
-                  x: useTransform(x, [0, 20], [0, -8]),
-                  y: useTransform(y, [0, 20], [0, -8]),
-                }}
-                whileHover={{ scale: 1.15, rotate: 5 }}
-              >
-                <span>Design</span>
-              </motion.div>
+              <FloatingIcon
+                className="icon-badge-1"
+                mouseX={x}
+                mouseY={y}
+                xMultiplier={-8}
+                yMultiplier={-8}
+                delay={0.6}
+                rotationInterval={4200}
+              />
               
-              <motion.div 
-                className="floating-badge badge-2"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.75, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                style={{
-                  x: useTransform(x, [0, 20], [0, 10]),
-                  y: useTransform(y, [0, 20], [0, 6]),
-                }}
-                whileHover={{ scale: 1.15, rotate: -5 }}
-              >
-                <span>Brand</span>
-              </motion.div>
+              <FloatingIcon
+                className="icon-badge-2"
+                mouseX={x}
+                mouseY={y}
+                xMultiplier={10}
+                yMultiplier={6}
+                delay={0.75}
+                rotationInterval={5100}
+              />
               
-              <motion.div 
-                className="floating-badge badge-3"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.9, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                style={{
-                  x: useTransform(x, [0, 20], [0, -6]),
-                  y: useTransform(y, [0, 20], [0, 10]),
-                }}
-                whileHover={{ scale: 1.15, rotate: 3 }}
-              >
-                <span>Web</span>
-              </motion.div>
+              <FloatingIcon
+                className="icon-badge-3"
+                mouseX={x}
+                mouseY={y}
+                xMultiplier={-6}
+                yMultiplier={10}
+                delay={0.9}
+                rotationInterval={3800}
+              />
+              
+              <FloatingIcon
+                className="icon-badge-4"
+                mouseX={x}
+                mouseY={y}
+                xMultiplier={8}
+                yMultiplier={-5}
+                delay={1.05}
+                rotationInterval={4600}
+              />
+              
+              <FloatingIcon
+                className="icon-badge-5"
+                mouseX={x}
+                mouseY={y}
+                xMultiplier={-10}
+                yMultiplier={8}
+                delay={1.2}
+                rotationInterval={5400}
+              />
             </div>
           </motion.div>
         </motion.div>

@@ -33,10 +33,10 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ data, onClose }) => {
     >
       <motion.div
         className="modal-box"
-        initial={{ opacity: 0, scale: 0.96, y: 8 }}
+        initial={{ opacity: 0, scale: 0.96, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.96, y: 8 }}
-        transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+        exit={{ opacity: 0, scale: 0.96, y: 30 }}
+        transition={{ duration: 0.35, ease: [0.17, 0.67, 0.3, 1.1] }}
         onClick={(e) => e.stopPropagation()}
       >
         <button className="modal-close" onClick={onClose} aria-label="Close modal">
@@ -49,7 +49,13 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ data, onClose }) => {
           <p>{data.description}</p>
         </div>
 
-        <div className="modal-divider" aria-hidden="true" />
+        <motion.div 
+          className="modal-divider" 
+          aria-hidden="true"
+          initial={{ opacity: 0, scaleX: 0.8 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 0.4, delay: 0.15, ease: [0.17, 0.67, 0.3, 1] }}
+        />
 
         <div className="skills-grid">
           {data.skills.map((skill) => (
