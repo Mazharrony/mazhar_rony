@@ -24,6 +24,10 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.classList.toggle('dark', theme === 'dark');
+  }, [theme]);
+
   return (
     <div className={`App ${theme}`} style={{ colorScheme: theme }}>
       <Header theme={theme} onThemeChange={setTheme} scrollPosition={scrollPosition} />
