@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { motion, useInView, useScroll, useVelocity, useSpring, useTransform, useMotionValue } from 'framer-motion';
 import { fadeInLeft, motionConfig } from '../utils/motion';
@@ -60,8 +62,14 @@ const Process: React.FC = () => {
 
     React.useEffect(() => {
       if (cardInView) {
-        const timer = setTimeout(() => baseX.set(0), 120 + index * 60);
-        return () => clearTimeout(timer);
+        // Wobble effect on scroll entry
+        const wobbleSequence = [80, -5, 3, -1, 0];
+        const timer1 = setTimeout(() => {
+          wobbleSequence.forEach((value, i) => {
+            setTimeout(() => baseX.set(value), i * 60);
+          });
+        }, 120 + index * 60);
+        return () => clearTimeout(timer1);
       }
       baseX.set(80);
       return undefined;
@@ -88,9 +96,15 @@ const Process: React.FC = () => {
           animate={isInView ? "visible" : "hidden"}
           variants={timelineNodeVariant}
         >
-          <div className="node-inner">
-            <span className="node-number">{exp.number}</span>
-          </div>
+          <motion.div className="node-inner">
+            <motion.span 
+              className="node-number"
+              animate={cardInView ? { textShadow: "0 0 16px rgba(99, 102, 241, 0.4)" } : { textShadow: "0 0 0px rgba(99, 102, 241, 0)" }}
+              transition={{ duration: 0.4 }}
+            >
+              {exp.number}
+            </motion.span>
+          </motion.div>
         </motion.div>
 
         <motion.div 

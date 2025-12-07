@@ -1,0 +1,117 @@
+/* [project]/mazhar_rony/src/components/Footer.css [app-client] (css) */
+.footer {
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  padding: 80px 0 40px;
+  position: relative;
+}
+
+.footer-content {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin-bottom: 60px;
+  display: grid;
+}
+
+.footer-section h4 {
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.footer-section p {
+  font-size: .95rem;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 12px;
+}
+
+.footer-section a {
+  color: var(--text-secondary);
+  transition: var(--transition);
+  font-size: .95rem;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  color: var(--text-primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding-top: 40px;
+  font-size: .9rem;
+}
+
+.footer-bottom-content {
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  display: flex;
+}
+
+.footer-bottom-content p {
+  margin: 0;
+  font-size: .9rem;
+}
+
+.footer-maybe-cta {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  cursor: pointer;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  border: 2px solid #6366f14d;
+  border-radius: 999px;
+  padding: 16px 24px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all .3s cubic-bezier(.17, .67, .3, 1);
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  box-shadow: 0 8px 24px #0000001f;
+}
+
+.App.dark .footer-maybe-cta {
+  background: #6366f114;
+  border-color: #6366f166;
+  box-shadow: 0 8px 24px #0000004d;
+}
+
+.footer-maybe-cta:hover {
+  border-color: #6366f199;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .footer {
+    padding: 60px 0 100px;
+  }
+
+  .footer-maybe-cta {
+    padding: 12px 20px;
+    font-size: 1rem;
+    bottom: 24px;
+    right: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-maybe-cta {
+    bottom: 16px;
+    right: 16px;
+  }
+}
+
+/*# sourceMappingURL=mazhar_rony_src_components_Footer_css_bad6b30c._.single.css.map*/

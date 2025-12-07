@@ -1,0 +1,4 @@
+[00:00:00.253] Server  WARN     ⚠ Minimum recommended TypeScript version is v5.1.0, older versions can potentially be incompatible with Next.js. Detected: 4.9.5
+[00:00:00.303] Server  LOG      ✓ Ready in 209ms
+[00:00:17.248] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:00:17.545] Browser ERROR   Failed to load translations for en: {}

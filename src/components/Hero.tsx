@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 import './Hero.css';
@@ -5,6 +7,117 @@ import './Hero.css';
 const PRIMARY_TOOLS = ['photoshop', 'illustrator', 'figma', 'canva', 'capcut'];
 const SECONDARY_TOOLS = ['googleads', 'meta', 'analytics', 'shopify', 'wordpress'];
 const ALL_TOOLS = [...PRIMARY_TOOLS, ...SECONDARY_TOOLS];
+
+// Soft, calming animation component for hero box
+const SoftAnimationBox: React.FC = () => {
+  return (
+    <motion.svg
+      viewBox="0 0 400 400"
+      className="soft-animation-box"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <defs>
+        <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+        </filter>
+      </defs>
+
+      {/* Floating cloud shapes */}
+      <motion.g
+        animate={{ y: [0, -15, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <path
+          d="M 60 180 Q 50 160 70 150 Q 80 140 100 145 Q 110 140 120 155 Q 115 170 100 175 Q 80 180 60 180"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          opacity="0.4"
+        />
+      </motion.g>
+
+      {/* Central soft circle with pulsing effect */}
+      <motion.circle
+        cx="200"
+        cy="200"
+        r="80"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        opacity="0.3"
+        animate={{ r: [75, 85, 75] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Inner pulsing circle */}
+      <motion.circle
+        cx="200"
+        cy="200"
+        r="50"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1"
+        opacity="0.5"
+        animate={{ r: [45, 55, 45] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+      />
+
+      {/* Floating dots */}
+      <motion.circle
+        cx="200"
+        cy="120"
+        r="3"
+        fill="currentColor"
+        opacity="0.6"
+        animate={{ y: [0, 30, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      <motion.circle
+        cx="280"
+        cy="200"
+        r="2.5"
+        fill="currentColor"
+        opacity="0.5"
+        animate={{ x: [0, -25, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      <motion.circle
+        cx="200"
+        cy="280"
+        r="3"
+        fill="currentColor"
+        opacity="0.6"
+        animate={{ y: [0, -30, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      <motion.circle
+        cx="120"
+        cy="200"
+        r="2"
+        fill="currentColor"
+        opacity="0.4"
+        animate={{ x: [0, 30, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Soft wave pattern */}
+      <motion.path
+        d="M 150 200 Q 175 190 200 200 T 250 200"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1"
+        opacity="0.25"
+        animate={{ d: ["M 150 200 Q 175 190 200 200 T 250 200", "M 150 210 Q 175 200 200 210 T 250 210", "M 150 200 Q 175 190 200 200 T 250 200"] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+    </motion.svg>
+  );
+};
 
 interface FloatingIconProps {
   className: string;
@@ -55,7 +168,11 @@ const FloatingIcon: React.FC<FloatingIconProps> = ({
         x: transformX,
         y: transformY,
       }}
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ 
+        scale: 1.12,
+        boxShadow: '0 12px 32px rgba(99, 102, 241, 0.25)',
+        transition: { duration: 0.25 }
+      }}
     >
       <motion.div
         className="icon-container"
@@ -182,13 +299,15 @@ const Hero: React.FC = () => {
           >
             <div className="hero-image-container">
               <motion.div 
-                className="hero-image grayscale"
+                className="hero-image"
                 style={{ x, y }}
                 whileHover={{ 
                   scale: 1.02,
                   transition: { duration: 0.35 }
                 }}
-              />
+              >
+                <SoftAnimationBox />
+              </motion.div>
               
               <FloatingIcon
                 className="icon-badge-1"

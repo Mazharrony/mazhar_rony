@@ -31,6 +31,8 @@
 .service-card {
   display: flex;
   flex-direction: column;
+  transition: all 0.35s cubic-bezier(0.17, 0.67, 0.3, 1);
+  will-change: transform, box-shadow;
 }
 
 .service-card h3 {
@@ -55,7 +57,8 @@
 }
 
 .service-link:hover {
-  transform: translateX(4px);
+  transform: translateX(6px);
+  opacity: 0.8;
 }
 
 /* Modal styles */
@@ -214,3 +217,83 @@
   background: rgba(0, 0, 0, 0.12);
 }
 
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+  .services-track {
+    gap: 24px;
+    padding: 0 30px;
+  }
+
+  .services-track .service-card {
+    min-width: 340px;
+    max-width: 340px;
+    flex: 0 0 340px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .services-panel {
+    height: auto;
+    padding: 80px 0;
+  }
+
+  .services-panel .container {
+    height: auto;
+    padding: 0;
+  }
+
+  .services-track {
+    gap: 16px;
+    padding: 0 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .services-track .service-card {
+    min-width: 280px;
+    max-width: 280px;
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+  }
+
+  .modal-box {
+    padding: 32px;
+  }
+
+  .modal-box h2 {
+    font-size: 1.5rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-track {
+    padding: 0 16px;
+  }
+
+  .services-track .service-card {
+    min-width: 240px;
+    max-width: 240px;
+    flex: 0 0 240px;
+  }
+
+  .modal-box {
+    padding: 24px;
+  }
+
+  .modal-box h2 {
+    font-size: 1.2rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}

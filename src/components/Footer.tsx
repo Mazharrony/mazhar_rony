@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import { motionConfig } from '../utils/motion';
@@ -208,8 +209,26 @@ const Footer: React.FC = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ delay: 0.7, duration: 0.5 }}
         >
-          <p>&copy; 2025 Mazhar Roni. Currently in Dubai, UAE | www.meetmazhar.site</p>
+          <div className="footer-bottom-content">
+            <p>Based in Dubai, working worldwide.</p>
+            <p>&copy; 2025 Mazhar Roni | www.meetmazhar.site</p>
+          </div>
         </motion.div>
+
+        <motion.button
+          className="footer-maybe-cta"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+          transition={{ delay: 0.9, duration: 0.5 }}
+          whileHover={{
+            scale: 1.1,
+            boxShadow: '0 12px 32px rgba(99, 102, 241, 0.3)',
+            transition: { duration: 0.3 }
+          }}
+          whileTap={{ scale: 0.95 }}
+        >
+          maybe.
+        </motion.button>
       </div>
     </footer>
   );

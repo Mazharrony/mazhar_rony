@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { fadeInUp, staggerContainer, motionConfig } from '../utils/motion';
@@ -8,7 +10,110 @@ interface PortfolioItem {
   title: string;
   category: string;
   image: string;
+  tools?: string[];
+  results?: string;
+  description?: string;
 }
+
+interface PortfolioModalProps {
+  item: PortfolioItem | null;
+  onClose: () => void;
+}
+
+const PortfolioModal: React.FC<PortfolioModalProps> = ({ item, onClose }) => {
+  if (!item) return null;
+
+  return (
+    <motion.div
+      className="portfolio-modal-backdrop"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+    >
+      <motion.div
+        className="portfolio-modal-box"
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+        transition={{ duration: 0.3 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className="modal-close" onClick={onClose}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div className="modal-content">
+          <motion.div
+            className="modal-image"
+            style={{ background: item.image }}
+            layoutId={`portfolio-image-${item.id}`}
+          />
+
+          <div className="modal-info">
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              {item.title}
+            </motion.h2>
+
+            <motion.p
+              className="modal-description"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.15 }}
+            >
+              {item.description || `A detailed project case study for ${item.title}. Click to explore more details about our approach and the final outcomes.`}
+            </motion.p>
+
+            {item.tools && item.tools.length > 0 && (
+              <motion.div
+                className="modal-tools"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+              >
+                <h4>Tools Used</h4>
+                <div className="tools-list">
+                  {item.tools.map((tool, idx) => (
+                    <span key={idx} className="tool-tag">{tool}</span>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+
+            {item.results && (
+              <motion.div
+                className="modal-results"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.25 }}
+              >
+                <h4>Results</h4>
+                <p>{item.results}</p>
+              </motion.div>
+            )}
+
+            <motion.button
+              className="btn btn-primary modal-cta"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Get in touch about this
+            </motion.button>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
 
 const Portfolio: React.FC = () => {
   const ref = React.useRef(null);
@@ -18,15 +123,45 @@ const Portfolio: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
   const portfolioItems: PortfolioItem[] = [
-    { id: '1', title: 'Brand Identity', category: 'branding', image: 'linear-gradient(135deg, #e0e0e0, #d0d0d0)' },
-    { id: '2', title: 'Web Design', category: 'web', image: 'linear-gradient(135deg, #d0d0d0, #c0c0c0)' },
-    { id: '3', title: 'Product Design', category: 'design', image: 'linear-gradient(135deg, #c0c0c0, #b0b0b0)' },
-    { id: '4', title: 'Mobile App', category: 'design', image: 'linear-gradient(135deg, #b0b0b0, #a0a0a0)' },
-    { id: '5', title: 'Marketing Campaign', category: 'branding', image: 'linear-gradient(135deg, #a0a0a0, #909090)' },
-    { id: '6', title: 'Digital Strategy', category: 'web', image: 'linear-gradient(135deg, #909090, #808080)' }
+    { 
+      id: '1', 
+      title: 'Supplements Packaging Design', 
+      category: 'design',
+      image: 'linear-gradient(135deg, #e0e0e0, #d0d0d0)',
+      tools: ['Photoshop', 'Illustrator', 'Adobe XD'],
+      results: 'Increased product shelf visibility by 45% with eye-catching packaging design.',
+      description: 'A complete product packaging redesign for a premium supplement brand. Including label design, box mockups, and production specifications.'
+    },
+    { 
+      id: '2', 
+      title: 'Brand Strategy & Visual Identity', 
+      category: 'branding',
+      image: 'linear-gradient(135deg, #d0d0d0, #c0c0c0)',
+      tools: ['Figma', 'Adobe Creative Suite', 'Canva'],
+      results: 'Created cohesive brand identity resulting in 60% increased brand recognition.',
+      description: 'Developed comprehensive brand guidelines including logo systems, color palettes, typography, and brand voice documentation.'
+    },
+    { 
+      id: '3', 
+      title: 'Social Media Creative Content', 
+      category: 'content',
+      image: 'linear-gradient(135deg, #c0c0c0, #b0b0b0)',
+      tools: ['CapCut', 'Adobe Premiere', 'Canva', 'After Effects'],
+      results: '2M+ reach on viral Facebook frame and 5K+ engagement per post.',
+      description: 'High-impact social media creatives including carousel posts, Reels, TikToks, and video content for fitness and e-commerce brands.'
+    },
+    { 
+      id: '4', 
+      title: 'Website & Digital Marketing', 
+      category: 'web',
+      image: 'linear-gradient(135deg, #b0b0b0, #a0a0a0)',
+      tools: ['WordPress', 'Shopify', 'Google Analytics', 'Meta Ads'],
+      results: '35% increase in conversion rate and 150% ROI improvement.',
+      description: 'Website optimization, e-commerce management, and integrated digital marketing campaigns across Google Ads and Meta platforms.'
+    }
   ];
 
-  const categories = ['all', 'branding', 'web', 'design'];
+  const categories = ['all', 'design', 'branding', 'content', 'web'];
   const filtered = activeCategory === 'all' 
     ? portfolioItems 
     : portfolioItems.filter(item => item.category === activeCategory);
@@ -95,13 +230,13 @@ const Portfolio: React.FC = () => {
           ))}
         </motion.div>
 
-        <div className="grid grid-3">
+        <div className="grid grid-2">
           <AnimatePresence mode="popLayout">
             {filtered.map((item, index) => (
               <motion.div
                 key={item.id}
-                className={`portfolio-card ${selectedItem === item.id ? 'selected' : ''}`}
-                onClick={() => setSelectedItem(selectedItem === item.id ? null : item.id)}
+                className="portfolio-card"
+                onClick={() => setSelectedItem(item.id)}
                 custom={index}
                 layout
                 initial="hidden"
@@ -110,7 +245,7 @@ const Portfolio: React.FC = () => {
                 variants={cardVariant}
                 whileHover={{
                   y: -12,
-                  scale: 1.03,
+                  scale: 1.02,
                   boxShadow: '0 20px 60px rgba(0,0,0,0.18)',
                   transition: { duration: 0.35, ease: [0.4, 0, 0.2, 1] }
                 }}
@@ -118,6 +253,7 @@ const Portfolio: React.FC = () => {
                 <motion.div 
                   className="portfolio-image grayscale" 
                   style={{ background: item.image }}
+                  layoutId={`portfolio-image-${item.id}`}
                   whileHover={{
                     scale: 1.08,
                     filter: 'grayscale(0%)',
@@ -146,21 +282,34 @@ const Portfolio: React.FC = () => {
                     >
                       {item.category}
                     </motion.p>
-                    <motion.a 
-                      href="#" 
+                    <motion.button 
                       className="view-link"
                       initial={{ y: 10, opacity: 0 }}
                       whileHover={{ y: 0, opacity: 1, x: 4 }}
                       transition={{ delay: 0.15 }}
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedItem(item.id);
+                      }}
                     >
                       View →
-                    </motion.a>
+                    </motion.button>
                   </div>
                 </motion.div>
               </motion.div>
             ))}
           </AnimatePresence>
         </div>
+
+        <AnimatePresence>
+          {selectedItem && (
+            <PortfolioModal 
+              item={portfolioItems.find(i => i.id === selectedItem) || null}
+              onClose={() => setSelectedItem(null)}
+            />
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

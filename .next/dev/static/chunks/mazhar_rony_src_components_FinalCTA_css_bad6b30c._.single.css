@@ -1,0 +1,58 @@
+/* [project]/mazhar_rony/src/components/FinalCTA.css [app-client] (css) */
+.cta-inner {
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+  display: grid;
+}
+
+.cta-images {
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  animation: .8s cubic-bezier(.4, 0, .2, 1) slideInLeft;
+  display: grid;
+}
+
+.cta-image-card {
+  aspect-ratio: 1;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  border-radius: 20px;
+}
+
+.cta-image-card:hover {
+  box-shadow: var(--shadow-hover);
+  filter: grayscale(0%);
+  transform: translateY(-8px);
+}
+
+.cta-content {
+  animation: .8s cubic-bezier(.4, 0, .2, 1) slideInRight;
+}
+
+.cta-content h2 {
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.cta-content p {
+  max-width: 400px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .cta-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .cta-images {
+    order: 2;
+  }
+
+  .cta-content {
+    order: 1;
+  }
+}
+
+/*# sourceMappingURL=mazhar_rony_src_components_FinalCTA_css_bad6b30c._.single.css.map*/

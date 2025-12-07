@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
@@ -123,6 +125,8 @@ const Services: React.FC = () => {
     }
   ];
 
+  const scrollVelocityRef = useRef({ velocity: 0, lastTime: Date.now() });
+
   useEffect(() => {
     if (!panelRef.current || !trackRef.current) return;
 
@@ -134,23 +138,55 @@ const Services: React.FC = () => {
     const viewportWidth = panel.offsetWidth;
     const distance = totalWidth - viewportWidth;
 
-    // GSAP ScrollTrigger: pin section and scrub horizontal movement
+    // Detect scroll velocity
+    let lastScrollY = window.scrollY;
+    let velocityTimeout: NodeJS.Timeout;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const deltaY = currentScrollY - lastScrollY;
+      const now = Date.now();
+      const timeDelta = now - scrollVelocityRef.current.lastTime;
+
+      // Calculate velocity (pixels per ms)
+      scrollVelocityRef.current.velocity = timeDelta > 0 ? deltaY / timeDelta : 0;
+      scrollVelocityRef.current.lastTime = now;
+      lastScrollY = currentScrollY;
+
+      // Clear existing timeout and set new one
+      clearTimeout(velocityTimeout);
+      velocityTimeout = setTimeout(() => {
+        scrollVelocityRef.current.velocity = 0;
+      }, 150);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // GSAP ScrollTrigger: pin section and scrub horizontal movement with velocity
     const scrollTrigger = gsap.to(track, {
       x: -distance,
-      ease: "none",
+      ease: "power1.out",
       scrollTrigger: {
         trigger: panel,
         start: "top top",
-        end: () => `+=${distance}`,
-        scrub: true,
+        end: () => `+=${distance * 1.2}`,
+        scrub: 1.2,
         pin: true,
         anticipatePin: 1,
-        invalidateOnRefresh: true
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          // Apply subtle velocity-based offset
+          const velocity = scrollVelocityRef.current.velocity;
+          const offset = velocity * 50; // Velocity multiplier for effect strength
+          gsap.set(track, { x: -distance * self.progress + offset });
+        }
       },
     });
 
     return () => {
       scrollTrigger.kill();
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(velocityTimeout);
     };
   }, []);
 

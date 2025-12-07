@@ -18,9 +18,35 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "incremental": true
   },
   "include": [
-    "src"
+    "app",
+    "lib",
+    ".next/types/**/*.ts",
+    "next-env.d.ts",
+    ".next/dev/types/**/*.ts",
+    "src/components",
+    "src/hooks",
+    "src/utils"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/App.tsx",
+    "src/index.tsx",
+    "src/reportWebVitals.ts",
+    "src/setupTests.ts"
   ]
 }
