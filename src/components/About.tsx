@@ -77,7 +77,7 @@ const About: React.FC = () => {
             </motion.p>
             
             <div className="skills-pills">
-              {skills.map((skill, index) => (
+              {skills.map((skill: string, index: number) => (
                 <motion.span 
                   key={index} 
                   className="skill-pill"
