@@ -34,7 +34,7 @@ const FinalCTA: React.FC = () => {
       <div className="container">
         <div className="cta-inner">
           <div className="cta-images">
-            {imageVariants.map((variant, index) => (
+            {imageVariants.map((variant: any, index: number) => (
               <motion.div
                 key={index}
                 className="cta-image-card grayscale"

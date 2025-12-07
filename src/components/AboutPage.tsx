@@ -164,7 +164,7 @@ const AboutPage: React.FC = () => {
             {t('aboutPage.beliefs.title')}
           </motion.h3>
           <div className="beliefs-grid">
-            {beliefs.map((belief, index) => (
+            {beliefs.map((belief: string, index: number) => (
               <motion.div
                 key={index}
                 className="belief-item"
@@ -191,7 +191,7 @@ const AboutPage: React.FC = () => {
             {t('aboutPage.howIWork.title')}
           </motion.h3>
           <ul className="work-list">
-            {workStyle.map((item, index) => (
+            {workStyle.map((item: string, index: number) => (
               <motion.li
                 key={index}
                 variants={fadeInUp}

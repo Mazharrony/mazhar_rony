@@ -205,7 +205,7 @@ const Process: React.FC = () => {
               />
               
               <div className="experience-list">
-                {experiences.map((exp, index) => (
+                {experiences.map((exp: any, index: number) => (
                   <ExperienceItem key={index} exp={exp} index={index} />
                 ))}
               </div>

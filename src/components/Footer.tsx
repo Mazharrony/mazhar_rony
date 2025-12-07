@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
 
             {/* Footer links */}
             <nav className="footer-nav">
-              {footerLinks.map((link, i) => (
+              {footerLinks.map((link: any, i: number) => (
                 <motion.div
                   key={link.label}
                   initial={{ opacity: 0, y: 10 }}

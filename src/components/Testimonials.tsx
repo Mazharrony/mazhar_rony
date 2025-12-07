@@ -61,7 +61,7 @@ const Testimonials: React.FC = () => {
         </motion.div>
 
         <div className="testimonials-grid">
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial: any, index: number) => (
             <motion.div 
               key={index} 
               className="testimonial-card card"

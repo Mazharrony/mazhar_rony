@@ -140,7 +140,7 @@ const Journey: React.FC = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {milestones.map((milestone, index) => (
+          {milestones.map((milestone: typeof milestones[number], index: number) => (
             <MilestoneCard
               key={index}
               milestone={milestone}

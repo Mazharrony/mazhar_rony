@@ -248,7 +248,7 @@ const Contact: React.FC = () => {
             </div>
 
             <div className="methods-list">
-              {contactMethods.map((method, idx) => (
+              {contactMethods.map((method: any, idx: number) => (
                 <motion.a
                   key={idx}
                   href={method.href}

@@ -81,7 +81,7 @@ const PortfolioModal: React.FC<PortfolioModalProps> = ({ item, onClose }) => {
               >
                 <h4>{t('portfolio.modal.toolsUsed')}</h4>
                 <div className="tools-list">
-                  {item.tools.map((tool, idx) => (
+                  {item.tools.map((tool: string, idx: number) => (
                     <span key={idx} className="tool-tag">{tool}</span>
                   ))}
                 </div>
@@ -212,7 +212,7 @@ const Portfolio: React.FC = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          {categories.map((cat, index) => (
+          {categories.map((cat: string, index: number) => (
             <motion.button
               key={cat}
               className={`filter-pill ${activeCategory === cat ? 'active' : ''}`}
@@ -235,7 +235,7 @@ const Portfolio: React.FC = () => {
 
         <div className="grid grid-2">
           <AnimatePresence mode="popLayout">
-            {filtered.map((item, index) => (
+            {filtered.map((item: any, index: number) => (
               <motion.div
                 key={item.id}
                 className="portfolio-card"
