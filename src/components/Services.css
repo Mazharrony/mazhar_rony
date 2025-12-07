@@ -19,6 +19,12 @@
   gap: 32px;
   padding: 0 40px;
   will-change: transform;
+  direction: ltr; /* Force LTR for horizontal scroll animation */
+}
+
+/* Restore text direction for card content in RTL languages */
+[dir="rtl"] .services-track .service-card {
+  direction: rtl;
 }
 
 .services-track .service-card {

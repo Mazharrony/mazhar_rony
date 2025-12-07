@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { fadeInUp, staggerContainer, motionConfig } from '../utils/motion';
 import './Portfolio.css';
 
@@ -21,6 +22,7 @@ interface PortfolioModalProps {
 }
 
 const PortfolioModal: React.FC<PortfolioModalProps> = ({ item, onClose }) => {
+  const { t } = useLanguage();
   if (!item) return null;
 
   return (
@@ -77,7 +79,7 @@ const PortfolioModal: React.FC<PortfolioModalProps> = ({ item, onClose }) => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
               >
-                <h4>Tools Used</h4>
+                <h4>{t('portfolio.modal.toolsUsed')}</h4>
                 <div className="tools-list">
                   {item.tools.map((tool, idx) => (
                     <span key={idx} className="tool-tag">{tool}</span>
@@ -93,7 +95,7 @@ const PortfolioModal: React.FC<PortfolioModalProps> = ({ item, onClose }) => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.25 }}
               >
-                <h4>Results</h4>
+                <h4>{t('portfolio.modal.results')}</h4>
                 <p>{item.results}</p>
               </motion.div>
             )}
@@ -106,7 +108,7 @@ const PortfolioModal: React.FC<PortfolioModalProps> = ({ item, onClose }) => {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              Get in touch about this
+              {t('portfolio.modal.cta')}
             </motion.button>
           </div>
         </div>
@@ -118,6 +120,7 @@ const PortfolioModal: React.FC<PortfolioModalProps> = ({ item, onClose }) => {
 const Portfolio: React.FC = () => {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-80px" });
+  const { t } = useLanguage();
 
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
@@ -196,10 +199,10 @@ const Portfolio: React.FC = () => {
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer}
         >
-          <motion.span className="section-label" variants={fadeInUp}>Portfolio</motion.span>
-          <motion.h2 variants={fadeInUp}>Selected work</motion.h2>
+          <motion.span className="section-label" variants={fadeInUp}>{t('portfolio.label')}</motion.span>
+          <motion.h2 variants={fadeInUp}>{t('portfolio.title')}</motion.h2>
           <motion.p className="section-subtitle" variants={fadeInUp}>
-            A showcase of recent projects and collaborations
+            {t('portfolio.subtitle')}
           </motion.p>
         </motion.div>
 
@@ -225,7 +228,7 @@ const Portfolio: React.FC = () => {
               }}
               whileTap={{ scale: 0.95 }}
             >
-              {cat.charAt(0).toUpperCase() + cat.slice(1)}
+              {t(`portfolio.filter.${cat}`)}
             </motion.button>
           ))}
         </motion.div>

@@ -326,8 +326,165 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* ===== Responsive: Tablet & Mobile ===== */
-@media (max-width: 768px) {
+/* ===== Responsive: Small Mobile (320px - 479px) ===== */
+@media (max-width: 479px) {
+  .header {
+    height: 56px;
+    padding: 0;
+  }
+
+  .header.scrolled {
+    height: 52px;
+  }
+
+  .header .container {
+    padding: 0 16px;
+  }
+
+  .header-inner {
+    gap: 12px;
+  }
+
+  .header-zone-left {
+    min-width: 100px;
+    flex: 0 1 auto;
+  }
+
+  .brand {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+
+  .header-zone-right {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .language-select {
+    min-width: 40px;
+    padding: 4px 8px;
+    font-size: 11px;
+    border-radius: 4px;
+  }
+
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+    font-size: 18px;
+  }
+
+  .header-cta {
+    padding: 7px 14px;
+    font-size: 11px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  .header-hamburger {
+    width: 36px;
+    height: 36px;
+    gap: 4px;
+    padding: 6px;
+  }
+
+  .header-hamburger span {
+    width: 20px;
+    height: 1.5px;
+  }
+
+  /* Drawer Mobile Menu for small screens */
+  .mobile-menu {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .mobile-nav {
+    gap: 10px;
+  }
+
+  .mobile-nav-link {
+    font-size: 13px;
+    padding: 6px 0;
+    padding-left: 10px;
+  }
+
+  .mobile-cta {
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+}
+
+/* ===== Responsive: Medium Mobile (480px - 639px) ===== */
+@media (min-width: 480px) and (max-width: 639px) {
+  .header {
+    height: 60px;
+  }
+
+  .header.scrolled {
+    height: 54px;
+  }
+
+  .header .container {
+    padding: 0 20px;
+  }
+
+  .header-inner {
+    gap: 14px;
+  }
+
+  .header-zone-left {
+    min-width: 110px;
+  }
+
+  .brand {
+    font-size: 17px;
+  }
+
+  .header-zone-right {
+    gap: 10px;
+  }
+
+  .language-select {
+    min-width: 42px;
+    padding: 5px 9px;
+    font-size: 11px;
+  }
+
+  .theme-toggle {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+
+  .header-cta {
+    padding: 8px 15px;
+    font-size: 12px;
+  }
+
+  .header-hamburger {
+    width: 38px;
+    height: 38px;
+  }
+
+  .mobile-menu {
+    padding: 18px;
+    gap: 18px;
+  }
+
+  .mobile-nav-link {
+    font-size: 13px;
+  }
+
+  .mobile-cta {
+    padding: 11px 18px;
+    font-size: 12px;
+  }
+}
+
+/* ===== Responsive: Small Tablet (640px - 767px) ===== */
+@media (min-width: 640px) and (max-width: 767px) {
   .header {
     height: 64px;
   }
@@ -358,11 +515,114 @@
 
   .language-select {
     min-width: 45px;
+    font-size: 11px;
   }
 
   .header-cta {
     padding: 8px 16px;
     font-size: 12px;
+  }
+
+  .mobile-menu {
+    padding: 20px 24px;
+  }
+
+  .mobile-nav-link {
+    font-size: 14px;
+  }
+
+  .mobile-cta {
+    padding: 12px 20px;
+    font-size: 13px;
+  }
+}
+
+/* ===== Responsive: Large Tablet (768px - 1023px) ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .header {
+    height: 72px;
+  }
+
+  .header.scrolled {
+    height: 64px;
+  }
+
+  .header .container {
+    padding: 0 32px;
+  }
+
+  .header-inner {
+    gap: 24px;
+  }
+
+  .header-zone-left {
+    min-width: 130px;
+  }
+
+  .brand {
+    font-size: 19px;
+  }
+
+  .nav-desktop {
+    gap: 24px;
+  }
+
+  .nav-link {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .header-zone-right {
+    gap: 14px;
+  }
+
+  .language-select {
+    min-width: 48px;
+  }
+
+  .header-cta {
+    padding: 9px 18px;
+    font-size: 12px;
+  }
+}
+
+/* ===== Responsive: Desktop (1024px - 1439px) ===== */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .header {
+    height: 76px;
+  }
+
+  .header.scrolled {
+    height: 64px;
+  }
+
+  .header .container {
+    padding: 0 36px;
+  }
+
+  .header-inner {
+    gap: 36px;
+  }
+
+  .nav-desktop {
+    gap: 28px;
+  }
+
+  .nav-link {
+    font-size: 14px;
+  }
+
+  .header-cta {
+    padding: 10px 20px;
+  }
+}
+
+/* ===== Responsive: Large Desktop (1440px+) ===== */
+@media (min-width: 1440px) {
+  .header .container {
+    padding: 0 40px;
+    max-width: 1400px;
+    margin: 0 auto;
   }
 }
 

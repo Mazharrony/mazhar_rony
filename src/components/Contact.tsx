@@ -2,11 +2,13 @@
 
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 import './Contact.css';
 
 const Contact: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(containerRef, { once: false, margin: "-100px" });
+  const { t } = useLanguage();
   const [submitted, setSubmitted] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [brief, setBrief] = useState<any>(null);
@@ -54,21 +56,21 @@ const Contact: React.FC = () => {
   const contactMethods = [
     {
       icon: '📧',
-      label: 'Email',
+      label: t('contact.methods.email.label'),
       value: 'hello@meetmazhar.site',
       href: 'mailto:hello@meetmazhar.site',
       color: '#6366f1'
     },
     {
       icon: '💬',
-      label: 'WhatsApp',
+      label: t('contact.methods.whatsapp.label'),
       value: '+971 50 721 7156',
       href: 'https://wa.me/971507217156',
       color: '#10b981'
     },
     {
       icon: '📱',
-      label: 'Phone',
+      label: t('contact.methods.phone.label'),
       value: '+971 50 721 7156',
       href: 'tel:+971507217156',
       color: '#a855f7'
@@ -90,7 +92,7 @@ const Contact: React.FC = () => {
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: 0.1 }}
           >
-            Let's Connect
+            {t('contact.label')}
           </motion.span>
           
           <motion.h1
@@ -98,7 +100,7 @@ const Contact: React.FC = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 0.2, duration: 0.7 }}
           >
-            Say hello.
+            {t('contact.title')}
           </motion.h1>
           
           <motion.p
@@ -107,7 +109,7 @@ const Contact: React.FC = () => {
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            Have a project in mind or just want to chat? I'd love to hear from you.
+            {t('contact.subtitle')}
           </motion.p>
         </motion.div>
 
@@ -121,46 +123,46 @@ const Contact: React.FC = () => {
           >
             <form onSubmit={handleSubmit} className="contact-form">
               <div className="form-group">
-                <label htmlFor="name">Your Name</label>
+                <label htmlFor="name">{t('contact.form.name')}</label>
                 <input 
                   type="text" 
                   id="name" 
                   name="name"
-                  placeholder="What's your name?"
+                  placeholder={t('contact.form.namePlaceholder')}
                   required
                   disabled={isAnimating || submitted}
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="email">Email Address</label>
+                <label htmlFor="email">{t('contact.form.email')}</label>
                 <input 
                   type="email" 
                   id="email" 
                   name="email"
-                  placeholder="your@email.com"
+                  placeholder={t('contact.form.emailPlaceholder')}
                   required
                   disabled={isAnimating || submitted}
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="subject">Subject</label>
+                <label htmlFor="subject">{t('contact.form.subject')}</label>
                 <input 
                   type="text" 
                   id="subject" 
                   name="subject"
-                  placeholder="What's this about?"
+                  placeholder={t('contact.form.subjectPlaceholder')}
                   disabled={isAnimating || submitted}
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="message">Message</label>
+                <label htmlFor="message">{t('contact.form.message')}</label>
                 <textarea 
                   id="message" 
                   name="message"
-                  placeholder="Tell me more..."
+                  placeholder={t('contact.form.messagePlaceholder')}
                   rows={5}
                   required
                   disabled={isAnimating || submitted}
@@ -180,7 +182,7 @@ const Contact: React.FC = () => {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
                   >
-                    ✓ Message sent!
+                    {t('contact.form.success')}
                   </motion.span>
                 ) : isAnimating ? (
                   <motion.span
@@ -190,7 +192,7 @@ const Contact: React.FC = () => {
                     ✈️
                   </motion.span>
                 ) : (
-                  <span>Send Message</span>
+                  <span>{t('contact.form.submit')}</span>
                 )}
               </motion.button>
 

@@ -1,0 +1,263 @@
+{
+  "header": {
+    "brand": "Mazhar Roni",
+    "nav": {
+      "about": "About",
+      "journey": "Journey",
+      "work": "Work",
+      "services": "Services",
+      "contact": "Contact"
+    },
+    "cta": "Say hello"
+  },
+  "hero": {
+    "title": "Creative Digital Specialist",
+    "subtitle": "Building calm, creative work in the noise.",
+    "description": "Transforming brands through strategic design, compelling content, and data-driven marketing.",
+    "cta": "View My Work",
+    "tools": {
+      "primary": "Primary Tools",
+      "secondary": "Also Working With"
+    }
+  },
+  "about": {
+    "label": "About Me",
+    "title": "Creative problem solver",
+    "titleAccent": "with collaborative spirit",
+    "description1": "Results-driven Digital Marketing & Creative Specialist with expertise in website management, SEO, Google Ads, social media marketing, photography, and videography.",
+    "description2": "Skilled in developing, executing, and analyzing data-driven marketing strategies that increase brand visibility and drive measurable results. Experienced in managing multiple brands such as @corechamps, @musclerulz, @prosciencenutra and @jnknutrition, handling full digital operations from content design and video production to ad campaign optimization and web maintenance.",
+    "skills": ["SEO", "Google Ads", "Meta Ads", "Content Strategy", "Video Production", "Shopify", "WordPress", "Figma", "Photoshop", "Brand Strategy"]
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "What I Offer",
+    "cards": [
+      {
+        "title": "Social Media Marketing",
+        "description": "Strategic content creation and campaign management across Instagram, Facebook, and TikTok.",
+        "link": "Learn more"
+      },
+      {
+        "title": "Content & Video Production",
+        "description": "High-quality video editing, motion graphics, and creative content tailored for digital platforms.",
+        "link": "Learn more"
+      },
+      {
+        "title": "Google & Meta Ads",
+        "description": "Performance-driven advertising campaigns with measurable ROI across search and social.",
+        "link": "Learn more"
+      },
+      {
+        "title": "Website Optimization",
+        "description": "Speed, SEO, and user experience improvements for WordPress and Shopify platforms.",
+        "link": "Learn more"
+      },
+      {
+        "title": "Brand Strategy & Design",
+        "description": "Complete brand identity development from concept to execution.",
+        "link": "Learn more"
+      },
+      {
+        "title": "E-commerce Management",
+        "description": "Full-stack online store management, from product listings to conversion optimization.",
+        "link": "Learn more"
+      }
+    ],
+    "details": {
+      "socialMedia": {
+        "title": "Social Media Marketing",
+        "description": "High-impact social media strategy, execution, and optimization designed to drive visibility and conversions.",
+        "skills": [
+          {"icon": "📅", "title": "Content Strategy", "detail": "Build tailored content calendars aligned with brand goals.", "accent": "#6366f1"},
+          {"icon": "🎨", "title": "Creative Production", "detail": "Dynamic visuals, Reels/TikTok editing, and branded assets.", "accent": "#a855f7"},
+          {"icon": "⚙️", "title": "Platform Optimization", "detail": "Algorithm-aware posting and engagement tactics.", "accent": "#06b6d4"},
+          {"icon": "📊", "title": "Analytics & Insights", "detail": "Measure growth, refine strategy, and track KPIs.", "accent": "#f59e0b"},
+          {"icon": "🚀", "title": "Paid Boosting", "detail": "Amplify top-performing content for wider reach.", "accent": "#10b981"},
+          {"icon": "🤝", "title": "Community Engagement", "detail": "Manage comments, messages, and interactions.", "accent": "#f97316"}
+        ]
+      },
+      "contentVideo": {
+        "title": "Content & Video Production",
+        "description": "Professional multimedia production for social platforms, ads, and branded storytelling.",
+        "skills": [
+          {"icon": "✂️", "title": "Short-form Editing", "detail": "Reels, TikTok, and Shorts optimized for attention.", "accent": "#6366f1"},
+          {"icon": "✨", "title": "Motion Graphics", "detail": "Clean transitions and branded animations.", "accent": "#a855f7"},
+          {"icon": "🎞️", "title": "Color Grading", "detail": "Cinematic tones and polished output.", "accent": "#06b6d4"},
+          {"icon": "📸", "title": "Product Shoots", "detail": "Clean, modern shots for e-commerce or branding.", "accent": "#f59e0b"},
+          {"icon": "🔊", "title": "Sound Design", "detail": "Crisp audio mixing and enhancement.", "accent": "#10b981"},
+          {"icon": "📝", "title": "Storyboarding", "detail": "Visual direction and flow planning.", "accent": "#f97316"}
+        ]
+      },
+      "ads": {
+        "title": "Google & Meta Ads",
+        "description": "Conversion-first ad campaigns with precise targeting and ongoing optimization.",
+        "skills": [
+          {"icon": "🧪", "title": "A/B Testing", "detail": "Experimentation to identify winning creatives.", "accent": "#6366f1"},
+          {"icon": "🎯", "title": "Audience Targeting", "detail": "Segmentation, retargeting, and lookalikes.", "accent": "#a855f7"},
+          {"icon": "💰", "title": "Budget Optimization", "detail": "Improve ROAS with smart spend allocation.", "accent": "#06b6d4"},
+          {"icon": "🛤️", "title": "Funnel Strategy", "detail": "Awareness, retargeting, and conversion paths.", "accent": "#f59e0b"},
+          {"icon": "📌", "title": "Pixel/Event Setup", "detail": "Accurate tracking for improved reporting.", "accent": "#10b981"},
+          {"icon": "📈", "title": "Performance Analysis", "detail": "Weekly dashboards and insights.", "accent": "#f97316"}
+        ]
+      },
+      "website": {
+        "title": "Website Optimization",
+        "description": "Enhancing speed, SEO, and user experience across WordPress and Shopify.",
+        "skills": [
+          {"icon": "⚡", "title": "Speed Optimization", "detail": "Reduce load times for better UX.", "accent": "#6366f1"},
+          {"icon": "🔍", "title": "SEO Structure", "detail": "Metadata, schema, and on-page fixes.", "accent": "#a855f7"},
+          {"icon": "🧭", "title": "UI/UX Improvements", "detail": "Cleaner navigation and flow.", "accent": "#06b6d4"},
+          {"icon": "🧱", "title": "Landing Page Design", "detail": "Conversion-ready layouts.", "accent": "#f59e0b"},
+          {"icon": "🧩", "title": "Plugin/Theme Management", "detail": "Lightweight, stable setups.", "accent": "#10b981"},
+          {"icon": "📉", "title": "Analytics Review", "detail": "Behavior analysis and improvements.", "accent": "#f97316"}
+        ]
+      },
+      "brand": {
+        "title": "Brand Strategy & Design",
+        "description": "Building strong brand identities that communicate clearly across platforms.",
+        "skills": [
+          {"icon": "🌀", "title": "Logo Systems", "detail": "Modular, scalable identity sets.", "accent": "#6366f1"},
+          {"icon": "🎨", "title": "Color/Type Selection", "detail": "Matching tone, voice, and personality.", "accent": "#a855f7"},
+          {"icon": "📦", "title": "Packaging Design", "detail": "Product-ready visuals.", "accent": "#06b6d4"},
+          {"icon": "📘", "title": "Brand Guideline Development", "detail": "Rules to keep everything aligned.", "accent": "#f59e0b"},
+          {"icon": "🧭", "title": "Creative Direction", "detail": "Consistent visual language.", "accent": "#10b981"},
+          {"icon": "🖼️", "title": "Asset Production", "detail": "Icons, graphics, templates.", "accent": "#f97316"}
+        ]
+      },
+      "ecommerce": {
+        "title": "E-commerce Management",
+        "description": "Optimizing product listings, storefront performance, and conversion flow.",
+        "skills": [
+          {"icon": "🗂️", "title": "Catalog Management", "detail": "Organized product structures.", "accent": "#6366f1"},
+          {"icon": "🛒", "title": "Conversion Optimization", "detail": "Improve add-to-cart and purchase rate.", "accent": "#a855f7"},
+          {"icon": "🔑", "title": "SEO Product Copy", "detail": "Search-friendly descriptions.", "accent": "#06b6d4"},
+          {"icon": "📦", "title": "Inventory Planning", "detail": "Smooth stock tracking.", "accent": "#f59e0b"},
+          {"icon": "🎯", "title": "Promotional Strategy", "detail": "Seasonal offers & bundles.", "accent": "#10b981"},
+          {"icon": "📑", "title": "Reporting", "detail": "Performance insights and recommendations.", "accent": "#f97316"}
+        ]
+      }
+    }
+  },
+  "journey": {
+    "title": "Professional Journey",
+    "subtitle": "My Path",
+    "milestones": [
+      {
+        "year": "2012",
+        "title": "The Beginning",
+        "description": "Started my journey as a young student with a gifted laptop. Little did I know it would change everything.",
+        "color": "#6366f1"
+      },
+      {
+        "year": "2014",
+        "title": "Learning Photoshop",
+        "description": "In a modest village studio, I learned Photoshop. Late nights, small screens, but endless passion.",
+        "color": "#a855f7"
+      },
+      {
+        "year": "2016",
+        "title": "Smartphone Era",
+        "description": "Transitioned to mobile editing. Instagram was exploding. Creative opportunities everywhere.",
+        "color": "#06b6d4"
+      },
+      {
+        "year": "2017",
+        "title": "First Breakthrough",
+        "description": "Freelance work started flowing in. Built my first real client base. The grind was paying off.",
+        "color": "#f59e0b"
+      },
+      {
+        "year": "2018",
+        "title": "Viral Moment",
+        "description": "Created a Facebook frame that reached 2M+ users. This was the validation I needed.",
+        "color": "#10b981"
+      },
+      {
+        "year": "2019-2020",
+        "title": "Agency & Business",
+        "description": "Opened a small marketing agency in Bangladesh. Started a product printing business. The dream was real.",
+        "color": "#f97316"
+      },
+      {
+        "year": "2020-2021",
+        "title": "COVID Collapse",
+        "description": "The pandemic hit hard. Everything shut down. Family pressure was immense. But we had to keep moving.",
+        "color": "#ef4444"
+      },
+      {
+        "year": "2022",
+        "title": "The Big Leap",
+        "description": "After selling the family cow, I came to Dubai. A difficult decision, but necessary for growth.",
+        "color": "#ec4899"
+      },
+      {
+        "year": "2022 (Feb-Mar)",
+        "title": "First Job in Dubai",
+        "description": "Got my first job after 1 month 17 days in a new country. Felt like a victory.",
+        "color": "#6366f1"
+      },
+      {
+        "year": "2025",
+        "title": "Today",
+        "description": "Creative direction at JNK Nutrition. Building brands. Creating impact. Living the dream.",
+        "color": "#a855f7"
+      }
+    ]
+  },
+  "portfolio": {
+    "title": "Selected Work",
+    "subtitle": "Portfolio",
+    "filter": {
+      "all": "All",
+      "social": "Social Media",
+      "branding": "Branding",
+      "web": "Web Design",
+      "video": "Video Production"
+    }
+  },
+  "contact": {
+    "label": "Let's Connect",
+    "title": "Have a project in mind?",
+    "subtitle": "Let's create something together",
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "message": "Tell me about your project",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "Something went wrong. Please try again."
+    },
+    "methods": {
+      "email": {
+        "label": "Email",
+        "value": "hello@meetmazhar.site"
+      },
+      "whatsapp": {
+        "label": "WhatsApp",
+        "value": "+971 50 721 7156"
+      },
+      "phone": {
+        "label": "Phone",
+        "value": "+971 50 721 7156"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Building calm, creative work in the noise.",
+    "location": "Based in Dubai, still learning and building.",
+    "cta": "maybe.",
+    "nav": {
+      "about": "About",
+      "journey": "Journey",
+      "work": "Work",
+      "contact": "Contact"
+    }
+  },
+  "common": {
+    "learnMore": "Learn more",
+    "viewMore": "View more",
+    "close": "Close",
+    "loading": "Loading..."
+  }
+}

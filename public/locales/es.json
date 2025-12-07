@@ -1,0 +1,281 @@
+{
+  "header": {
+    "brand": "Mazhar Roni",
+    "nav": {
+      "about": "Acerca",
+      "journey": "Trayectoria",
+      "work": "Trabajos",
+      "services": "Servicios",
+      "contact": "Contacto"
+    },
+    "cta": "quizás"
+  },
+  "hero": {
+    "title": "Especialista Digital Creativo",
+    "subtitle": "Construyendo trabajo creativo y tranquilo en el ruido",
+    "description": "Transformando marcas a través de diseño estratégico, contenido persuasivo y marketing basado en datos",
+    "cta": "Ver mi trabajo",
+    "tools": {
+      "primary": "Herramientas principales",
+      "secondary": "También trabajo con"
+    }
+  },
+  "about": {
+    "label": "Sobre mí",
+    "title": "Solucionador creativo de problemas",
+    "titleAccent": "con espíritu colaborativo",
+    "description1": "Especialista en Marketing Digital y Creatividad orientado a resultados, con experiencia en gestión de sitios web, SEO, Google Ads, marketing en redes sociales, fotografía y videografía",
+    "description2": "Hábil en desarrollar, ejecutar y analizar estrategias de marketing basadas en datos que aumentan la visibilidad de la marca y generan resultados medibles. Con experiencia gestionando múltiples marcas como @corechamps, @musclerulz, @prosciencenutra y @jnknutrition, manejando todas las operaciones digitales desde diseño de contenido y producción de video hasta optimización de campañas publicitarias y mantenimiento web",
+    "skills": ["SEO", "Google Ads", "Meta Ads", "Estrategia de Contenido", "Producción de Video", "Shopify", "WordPress", "Figma", "Photoshop", "Estrategia de Marca"]
+  },
+  "services": {
+    "label": "Servicios",
+    "title": "Habilidades de Marketing y Creativas",
+    "subtitle": "Experiencia completa en marketing digital y creatividad",
+    "cards": [
+      {
+        "title": "Marketing en Redes Sociales",
+        "description": "Creación estratégica de contenido y gestión de campañas en Instagram, Facebook y TikTok",
+        "link": "Saber más"
+      },
+      {
+        "title": "Producción de Contenido y Video",
+        "description": "Edición de video de alta calidad, motion graphics y contenido creativo para plataformas digitales",
+        "link": "Saber más"
+      },
+      {
+        "title": "Anuncios Google y Meta",
+        "description": "Campañas publicitarias orientadas al rendimiento con ROI medible",
+        "link": "Saber más"
+      },
+      {
+        "title": "Optimización de Sitios Web",
+        "description": "Mejoras de velocidad, SEO y experiencia de usuario en WordPress y Shopify",
+        "link": "Saber más"
+      },
+      {
+        "title": "Estrategia de Marca y Diseño",
+        "description": "Desarrollo completo de identidad de marca desde el concepto hasta la ejecución",
+        "link": "Saber más"
+      },
+      {
+        "title": "Gestión de E-commerce",
+        "description": "Gestión integral de tienda online desde listados de productos hasta optimización de conversiones",
+        "link": "Saber más"
+      }
+    ],
+    "details": {
+      "socialMedia": {
+        "title": "Marketing en Redes Sociales",
+        "description": "Estrategia de redes sociales de alto impacto, ejecución y optimización diseñada para impulsar visibilidad y conversiones",
+        "skills": [
+          {"icon": "📅", "title": "Estrategia de Contenido", "detail": "Construir calendarios de contenido personalizados alineados con objetivos de marca", "accent": "#6366f1"},
+          {"icon": "🎨", "title": "Producción Creativa", "detail": "Visuales dinámicos, edición de Reels/TikTok y activos de marca", "accent": "#a855f7"},
+          {"icon": "⚙️", "title": "Optimización de Plataformas", "detail": "Publicación consciente del algoritmo y tácticas de engagement", "accent": "#06b6d4"},
+          {"icon": "📊", "title": "Analítica e Insights", "detail": "Medir crecimiento, refinar estrategia y rastrear KPIs", "accent": "#f59e0b"},
+          {"icon": "🚀", "title": "Impulso Pagado", "detail": "Amplificar contenido de mejor rendimiento para mayor alcance", "accent": "#10b981"},
+          {"icon": "🤝", "title": "Engagement Comunitario", "detail": "Gestionar comentarios, mensajes e interacciones", "accent": "#f97316"}
+        ]
+      },
+      "contentVideo": {
+        "title": "Producción de Contenido y Video",
+        "description": "Producción multimedia profesional para plataformas sociales, anuncios y narrativa de marca",
+        "skills": [
+          {"icon": "✂️", "title": "Edición de Formato Corto", "detail": "Reels, TikTok y Shorts optimizados para atención", "accent": "#6366f1"},
+          {"icon": "✨", "title": "Motion Graphics", "detail": "Transiciones limpias y animaciones de marca", "accent": "#a855f7"},
+          {"icon": "🎞️", "title": "Corrección de Color", "detail": "Tonos cinematográficos y salida pulida", "accent": "#06b6d4"},
+          {"icon": "📸", "title": "Fotografía de Productos", "detail": "Tomas limpias y modernas para e-commerce", "accent": "#f59e0b"},
+          {"icon": "🔊", "title": "Diseño de Sonido", "detail": "Mezcla de audio nítida y mejora", "accent": "#10b981"},
+          {"icon": "📝", "title": "Storyboarding", "detail": "Dirección visual y planificación de flujo", "accent": "#f97316"}
+        ]
+      },
+      "ads": {
+        "title": "Anuncios Google y Meta",
+        "description": "Campañas publicitarias orientadas a conversión con segmentación precisa y optimización continua",
+        "skills": [
+          {"icon": "🧪", "title": "Pruebas A/B", "detail": "Experimentación para identificar creativos ganadores", "accent": "#6366f1"},
+          {"icon": "🎯", "title": "Segmentación de Audiencia", "detail": "Segmentación, retargeting y audiencias similares", "accent": "#a855f7"},
+          {"icon": "💰", "title": "Optimización de Presupuesto", "detail": "Mejorar ROAS con asignación inteligente de gasto", "accent": "#06b6d4"},
+          {"icon": "🛤️", "title": "Estrategia de Embudo", "detail": "Conciencia, retargeting y rutas de conversión", "accent": "#f59e0b"},
+          {"icon": "📌", "title": "Configuración Pixel/Evento", "detail": "Seguimiento preciso para reportes mejorados", "accent": "#10b981"},
+          {"icon": "📈", "title": "Análisis de Rendimiento", "detail": "Dashboards semanales e insights", "accent": "#f97316"}
+        ]
+      },
+      "website": {
+        "title": "Optimización de Sitios Web",
+        "description": "Mejorando velocidad, SEO y experiencia de usuario en WordPress y Shopify",
+        "skills": [
+          {"icon": "⚡", "title": "Optimización de Velocidad", "detail": "Reducir tiempos de carga para mejor UX", "accent": "#6366f1"},
+          {"icon": "🔍", "title": "Estructura SEO", "detail": "Metadatos, esquemas y correcciones en página", "accent": "#a855f7"},
+          {"icon": "🧭", "title": "Mejoras UI/UX", "detail": "Navegación y flujo más limpio", "accent": "#06b6d4"},
+          {"icon": "🧱", "title": "Diseño de Landing Page", "detail": "Diseños listos para conversión", "accent": "#f59e0b"},
+          {"icon": "🧩", "title": "Gestión Plugin/Tema", "detail": "Configuraciones ligeras y estables", "accent": "#10b981"},
+          {"icon": "📉", "title": "Revisión de Analíticas", "detail": "Análisis de comportamiento y mejoras", "accent": "#f97316"}
+        ]
+      },
+      "brand": {
+        "title": "Estrategia de Marca y Diseño",
+        "description": "Construyendo identidades de marca fuertes que comunican claramente en todas las plataformas",
+        "skills": [
+          {"icon": "🌀", "title": "Sistemas de Logo", "detail": "Conjuntos de identidad modulares y escalables", "accent": "#6366f1"},
+          {"icon": "🎨", "title": "Selección Color/Tipo", "detail": "Coincidencia de tono, voz y personalidad", "accent": "#a855f7"},
+          {"icon": "📦", "title": "Diseño de Empaque", "detail": "Visuales listos para producto", "accent": "#06b6d4"},
+          {"icon": "📘", "title": "Desarrollo Guía de Marca", "detail": "Reglas para mantener todo alineado", "accent": "#f59e0b"},
+          {"icon": "🧭", "title": "Dirección Creativa", "detail": "Lenguaje visual consistente", "accent": "#10b981"},
+          {"icon": "🖼️", "title": "Producción de Activos", "detail": "Iconos, gráficos, plantillas", "accent": "#f97316"}
+        ]
+      },
+      "ecommerce": {
+        "title": "Gestión de E-commerce",
+        "description": "Optimizando listados de productos, rendimiento de tienda y flujo de conversión",
+        "skills": [
+          {"icon": "🗂️", "title": "Gestión de Catálogo", "detail": "Estructuras de productos organizadas", "accent": "#6366f1"},
+          {"icon": "🛒", "title": "Optimización de Conversión", "detail": "Mejorar tasa de añadir al carrito y compra", "accent": "#a855f7"},
+          {"icon": "🔑", "title": "Copy SEO de Producto", "detail": "Descripciones amigables con búsqueda", "accent": "#06b6d4"},
+          {"icon": "📦", "title": "Planificación de Inventario", "detail": "Seguimiento de stock fluido", "accent": "#f59e0b"},
+          {"icon": "🎯", "title": "Estrategia Promocional", "detail": "Ofertas estacionales y paquetes", "accent": "#10b981"},
+          {"icon": "📑", "title": "Reportes", "detail": "Insights de rendimiento y recomendaciones", "accent": "#f97316"}
+        ]
+      }
+    }
+  },
+  "journey": {
+    "label": "Mi Trayectoria",
+    "title": "De estudiante con una laptop a dirección creativa en Dubai",
+    "subtitle": "Una historia honesta y real de pasión, lucha y crecimiento. Sin exageraciones—solo el viaje real.",
+    "milestones": [
+      {
+        "year": "2012",
+        "title": "El Comienzo",
+        "description": "Comencé mi viaje como un joven estudiante con una laptop regalada. No sabía que lo cambiaría todo",
+        "color": "#6366f1"
+      },
+      {
+        "year": "2014",
+        "title": "Aprendiendo Photoshop",
+        "description": "En un modesto estudio de pueblo, aprendí Photoshop. Noches largas, pantallas pequeñas, pero pasión infinita",
+        "color": "#a855f7"
+      },
+      {
+        "year": "2016",
+        "title": "Era del Smartphone",
+        "description": "Transición a edición móvil. Instagram explotaba. Oportunidades creativas por todas partes",
+        "color": "#06b6d4"
+      },
+      {
+        "year": "2017",
+        "title": "Primer Avance",
+        "description": "El trabajo freelance comenzó a fluir. Construí mi primera base de clientes real. El esfuerzo valía la pena",
+        "color": "#f59e0b"
+      },
+      {
+        "year": "2018",
+        "title": "Momento Viral",
+        "description": "Creé un marco de Facebook que alcanzó 2M+ usuarios. Esta fue la validación que necesitaba",
+        "color": "#10b981"
+      },
+      {
+        "year": "2019-2020",
+        "title": "Agencia y Negocios",
+        "description": "Abrí una pequeña agencia de marketing en Bangladesh. Comencé un negocio de impresión de productos. El sueño era real",
+        "color": "#f97316"
+      },
+      {
+        "year": "2020-2021",
+        "title": "Colapso COVID",
+        "description": "La pandemia golpeó duro. Todo se cerró. La presión familiar fue inmensa. Pero teníamos que seguir adelante",
+        "color": "#ef4444"
+      },
+      {
+        "year": "2022",
+        "title": "El Gran Salto",
+        "description": "Después de vender la vaca familiar, vine a Dubai. Una decisión difícil, pero necesaria para crecer",
+        "color": "#ec4899"
+      },
+      {
+        "year": "2022 (Feb-Mar)",
+        "title": "Primer Trabajo en Dubai",
+        "description": "Conseguí mi primer trabajo después de 1 mes 17 días en un nuevo país. Se sintió como una victoria",
+        "color": "#6366f1"
+      },
+      {
+        "year": "2025",
+        "title": "Hoy",
+        "description": "Dirección creativa en JNK Nutrition. Construyendo marcas. Creando impacto. Viviendo el sueño",
+        "color": "#a855f7"
+      }
+    ]
+  },
+  "portfolio": {
+    "label": "Portafolio",
+    "title": "Trabajos seleccionados",
+    "subtitle": "Una muestra de proyectos recientes y colaboraciones",
+    "filter": {
+      "all": "Todos",
+      "design": "Diseño",
+      "branding": "Branding",
+      "content": "Contenido",
+      "web": "Web"
+    },
+    "modal": {
+      "toolsUsed": "Herramientas Utilizadas",
+      "results": "Resultados",
+      "cta": "Contáctame sobre esto"
+    }
+  },
+  "contact": {
+    "label": "Conectemos",
+    "title": "Di hola.",
+    "subtitle": "¿Tienes un proyecto o solo quieres charlar? Me encantaría escucharte.",
+    "form": {
+      "name": "Tu Nombre",
+      "namePlaceholder": "¿Cómo te llamas?",
+      "email": "Dirección de Email",
+      "emailPlaceholder": "your@email.com",
+      "subject": "Asunto",
+      "subjectPlaceholder": "¿De qué se trata?",
+      "message": "Mensaje",
+      "messagePlaceholder": "Cuéntame más...",
+      "submit": "Enviar Mensaje",
+      "sending": "Enviando...",
+      "success": "✓ ¡Mensaje enviado!",
+      "error": "Algo salió mal. Inténtalo de nuevo"
+    },
+    "methods": {
+      "email": {
+        "label": "Email",
+        "value": "hello@meetmazhar.site"
+      },
+      "whatsapp": {
+        "label": "WhatsApp",
+        "value": "+971 50 721 7156"
+      },
+      "phone": {
+        "label": "Teléfono",
+        "value": "+971 50 721 7156"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Construyendo trabajo creativo y tranquilo en el ruido",
+    "location": "Basado en Dubai, todavía aprendiendo y construyendo",
+    "cta": "quizás",
+    "nav": {
+      "about": "Acerca",
+      "journey": "Trayectoria",
+      "work": "Trabajos",
+      "contact": "Contacto"
+    }
+  },
+  "finalCTA": {
+    "title": "Porque tu proyecto merece lo mejor, siempre",
+    "description": "Trabajemos juntos para crear algo extraordinario. Contáctame y hablemos de tu proyecto.",
+    "cta": "Empecemos"
+  },
+  "common": {
+    "learnMore": "Saber más",
+    "viewMore": "Ver más",
+    "close": "Cerrar",
+    "loading": "Cargando..."
+  }
+}

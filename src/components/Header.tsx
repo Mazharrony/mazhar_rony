@@ -32,11 +32,11 @@ const Header: React.FC = () => {
   // Navigation items: match spec (About, Journey, Work, Services, Contact)
   // Note: Home is implied via brand click
   const navItems = [
-    { label: 'About', href: '/about', key: 'about' },
-    { label: 'Journey', href: '/journey', key: 'journey' },
-    { label: 'Work', href: '/work', key: 'work' },
-    { label: 'Services', href: '/services', key: 'services' },
-    { label: 'Contact', href: '/contact', key: 'contact' },
+    { label: t('header.nav.about'), href: '/about', key: 'about' },
+    { label: t('header.nav.journey'), href: '/journey', key: 'journey' },
+    { label: t('header.nav.work'), href: '/work', key: 'work' },
+    { label: t('header.nav.services'), href: '/services', key: 'services' },
+    { label: t('header.nav.contact'), href: '/contact', key: 'contact' },
   ];
 
   // Languages for toggle (EN, AR, RU, ZH, ES)
@@ -71,7 +71,7 @@ const Header: React.FC = () => {
               whileTap={{ scale: 0.98 }}
             >
               <Link href="/">
-                Mazharr Rony
+                {t('header.brand')}
               </Link>
             </motion.div>
           </div>
@@ -136,7 +136,7 @@ const Header: React.FC = () => {
                 whileHover={{ scale: 1.03, boxShadow: '0 8px 20px rgba(0,0,0,0.08)' }}
                 whileTap={{ scale: 0.98 }}
               >
-                Say hello
+                {t('header.cta')}
               </motion.button>
             </Link>
 
@@ -180,7 +180,7 @@ const Header: React.FC = () => {
           {/* Mobile CTA */}
           <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
             <motion.button className="mobile-cta">
-              Say hello
+              {t('header.cta')}
             </motion.button>
           </Link>
         </motion.div>

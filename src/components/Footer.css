@@ -1,51 +1,402 @@
+/* ============================================
+   FOOTER – Minimal, Premium, Emotion-Focused
+   ============================================ */
+
 .footer {
-  background-color: var(--bg-secondary);
-  padding: 80px 0 40px;
+  background-color: var(--bg-primary);
   border-top: 1px solid var(--border-color);
+  padding: 64px 0 48px;
   position: relative;
 }
 
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  margin-bottom: 60px;
+.footer .container {
+  padding: 0 40px;
 }
 
-.footer-section h4 {
-  margin-bottom: 16px;
+/* Three-part layout: Left (tagline + links) | Right (maybe. button) */
+.footer-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+/* Left section: Tagline + Links + Location */
+.footer-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Emotional tagline */
+.footer-tagline {
+  font-size: 16px;
+  font-weight: 500;
   color: var(--text-primary);
+  line-height: 1.5;
+  max-width: 400px;
 }
 
-.footer-section p {
-  font-size: 0.95rem;
+/* Footer navigation links */
+.footer-nav {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 
-.footer-section ul {
-  list-style: none;
-}
-
-.footer-section ul li {
-  margin-bottom: 12px;
-}
-
-.footer-section a {
+.footer-link {
+  font-size: 14px;
+  font-weight: 500;
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: 0.95rem;
-  transition: var(--transition);
+  transition: color 0.2s ease;
 }
 
-.footer-section a:hover {
+.footer-link:hover {
   color: var(--text-primary);
 }
 
-.footer-bottom {
-  text-align: center;
-  padding-top: 40px;
-  border-top: 1px solid var(--border-color);
+/* Location + context line */
+.footer-location {
+  font-size: 12px;
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+}
+
+/* Right section: "maybe." button */
+.footer-right {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* "maybe." CTA Button */
+.footer-cta {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.footer-cta:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.dark .footer-cta:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.footer-cta:active {
+  transform: scale(0.98);
+}
+
+/* ===== Responsive: Small Mobile (320px - 479px) ===== */
+@media (max-width: 479px) {
+  .footer {
+    padding: 40px 0 32px;
+  }
+
+  .footer .container {
+    padding: 0 16px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .footer-left {
+    gap: 18px;
+    width: 100%;
+  }
+
+  .footer-tagline {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    max-width: 100%;
+  }
+
+  .footer-nav {
+    gap: 12px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .footer-link {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .footer-location {
+    font-size: 10px;
+    letter-spacing: 0.3px;
+  }
+
+  .footer-right {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .footer-cta {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 12px;
+  }
+}
+
+/* ===== Responsive: Medium Mobile (480px - 639px) ===== */
+@media (min-width: 480px) and (max-width: 639px) {
+  .footer {
+    padding: 44px 0 36px;
+  }
+
+  .footer .container {
+    padding: 0 20px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .footer-left {
+    gap: 20px;
+  }
+
+  .footer-tagline {
+    font-size: 15px;
+    max-width: 100%;
+  }
+
+  .footer-nav {
+    gap: 14px;
+    flex-direction: column;
+  }
+
+  .footer-link {
+    font-size: 13px;
+  }
+
+  .footer-location {
+    font-size: 11px;
+  }
+
+  .footer-right {
+    width: 100%;
+  }
+
+  .footer-cta {
+    width: 100%;
+    padding: 13px 18px;
+    font-size: 13px;
+  }
+}
+
+/* ===== Responsive: Small Tablet (640px - 767px) ===== */
+@media (min-width: 640px) and (max-width: 767px) {
+  .footer {
+    padding: 48px 0 40px;
+  }
+
+  .footer .container {
+    padding: 0 24px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .footer-left {
+    gap: 20px;
+  }
+
+  .footer-tagline {
+    font-size: 15px;
+  }
+
+  .footer-nav {
+    gap: 16px;
+    flex-direction: column;
+  }
+
+  .footer-link {
+    font-size: 13px;
+  }
+
+  .footer-location {
+    font-size: 11px;
+  }
+
+  .footer-right {
+    width: 100%;
+  }
+
+  .footer-cta {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 13px;
+  }
+}
+
+/* ===== Responsive: Large Tablet (768px - 1023px) ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .footer {
+    padding: 56px 0 44px;
+  }
+
+  .footer .container {
+    padding: 0 32px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 44px;
+    align-items: flex-start;
+  }
+
+  .footer-left {
+    gap: 22px;
+    width: 100%;
+  }
+
+  .footer-tagline {
+    font-size: 15px;
+    max-width: 500px;
+  }
+
+  .footer-nav {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .footer-link {
+    font-size: 13px;
+  }
+
+  .footer-location {
+    font-size: 12px;
+  }
+
+  .footer-right {
+    width: 100%;
+  }
+
+  .footer-cta {
+    width: auto;
+    padding: 12px 24px;
+    font-size: 13px;
+  }
+}
+
+/* ===== Responsive: Desktop (1024px - 1439px) ===== */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .footer {
+    padding: 60px 0 48px;
+  }
+
+  .footer .container {
+    padding: 0 36px;
+  }
+
+  .footer-inner {
+    gap: 50px;
+  }
+
+  .footer-tagline {
+    font-size: 15px;
+    max-width: 450px;
+  }
+
+  .footer-nav {
+    gap: 22px;
+  }
+
+  .footer-cta {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}
+
+/* ===== Responsive: Large Desktop (1440px+) ===== */
+@media (min-width: 1440px) {
+  .footer {
+    padding: 64px 0 48px;
+  }
+
+  .footer .container {
+    padding: 0 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .footer-inner {
+    gap: 60px;
+  }
+
+  .footer-tagline {
+    font-size: 16px;
+  }
+
+  .footer-nav {
+    gap: 24px;
+  }
+}
+
+/* RTL Support (Arabic) */
+[dir="rtl"] .footer-inner {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-nav {
+  flex-direction: row-reverse;
+}
+
+/* RTL Mobile Fixes */
+@media (max-width: 767px) {
+  [dir="rtl"] .footer-inner {
+    flex-direction: column;
+  }
+
+  [dir="rtl"] .footer-nav {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  [dir="rtl"] .footer-left {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  [dir="rtl"] .footer-right {
+    align-items: flex-end;
+  }
+}
+
+/* RTL Tablet Fixes */
+@media (min-width: 768px) and (max-width: 1023px) {
+  [dir="rtl"] .footer-inner {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  [dir="rtl"] .footer-nav {
+    flex-direction: row-reverse;
+  }
+
+  [dir="rtl"] .footer-left {
+    align-items: flex-end;
+    text-align: right;
+  }
 }
 
 .footer-bottom-content {
@@ -58,58 +409,4 @@
 .footer-bottom-content p {
   margin: 0;
   font-size: 0.9rem;
-}
-
-.footer-maybe-cta {
-  position: fixed;
-  bottom: 32px;
-  right: 32px;
-  padding: 16px 24px;
-  background: var(--bg-card);
-  border: 2px solid rgba(99, 102, 241, 0.3);
-  border-radius: 999px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  transition: all 0.3s cubic-bezier(0.17, 0.67, 0.3, 1);
-  z-index: 100;
-  backdrop-filter: blur(10px);
-}
-
-.App.dark .footer-maybe-cta {
-  background: rgba(99, 102, 241, 0.08);
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-.footer-maybe-cta:hover {
-  border-color: rgba(99, 102, 241, 0.6);
-}
-
-@media (max-width: 768px) {
-  .footer-content {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-  }
-
-  .footer {
-    padding: 60px 0 30px;
-    padding-bottom: 100px;
-  }
-
-  .footer-maybe-cta {
-    bottom: 24px;
-    right: 24px;
-    padding: 12px 20px;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .footer-maybe-cta {
-    bottom: 16px;
-    right: 16px;
-  }
 }

@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 import './Hero.css';
 
 const PRIMARY_TOOLS = ['photoshop', 'illustrator', 'figma', 'canva', 'capcut'];
@@ -198,6 +199,7 @@ const FloatingIcon: React.FC<FloatingIconProps> = ({
 const Hero: React.FC = () => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: false, amount: 0.2 });
+  const { t } = useLanguage();
   
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -237,7 +239,7 @@ const Hero: React.FC = () => {
               animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 40, filter: 'blur(8px)' }}
               transition={{ delay: 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
-              Digital Marketing & Creative Specialist
+              {t('hero.title')}
             </motion.span>
             
             <motion.h1
@@ -245,7 +247,7 @@ const Hero: React.FC = () => {
               animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 40, filter: 'blur(8px)' }}
               transition={{ delay: 0.3, duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
             >
-              Mazhar Roni
+              {t('header.brand')}
             </motion.h1>
             
             <motion.p
@@ -253,7 +255,7 @@ const Hero: React.FC = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ delay: 0.45, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
-              Results-driven Digital Marketing & Creative Specialist with expertise in social media strategy, content creation, video production, and campaign optimization across fitness, supplement, and e-commerce brands.
+              {t('hero.description')}
             </motion.p>
             
             <motion.div 
@@ -272,7 +274,7 @@ const Hero: React.FC = () => {
                 }}
                 whileTap={{ scale: 0.97 }}
               >
-                View my work
+                {t('hero.cta')}
               </motion.button>
               <motion.button 
                 className="btn btn-secondary"
@@ -284,7 +286,7 @@ const Hero: React.FC = () => {
                 }}
                 whileTap={{ scale: 0.97 }}
               >
-                Get in touch
+                {t('header.cta')}
               </motion.button>
             </motion.div>
           </div>

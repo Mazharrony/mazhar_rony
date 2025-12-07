@@ -4,7 +4,8 @@ import { LanguageProvider } from '@/lib/i18n/LanguageContext';
 import { ThemeProvider } from '@/lib/ThemeContext';
 import Header from '@/src/components/Header';
 import Footer from '@/src/components/Footer';
-import LanguageDetector from '@/lib/i18n/LanguageDetector';
+import DarkModeSuggestion from '@/src/components/DarkModeSuggestion';
+import LanguageConfirmation from '@/lib/i18n/LanguageConfirmation';
 import '../src/index.css';
 import '../src/App.css';
 
@@ -124,10 +125,11 @@ export default function RootLayout({
       <body className={inter.className}>
         <LanguageProvider>
           <ThemeProvider>
-            <LanguageDetector />
+            <LanguageConfirmation />
             <Header />
             <main>{children}</main>
             <Footer />
+            <DarkModeSuggestion />
           </ThemeProvider>
         </LanguageProvider>
       </body>

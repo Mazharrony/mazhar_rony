@@ -2,12 +2,14 @@
 
 import React, { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { motionConfig } from '../utils/motion';
 import './FinalCTA.css';
 
 const FinalCTA: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-80px" });
+  const { t } = useLanguage();
   
   // Parallax effect for image grid
   const { scrollYProgress } = useScroll({
@@ -73,14 +75,14 @@ const FinalCTA: React.FC = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ delay: 0.2, duration: 0.7 }}
             >
-              Because your project<br/>deserves the best,<br/>always
+              {t('finalCTA.title')}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.35, duration: 0.7 }}
             >
-              Let's work together to create something extraordinary. Get in touch and let's discuss your project.
+              {t('finalCTA.description')}
             </motion.p>
             <motion.button 
               className="btn btn-primary"
@@ -95,7 +97,7 @@ const FinalCTA: React.FC = () => {
               }}
               whileTap={{ scale: 0.97 }}
             >
-              Get started
+              {t('finalCTA.cta')}
             </motion.button>
           </motion.div>
         </div>

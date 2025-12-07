@@ -2,14 +2,16 @@
 
 import React from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { motionConfig } from '../utils/motion';
 import './About.css';
 
 const About: React.FC = () => {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-80px" });
+  const { t } = useLanguage();
 
-  const skills = ['SEO', 'Google Ads', 'Meta Ads', 'Content Strategy', 'Video Production', 'Shopify', 'WordPress', 'Figma', 'Photoshop', 'Brand Strategy'];
+  const skills = (t('about.skills') as any) || [];
 
   const skillVariant = {
     hidden: { opacity: 0, scale: 0.8, y: 15, filter: 'blur(4px)' },
@@ -42,21 +44,21 @@ const About: React.FC = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.15, duration: 0.6 }}
             >
-              About Me
+              {t('about.label')}
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.3, duration: 0.7 }}
             >
-              Creative problem solver<br/>with <span className="accent">collaborative spirit</span>
+              {t('about.title')}<br/><span className="accent">{t('about.titleAccent')}</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.45, duration: 0.7 }}
             >
-              Results-driven Digital Marketing & Creative Specialist with expertise in website management, SEO, Google Ads, social media marketing, photography, and videography.
+              {t('about.description1')}
             </motion.p>
           </motion.div>
 
@@ -71,7 +73,7 @@ const About: React.FC = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.2, duration: 0.7 }}
             >
-              Skilled in developing, executing, and analyzing data-driven marketing strategies that increase brand visibility and drive measurable results. Experienced in managing multiple brands such as @corechamps, @musclerulz, @prosciencenutra and @jnknutrition, handling full digital operations from content design and video production to ad campaign optimization and web maintenance.
+              {t('about.description2')}
             </motion.p>
             
             <div className="skills-pills">
