@@ -3,38 +3,43 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { useTheme } from '@/lib/ThemeContext';
 import './Header.css';
 
 const Header: React.FC = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
   const pathname = usePathname();
   const { language, setLanguage, t } = useLanguage();
   const { theme, toggleTheme } = useTheme();
-  const { scrollY } = useScroll();
-  const headerY = useTransform(scrollY, [0, 100], [0, -2]);
+  const [scrollY, setScrollY] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { scrollY: motionScrollY } = useScroll();
 
+  // Track scroll position for header shrink behavior
   useEffect(() => {
     const handleScroll = () => {
-      setScrollPosition(window.scrollY);
+      setScrollY(window.scrollY);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isScrolled = scrollPosition > 20;
+  // Header shrinks slightly when scrolled (80px → 60px)
+  const headerHeight = scrollY > 20 ? 60 : 80;
+  const isScrolled = scrollY > 20;
 
+  // Navigation items: match spec (About, Journey, Work, Services, Contact)
+  // Note: Home is implied via brand click
   const navItems = [
-    { label: t('nav.home'), href: '/' },
-    { label: t('nav.work'), href: '/work' },
-    { label: t('nav.services'), href: '/services' },
-    { label: t('nav.journey'), href: '/journey' },
-    { label: t('nav.about'), href: '/about' },
-    { label: t('nav.contact'), href: '/contact' },
+    { label: 'About', href: '/about', key: 'about' },
+    { label: 'Journey', href: '/journey', key: 'journey' },
+    { label: 'Work', href: '/work', key: 'work' },
+    { label: 'Services', href: '/services', key: 'services' },
+    { label: 'Contact', href: '/contact', key: 'contact' },
   ];
 
+  // Languages for toggle (EN, AR, RU, ZH, ES)
   const languages = [
     { code: 'en', label: 'EN', name: 'English' },
     { code: 'ar', label: 'ع', name: 'العربية' },
@@ -43,56 +48,49 @@ const Header: React.FC = () => {
     { code: 'es', label: 'ES', name: 'Español' },
   ];
 
+  // Check if current page is active
+  const isActiveLink = (href: string) => {
+    return pathname === href;
+  };
+
   return (
     <motion.header 
       className={`header ${isScrolled ? 'scrolled' : ''}`}
-      style={{ y: headerY }}
+      style={{ height: headerHeight }}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="container">
         <div className="header-inner">
-          <motion.div 
-            className="logo"
-            whileHover={{ 
-              scale: 1.06,
-              y: -2,
-              transition: { duration: 0.3 }
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Link href="/">Mazhar</Link>
-          </motion.div>
-          
-          <nav className="nav">
-            {navItems.map((item, i) => {
-              const isActive = pathname === item.href || 
-                              (pathname === '/' && item.href.startsWith('/#'));
-              
+          {/* ZONE 1: LEFT – Brand Name */}
+          <div className="header-zone header-zone-left">
+            <motion.div 
+              className="brand"
+              whileHover={{ opacity: 0.7 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Link href="/">
+                Mazharr Rony
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* ZONE 2: CENTER – Navigation Links (Desktop Only) */}
+          <nav className="header-zone header-zone-center nav-desktop">
+            {navItems.map((item) => {
+              const isActive = isActiveLink(item.href);
               return (
                 <motion.div 
-                  key={item.label}
-                  initial={{ opacity: 0, y: -20 }}
+                  key={item.key}
+                  initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    delay: 0.1 + i * 0.08, 
-                    duration: 0.4,
-                    ease: [0.22, 1, 0.36, 1]
-                  }}
+                  transition={{ duration: 0.4 }}
                 >
-                  <Link
-                    href={item.href}
-                    className={isActive ? 'active' : ''}
-                    style={{ display: 'inline-block' }}
-                  >
+                  <Link href={item.href} className={`nav-link ${isActive ? 'active' : ''}`}>
                     <motion.span
-                      whileHover={{ 
-                        y: -3,
-                        scale: 1.03,
-                        transition: { duration: 0.3 }
-                      }}
-                      style={{ display: 'inline-block' }}
+                      whileHover={{ y: -2 }}
+                      transition={{ duration: 0.2 }}
                     >
                       {item.label}
                     </motion.span>
@@ -102,22 +100,10 @@ const Header: React.FC = () => {
             })}
           </nav>
 
-          <div className="header-actions">
-            {/* Personality Line */}
-            <motion.div 
-              className="personality-line"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              <span>Based in Dubai, creating visuals that feel alive.</span>
-            </motion.div>
-
-            {/* Language Selector */}
-            <motion.div 
-              className="language-selector"
-              whileHover={{ scale: 1.05 }}
-            >
+          {/* ZONE 3: RIGHT – Controls (Language, Theme, CTA) */}
+          <div className="header-zone header-zone-right">
+            {/* Language Toggle */}
+            <motion.div className="header-control language-control" whileHover={{ scale: 1.05 }}>
               <select
                 value={language}
                 onChange={(e) => setLanguage(e.target.value as any)}
@@ -126,7 +112,7 @@ const Header: React.FC = () => {
               >
                 {languages.map((lang) => (
                   <option key={lang.code} value={lang.code}>
-                    {lang.label} {lang.name}
+                    {lang.label}
                   </option>
                 ))}
               </select>
@@ -134,37 +120,71 @@ const Header: React.FC = () => {
 
             {/* Theme Toggle */}
             <motion.button
-              className="theme-toggle"
+              className="header-control theme-toggle"
               onClick={toggleTheme}
               aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-              whileHover={{ 
-                scale: 1.15, 
-                rotate: 180,
-                transition: { duration: 0.35 }
-              }}
-              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
               {theme === 'light' ? '🌙' : '☀️'}
             </motion.button>
 
-            {/* Contact Button */}
+            {/* CTA Button: "Say hello" */}
             <Link href="/contact">
               <motion.button 
-                className="btn btn-primary btn-small"
-                whileHover={{ 
-                  scale: 1.06, 
-                  y: -3,
-                  boxShadow: '0 8px 24px rgba(99, 102, 241, 0.3)',
-                  transition: { duration: 0.3 }
-                }}
-                whileTap={{ scale: 0.97 }}
+                className="header-cta"
+                whileHover={{ scale: 1.03, boxShadow: '0 8px 20px rgba(0,0,0,0.08)' }}
+                whileTap={{ scale: 0.98 }}
               >
-                {t('nav.contact')}
+                Say hello
               </motion.button>
             </Link>
+
+            {/* Mobile Menu Toggle (Hamburger) */}
+            <motion.button
+              className="header-hamburger"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle mobile menu"
+              whileTap={{ scale: 0.9 }}
+            >
+              <span />
+              <span />
+              <span />
+            </motion.button>
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu (Drawer) */}
+      {mobileMenuOpen && (
+        <motion.div
+          className="mobile-menu"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3 }}
+        >
+          <nav className="mobile-nav">
+            {navItems.map((item) => (
+              <Link
+                key={item.key}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`mobile-nav-link ${isActiveLink(item.href) ? 'active' : ''}`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Mobile CTA */}
+          <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+            <motion.button className="mobile-cta">
+              Say hello
+            </motion.button>
+          </Link>
+        </motion.div>
+      )}
     </motion.header>
   );
 };
