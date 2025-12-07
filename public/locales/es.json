@@ -224,22 +224,22 @@
     }
   },
   "contact": {
-    "label": "Conectemos",
-    "title": "Di hola.",
-    "subtitle": "¿Tienes un proyecto o solo quieres charlar? Me encantaría escucharte.",
+    "label": "Contacto",
+    "title": "Construyamos algo significativo juntos.",
+    "subtitle": "Ya sea un nuevo proyecto, colaboración o solo una conversación—estoy aquí.",
     "form": {
-      "name": "Tu Nombre",
-      "namePlaceholder": "¿Cómo te llamas?",
-      "email": "Dirección de Email",
-      "emailPlaceholder": "your@email.com",
-      "subject": "Asunto",
-      "subjectPlaceholder": "¿De qué se trata?",
-      "message": "Mensaje",
-      "messagePlaceholder": "Cuéntame más...",
-      "submit": "Enviar Mensaje",
+      "name": "Tu nombre",
+      "namePlaceholder": "¿Cómo debería llamarte?",
+      "email": "Email",
+      "emailPlaceholder": "where.to@reach.you",
+      "subject": "Asunto (opcional)",
+      "subjectPlaceholder": "¿Qué te trae por aquí?",
+      "message": "Tu mensaje",
+      "messagePlaceholder": "Comparte tus ideas, proyectos o pensamientos...",
+      "submit": "Enviar",
       "sending": "Enviando...",
-      "success": "✓ ¡Mensaje enviado!",
-      "error": "Algo salió mal. Inténtalo de nuevo"
+      "success": "✓ ¡Recibido! Responderé pronto.",
+      "error": "Hmm, algo falló. ¿Intentar de nuevo?"
     },
     "methods": {
       "email": {
@@ -251,9 +251,18 @@
         "value": "+971 50 721 7156"
       },
       "phone": {
-        "label": "Teléfono",
+        "label": "Llamada directa",
         "value": "+971 50 721 7156"
       }
+    },
+    "quickContact": {
+      "title": "¿Prefieres contacto directo?",
+      "subtitle": "Elige tu forma favorita de comunicarte."
+    },
+    "info": {
+      "location": "Basado en Dubái, EAU",
+      "availability": "Trabajando con clientes de todo el mundo 🌍",
+      "responseTime": "Suelo responder en 24 horas"
     }
   },
   "footer": {

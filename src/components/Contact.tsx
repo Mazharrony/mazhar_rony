@@ -243,8 +243,8 @@ const Contact: React.FC = () => {
             transition={{ delay: 0.5, duration: 0.6 }}
           >
             <div className="methods-header">
-              <h3>Quick Contact</h3>
-              <p>Or reach me directly:</p>
+              <h3>{t('contact.quickContact.title')}</h3>
+              <p>{t('contact.quickContact.subtitle')}</p>
             </div>
 
             <div className="methods-list">
@@ -292,9 +292,9 @@ const Contact: React.FC = () => {
               animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ delay: 0.95 }}
             >
-              <p>Based in <strong>Dubai, UAE</strong></p>
-              <p>Working with clients worldwide 🌍</p>
-              <p>Typically respond within <strong>24 hours</strong></p>
+              <p>{t('contact.info.location')}</p>
+              <p>{t('contact.info.availability')}</p>
+              <p>{t('contact.info.responseTime')}</p>
             </motion.div>
           </motion.div>
         </div>

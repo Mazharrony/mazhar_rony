@@ -224,22 +224,22 @@
     }
   },
   "contact": {
-    "label": "Let's Connect",
-    "title": "Say hello.",
-    "subtitle": "Have a project in mind or just want to chat? I'd love to hear from you.",
+    "label": "Get in touch",
+    "title": "Let's build something meaningful together.",
+    "subtitle": "Whether it's a new project, collaboration, or just a conversation—I'm here.",
     "form": {
       "name": "Your Name",
-      "namePlaceholder": "What's your name?",
-      "email": "Email Address",
-      "emailPlaceholder": "your@email.com",
-      "subject": "Subject",
-      "subjectPlaceholder": "What's this about?",
-      "message": "Message",
-      "messagePlaceholder": "Tell me more...",
-      "submit": "Send Message",
+      "namePlaceholder": "What should I call you?",
+      "email": "Email",
+      "emailPlaceholder": "where.to@reach.you",
+      "subject": "Subject (optional)",
+      "subjectPlaceholder": "What brings you here?",
+      "message": "Your Message",
+      "messagePlaceholder": "Share your thoughts, ideas, or project details...",
+      "submit": "Send message",
       "sending": "Sending...",
-      "success": "✓ Message sent!",
-      "error": "Something went wrong. Please try again."
+      "success": "✓ Got it! I'll respond soon.",
+      "error": "Hmm, something broke. Try again?"
     },
     "methods": {
       "email": {
@@ -251,9 +251,18 @@
         "value": "+971 50 721 7156"
       },
       "phone": {
-        "label": "Phone",
+        "label": "Direct Call",
         "value": "+971 50 721 7156"
       }
+    },
+    "quickContact": {
+      "title": "Prefer direct contact?",
+      "subtitle": "Pick your favorite way to reach out."
+    },
+    "info": {
+      "location": "Based in Dubai, UAE",
+      "availability": "Working with clients worldwide 🌍",
+      "responseTime": "Usually reply within 24 hours"
     }
   },
   "footer": {
