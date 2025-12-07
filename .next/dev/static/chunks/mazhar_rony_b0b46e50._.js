@@ -238,7 +238,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$
 var __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/mazhar_rony/node_modules/next/navigation.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/mazhar_rony/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$scroll$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/mazhar_rony/node_modules/framer-motion/dist/es/value/use-scroll.mjs [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/mazhar_rony/node_modules/framer-motion/dist/es/value/use-transform.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$lib$2f$i18n$2f$LanguageContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/mazhar_rony/lib/i18n/LanguageContext.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$lib$2f$ThemeContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/mazhar_rony/lib/ThemeContext.tsx [app-client] (ecmascript)");
 ;
@@ -256,23 +255,18 @@ var _s = __turbopack_context__.k.signature();
 ;
 var Header = function() {
     _s();
-    var _useState = (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_sliced_to_array$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0), 2), scrollPosition = _useState[0], setScrollPosition = _useState[1];
     var pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"])();
     var _useLanguage = (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$lib$2f$i18n$2f$LanguageContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLanguage"])(), language = _useLanguage.language, setLanguage = _useLanguage.setLanguage, t = _useLanguage.t;
     var _useTheme = (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$lib$2f$ThemeContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTheme"])(), theme = _useTheme.theme, toggleTheme = _useTheme.toggleTheme;
-    var scrollY = (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$scroll$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useScroll"])().scrollY;
-    var headerY = (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"])(scrollY, [
-        0,
-        100
-    ], [
-        0,
-        -2
-    ]);
+    var _useState = (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_sliced_to_array$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0), 2), scrollY = _useState[0], setScrollY = _useState[1];
+    var _useState1 = (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_sliced_to_array$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false), 2), mobileMenuOpen = _useState1[0], setMobileMenuOpen = _useState1[1];
+    var _useScroll = (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$scroll$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useScroll"])(), motionScrollY = _useScroll.scrollY;
+    // Track scroll position for header shrink behavior
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Header.useEffect": function() {
             var handleScroll = {
                 "Header.useEffect.handleScroll": function() {
-                    setScrollPosition(window.scrollY);
+                    setScrollY(window.scrollY);
                 }
             }["Header.useEffect.handleScroll"];
             window.addEventListener('scroll', handleScroll, {
@@ -285,33 +279,39 @@ var Header = function() {
             })["Header.useEffect"];
         }
     }["Header.useEffect"], []);
-    var isScrolled = scrollPosition > 20;
+    // Header shrinks slightly when scrolled (80px → 60px)
+    var headerHeight = scrollY > 20 ? 60 : 80;
+    var isScrolled = scrollY > 20;
+    // Navigation items: match spec (About, Journey, Work, Services, Contact)
+    // Note: Home is implied via brand click
     var navItems = [
         {
-            label: t('nav.home'),
-            href: '/'
+            label: 'About',
+            href: '/about',
+            key: 'about'
         },
         {
-            label: t('nav.work'),
-            href: '/work'
+            label: 'Journey',
+            href: '/journey',
+            key: 'journey'
         },
         {
-            label: t('nav.services'),
-            href: '/services'
+            label: 'Work',
+            href: '/work',
+            key: 'work'
         },
         {
-            label: t('nav.journey'),
-            href: '/journey'
+            label: 'Services',
+            href: '/services',
+            key: 'services'
         },
         {
-            label: t('nav.about'),
-            href: '/about'
-        },
-        {
-            label: t('nav.contact'),
-            href: '/contact'
+            label: 'Contact',
+            href: '/contact',
+            key: 'contact'
         }
     ];
+    // Languages for toggle (EN, AR, RU, ZH, ES)
     var languages = [
         {
             code: 'en',
@@ -339,10 +339,14 @@ var Header = function() {
             name: 'Español'
         }
     ];
+    // Check if current page is active
+    var isActiveLink = function(href) {
+        return pathname === href;
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].header, {
         className: "header ".concat(isScrolled ? 'scrolled' : ''),
         style: {
-            y: headerY
+            height: headerHeight
         },
         initial: {
             y: -100,
@@ -361,236 +365,285 @@ var Header = function() {
                 1
             ]
         },
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "container",
-            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "header-inner",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                        className: "logo",
-                        whileHover: {
-                            scale: 1.06,
-                            y: -2,
-                            transition: {
-                                duration: 0.3
-                            }
-                        },
-                        whileTap: {
-                            scale: 0.95
-                        },
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                            href: "/",
-                            children: "Mazhar"
-                        }, void 0, false, {
-                            fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-                            lineNumber: 65,
-                            columnNumber: 13
-                        }, _this)
-                    }, void 0, false, {
-                        fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-                        lineNumber: 56,
-                        columnNumber: 11
-                    }, _this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
-                        className: "nav",
-                        children: navItems.map(function(item, i) {
-                            var isActive = pathname === item.href || pathname === '/' && item.href.startsWith('/#');
-                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                initial: {
-                                    opacity: 0,
-                                    y: -20
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "container",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "header-inner",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "header-zone header-zone-left",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                className: "brand",
+                                whileHover: {
+                                    opacity: 0.7
                                 },
-                                animate: {
-                                    opacity: 1,
-                                    y: 0
-                                },
-                                transition: {
-                                    delay: 0.1 + i * 0.08,
-                                    duration: 0.4,
-                                    ease: [
-                                        0.22,
-                                        1,
-                                        0.36,
-                                        1
-                                    ]
+                                whileTap: {
+                                    scale: 0.98
                                 },
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                    href: item.href,
-                                    className: isActive ? 'active' : '',
-                                    style: {
-                                        display: 'inline-block'
+                                    href: "/",
+                                    children: "Mazharr Rony"
+                                }, void 0, false, {
+                                    fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                                    lineNumber: 73,
+                                    columnNumber: 15
+                                }, _this)
+                            }, void 0, false, {
+                                fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                                lineNumber: 68,
+                                columnNumber: 13
+                            }, _this)
+                        }, void 0, false, {
+                            fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                            lineNumber: 67,
+                            columnNumber: 11
+                        }, _this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
+                            className: "header-zone header-zone-center nav-desktop",
+                            children: navItems.map(function(item) {
+                                var isActive = isActiveLink(item.href);
+                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                    initial: {
+                                        opacity: 0,
+                                        y: -10
                                     },
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].span, {
-                                        whileHover: {
-                                            y: -3,
-                                            scale: 1.03,
+                                    animate: {
+                                        opacity: 1,
+                                        y: 0
+                                    },
+                                    transition: {
+                                        duration: 0.4
+                                    },
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                        href: item.href,
+                                        className: "nav-link ".concat(isActive ? 'active' : ''),
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].span, {
+                                            whileHover: {
+                                                y: -2
+                                            },
                                             transition: {
-                                                duration: 0.3
-                                            }
-                                        },
-                                        style: {
-                                            display: 'inline-block'
-                                        },
-                                        children: item.label
+                                                duration: 0.2
+                                            },
+                                            children: item.label
+                                        }, void 0, false, {
+                                            fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                                            lineNumber: 91,
+                                            columnNumber: 21
+                                        }, _this)
                                     }, void 0, false, {
                                         fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-                                        lineNumber: 89,
-                                        columnNumber: 21
+                                        lineNumber: 90,
+                                        columnNumber: 19
+                                    }, _this)
+                                }, item.key, false, {
+                                    fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                                    lineNumber: 84,
+                                    columnNumber: 17
+                                }, _this);
+                            })
+                        }, void 0, false, {
+                            fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                            lineNumber: 80,
+                            columnNumber: 11
+                        }, _this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "header-zone header-zone-right",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                    className: "header-control language-control",
+                                    whileHover: {
+                                        scale: 1.05
+                                    },
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                                        value: language,
+                                        onChange: function(e) {
+                                            return setLanguage(e.target.value);
+                                        },
+                                        "aria-label": "Select language",
+                                        className: "language-select",
+                                        children: languages.map(function(lang) {
+                                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                value: lang.code,
+                                                children: lang.label
+                                            }, lang.code, false, {
+                                                fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                                                lineNumber: 114,
+                                                columnNumber: 19
+                                            }, _this);
+                                        })
+                                    }, void 0, false, {
+                                        fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                                        lineNumber: 107,
+                                        columnNumber: 15
                                     }, _this)
                                 }, void 0, false, {
                                     fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-                                    lineNumber: 84,
-                                    columnNumber: 19
+                                    lineNumber: 106,
+                                    columnNumber: 13
+                                }, _this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
+                                    className: "header-control theme-toggle",
+                                    onClick: toggleTheme,
+                                    "aria-label": "Switch to ".concat(theme === 'light' ? 'dark' : 'light', " mode"),
+                                    whileHover: {
+                                        scale: 1.1
+                                    },
+                                    whileTap: {
+                                        scale: 0.95
+                                    },
+                                    children: theme === 'light' ? '🌙' : '☀️'
+                                }, void 0, false, {
+                                    fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                                    lineNumber: 122,
+                                    columnNumber: 13
+                                }, _this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                    href: "/contact",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
+                                        className: "header-cta",
+                                        whileHover: {
+                                            scale: 1.03,
+                                            boxShadow: '0 8px 20px rgba(0,0,0,0.08)'
+                                        },
+                                        whileTap: {
+                                            scale: 0.98
+                                        },
+                                        children: "Say hello"
+                                    }, void 0, false, {
+                                        fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                                        lineNumber: 134,
+                                        columnNumber: 15
+                                    }, _this)
+                                }, void 0, false, {
+                                    fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                                    lineNumber: 133,
+                                    columnNumber: 13
+                                }, _this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
+                                    className: "header-hamburger",
+                                    onClick: function() {
+                                        return setMobileMenuOpen(!mobileMenuOpen);
+                                    },
+                                    "aria-label": "Toggle mobile menu",
+                                    whileTap: {
+                                        scale: 0.9
+                                    },
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {}, void 0, false, {
+                                            fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                                            lineNumber: 150,
+                                            columnNumber: 15
+                                        }, _this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {}, void 0, false, {
+                                            fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                                            lineNumber: 151,
+                                            columnNumber: 15
+                                        }, _this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {}, void 0, false, {
+                                            fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                                            lineNumber: 152,
+                                            columnNumber: 15
+                                        }, _this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                                    lineNumber: 144,
+                                    columnNumber: 13
                                 }, _this)
-                            }, item.label, false, {
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                            lineNumber: 104,
+                            columnNumber: 11
+                        }, _this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                    lineNumber: 65,
+                    columnNumber: 9
+                }, _this)
+            }, void 0, false, {
+                fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                lineNumber: 64,
+                columnNumber: 7
+            }, _this),
+            mobileMenuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                className: "mobile-menu",
+                initial: {
+                    opacity: 0,
+                    y: -20
+                },
+                animate: {
+                    opacity: 1,
+                    y: 0
+                },
+                exit: {
+                    opacity: 0,
+                    y: -20
+                },
+                transition: {
+                    duration: 0.3
+                },
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
+                        className: "mobile-nav",
+                        children: navItems.map(function(item) {
+                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                href: item.href,
+                                onClick: function() {
+                                    return setMobileMenuOpen(false);
+                                },
+                                className: "mobile-nav-link ".concat(isActiveLink(item.href) ? 'active' : ''),
+                                children: item.label
+                            }, item.key, false, {
                                 fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-                                lineNumber: 74,
-                                columnNumber: 17
+                                lineNumber: 169,
+                                columnNumber: 15
                             }, _this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-                        lineNumber: 68,
+                        lineNumber: 167,
                         columnNumber: 11
                     }, _this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "header-actions",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                className: "personality-line",
-                                initial: {
-                                    opacity: 0
-                                },
-                                animate: {
-                                    opacity: 1
-                                },
-                                transition: {
-                                    delay: 0.5
-                                },
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    children: "Based in Dubai, creating visuals that feel alive."
-                                }, void 0, false, {
-                                    fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-                                    lineNumber: 113,
-                                    columnNumber: 15
-                                }, _this)
-                            }, void 0, false, {
-                                fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-                                lineNumber: 107,
-                                columnNumber: 13
-                            }, _this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                className: "language-selector",
-                                whileHover: {
-                                    scale: 1.05
-                                },
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
-                                    value: language,
-                                    onChange: function(e) {
-                                        return setLanguage(e.target.value);
-                                    },
-                                    "aria-label": "Select language",
-                                    className: "language-select",
-                                    children: languages.map(function(lang) {
-                                        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                            value: lang.code,
-                                            children: [
-                                                lang.label,
-                                                " ",
-                                                lang.name
-                                            ]
-                                        }, lang.code, true, {
-                                            fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-                                            lineNumber: 128,
-                                            columnNumber: 19
-                                        }, _this);
-                                    })
-                                }, void 0, false, {
-                                    fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-                                    lineNumber: 121,
-                                    columnNumber: 15
-                                }, _this)
-                            }, void 0, false, {
-                                fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-                                lineNumber: 117,
-                                columnNumber: 13
-                            }, _this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
-                                className: "theme-toggle",
-                                onClick: toggleTheme,
-                                "aria-label": "Switch to ".concat(theme === 'light' ? 'dark' : 'light', " mode"),
-                                whileHover: {
-                                    scale: 1.15,
-                                    rotate: 180,
-                                    transition: {
-                                        duration: 0.35
-                                    }
-                                },
-                                whileTap: {
-                                    scale: 0.9
-                                },
-                                children: theme === 'light' ? '🌙' : '☀️'
-                            }, void 0, false, {
-                                fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-                                lineNumber: 136,
-                                columnNumber: 13
-                            }, _this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                href: "/contact",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
-                                    className: "btn btn-primary btn-small",
-                                    whileHover: {
-                                        scale: 1.06,
-                                        y: -3,
-                                        boxShadow: '0 8px 24px rgba(99, 102, 241, 0.3)',
-                                        transition: {
-                                            duration: 0.3
-                                        }
-                                    },
-                                    whileTap: {
-                                        scale: 0.97
-                                    },
-                                    children: t('nav.contact')
-                                }, void 0, false, {
-                                    fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-                                    lineNumber: 152,
-                                    columnNumber: 15
-                                }, _this)
-                            }, void 0, false, {
-                                fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-                                lineNumber: 151,
-                                columnNumber: 13
-                            }, _this)
-                        ]
-                    }, void 0, true, {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                        href: "/contact",
+                        onClick: function() {
+                            return setMobileMenuOpen(false);
+                        },
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
+                            className: "mobile-cta",
+                            children: "Say hello"
+                        }, void 0, false, {
+                            fileName: "[project]/mazhar_rony/src/components/Header.tsx",
+                            lineNumber: 182,
+                            columnNumber: 13
+                        }, _this)
+                    }, void 0, false, {
                         fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-                        lineNumber: 105,
+                        lineNumber: 181,
                         columnNumber: 11
                     }, _this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-                lineNumber: 55,
+                lineNumber: 160,
                 columnNumber: 9
             }, _this)
-        }, void 0, false, {
-            fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-            lineNumber: 54,
-            columnNumber: 7
-        }, _this)
-    }, void 0, false, {
+        ]
+    }, void 0, true, {
         fileName: "[project]/mazhar_rony/src/components/Header.tsx",
-        lineNumber: 47,
+        lineNumber: 57,
         columnNumber: 5
     }, _this);
 };
-_s(Header, "doeoh/Oc/Zc1xaOr1zRt8V4Z6/A=", false, function() {
+_s(Header, "oU/CfL9xP8vFId3BSwtm+lF4o90=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"],
         __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$lib$2f$i18n$2f$LanguageContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLanguage"],
         __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$lib$2f$ThemeContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTheme"],
-        __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$scroll$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useScroll"],
-        __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"]
+        __TURBOPACK__imported__module__$5b$project$5d2f$mazhar_rony$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$scroll$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useScroll"]
     ];
 });
 _c = Header;

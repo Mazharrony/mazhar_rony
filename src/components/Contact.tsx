@@ -9,22 +9,46 @@ const Contact: React.FC = () => {
   const isInView = useInView(containerRef, { once: false, margin: "-100px" });
   const [submitted, setSubmitted] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [brief, setBrief] = useState<any>(null);
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiError, setAiError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsAnimating(true);
-    
-    // Simulate form submission
+    setAiLoading(true);
+    setAiError(false);
+    setBrief(null);
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const message = formData.get('message');
+
+    try {
+      const res = await fetch('/api/brief', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message })
+      });
+      const data = await res.json();
+      if (data.brief) {
+        setBrief(data.brief);
+      } else {
+        setAiError(true);
+      }
+    } catch (err) {
+      setAiError(true);
+    }
+    setAiLoading(false);
+    setSubmitted(true);
+    setIsAnimating(false);
     setTimeout(() => {
-      setSubmitted(true);
-      setIsAnimating(false);
-      
-      // Reset after 3 seconds
-      setTimeout(() => {
-        setSubmitted(false);
-        (e.target as HTMLFormElement).reset();
-      }, 3000);
-    }, 1500);
+      setSubmitted(false);
+      (e.target as HTMLFormElement).reset();
+      setBrief(null);
+      setAiError(false);
+    }, 6000);
   };
 
   const contactMethods = [
@@ -169,8 +193,45 @@ const Contact: React.FC = () => {
                   <span>Send Message</span>
                 )}
               </motion.button>
+
             </form>
           </motion.div>
+
+          {/* Smart Brief Helper AI Result */}
+          {(aiLoading || brief || aiError) && (
+            <motion.div
+              className="ai-brief-box"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              style={{ marginTop: 32 }}
+            >
+              {aiLoading && (
+                <span style={{ fontSize: '1.1rem', color: '#6366f1' }}>Thinking…</span>
+              )}
+              {brief && (
+                <div>
+                  <strong>Here’s what I understood from your message:</strong>
+                  <ul style={{ marginTop: 12, marginBottom: 0 }}>
+                    {brief.projectType && <li><b>Project type:</b> {brief.projectType}</li>}
+                    {brief.deliverables && Array.isArray(brief.deliverables) && (
+                      <li><b>Deliverables:</b>
+                        <ul>
+                          {brief.deliverables.map((d: string, i: number) => <li key={i}>{d}</li>)}
+                        </ul>
+                      </li>
+                    )}
+                    {brief.goals && <li><b>Goals:</b> {brief.goals}</li>}
+                    {brief.urgency && <li><b>Urgency:</b> {brief.urgency}</li>}
+                    {brief.notes && <li><b>Notes:</b> {brief.notes}</li>}
+                  </ul>
+                </div>
+              )}
+              {aiError && (
+                <span style={{ color: '#f59e0b' }}>Couldn’t generate a brief, but your message was sent!</span>
+              )}
+            </motion.div>
+          )}
 
           {/* Contact Methods */}
           <motion.div
