@@ -15,6 +15,10 @@
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Theme transition timing */
+  --theme-transition-duration: 2000ms;
+  --theme-transition-easing: cubic-bezier(0.25, 0.1, 0.25, 1.0);
 }
 
 .App.dark {
@@ -37,10 +41,6 @@ body.dark {
   --border-color: #404040;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.32);
   --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.48);
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-              color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html {
@@ -56,8 +56,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-              color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-easing),
+              color var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+/* Enhanced transitions during theme change */
+html.theme-transitioning body {
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-easing),
+              color var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+html.theme-transitioning * {
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-easing),
+              color var(--theme-transition-duration) var(--theme-transition-easing),
+              border-color var(--theme-transition-duration) var(--theme-transition-easing),
+              box-shadow var(--theme-transition-duration) var(--theme-transition-easing),
+              opacity calc(var(--theme-transition-duration) * 0.8) var(--theme-transition-easing) !important;
 }
 
 .App {
@@ -90,12 +104,21 @@ main {
   animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   opacity: 0;
   transform: translateY(40px);
-  transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-easing);
 }
 
 .fold:nth-child(even) {
   background-color: var(--bg-secondary);
-  transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+/* Staggered transition for cards during theme change */
+html.theme-transitioning .fold:nth-child(even) {
+  transition-delay: 150ms;
+}
+
+html.theme-transitioning .fold:nth-child(3n) {
+  transition-delay: 250ms;
 }
 
 @media (max-width: 768px) {

@@ -265,6 +265,52 @@
       "responseTime": "Suelo responder en 24 horas"
     }
   },
+  "aboutPage": {
+    "title": "Si tienes curiosidad, empieza aquí.",
+    "subtitle": "Una historia tranquila sobre cómo aprendí a crear.",
+    "identity": {
+      "body1": "Soy un creativo multidisciplinario que trabaja en diseño, branding, contenido, marketing y web. No porque quisiera dominar todo, sino porque la curiosidad seguía tirándome más profundo.",
+      "body2": "Valoro la energía tranquila sobre el caos, la honestidad sobre el ruido, y siempre aprender en lugar de fingir que lo sé todo. Cada proyecto es una oportunidad para crear algo que se sienta real y vivo."
+    },
+    "story": {
+      "intro": "Crecí en un pueblo tranquilo donde el internet era lento y los sueños parecían distantes. Mi tío trabajaba como limpiador en Dubai. Un día, me envió una laptop—vieja, pero lo cambió todo.",
+      "laptop": "Encontré un pequeño estudio cerca y les pedí que me enseñaran Photoshop. Me dejaron observar, practicar y descifrar lentamente las cosas. Pasé horas experimentando, fallando y volviendo a intentar.",
+      "smartphone": "Luego la laptop murió. No podía permitirme una nueva, así que comencé a editar en mi smartphone—pantalla pequeña, aplicaciones lentas, pero seguí adelante. Se sentía imposible, pero rendirme se sentía peor.",
+      "freelance": "Eventualmente, mi padre, trabajando en el extranjero, me envió una laptop nueva. Comencé a tomar pequeños proyectos freelance—publicaciones en redes sociales, diseños simples. Nada enorme, pero se sentía como progreso.",
+      "viral": "Un día, creé un marco de Facebook para una campaña local. Se volvió viral—más de 2 millones de personas lo usaron. De repente, la gente conocía mi trabajo. Se sentía surrealista.",
+      "agency": "Me uní a una agencia de marketing local y luego inicié un pequeño negocio de impresión. Las cosas se movían. Estaba aprendiendo rápido, trabajando duro y construyendo algo.",
+      "covid": "Luego llegó COVID. La agencia cerró. Mi empresa de restaurante fracasó. Todo lo que había construido comenzó a desmoronarse. Vendimos nuestra vaca familiar para reunir dinero para mi boleto a Dubai.",
+      "dubai": "Llegué a Dubai con esperanza e incertidumbre. Me tomó 1 mes y 17 días conseguir mi primer trabajo. Algunos lugares me inspiraron. Otros me agotaron. Pero cada experiencia me enseñó algo.",
+      "today": "Hoy, todavía estoy aprendiendo, todavía creando, todavía descubriendo. No afirmo tener todas las respuestas. Pero sé cómo cuidar el trabajo, presentarme con honestidad y seguir adelante."
+    },
+    "beliefs": {
+      "title": "En qué creo",
+      "list": [
+        "Creatividad sobre formalidad",
+        "Amabilidad sobre presión",
+        "Suavidad sobre ruido",
+        "Historias sobre eslóganes",
+        "Cuidado sobre velocidad",
+        "Emoción + lógica juntas"
+      ]
+    },
+    "howIWork": {
+      "title": "Cómo trabajo",
+      "list": [
+        "Pensamiento tranquilo antes de la ejecución rápida",
+        "Ideas fuera de la caja que se sienten fundamentadas",
+        "Sin profesionalismo falso—solo conversaciones reales",
+        "Explicaciones claras sin la jerga",
+        "Diseño que se siente vivo, no solo pulido",
+        "Rápido cuando es necesario, reflexivo siempre"
+      ]
+    },
+    "closing": {
+      "line1": "Si alguna parte de este viaje te resulta familiar,",
+      "line2": "quizás podamos crear algo significativo juntos.",
+      "cta": "quizás."
+    }
+  },
   "footer": {
     "tagline": "Construyendo trabajo creativo y tranquilo en el ruido",
     "location": "Basado en Dubai, todavía aprendiendo y construyendo",

@@ -102,45 +102,48 @@ const Header: React.FC = () => {
 
           {/* ZONE 3: RIGHT – Controls (Language, Theme, CTA) */}
           <div className="header-zone header-zone-right">
-            {/* Language Toggle */}
-            <motion.div className="header-control language-control" whileHover={{ scale: 1.05 }}>
-              <select
-                value={language}
-                onChange={(e) => setLanguage(e.target.value as any)}
-                aria-label="Select language"
-                className="language-select"
-              >
-                {languages.map((lang) => (
-                  <option key={lang.code} value={lang.code}>
-                    {lang.label}
-                  </option>
-                ))}
-              </select>
-            </motion.div>
+            {/* Dedicated Actions Group - Fixed Position */}
+            <div className="header-actions">
+              {/* Language Toggle */}
+              <motion.div className="header-control language-control" whileHover={{ scale: 1.05 }}>
+                <select
+                  value={language}
+                  onChange={(e) => setLanguage(e.target.value as any)}
+                  aria-label="Select language"
+                  className="language-select"
+                >
+                  {languages.map((lang) => (
+                    <option key={lang.code} value={lang.code}>
+                      {lang.label}
+                    </option>
+                  ))}
+                </select>
+              </motion.div>
 
-            {/* Theme Toggle */}
-            <motion.button
-              className="header-control theme-toggle"
-              onClick={toggleTheme}
-              aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {theme === 'light' ? '🌙' : '☀️'}
-            </motion.button>
-
-            {/* CTA Button: "Say hello" */}
-            <Link href="/contact">
-              <motion.button 
-                className="header-cta"
-                whileHover={{ scale: 1.03, boxShadow: '0 8px 20px rgba(0,0,0,0.08)' }}
-                whileTap={{ scale: 0.98 }}
+              {/* Theme Toggle */}
+              <motion.button
+                className="header-control theme-toggle"
+                onClick={toggleTheme}
+                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
               >
-                {t('header.cta')}
+                {theme === 'light' ? '🌙' : '☀️'}
               </motion.button>
-            </Link>
 
-            {/* Mobile Menu Toggle (Hamburger) */}
+              {/* CTA Button: "Say hello" */}
+              <Link href="/contact">
+                <motion.button 
+                  className="header-cta"
+                  whileHover={{ scale: 1.03, boxShadow: '0 8px 20px rgba(0,0,0,0.08)' }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {t('header.cta')}
+                </motion.button>
+              </Link>
+            </div>
+
+            {/* Mobile Menu Toggle (Hamburger) - Outside actions group */}
             <motion.button
               className="header-hamburger"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

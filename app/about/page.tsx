@@ -1,16 +1,17 @@
 import type { Metadata } from 'next';
+import AboutPage from '@/src/components/AboutPage';
 
 const SITE_URL = 'https://mazharrony.vercel.app';
 
 export const metadata: Metadata = {
-  title: 'About – Creative Digital Specialist in Dubai',
-  description: 'Learn about Mazhar Rony, a Dubai-based creative digital specialist with expertise in marketing, branding, content production, and web experiences.',
+  title: "About – If You're Curious, Start Here",
+  description: 'A quiet story about how I learned to create. From a village with slow internet to Dubai—learning design, branding, and building meaningful work.',
   alternates: {
     canonical: `${SITE_URL}/about`,
   },
   openGraph: {
-    title: 'About Mazhar Rony – Creative Digital Specialist',
-    description: 'Learn about Mazhar Rony, a Dubai-based creative digital specialist with expertise in marketing, branding, content production, and web experiences.',
+    title: "About Mazhar Roni – If You're Curious, Start Here",
+    description: "A quiet story about creativity, resilience, and learning. From village beginnings to Dubai's creative scene.",
     url: `${SITE_URL}/about`,
     type: 'profile',
     images: [{
@@ -22,23 +23,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Mazhar Rony – Creative Digital Specialist',
-    description: 'Dubai-based creative digital specialist with expertise in marketing, branding, and content.',
+    title: "About Mazhar Roni – If You're Curious, Start Here",
+    description: 'A quiet story about creativity, resilience, and learning.',
     images: [`${SITE_URL}/og-about.jpg`],
   },
 };
 
-export default function AboutPage() {
-  return (
-    <section id="about" className="fold about">
-      <div className="container">
-        <h1 className="page-title">About Me</h1>
-        {/* 
-          NOTE: Import and use your About component here
-          Consider expanding with more personal story and background
-        */}
-        <p>Full about page coming soon. For now, see the about section on the homepage.</p>
-      </div>
-    </section>
-  );
+export default function About() {
+  return <AboutPage />;
 }

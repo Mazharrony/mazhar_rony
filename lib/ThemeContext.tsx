@@ -26,15 +26,23 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
+    
+    // Add transitioning class for smooth theme change
+    document.documentElement.classList.add('theme-transitioning');
+    
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
     
     // Mark that user has manually interacted with theme
     localStorage.setItem('theme-interacted', 'true');
     
-    // Smooth transition
-    document.body.style.transition = 'background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+    // Apply theme class
     document.body.classList.toggle('dark', newTheme === 'dark');
+    
+    // Remove transitioning class after animation completes
+    setTimeout(() => {
+      document.documentElement.classList.remove('theme-transitioning');
+    }, 2100);
   };
 
   return (

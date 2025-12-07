@@ -231,9 +231,14 @@
 
 .services-track {
   will-change: transform;
+  direction: ltr;
   gap: 32px;
   padding: 0 40px;
   display: flex;
+}
+
+[dir="rtl"] .services-track .service-card {
+  direction: rtl;
 }
 
 .services-track .service-card {

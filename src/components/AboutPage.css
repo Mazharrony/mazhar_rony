@@ -1,0 +1,403 @@
+/* ============================================
+   ABOUT PAGE – Cinematic, Book-like, Emotional
+   ============================================ */
+
+.about-page {
+  min-height: 100vh;
+  padding: 120px 0 80px;
+  background-color: var(--bg-primary);
+}
+
+.about-page-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ============================================
+   (1) TITLE BLOCK
+   ============================================ */
+
+.about-title-block {
+  margin-bottom: 80px;
+  text-align: left;
+}
+
+.about-title-block h1 {
+  font-size: 3.5rem;
+  line-height: 1.15;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.about-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: 1.7;
+  margin-top: 16px;
+}
+
+/* ============================================
+   (2) IDENTITY SUMMARY
+   ============================================ */
+
+.about-identity {
+  margin-bottom: 80px;
+  padding: 40px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.dark .about-identity {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.about-identity p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.about-identity p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================
+   (3) JOURNEY STORY – Chapter Style
+   ============================================ */
+
+.about-story {
+  margin-bottom: 100px;
+}
+
+.story-block {
+  margin-bottom: 40px;
+}
+
+.story-block p {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--text-secondary);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Breathing space between story sections */
+.story-block + .story-block {
+  margin-top: 40px;
+}
+
+/* ============================================
+   (4) BELIEFS / VALUES GRID
+   ============================================ */
+
+.about-beliefs {
+  margin-bottom: 100px;
+  padding: 60px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.dark .about-beliefs {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.about-beliefs h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 40px;
+  letter-spacing: -0.01em;
+}
+
+.beliefs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.belief-item {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.dark .belief-item {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.belief-item span {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* ============================================
+   (5) HOW I WORK
+   ============================================ */
+
+.about-work {
+  margin-bottom: 100px;
+}
+
+.about-work h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 32px;
+  letter-spacing: -0.01em;
+}
+
+.work-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.work-list li {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  padding-left: 28px;
+  position: relative;
+  font-weight: 400;
+}
+
+.work-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ============================================
+   (6) SOFT CLOSING CTA
+   ============================================ */
+
+.about-closing {
+  text-align: center;
+  padding: 80px 0 40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.dark .about-closing {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.closing-line {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.closing-button {
+  margin-top: 32px;
+  padding: 14px 32px;
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.02em;
+}
+
+.closing-button:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.dark .closing-button:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   RESPONSIVE – Mobile & Tablet
+   ============================================ */
+
+/* Small Mobile (320px - 479px) */
+@media (max-width: 479px) {
+  .about-page {
+    padding: 80px 0 60px;
+  }
+
+  .about-page-container {
+    padding: 0 20px;
+  }
+
+  .about-title-block {
+    margin-bottom: 60px;
+  }
+
+  .about-title-block h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .about-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .about-identity {
+    margin-bottom: 60px;
+    padding: 32px 0;
+  }
+
+  .about-identity p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .about-story {
+    margin-bottom: 80px;
+  }
+
+  .story-block {
+    margin-bottom: 32px;
+  }
+
+  .story-block p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .about-beliefs {
+    margin-bottom: 80px;
+    padding: 48px 0;
+  }
+
+  .about-beliefs h3 {
+    font-size: 1.5rem;
+    margin-bottom: 32px;
+  }
+
+  .beliefs-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .belief-item {
+    padding: 16px 0;
+  }
+
+  .belief-item span {
+    font-size: 0.95rem;
+  }
+
+  .about-work {
+    margin-bottom: 80px;
+  }
+
+  .about-work h3 {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+  }
+
+  .work-list li {
+    font-size: 0.95rem;
+    padding-left: 24px;
+  }
+
+  .about-closing {
+    padding: 60px 0 32px;
+  }
+
+  .closing-line {
+    font-size: 1.1rem;
+  }
+
+  .closing-button {
+    padding: 12px 28px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Medium Mobile (480px - 639px) */
+@media (min-width: 480px) and (max-width: 639px) {
+  .about-page {
+    padding: 90px 0 70px;
+  }
+
+  .about-page-container {
+    padding: 0 24px;
+  }
+
+  .about-title-block h1 {
+    font-size: 2.3rem;
+  }
+
+  .beliefs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Small Tablet (640px - 767px) */
+@media (min-width: 640px) and (max-width: 767px) {
+  .about-page {
+    padding: 100px 0 70px;
+  }
+
+  .about-page-container {
+    padding: 0 32px;
+  }
+
+  .about-title-block h1 {
+    font-size: 2.8rem;
+  }
+
+  .beliefs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Large Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .about-page-container {
+    max-width: 700px;
+  }
+
+  .about-title-block h1 {
+    font-size: 3rem;
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .about-page-container {
+    max-width: 800px;
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] .about-title-block,
+[dir="rtl"] .about-identity,
+[dir="rtl"] .about-story,
+[dir="rtl"] .about-beliefs,
+[dir="rtl"] .about-work {
+  text-align: right;
+}
+
+[dir="rtl"] .work-list li {
+  padding-left: 0;
+  padding-right: 28px;
+}
+
+[dir="rtl"] .work-list li::before {
+  left: auto;
+  right: 0;
+  content: "←";
+}
+
+[dir="rtl"] .beliefs-grid {
+  direction: rtl;
+}

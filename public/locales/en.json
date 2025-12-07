@@ -265,6 +265,52 @@
       "responseTime": "Usually reply within 24 hours"
     }
   },
+  "aboutPage": {
+    "title": "If You're Curious, Start Here.",
+    "subtitle": "A quiet story about how I learned to create.",
+    "identity": {
+      "body1": "I'm a multi-skill creative who works across design, branding, content, marketing, and web. Not because I wanted to master everything, but because curiosity kept pulling me deeper.",
+      "body2": "I value calm energy over chaos, honesty over hype, and always learning over pretending I know it all. Every project is a chance to create something that feels real and alive."
+    },
+    "story": {
+      "intro": "I grew up in a quiet village where internet was slow and dreams felt distant. My uncle worked as a cleaner in Dubai. One day, he sent me a laptop—an old one, but it changed everything.",
+      "laptop": "I found a small studio nearby and asked them to teach me Photoshop. They let me watch, practice, and slowly figure things out. I spent hours experimenting, failing, and trying again.",
+      "smartphone": "Then the laptop died. I couldn't afford a new one, so I started editing on my smartphone—small screen, slow apps, but I kept going. It felt impossible, but giving up felt worse.",
+      "freelance": "Eventually, my father, working abroad, sent me a new laptop. I started taking small freelance projects—social media posts, simple designs. Nothing huge, but it felt like progress.",
+      "viral": "One day, I created a Facebook frame for a local campaign. It went viral—over 2 million people used it. Suddenly, people knew my work. It felt surreal.",
+      "agency": "I joined a local marketing agency and later started a small printing business. Things were moving. I was learning fast, working hard, and building something.",
+      "covid": "Then COVID hit. The agency shut down. My restaurant venture failed. Everything I built started crumbling. We sold our family cow to raise money for my ticket to Dubai.",
+      "dubai": "I arrived in Dubai with hope and uncertainty. It took 1 month and 17 days to land my first job. Some workplaces inspired me. Others drained me. But every experience taught me something.",
+      "today": "Today, I'm still learning, still creating, still figuring things out. I don't claim to have all the answers. But I know how to care about the work, show up with honesty, and keep moving forward."
+    },
+    "beliefs": {
+      "title": "What I Believe In",
+      "list": [
+        "Creativity over formality",
+        "Kindness over pressure",
+        "Softness over noise",
+        "Stories over slogans",
+        "Care over speed",
+        "Emotion + logic together"
+      ]
+    },
+    "howIWork": {
+      "title": "How I Work",
+      "list": [
+        "Calm thinking before fast execution",
+        "Out-of-the-box ideas that feel grounded",
+        "No fake professionalism—just real conversations",
+        "Clear explanations without the jargon",
+        "Design that feels alive, not just polished",
+        "Fast when needed, thoughtful always"
+      ]
+    },
+    "closing": {
+      "line1": "If any part of this journey feels familiar to you,",
+      "line2": "maybe we can create something meaningful together.",
+      "cta": "maybe."
+    }
+  },
   "footer": {
     "tagline": "Building calm, creative work in the noise.",
     "location": "Based in Dubai, still learning and building.",
