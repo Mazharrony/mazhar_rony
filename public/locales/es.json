@@ -32,36 +32,34 @@
     "label": "Servicios",
     "title": "Habilidades de Marketing y Creativas",
     "subtitle": "Experiencia completa en marketing digital y creatividad",
-    "cards": [
+    "items": [
       {
         "title": "Marketing en Redes Sociales",
-        "description": "Creación estratégica de contenido y gestión de campañas en Instagram, Facebook y TikTok",
-        "link": "Saber más"
+        "description": "Creación estratégica de contenido y gestión de campañas en Instagram, Facebook y TikTok"
       },
       {
         "title": "Producción de Contenido y Video",
-        "description": "Edición de video de alta calidad, motion graphics y contenido creativo para plataformas digitales",
-        "link": "Saber más"
+        "description": "Edición de video de alta calidad, motion graphics y contenido creativo para plataformas digitales"
       },
       {
         "title": "Anuncios Google y Meta",
-        "description": "Campañas publicitarias orientadas al rendimiento con ROI medible",
-        "link": "Saber más"
+        "description": "Campañas publicitarias orientadas al rendimiento con ROI medible"
       },
       {
         "title": "Optimización de Sitios Web",
-        "description": "Mejoras de velocidad, SEO y experiencia de usuario en WordPress y Shopify",
-        "link": "Saber más"
+        "description": "Mejoras de velocidad, SEO y experiencia de usuario en WordPress y Shopify"
       },
       {
         "title": "Estrategia de Marca y Diseño",
-        "description": "Desarrollo completo de identidad de marca desde el concepto hasta la ejecución",
-        "link": "Saber más"
+        "description": "Desarrollo completo de identidad de marca desde el concepto hasta la ejecución"
       },
       {
-        "title": "Gestión de E-commerce",
-        "description": "Gestión integral de tienda online desde listados de productos hasta optimización de conversiones",
-        "link": "Saber más"
+        "title": "Gestión de Comercio Electrónico",
+        "description": "Gestión completa de tiendas en línea, desde listados de productos hasta optimización de conversión"
+      },
+      {
+        "title": "Desarrollo Web y Aplicaciones",
+        "description": "Aplicaciones web personalizadas y diseños responsivos construidos con tecnología moderna"
       }
     ],
     "details": {
@@ -135,6 +133,18 @@
           {"icon": "📦", "title": "Planificación de Inventario", "detail": "Seguimiento de stock fluido", "accent": "#f59e0b"},
           {"icon": "🎯", "title": "Estrategia Promocional", "detail": "Ofertas estacionales y paquetes", "accent": "#10b981"},
           {"icon": "📑", "title": "Reportes", "detail": "Insights de rendimiento y recomendaciones", "accent": "#f97316"}
+        ]
+      },
+      "webApp": {
+        "title": "Desarrollo Web y Aplicaciones",
+        "description": "Construyendo aplicaciones web personalizadas y diseños responsivos utilizando tecnología moderna y mejores prácticas",
+        "skills": [
+          {"icon": "⚛️", "title": "React y Frontend", "detail": "Interfaces de usuario modernas y de alto rendimiento", "accent": "#6366f1"},
+          {"icon": "🗄️", "title": "Desarrollo Backend", "detail": "Arquitecturas de servidor escalables", "accent": "#a855f7"},
+          {"icon": "📱", "title": "Diseño Responsivo", "detail": "Diseños mobile-first y accesibles", "accent": "#06b6d4"},
+          {"icon": "⚡", "title": "Optimización de Rendimiento", "detail": "Ejecución de código rápida y eficiente", "accent": "#f59e0b"},
+          {"icon": "🔒", "title": "Mejores Prácticas de Seguridad", "detail": "Protección de datos y cumplimiento", "accent": "#10b981"},
+          {"icon": "🚀", "title": "Implementación y Mantenimiento", "detail": "Integración continua y monitoreo", "accent": "#f97316"}
         ]
       }
     }
@@ -311,9 +321,38 @@
       "cta": "quizás."
     }
   },
+  "tools": {
+    "heading": "Herramientas con las que me siento vivo",
+    "subheading": "Donde la creatividad, la estrategia y la tecnología se encuentran en mi flujo de trabajo",
+    "groups": {
+      "creative": "Creatividad",
+      "marketing": "Marketing",
+      "development": "Desarrollo",
+      "ai": "IA"
+    },
+    "labels": {
+      "photoshop": "Photoshop",
+      "illustrator": "Illustrator",
+      "figma": "Figma",
+      "canva": "Canva",
+      "capcut": "CapCut",
+      "davinci": "DaVinci Resolve",
+      "metaAds": "Meta Ads",
+      "googleAds": "Google Ads",
+      "googleAnalytics": "Google Analytics",
+      "wordpress": "WordPress",
+      "shopify": "Shopify",
+      "react": "React",
+      "javascript": "JavaScript",
+      "chatgpt": "ChatGPT",
+      "claude": "Claude",
+      "midjourney": "Midjourney",
+      "runway": "Runway"
+    }
+  },
   "footer": {
     "tagline": "Construyendo trabajo creativo y tranquilo en el ruido",
-    "location": "Basado en Dubai, todavía aprendiendo y construyendo",
+    "location": "Basado en Dubái, aún aprendiendo y construyendo",
     "cta": "quizás",
     "nav": {
       "about": "Acerca",

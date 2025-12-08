@@ -7,6 +7,7 @@ import Portfolio from '@/src/components/Portfolio';
 import About from '@/src/components/About';
 import Testimonials from '@/src/components/Testimonials';
 import FinalCTA from '@/src/components/FinalCTA';
+import Tools from '@/src/components/Tools';
 
 // Homepage preserves the original single-page layout
 // All sections remain on the same page for seamless scrolling experience
@@ -14,12 +15,7 @@ export default function HomePage() {
   return (
     <div>
       <Hero />
-      {/* Skills/Tools Section (placeholder) */}
-      {/* TODO: Replace with real Skills/Tools component */}
-      <div style={{ padding: '64px 0', textAlign: 'center', color: '#888' }}>
-        <h2>Tools I feel most alive with</h2>
-        <p>[Skills/Tools section coming soon]</p>
-      </div>
+      <Tools />
       {/* Services Preview */}
       <Services />
       {/* Journey/Experience Preview (placeholder) */}

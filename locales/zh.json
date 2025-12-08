@@ -20,6 +20,35 @@
       "secondary": "也使用"
     }
   },
+  "tools": {
+    "heading": "让我充满活力的工具",
+    "subheading": "创意、策略和技术在我的工作流程中相遇的地方。",
+    "groups": {
+      "creative": "创意工具",
+      "marketing": "营销工具",
+      "development": "开发工具",
+      "ai": "AI 工具"
+    },
+    "labels": {
+      "photoshop": "Photoshop",
+      "illustrator": "Illustrator",
+      "figma": "Figma",
+      "canva": "Canva",
+      "capcut": "CapCut",
+      "davinci": "DaVinci Resolve",
+      "metaAds": "Meta Ads",
+      "googleAds": "Google Ads",
+      "googleAnalytics": "Google Analytics",
+      "wordpress": "WordPress",
+      "shopify": "Shopify",
+      "react": "React",
+      "javascript": "JavaScript",
+      "chatgpt": "ChatGPT",
+      "claude": "Claude",
+      "midjourney": "Midjourney",
+      "runway": "Runway"
+    }
+  },
   "about": {
     "label": "关于我",
     "title": "创意问题解决者",
@@ -229,6 +258,35 @@
       "error": "出了点问题。请重试"
     },
     "methods": {
+    "tools": {
+      "heading": "Tools I feel most alive with",
+      "subheading": "Where creativity, strategy, and technology meet in my workflow.",
+      "groups": {
+        "creative": "Creative Tools",
+        "marketing": "Marketing Tools",
+        "development": "Development Tools",
+        "ai": "AI Tools"
+      },
+      "labels": {
+        "photoshop": "Photoshop",
+        "illustrator": "Illustrator",
+        "figma": "Figma",
+        "canva": "Canva",
+        "capcut": "CapCut",
+        "davinci": "DaVinci Resolve",
+        "metaAds": "Meta Ads",
+        "googleAds": "Google Ads",
+        "googleAnalytics": "Google Analytics",
+        "wordpress": "WordPress",
+        "shopify": "Shopify",
+        "react": "React",
+        "javascript": "JavaScript",
+        "chatgpt": "ChatGPT",
+        "claude": "Claude",
+        "midjourney": "Midjourney",
+        "runway": "Runway"
+      }
+    },
       "email": {
         "label": "邮箱",
         "value": "hello@meetmazhar.site"

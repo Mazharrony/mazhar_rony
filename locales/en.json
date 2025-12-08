@@ -20,6 +20,35 @@
       "secondary": "Also Working With"
     }
   },
+  "tools": {
+    "heading": "Tools I feel most alive with",
+    "subheading": "Where creativity, strategy, and technology meet in my workflow.",
+    "groups": {
+      "creative": "Creative Tools",
+      "marketing": "Marketing Tools",
+      "development": "Development Tools",
+      "ai": "AI Tools"
+    },
+    "labels": {
+      "photoshop": "Photoshop",
+      "illustrator": "Illustrator",
+      "figma": "Figma",
+      "canva": "Canva",
+      "capcut": "CapCut",
+      "davinci": "DaVinci Resolve",
+      "metaAds": "Meta Ads",
+      "googleAds": "Google Ads",
+      "googleAnalytics": "Google Analytics",
+      "wordpress": "WordPress",
+      "shopify": "Shopify",
+      "react": "React",
+      "javascript": "JavaScript",
+      "chatgpt": "ChatGPT",
+      "claude": "Claude",
+      "midjourney": "Midjourney",
+      "runway": "Runway"
+    }
+  },
   "about": {
     "label": "About Me",
     "title": "Creative problem solver",

@@ -20,6 +20,35 @@
       "secondary": "Также работаю с"
     }
   },
+  "tools": {
+    "heading": "Инструменты, с которыми я живу",
+    "subheading": "Где креативность, стратегия и технологии встречаются в моем рабочем процессе.",
+    "groups": {
+      "creative": "Креативные инструменты",
+      "marketing": "Маркетинговые инструменты",
+      "development": "Инструменты разработки",
+      "ai": "ИИ инструменты"
+    },
+    "labels": {
+      "photoshop": "Photoshop",
+      "illustrator": "Illustrator",
+      "figma": "Figma",
+      "canva": "Canva",
+      "capcut": "CapCut",
+      "davinci": "DaVinci Resolve",
+      "metaAds": "Meta Ads",
+      "googleAds": "Google Ads",
+      "googleAnalytics": "Google Analytics",
+      "wordpress": "WordPress",
+      "shopify": "Shopify",
+      "react": "React",
+      "javascript": "JavaScript",
+      "chatgpt": "ChatGPT",
+      "claude": "Claude",
+      "midjourney": "Midjourney",
+      "runway": "Runway"
+    }
+  },
   "about": {
     "label": "Обо мне",
     "title": "Креативный решатель проблем",
@@ -229,6 +258,35 @@
       "error": "Что-то пошло не так. Попробуйте снова"
     },
     "methods": {
+    "tools": {
+      "heading": "Tools I feel most alive with",
+      "subheading": "Where creativity, strategy, and technology meet in my workflow.",
+      "groups": {
+        "creative": "Creative Tools",
+        "marketing": "Marketing Tools",
+        "development": "Development Tools",
+        "ai": "AI Tools"
+      },
+      "labels": {
+        "photoshop": "Photoshop",
+        "illustrator": "Illustrator",
+        "figma": "Figma",
+        "canva": "Canva",
+        "capcut": "CapCut",
+        "davinci": "DaVinci Resolve",
+        "metaAds": "Meta Ads",
+        "googleAds": "Google Ads",
+        "googleAnalytics": "Google Analytics",
+        "wordpress": "WordPress",
+        "shopify": "Shopify",
+        "react": "React",
+        "javascript": "JavaScript",
+        "chatgpt": "ChatGPT",
+        "claude": "Claude",
+        "midjourney": "Midjourney",
+        "runway": "Runway"
+      }
+    },
       "email": {
         "label": "Email",
         "value": "hello@meetmazhar.site"

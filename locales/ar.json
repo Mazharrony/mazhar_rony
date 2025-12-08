@@ -20,6 +20,35 @@
       "secondary": "أعمل أيضاً مع"
     }
   },
+  "tools": {
+    "heading": "الأدوات التي أشعر فيها بالحياة",
+    "subheading": "حيث يلتقي الإبداع والاستراتيجية والتكنولوجيا في سير عملي.",
+    "groups": {
+      "creative": "أدوات الإبداع",
+      "marketing": "أدوات التسويق",
+      "development": "أدوات التطوير",
+      "ai": "أدوات الذكاء الاصطناعي"
+    },
+    "labels": {
+      "photoshop": "فوتوشوب",
+      "illustrator": "إليستريتور",
+      "figma": "فيجما",
+      "canva": "كانفا",
+      "capcut": "كاب كات",
+      "davinci": "دافينشي ريزولف",
+      "metaAds": "إعلانات ميتا",
+      "googleAds": "إعلانات جوجل",
+      "googleAnalytics": "جوجل أناليتكس",
+      "wordpress": "ووردبريس",
+      "shopify": "شوبيفاي",
+      "react": "رياكت",
+      "javascript": "جافاسكريبت",
+      "chatgpt": "تشات جي بي تي",
+      "claude": "كلود",
+      "midjourney": "ميدجورني",
+      "runway": "رانواي"
+    }
+  },
   "about": {
     "label": "عني",
     "title": "حلّال مشاكل إبداعي",
@@ -229,6 +258,35 @@
       "error": "حدث خطأ ما. يرجى المحاولة مرة أخرى"
     },
     "methods": {
+    "tools": {
+      "heading": "Tools I feel most alive with",
+      "subheading": "Where creativity, strategy, and technology meet in my workflow.",
+      "groups": {
+        "creative": "Creative Tools",
+        "marketing": "Marketing Tools",
+        "development": "Development Tools",
+        "ai": "AI Tools"
+      },
+      "labels": {
+        "photoshop": "Photoshop",
+        "illustrator": "Illustrator",
+        "figma": "Figma",
+        "canva": "Canva",
+        "capcut": "CapCut",
+        "davinci": "DaVinci Resolve",
+        "metaAds": "Meta Ads",
+        "googleAds": "Google Ads",
+        "googleAnalytics": "Google Analytics",
+        "wordpress": "WordPress",
+        "shopify": "Shopify",
+        "react": "React",
+        "javascript": "JavaScript",
+        "chatgpt": "ChatGPT",
+        "claude": "Claude",
+        "midjourney": "Midjourney",
+        "runway": "Runway"
+      }
+    },
       "email": {
         "label": "البريد",
         "value": "hello@meetmazhar.site"

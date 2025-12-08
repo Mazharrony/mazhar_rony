@@ -20,6 +20,35 @@
       "secondary": "También trabajo con"
     }
   },
+  "tools": {
+    "heading": "Herramientas con las que me siento vivo",
+    "subheading": "Donde la creatividad, la estrategia y la tecnología se encuentran en mi flujo de trabajo.",
+    "groups": {
+      "creative": "Herramientas Creativas",
+      "marketing": "Herramientas de Marketing",
+      "development": "Herramientas de Desarrollo",
+      "ai": "Herramientas de IA"
+    },
+    "labels": {
+      "photoshop": "Photoshop",
+      "illustrator": "Illustrator",
+      "figma": "Figma",
+      "canva": "Canva",
+      "capcut": "CapCut",
+      "davinci": "DaVinci Resolve",
+      "metaAds": "Meta Ads",
+      "googleAds": "Google Ads",
+      "googleAnalytics": "Google Analytics",
+      "wordpress": "WordPress",
+      "shopify": "Shopify",
+      "react": "React",
+      "javascript": "JavaScript",
+      "chatgpt": "ChatGPT",
+      "claude": "Claude",
+      "midjourney": "Midjourney",
+      "runway": "Runway"
+    }
+  },
   "about": {
     "label": "Sobre mí",
     "title": "Solucionador creativo de problemas",

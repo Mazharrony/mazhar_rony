@@ -32,36 +32,34 @@
     "label": "Services",
     "title": "Marketing & Creative Skills",
     "subtitle": "Full-spectrum digital marketing and creative expertise",
-    "cards": [
+    "items": [
       {
         "title": "Social Media Marketing",
-        "description": "Strategic content creation and campaign management across Instagram, Facebook, and TikTok.",
-        "link": "Learn more"
+        "description": "Strategic content creation and campaign management across Instagram, Facebook, and TikTok."
       },
       {
         "title": "Content & Video Production",
-        "description": "High-quality video editing, motion graphics, and creative content tailored for digital platforms.",
-        "link": "Learn more"
+        "description": "High-quality video editing, motion graphics, and creative content tailored for digital platforms."
       },
       {
         "title": "Google & Meta Ads",
-        "description": "Performance-driven advertising campaigns with measurable ROI across search and social.",
-        "link": "Learn more"
+        "description": "Performance-driven advertising campaigns with measurable ROI across search and social."
       },
       {
         "title": "Website Optimization",
-        "description": "Speed, SEO, and user experience improvements for WordPress and Shopify platforms.",
-        "link": "Learn more"
+        "description": "Speed, SEO, and user experience improvements for WordPress and Shopify platforms."
       },
       {
         "title": "Brand Strategy & Design",
-        "description": "Complete brand identity development from concept to execution.",
-        "link": "Learn more"
+        "description": "Complete brand identity development from concept to execution."
       },
       {
         "title": "E-commerce Management",
-        "description": "Full-stack online store management, from product listings to conversion optimization.",
-        "link": "Learn more"
+        "description": "Full-stack online store management, from product listings to conversion optimization."
+      },
+      {
+        "title": "Web & App Development",
+        "description": "Custom web applications and responsive designs built with modern technology and best practices."
       }
     ],
     "details": {
@@ -135,6 +133,18 @@
           {"icon": "📦", "title": "Inventory Planning", "detail": "Smooth stock tracking.", "accent": "#f59e0b"},
           {"icon": "🎯", "title": "Promotional Strategy", "detail": "Seasonal offers & bundles.", "accent": "#10b981"},
           {"icon": "📑", "title": "Reporting", "detail": "Performance insights and recommendations.", "accent": "#f97316"}
+        ]
+      },
+      "webApp": {
+        "title": "Web & App Development",
+        "description": "Building custom web applications and responsive designs using modern technology and best practices.",
+        "skills": [
+          {"icon": "⚛️", "title": "React & Frontend", "detail": "Modern, performant user interfaces.", "accent": "#6366f1"},
+          {"icon": "🗄️", "title": "Backend Development", "detail": "Scalable server architectures.", "accent": "#a855f7"},
+          {"icon": "📱", "title": "Responsive Design", "detail": "Mobile-first, accessible layouts.", "accent": "#06b6d4"},
+          {"icon": "⚡", "title": "Performance Optimization", "detail": "Fast, efficient code execution.", "accent": "#f59e0b"},
+          {"icon": "🔒", "title": "Security Best Practices", "detail": "Data protection and compliance.", "accent": "#10b981"},
+          {"icon": "🚀", "title": "Deployment & Maintenance", "detail": "Continuous integration and monitoring.", "accent": "#f97316"}
         ]
       }
     }
@@ -309,6 +319,35 @@
       "line1": "If any part of this journey feels familiar to you,",
       "line2": "maybe we can create something meaningful together.",
       "cta": "maybe."
+    }
+  },
+  "tools": {
+    "heading": "Tools I feel most alive with",
+    "subheading": "Where creativity, strategy, and technology meet in my workflow.",
+    "groups": {
+      "creative": "Creative",
+      "marketing": "Marketing",
+      "development": "Development",
+      "ai": "AI"
+    },
+    "labels": {
+      "photoshop": "Photoshop",
+      "illustrator": "Illustrator",
+      "figma": "Figma",
+      "canva": "Canva",
+      "capcut": "CapCut",
+      "davinci": "DaVinci Resolve",
+      "metaAds": "Meta Ads",
+      "googleAds": "Google Ads",
+      "googleAnalytics": "Google Analytics",
+      "wordpress": "WordPress",
+      "shopify": "Shopify",
+      "react": "React",
+      "javascript": "JavaScript",
+      "chatgpt": "ChatGPT",
+      "claude": "Claude",
+      "midjourney": "Midjourney",
+      "runway": "Runway"
     }
   },
   "footer": {
