@@ -1,2 +1,9 @@
-[00:00:00.420] Server  LOG      ✓ Ready in 266ms
-[00:01:14.844] Browser LOG     Loaded translations for en: 11 keys
+[00:00:00.888] Server  LOG      ✓ Ready in 579ms
+[00:00:03.837] Browser LOG     Loaded translations for en: 11 keys
+[00:00:04.132] Browser LOG     Loaded translations for en: 11 keys
+[00:00:18.869] Browser LOG     Loaded translations for zh: 11 keys
+[00:01:33.317] Server  LOG      ✓ Compiled in 12ms
+[00:01:34.542] Browser LOG     Loaded translations for ru: 11 keys
+[00:01:44.490] Browser LOG     Loaded translations for zh: 11 keys
+[00:02:38.299] Server  LOG      ✓ Compiled in 5ms
+[00:02:41.547] Server  LOG      ✓ Compiled in 8ms

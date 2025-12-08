@@ -1,0 +1,136 @@
+/* [project]/lib/i18n/LanguageConfirmation.css [app-client] (css) */
+.language-confirmation-backdrop {
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10000;
+  background: #00000080;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.language-confirmation-box {
+  background: var(--background, #fff);
+  text-align: center;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 480px;
+  padding: 32px;
+  box-shadow: 0 20px 60px #00000026, 0 8px 24px #0000001a;
+}
+
+body.dark .language-confirmation-box {
+  background: #1a1a1a;
+  box-shadow: 0 20px 60px #0006, 0 8px 24px #0000004d;
+}
+
+.confirmation-icon {
+  margin-bottom: 16px;
+  font-size: 48px;
+  line-height: 1;
+}
+
+.confirmation-title {
+  color: var(--text-primary, #1a1a1a);
+  margin: 0 0 12px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+body.dark .confirmation-title {
+  color: #f5f5f5;
+}
+
+.confirmation-message {
+  color: var(--text-secondary, #666);
+  margin: 0 0 24px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+body.dark .confirmation-message {
+  color: #999;
+}
+
+.confirmation-message strong {
+  color: var(--text-primary, #1a1a1a);
+  font-weight: 600;
+}
+
+body.dark .confirmation-message strong {
+  color: #f5f5f5;
+}
+
+.confirmation-actions {
+  flex-direction: column;
+  gap: 12px;
+  display: flex;
+}
+
+.confirmation-btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 24px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all .2s;
+}
+
+.confirmation-btn-primary {
+  color: #fff;
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+}
+
+.confirmation-btn-primary:hover {
+  box-shadow: 0 8px 20px #6366f14d;
+}
+
+.confirmation-btn-secondary {
+  color: var(--text-secondary, #666);
+  background: none;
+  border: 2px solid #0000001a;
+}
+
+body.dark .confirmation-btn-secondary {
+  color: #999;
+  border-color: #ffffff1a;
+}
+
+.confirmation-btn-secondary:hover {
+  background: #00000005;
+  border-color: #0003;
+}
+
+body.dark .confirmation-btn-secondary:hover {
+  background: #ffffff0d;
+  border-color: #fff3;
+}
+
+@media (max-width: 640px) {
+  .language-confirmation-box {
+    padding: 24px;
+  }
+
+  .confirmation-icon {
+    font-size: 40px;
+  }
+
+  .confirmation-title {
+    font-size: 20px;
+  }
+
+  .confirmation-message {
+    font-size: 14px;
+  }
+
+  .confirmation-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
+
+/*# sourceMappingURL=lib_i18n_LanguageConfirmation_css_bad6b30c._.single.css.map*/
