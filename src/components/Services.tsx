@@ -45,14 +45,14 @@ const Services: React.FC = () => {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  // Scroll progress over this section only
+  // Scroll progress: section enters viewport and exits
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end end"],
+    offset: ["start end", "end center"],
   });
 
-  // Map progress to horizontal travel: start at 0, end at -maxOffset
-  const stripX = useTransform(scrollYProgress, [0, 1], [0, -maxOffset || 0]);
+  // Map progress to horizontal travel: complete scroll within progress range
+  const stripX = useTransform(scrollYProgress, [0, 0.7], [0, -maxOffset || 0]);
 
   const services = [
     { id: "social", titleKey: "services.items.0.title", bodyKey: "services.items.0.description", href: "#service/social-media-marketing" },
