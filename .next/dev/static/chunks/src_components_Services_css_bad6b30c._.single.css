@@ -1,25 +1,30 @@
 /* [project]/src/components/Services.css [app-client] (css) */
 .services-section {
   background: var(--bg-primary);
-  height: 600vh;
   transition: background-color var(--theme-transition-duration) var(--theme-transition-easing);
   position: relative;
   overflow: hidden;
 }
 
 .services-inner {
-  z-index: 10;
+  box-sizing: border-box;
   flex-direction: column;
   justify-content: center;
   max-width: 1120px;
-  height: 100vh;
   margin: 0 auto;
   padding: 0 1.5rem;
   display: flex;
+}
+
+.services-inner.sticky {
+  min-height: 100vh;
   position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
+}
+
+.services-inner.reduced {
+  min-height: auto;
+  position: relative;
 }
 
 .services-header {
@@ -60,6 +65,12 @@
   width: 100%;
   margin-top: 2rem;
   overflow: hidden;
+}
+
+.services-viewport.scrollable {
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 1rem;
+  overflow-x: auto;
 }
 
 .services-strip {

@@ -1,28 +1,29 @@
-/* src/components/Services.css - Horizontal scroll-jacking filmstrip */
-
 .services-section {
-  /* Make section tall enough for horizontal scroll to complete */
-  height: 600vh;
+  position: relative;
   background: var(--bg-primary);
   transition: background-color var(--theme-transition-duration) var(--theme-transition-easing);
-  position: relative;
   overflow: hidden;
 }
 
 .services-inner {
-  /* Pin this container while scrolling */
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   max-width: 1120px;
   margin: 0 auto;
   padding: 0 1.5rem;
-  z-index: 10;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.services-inner.sticky {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+}
+
+.services-inner.reduced {
+  position: relative;
+  min-height: auto;
 }
 
 .services-header {
@@ -64,6 +65,12 @@
   margin-top: 2rem;
   overflow: hidden;
   width: 100%;
+}
+
+.services-viewport.scrollable {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 1rem;
 }
 
 /* single horizontal row */
