@@ -591,18 +591,18 @@ var Services = function() {
             })["Services.useEffect"];
         }
     }["Services.useEffect"], []);
-    // Scroll progress over this section only
+    // Scroll progress: section enters viewport and exits
     var scrollYProgress = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$scroll$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useScroll"])({
         target: sectionRef,
         offset: [
-            "start start",
-            "end end"
+            "start end",
+            "end center"
         ]
     }).scrollYProgress;
-    // Map progress to horizontal travel: start at 0, end at -maxOffset
+    // Map progress to horizontal travel: complete scroll within progress range
     var stripX = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"])(scrollYProgress, [
         0,
-        1
+        0.7
     ], [
         0,
         -maxOffset || 0
