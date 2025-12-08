@@ -1,20 +1,33 @@
-/* src/components/Services.css - Horizontal velocity filmstrip */
+/* src/components/Services.css - Horizontal scroll-jacking filmstrip */
 
 .services-section {
-  padding: 7rem 0;
+  /* Make section tall enough for horizontal scroll to complete */
+  height: 600vh;
   background: var(--bg-primary);
   transition: background-color var(--theme-transition-duration) var(--theme-transition-easing);
+  position: relative;
+  overflow: hidden;
 }
 
 .services-inner {
+  /* Pin this container while scrolling */
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   max-width: 1120px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  z-index: 10;
 }
 
 .services-header {
   text-align: center;
-  margin-bottom: 3.5rem;
+  margin-bottom: 2rem;
 }
 
 .services-pill {
@@ -33,14 +46,14 @@
 }
 
 .services-title {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   font-size: clamp(2rem, 3vw, 2.6rem);
   font-weight: 600;
   color: var(--text-primary);
 }
 
 .services-subtitle {
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
   font-size: 0.98rem;
   opacity: 0.7;
   color: var(--text-secondary);
@@ -48,7 +61,7 @@
 
 /* viewport that stays fixed; only inner strip moves */
 .services-viewport {
-  margin-top: 3rem;
+  margin-top: 2rem;
   overflow: hidden;
   width: 100%;
 }

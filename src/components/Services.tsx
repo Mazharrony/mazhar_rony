@@ -1,17 +1,18 @@
 // src/components/Services.tsx
 import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
-import { motion, useScroll, useVelocity, useSpring, useTransform, useMotionValue } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue } from "framer-motion";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import './Services.css';
 
 const Services: React.FC = () => {
   const { t } = useLanguage();
   
+  const sectionRef = useRef<HTMLElement | null>(null);
   const stripRef = useRef<HTMLDivElement | null>(null);
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const [maxOffset, setMaxOffset] = useState(0);
 
-  // Calculate max offset for clamping
+  // Calculate max offset for horizontal scroll
   useLayoutEffect(() => {
     if (!stripRef.current || !viewportRef.current) return;
     const stripWidth = stripRef.current.scrollWidth;
@@ -20,17 +21,10 @@ const Services: React.FC = () => {
     setMaxOffset(diff);
   }, []);
 
-  // Velocity-driven horizontal drift
-  const { scrollY } = useScroll();
-  const rawVelocity = useVelocity(scrollY);
-
-  // Map scroll speed to small drift range (-40px to +40px)
-  const drift = useTransform(rawVelocity, [-1500, 1500], [40, -40]);
-
-  const driftSpring = useSpring(drift, {
-    stiffness: 140,
-    damping: 32,
-    mass: 0.7,
+  // Track scroll progress within this section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
   });
 
   // Respect prefers-reduced-motion
@@ -45,15 +39,11 @@ const Services: React.FC = () => {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  // Clamp drift into real strip bounds [-maxOffset, 0]
+  // Map scroll progress - start moving cards only after section is pinned
+  // Use a custom range to delay horizontal scroll until section is sticky
   const finalX = prefersReduced
     ? useMotionValue(0)
-    : useTransform(driftSpring, (value) => {
-        if (maxOffset <= 0) return 0;
-        const min = -maxOffset;
-        const max = 0;
-        return Math.min(Math.max(value, min), max);
-      });
+    : useTransform(scrollYProgress, [0.1, 0.9], [0, -maxOffset]);
 
   // Services data
   const services = [
@@ -102,7 +92,7 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <section id="services" className="fold services-section">
+    <section id="services" className="fold services-section" ref={sectionRef}>
       <div className="services-inner">
         <div className="services-header">
           <p className="services-pill">{t("services.label")}</p>
