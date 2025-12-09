@@ -152,7 +152,7 @@
   border-radius: 16px;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.17, 0.67, 0.3, 1);
-  border-left: 4px solid var(--method-color);
+  border-left: 4px solid var(--border-color);
   cursor: pointer;
 }
 
@@ -161,8 +161,9 @@
 }
 
 .contact-method-card:hover {
-  border-color: var(--method-color);
+  border-color: var(--text-primary);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
 .App.dark .contact-method-card:hover {
@@ -187,7 +188,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--method-color);
+  color: var(--text-secondary);
 }
 
 .method-value {
@@ -197,7 +198,7 @@
 }
 
 .method-arrow {
-  color: var(--method-color);
+  color: var(--text-secondary);
   font-weight: 600;
   transition: all 0.3s ease;
 }

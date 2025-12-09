@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Contact from '../../src/components/Contact';
 
 const SITE_URL = 'https://mazharrony.vercel.app';
 
@@ -28,7 +29,6 @@ export const metadata: Metadata = {
   },
 };
 
-// JSON-LD for ContactPage
 const contactJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
@@ -38,9 +38,6 @@ const contactJsonLd = {
   mainEntity: {
     '@type': 'Person',
     name: 'Mazhar Rony',
-    // TODO: Add your actual contact information
-    // telephone: '+971-XXX-XXX-XXXX',
-    // email: 'your@email.com',
   }
 };
 
@@ -51,20 +48,7 @@ export default function ContactPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }}
       />
-      <section id="contact" className="fold contact">
-        <div className="container">
-          <h1 className="page-title">Get In Touch</h1>
-          {/* 
-            NOTE: Import and use your FinalCTA/Contact component here
-            Ensure the form has proper accessibility:
-            - Each input has associated label
-            - Form uses semantic HTML
-            - Add honeypot field for spam protection
-            - Proper success/error states
-          */}
-          <p>Contact form coming soon. For now, see the contact section on the homepage.</p>
-        </div>
-      </section>
+      <Contact />
     </>
   );
 }
