@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import { serviceData, type ServiceSlug } from '@/lib/services/serviceData';
 import './ServiceDetail.css';
@@ -29,48 +30,126 @@ const AedIcon = () => (
 const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
   const { t } = useLanguage();
   const service = serviceData[slug];
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
   // Get translation keys for this service
   const getKey = (section: string) => `services.detail.${service.id}.${section}`;
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+      },
+    },
+    hover: {
+      y: -6,
+      transition: { duration: 0.4 },
+    },
+  };
+
+  const numberVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+      },
+    },
+  };
+
+  const slideInVariants = {
+    hidden: { opacity: 0, x: -40 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.6,
+      },
+    },
+  };
+
+  const staggerContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
   return (
-    <div className="service-detail-page">
+    <motion.div className="service-detail-page" initial="hidden" animate="visible" variants={containerVariants}>
       {/* Hero Section - Split Layout */}
-      <section className="service-hero">
+      <motion.section className="service-hero" variants={itemVariants}>
         <div className="hero-grid">
-          <div className="hero-content">
-            <div className="service-badge">{t('services.detail.badge')}</div>
+          <motion.div className="hero-content" variants={slideInVariants}>
+            <motion.div className="service-badge" variants={numberVariants}>
+              {t('services.detail.badge')}
+            </motion.div>
             <h1 className="service-title">{t(service.titleKey)}</h1>
             <p className="service-tagline">{t(service.taglineKey)}</p>
-          </div>
-          <div className="hero-accent">
+          </motion.div>
+          <motion.div className="hero-accent" variants={numberVariants}>
             <div className="accent-line"></div>
             <div className="accent-dot"></div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Overview + Why - Asymmetric Grid */}
-      <section className="service-section overview-why-grid">
-        <div className="overview-card modern-card">
-          <span className="card-number">01</span>
+      <motion.section className="service-section overview-why-grid" variants={staggerContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+        <motion.div className="overview-card modern-card" variants={cardVariants} whileHover="hover">
+          <motion.span className="card-number" variants={numberVariants}>
+            01
+          </motion.span>
           <h2 className="section-title">{t('services.detail.overview.title')}</h2>
           <p className="section-content">{t(service.overviewKey)}</p>
-        </div>
-        <div className="why-card modern-card accent-card">
-          <span className="card-number">02</span>
+        </motion.div>
+        <motion.div className="why-card modern-card accent-card" variants={cardVariants} whileHover="hover">
+          <motion.span className="card-number" variants={numberVariants}>
+            02
+          </motion.span>
           <h2 className="section-title">{t('services.detail.why.title')}</h2>
           <p className="section-content">{t(getKey('why'))}</p>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* Our Approach - Staggered Cards */}
-      <section className="service-section approach-section">
-        <div className="section-header">
+      <motion.section className="service-section approach-section" variants={staggerContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+        <motion.div className="section-header" variants={itemVariants}>
           <span className="section-number">02</span>
           <h2 className="section-title-large">{t('services.detail.approach.title')}</h2>
-        </div>
-        <div className="approach-stagger">
+        </motion.div>
+        <motion.div className="approach-stagger" variants={staggerContainerVariants}>
           {[1, 2, 3, 4].map((step) => {
             const titleKey = getKey(`approach.step${step}.title`);
             const descKey = getKey(`approach.step${step}.description`);
@@ -78,47 +157,49 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
             const desc = t(descKey);
             if (title === titleKey) return null;
             return (
-              <div key={step} className={`approach-card modern-card stagger-${step}`}>
+              <motion.div key={step} className={`approach-card modern-card stagger-${step}`} variants={cardVariants} whileHover="hover">
                 <div className="step-header">
-                  <span className="step-number">{step.toString().padStart(2, '0')}</span>
+                  <motion.span className="step-number" variants={numberVariants}>
+                    {step.toString().padStart(2, '0')}
+                  </motion.span>
                   <div className="step-line"></div>
                 </div>
                 <h3 className="step-title">{title}</h3>
                 <p className="step-description">{desc}</p>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* What You Get - Minimal List */}
-      <section className="service-section deliverables-section">
-        <div className="section-header-inline">
+      <motion.section className="service-section deliverables-section" variants={staggerContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+        <motion.div className="section-header-inline" variants={itemVariants}>
           <span className="section-number">03</span>
           <h2 className="section-title-large">{t('services.detail.deliverables.title')}</h2>
-        </div>
-        <div className="deliverables-minimal">
+        </motion.div>
+        <motion.div className="deliverables-minimal" variants={staggerContainerVariants}>
           {[1, 2, 3, 4, 5, 6].map((item) => {
             const key = getKey(`deliverables.${item}`);
             const text = t(key);
             if (text === key) return null;
             return (
-              <div key={item} className="deliverable-item-minimal">
+              <motion.div key={item} className="deliverable-item-minimal" variants={itemVariants}>
                 <span className="item-dash">—</span>
                 <span className="item-text">{text}</span>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* FAQ - Expandable Modern */}
-      <section className="service-section faq-section">
-        <div className="section-header-inline">
+      <motion.section className="service-section faq-section" variants={staggerContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+        <motion.div className="section-header-inline" variants={itemVariants}>
           <span className="section-number">04</span>
           <h2 className="section-title-large">{t('services.detail.faq.title')}</h2>
-        </div>
-        <div className="faq-modern">
+        </motion.div>
+        <motion.div className="faq-modern" variants={staggerContainerVariants}>
           {[1, 2, 3, 4, 5].map((item) => {
             const qKey = getKey(`faq.${item}.question`);
             const aKey = getKey(`faq.${item}.answer`);
@@ -126,36 +207,48 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
             const answer = t(aKey);
             if (question === qKey) return null;
             return (
-              <details key={item} className="faq-modern-item">
+              <motion.details
+                key={item}
+                className="faq-modern-item"
+                variants={cardVariants}
+                open={expandedFaq === item}
+                onChange={() => setExpandedFaq(expandedFaq === item ? null : item)}
+              >
                 <summary className="faq-modern-question">
                   <span className="faq-q-text">{question}</span>
                   <span className="faq-toggle"></span>
                 </summary>
-                <p className="faq-modern-answer">{answer}</p>
-              </details>
+                <motion.p className="faq-modern-answer" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.3 }}>
+                  {answer}
+                </motion.p>
+              </motion.details>
             );
           })}
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* Final CTA - Full Width */}
-      <section className="service-cta-modern">
+      <motion.section className="service-cta-modern" variants={staggerContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
         <div className="cta-grid">
-          <div className="cta-content">
+          <motion.div className="cta-content" variants={itemVariants}>
             <h2 className="cta-title">{t('services.detail.cta.title')}</h2>
             <p className="cta-description">{t('services.detail.cta.description')}</p>
-          </div>
-          <div className="cta-actions">
-            <Link href="/contact" className="cta-btn-primary">
-              {t('services.detail.cta.primary')}
-            </Link>
-            <Link href="/services" className="cta-btn-ghost">
-              {t('services.detail.cta.secondary')}
-            </Link>
-          </div>
+          </motion.div>
+          <motion.div className="cta-actions" variants={staggerContainerVariants}>
+            <motion.div variants={itemVariants}>
+              <Link href="/contact" className="cta-btn-primary">
+                {t('services.detail.cta.primary')}
+              </Link>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <Link href="/services" className="cta-btn-ghost">
+                {t('services.detail.cta.secondary')}
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
-    </div>
+      </motion.section>
+    </motion.div>
   );
 };
 

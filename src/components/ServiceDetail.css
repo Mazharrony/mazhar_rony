@@ -7,6 +7,52 @@
   background: var(--bg-primary);
 }
 
+/* ========== ANIMATIONS ========== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes staggerFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Breadcrumb - Minimal */
 .breadcrumb {
   display: flex;
@@ -228,8 +274,8 @@
 
 .modern-card {
   box-shadow: none;
-  animation: fadeInUp 0.6s ease-out forwards;
-  opacity: 0;
+  opacity: 1;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .modern-card:hover {
@@ -1305,3 +1351,77 @@ body:not(.dark) .modern-card {
 body:not(.dark) .modern-card:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
+
+/* ========== ENHANCED ANIMATIONS ========== */
+
+/* Smooth scroll trigger animations */
+.service-section {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+/* Staggered item animations */
+.approach-card,
+.deliverable-item-minimal,
+.faq-modern-item {
+  will-change: transform, opacity;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Card hover lift effect */
+.approach-card:hover {
+  transform: translateY(-8px);
+}
+
+/* FAQ smooth open/close */
+.faq-modern-item[open] {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Number entrance animation */
+.card-number {
+  will-change: transform, opacity;
+}
+
+/* Hero content slide in */
+.hero-content {
+  animation: slideInLeft 0.7s ease-out both;
+}
+
+.hero-accent {
+  animation: scaleIn 0.7s ease-out both;
+  animation-delay: 0.2s;
+}
+
+/* Section headers fade in */
+.section-header,
+.section-header-inline {
+  animation: fadeInUp 0.6s ease-out both;
+  animation-delay: 0.1s;
+}
+
+/* CTA buttons */
+.cta-btn-primary,
+.cta-btn-ghost {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cta-btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.cta-btn-ghost:hover {
+  transform: translateY(-2px);
+}
+
+/* Smooth parallax on cards */
+.overview-card,
+.why-card {
+  will-change: transform;
+}
+
+/* Remove default animation stagger */
+.modern-card {
+  animation: none;
+  opacity: 1;
+}
+
