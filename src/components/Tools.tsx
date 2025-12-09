@@ -2,7 +2,7 @@
 
 import React, { useId, useMemo, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import './Tools.css';
 
 type ToolId =

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useLanguage, Language } from './LanguageContext';
+import { useLanguage, Language } from './LanguageProvider';
 import Cookies from 'js-cookie';
 
 // Map browser language codes to our supported languages

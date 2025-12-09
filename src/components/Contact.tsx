@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import './Contact.css';
 
 const Contact: React.FC = () => {

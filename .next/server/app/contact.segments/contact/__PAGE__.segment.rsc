@@ -1,0 +1,5 @@
+1:"$Sreact.fragment"
+2:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/44cd96693135f9b9.js"],"OutletBoundary"]
+3:"$Sreact.suspense"
+0:{"buildId":"PmwkhPDobyCPRVdZjGS4R","rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"ContactPage\",\"name\":\"Contact Mazhar Rony\",\"description\":\"Contact form and information for reaching Mazhar Rony\",\"url\":\"https://mazharrony.vercel.app/contact\",\"mainEntity\":{\"@type\":\"Person\",\"name\":\"Mazhar Rony\"}}"}}],["$","section",null,{"id":"contact","className":"fold contact","children":["$","div",null,{"className":"container","children":[["$","h1",null,{"className":"page-title","children":"Get In Touch"}],["$","p",null,{"children":"Contact form coming soon. For now, see the contact section on the homepage."}]]}]}]],null,["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"loading":null,"isPartial":false}
+4:null

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { LanguageProvider } from '@/lib/i18n/LanguageContext';
+import { LanguageProvider } from '@/lib/i18n/LanguageProvider';
 import { ThemeProvider } from '@/lib/ThemeContext';
 import Header from '@/src/components/Header';
 import Footer from '@/src/components/Footer';

@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
-import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import { motionConfig } from '../utils/motion';
 import './FinalCTA.css';
 

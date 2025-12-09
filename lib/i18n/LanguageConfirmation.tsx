@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLanguage } from './LanguageContext';
+import { useLanguage } from './LanguageProvider';
 import './LanguageConfirmation.css';
 
 const LanguageConfirmation: React.FC = () => {
@@ -50,7 +50,7 @@ const LanguageConfirmation: React.FC = () => {
             <div className="confirmation-actions">
               <motion.button
                 className="confirmation-btn confirmation-btn-primary"
-                onClick={confirmLanguage}
+                onClick={() => confirmLanguage(detectedLanguage)}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >

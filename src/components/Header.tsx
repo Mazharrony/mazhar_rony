@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, useScroll } from 'framer-motion';
-import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import { useTheme } from '@/lib/ThemeContext';
 import './Header.css';
 

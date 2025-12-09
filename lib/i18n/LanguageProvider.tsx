@@ -1,3 +1,5 @@
+'use client';
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -7,86 +9,20 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (key: string) => string;
+  showConfirmation: boolean;
+  detectedLanguage: Language | null;
+  confirmLanguage: (lang: Language) => void;
+  dismissConfirmation: () => void;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Translations object
-const translations: Record<Language, Record<string, string>> = {
-  en: {
-    'hero.title': 'Mazhar Roni',
-    'hero.subtitle': 'Digital Marketing & Creative Specialist',
-    'hero.description': 'Results-driven Digital Marketing & Creative Specialist with expertise in social media strategy, content creation, video production, and campaign optimization across fitness, supplement, and e-commerce brands.',
-    'hero.cta.work': 'View my work',
-    'hero.cta.contact': 'Get in touch',
-    'services.title': 'Marketing & Creative Skills',
-    'services.subtitle': 'Full-spectrum digital marketing and creative expertise',
-    'footer.basedon': 'Based in Dubai, working worldwide.',
-    'footer.cta': 'maybe.',
-  },
-  ar: {
-    'hero.title': 'مازهار روني',
-    'hero.subtitle': 'متخصص التسويق الرقمي والإبداع',
-    'hero.description': 'متخصص تسويق رقمي وإبداعي موجه نحو النتائج مع خبرة في استراتيجية وسائل التواصل والمحتوى والإنتاج الفيديو وتحسين الحملات.',
-    'hero.cta.work': 'عرض أعمالي',
-    'hero.cta.contact': 'الاتصال بي',
-    'services.title': 'مهارات التسويق والإبداع',
-    'services.subtitle': 'خبرة تسويقية رقمية وإبداعية شاملة',
-    'footer.basedon': 'مقرها في دبي، تعمل في جميع أنحاء العالم.',
-    'footer.cta': 'ربما.',
-  },
-  ru: {
-    'hero.title': 'Мазхар Рони',
-    'hero.subtitle': 'Специалист по цифровому маркетингу и творчеству',
-    'hero.description': 'Специалист по цифровому маркетингу и творчеству, ориентированный на результаты, с опытом в стратегии социальных сетей, создании контента, производстве видео и оптимизации кампаний.',
-    'hero.cta.work': 'Посмотреть работы',
-    'hero.cta.contact': 'Связаться со мной',
-    'services.title': 'Навыки маркетинга и творчества',
-    'services.subtitle': 'Комплексная цифровая маркетинговая и творческая экспертиза',
-    'footer.basedon': 'Базируется в Дубае, работает по всему миру.',
-    'footer.cta': 'Может быть.',
-  },
-  zh: {
-    'hero.title': '玛哈尔·罗尼',
-    'hero.subtitle': '数字营销与创意专家',
-    'hero.description': '以结果为导向的数字营销和创意专家，在社交媒体策略、内容创作、视频制作和活动优化方面拥有丰富经验。',
-    'hero.cta.work': '查看我的作品',
-    'hero.cta.contact': '联系我',
-    'services.title': '营销和创意技能',
-    'services.subtitle': '全面的数字营销和创意专业知识',
-    'footer.basedon': '基于迪拜，服务全球。',
-    'footer.cta': '也许。',
-  },
-  es: {
-    'hero.title': 'Mazhar Roni',
-    'hero.subtitle': 'Especialista en Marketing Digital y Creatividad',
-    'hero.description': 'Especialista en marketing digital y creatividad orientado a resultados con experiencia en estrategia de redes sociales, creación de contenido, producción de vídeo y optimización de campañas.',
-    'hero.cta.work': 'Ver mi trabajo',
-    'hero.cta.contact': 'Ponerse en contacto',
-    'services.title': 'Habilidades de Marketing y Creatividad',
-    'services.subtitle': 'Experiencia integral de marketing digital y creatividad',
-    'footer.basedon': 'Con sede en Dubái, trabajando en todo el mundo.',
-    'footer.cta': 'quizás.',
-  },
-};
-
-// Language detection based on browser
-const detectLanguage = (): Language => {
-  // First check if language is saved in localStorage
-  const saved = localStorage.getItem('preferredLanguage');
-  if (saved && Object.keys(translations).includes(saved)) {
-    return saved as Language;
-  }
-
-  // Then check browser language
-  const browserLang = navigator.language.split('-')[0].toLowerCase();
-  const availableLangs: Language[] = ['en', 'ar', 'ru', 'zh', 'es'];
-
-  if (availableLangs.includes(browserLang as Language)) {
-    return browserLang as Language;
-  }
-
-  return 'en';
+const detectLanguageImpl = (): Language => {
+  if (typeof window === 'undefined') return 'en';
+  const browserLang = navigator.language || 'en';
+  const lang = browserLang.split('-')[0].toLowerCase();
+  const supportedLangs: Language[] = ['en', 'ar', 'ru', 'zh', 'es'];
+  return (supportedLangs.includes(lang as Language) ? lang : 'en') as Language;
 };
 
 interface LanguageProviderProps {
@@ -97,18 +33,53 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   const [language, setLanguageState] = useState<Language>('en');
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [detectedLang, setDetectedLang] = useState<Language>('en');
+  const [translations, setTranslations] = useState<Record<Language, any>>({
+    en: {},
+    ar: {},
+    ru: {},
+    zh: {},
+    es: {}
+  });
 
   useEffect(() => {
-    const detected = detectLanguage();
-    const saved = localStorage.getItem('preferredLanguage');
+    // Load translations from JSON files
+    const loadTranslations = async () => {
+      try {
+        const langs: Language[] = ['en', 'ar', 'ru', 'zh', 'es'];
+        const loadedTranslations: Record<Language, any> = {
+          en: {},
+          ar: {},
+          ru: {},
+          zh: {},
+          es: {}
+        };
+        
+        for (const lang of langs) {
+          const response = await fetch(`/locales/${lang}.json`);
+          if (response.ok) {
+            loadedTranslations[lang] = await response.json();
+          }
+        }
+        
+        setTranslations(loadedTranslations);
+      } catch (error) {
+        console.error('Failed to load translations:', error);
+      }
+    };
 
-    setDetectedLang(detected);
-    setLanguageState(saved as Language || detected);
+    loadTranslations().then(() => {
+      // Detect and set language
+      const detected = detectLanguageImpl();
+      const saved = localStorage.getItem('preferredLanguage');
 
-    // Show confirmation if no preference saved and detected language is not English
-    if (!saved && detected !== 'en') {
-      setShowConfirmation(true);
-    }
+      setDetectedLang(detected);
+      setLanguageState(saved as Language || detected);
+
+      // Show confirmation if no preference saved and detected language is not English
+      if (!saved && detected !== 'en') {
+        setShowConfirmation(true);
+      }
+    });
   }, []);
 
   const setLanguage = (lang: Language) => {
@@ -128,14 +99,59 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     } else {
       setLanguage('en');
     }
+    setShowConfirmation(false);
+  };
+
+  const confirmLanguage = (lang: Language) => {
+    setLanguage(lang);
+    setShowConfirmation(false);
+  };
+
+  const dismissConfirmation = () => {
+    setShowConfirmation(false);
   };
 
   const t = (key: string): string => {
-    return translations[language]?.[key] || translations['en']?.[key] || key;
+    // Support nested keys like 'services.detail.social.title'
+    const keys = key.split('.');
+    let value: any = translations[language];
+    
+    for (const k of keys) {
+      if (value && typeof value === 'object') {
+        value = value[k];
+      } else {
+        value = undefined;
+        break;
+      }
+    }
+    
+    // Fallback to English if not found
+    if (value === undefined) {
+      let fallback: any = translations['en'];
+      for (const k of keys) {
+        if (fallback && typeof fallback === 'object') {
+          fallback = fallback[k];
+        } else {
+          fallback = undefined;
+          break;
+        }
+      }
+      value = fallback;
+    }
+    
+    return typeof value === 'string' ? value : key;
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ 
+      language, 
+      setLanguage, 
+      t,
+      showConfirmation,
+      detectedLanguage: detectedLang,
+      confirmLanguage,
+      dismissConfirmation
+    }}>
       {children}
 
       <AnimatePresence>

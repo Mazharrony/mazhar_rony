@@ -147,6 +147,115 @@
           {"icon": "🚀", "title": "Implementación y Mantenimiento", "detail": "Integración continua y monitoreo", "accent": "#f97316"}
         ]
       }
+    },
+    "detail": {
+      "badge": "Arreglemos Esto",
+      "overview": {
+        "title": "Esto es Lo Que Realmente Está Pasando"
+      },
+      "why": {
+        "title": "El Problema del Que Nadie Habla"
+      },
+      "approach": {
+        "title": "Cómo Vamos a Arreglar Esto Realmente"
+      },
+      "deliverables": {
+        "title": "Lo Que Realmente Estás Obteniendo"
+      },
+      "pricing": {
+        "title": "Hablemos en Serio: Los Números",
+        "period": "mes",
+        "cta": "Empezar",
+        "starter": {
+          "name": "Inicial",
+          "price": "499",
+          "feature1": "12 publicaciones/mes",
+          "feature2": "Gestión básica de redes",
+          "feature3": "Reportes mensuales",
+          "feature4": "1 revisión por post",
+          "feature5": "Soporte por email"
+        },
+        "professional": {
+          "name": "Profesional",
+          "price": "999",
+          "feature1": "24 publicaciones + Stories diarias",
+          "feature2": "Gestión de anuncios",
+          "feature3": "Producción de contenido premium",
+          "feature4": "Revisiones ilimitadas",
+          "feature5": "Soporte prioritario"
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "price": "Hablemos",
+          "feature1": "Paquetes completamente personalizados",
+          "feature2": "Multi-plataforma y multi-marca",
+          "feature3": "Gerente de cuenta dedicado",
+          "feature4": "Producción de video premium",
+          "feature5": "Consulta estratégica"
+        }
+      },
+      "faq": {
+        "title": "Preguntas Que Probablemente Estás Pensando"
+      },
+      "cta": {
+        "title": "Dejemos de Perder Tiempo",
+        "description": "Tus competidores ya están haciendo esto. Cada día que esperas, estás dejando dinero sobre la mesa. Hablemos.",
+        "primary": "Estoy Listo, Hablemos",
+        "secondary": "Muéstrame Más Primero"
+      },
+      "social": {
+        "tagline": "Tu Instagram parece un pueblo fantasma. Cambiemos eso.",
+        "overview": "¿Conoces esa sensación cuando publicas y... grillos? Sí, lo arreglamos. No hacemos calendarios de contenido genéricos. Creamos cosas que la gente realmente quiere ver, compartir y comprar. Instagram, TikTok, Facebook - donde tu gente está scrolleando, ahí estamos haciendo que se detengan.",
+        "why": "Hablemos claro: Tus competidores están publicando ahora mismo. Mientras te preocupas por ese pie de foto, ellos están construyendo relaciones con TUS potenciales clientes. Cada scroll sin tu marca es una venta perdida. No estamos aquí para hacer tu feed 'bonito' - estamos aquí para hacerlo rentable.",
+        "approach": {
+          "step1": {
+            "title": "Espiamos a Tu Competencia (Legalmente)",
+            "description": "Primero, descubrimos qué está funcionando realmente en tu espacio. Sin adivinar - profundizamos en los datos, vemos qué está generando engagement, y encontramos los huecos que tus competidores son demasiado perezosos para llenar."
+          },
+          "step2": {
+            "title": "Crear Contenido Que No Apesta",
+            "description": "Sin fotos de stock. Sin frases aburridas. Hacemos contenido que detiene el scroll - Reels que enganchan en 0.5 segundos, pies de foto que hacen que la gente toque 'ver más', visuales que se ven caros pero no son cursis."
+          },
+          "step3": {
+            "title": "Realmente Hablar con Tu Audiencia",
+            "description": "¿DMs sin leer? ¿Comentarios ignorados? Eso es dinero yéndose. Participamos como humanos, no como bots. Construimos conexiones reales que convierten seguidores en clientes."
+          },
+          "step4": {
+            "title": "Rastrear Lo Que Realmente Importa",
+            "description": "Olvida las métricas vanidosas. Rastreamos lo que impulsa las ventas - guardados, compartidos, visitas al perfil, clics en enlaces. Si algo no funciona, pivoteamos rápido. Sin jerga corporativa, solo resultados."
+          }
+        },
+        "deliverables": {
+          "1": "Contenido que hace que la gente deje de scrollear (no es fácil, pero lo hacemos)",
+          "2": "Videos y fotos que no se parecen a los de todos los demás",
+          "3": "Pies de foto que realmente se leen, no se saltan",
+          "4": "Reels y Stories que el algoritmo ama",
+          "5": "Reportes que muestran ROI real, no solo conteos de seguidores",
+          "6": "Vigilamos qué está funcionando (y robamos las buenas ideas)"
+        },
+        "faq": {
+          "1": {
+            "question": "¿Cuánto contenido realmente obtengo?",
+            "answer": "Inicial: 12 posts/mes (3 por semana). Profesional: 24 posts + Stories diarias (básicamente, estamos manejando todo tu social). Enterprise: Lo que sea necesario para ganar. Calidad sobre cantidad, siempre."
+          },
+          "2": {
+            "question": "¿Manejarán anuncios o solo publicarán orgánicamente?",
+            "answer": "Lo orgánico está muerto (más o menos). El tier Profesional incluye gestión de anuncios - pondremos dinero detrás de lo que funciona y mataremos lo que no. Sin presupuesto desperdiciado en 'conocimiento de marca' que no convierte."
+          },
+          "3": {
+            "question": "¿Qué plataformas?",
+            "answer": "Instagram, TikTok, Facebook - donde la gente realmente scrollea. ¿Necesitas LinkedIn o Twitter? También podemos hacerlo, pero seamos honestos, tus clientes no están ahí. Vamos donde está el ROI."
+          },
+          "4": {
+            "question": "¿Apruebo todo o solo publican?",
+            "answer": "Tú apruebas. Somos seguros, no imprudentes. Verás todo antes de que salga en vivo. Una vez que confíes en nosotros (usualmente mes 2), podemos acelerar esto."
+          },
+          "5": {
+            "question": "¿Qué pasa si mi contenido ya es basura?",
+            "answer": "Entonces empezamos de cero. En serio - el mal contenido es peor que ningún contenido. Auditaremos lo que tienes, guardaremos algo bueno, y reconstruiremos desde ahí. Sin juicios, solo soluciones."
+          }
+        }
+      }
     }
   },
   "journey": {

@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useInView, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import './Hero.css';
 
 const PRIMARY_TOOLS = ['photoshop', 'illustrator', 'figma', 'canva', 'capcut'];

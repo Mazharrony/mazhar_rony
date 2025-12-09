@@ -62,6 +62,401 @@
         "description": "Custom web apps that are fast, clean, and actually solve problems. Modern tech, zero bloat."
       }
     ],
+    "detail": {
+      "badge": "Service Details",
+      "overview": {
+        "title": "The Reality"
+      },
+      "why": {
+        "title": "Why This Matters"
+      },
+      "approach": {
+        "title": "Our Approach"
+      },
+      "deliverables": {
+        "title": "What You Get"
+      },
+      "faq": {
+        "title": "Questions?"
+      },
+      "cta": {
+        "title": "Let's Stop Wasting Time",
+        "description": "Your competitors are already doing this. Every day you wait, you're leaving money on the table. Let's talk.",
+        "primary": "I'm Ready, Let's Talk",
+        "secondary": "Show Me More First"
+      },
+      "social": {
+        "tagline": "Your Instagram looks like a ghost town. Let's change that.",
+        "overview": "You know that feeling when you post and... crickets? Yeah, we fix that. We don't do generic content calendars. We create stuff people actually want to see, share, and buy from. Instagram, TikTok, Facebook - wherever your people are scrolling, we're there making them stop.",
+        "why": "Real talk: Your competitors are posting right now. While you're overthinking that caption, they're building relationships with YOUR potential customers. Every scroll without your brand is a missed sale. We're not here to make your feed 'pretty' - we're here to make it profitable.",
+        "approach": {
+          "step1": {
+            "title": "We Stalk Your Competitors (Legally)",
+            "description": "First, we figure out what's actually working in your space. Not guessing - we dig into the data, see what's getting engagement, and find the gaps your competitors are too lazy to fill."
+          },
+          "step2": {
+            "title": "Create Content That Doesn't Suck",
+            "description": "No stock photos. No boring quotes. We make scroll-stopping content - Reels that hook in 0.5 seconds, captions that make people tap 'see more', visuals that look expensive but aren't cringe."
+          },
+          "step3": {
+            "title": "Actually Talk to Your Audience",
+            "description": "DMs sitting unread? Comments ignored? That's money walking away. We engage like humans, not bots. Build real connections that turn followers into customers."
+          },
+          "step4": {
+            "title": "Track What Actually Matters",
+            "description": "Forget vanity metrics. We track what drives sales - saves, shares, profile visits, link clicks. If something's not working, we pivot fast. No corporate BS, just results."
+          }
+        },
+        "deliverables": {
+          "1": "Content that makes people stop scrolling (not easy, but we do it)",
+          "2": "Videos and photos that don't look like everyone else's",
+          "3": "Captions that actually get read, not skipped",
+          "4": "Reels and Stories that the algorithm loves",
+          "5": "Reports that show real ROI, not just follower counts",
+          "6": "We watch what's working (and steal the good ideas)"
+        },
+        "faq": {
+          "1": {
+            "question": "How much content do I actually get?",
+            "answer": "Starter: 12 posts/month (3 per week). Professional: 24 posts + daily Stories (basically, we're running your whole social). Enterprise: However much it takes to win. Quality over quantity, always."
+          },
+          "2": {
+            "question": "Will you run ads or just post organically?",
+            "answer": "Organic is dead (kinda). Professional tier includes ad management - we'll put money behind what's working and kill what's not. No wasted budget on 'brand awareness' that doesn't convert."
+          },
+          "3": {
+            "question": "Which platforms?",
+            "answer": "Instagram, TikTok, Facebook - where people actually scroll. Need LinkedIn or Twitter? We can do that too, but let's be honest, your customers aren't there. We go where the ROI is."
+          },
+          "4": {
+            "question": "Do I approve everything or do you just post?",
+            "answer": "You approve. We're confident, not reckless. You'll see everything before it goes live. Once you trust us (usually month 2), we can speed this up."
+          },
+          "5": {
+            "question": "What if my content is already trash?",
+            "answer": "Then we start fresh. Seriously - bad content is worse than no content. We'll audit what you have, save anything good, and rebuild from there. No judgment, just solutions."
+          }
+        }
+      },
+      "content": {
+        "tagline": "Your videos still look like 2015. Let's fix that.",
+        "overview": "Video production that actually works. We don't make art films—we make content that sells. Reels that stop the scroll, TikToks that get shared, product videos that make people want to buy. Professional quality, fast turnarounds, no pretentious nonsense.",
+        "why": "Video is how brands win now. But 90% of content looks either too corporate or too amateur. There's barely anything in between. We bridge that gap—polished, modern, human content that actually converts.",
+        "approach": {
+          "step1": {
+            "title": "We Figure Out Your Story",
+            "description": "Before we touch a camera, we understand what you're trying to say. What's the message? Who are we talking to? How should it feel? This foundation makes everything better."
+          },
+          "step2": {
+            "title": "Shoot Smart, Not Expensive",
+            "description": "You don't need a $50k camera setup. Great content is about creative vision, not gear. We shoot, we edit, we refine. Fast iterations, smart production."
+          },
+          "step3": {
+            "title": "Edit for the Platform",
+            "description": "TikTok edits different from Reels. Shorts need another approach. We know the sweet spot for each platform. Sound design, pacing, hooks—everything optimized."
+          },
+          "step4": {
+            "title": "Measure, Iterate, Improve",
+            "description": "We track what lands and what flops. Next video is better than the last. No ego, just results. If something isn't working, we change it."
+          }
+        },
+        "deliverables": {
+          "1": "Reels and TikToks that actually stop the scroll",
+          "2": "Professional color grading and sound design",
+          "3": "Motion graphics and lower thirds (custom for your brand)",
+          "4": "Product videos that sell",
+          "5": "Behind-the-scenes content that feels real, not staged",
+          "6": "Captions and subtitles (properly timed)"
+        },
+        "faq": {
+          "1": {
+            "question": "How fast can you turn around a video?",
+            "answer": "Simple stuff: 2-3 days. Complex productions: 1-2 weeks. Super urgent? We have a rush option. But remember, fast is only good if it's also good."
+          },
+          "2": {
+            "question": "Do you provide the music?",
+            "answer": "Yes. We license royalty-free music and sound effects. If you want something specific, we'll source it. No copyright strikes on our watch."
+          },
+          "3": {
+            "question": "How many videos per month?",
+            "answer": "Depends on your plan. Starter: 4 videos. Professional: 8-12. Enterprise: As many as you need. We can structure this as retainer, per-video, or project-based."
+          },
+          "4": {
+            "question": "What if I hate the edit?",
+            "answer": "We revise. One round of revisions included. After that, there's a revision fee (because time is money). But honestly, we usually nail it the first time."
+          },
+          "5": {
+            "question": "Can you film my products on location?",
+            "answer": "Absolutely. Filming on-site is sometimes better anyway. Shipping products is annoying. We can come to you or bring your stuff to our studio."
+          }
+        }
+      },
+      "ads": {
+        "tagline": "Your Google Ads are hemorrhaging money. Let's stop that.",
+        "overview": "Paid advertising that actually converts. We run Google Ads and Facebook/Instagram campaigns that don't waste money on tire-kickers. Smart targeting, constant testing, and obsessive optimization. ROI is everything.",
+        "why": "Most ad managers optimize for clicks, not conversions. More clicks, more money spent, fewer actual sales. We work backwards from your actual business goal—sales, signups, leads—and build campaigns that deliver.",
+        "approach": {
+          "step1": {
+            "title": "Audit Your Current Mess",
+            "description": "If you already have ads running, they're probably broken. We diagnose the damage—wrong keywords, bad bidding, audience too broad. Fix the foundation first."
+          },
+          "step2": {
+            "title": "Build a Real Strategy",
+            "description": "Where are your customers? What are they searching for? What language do they speak? We segment, create audience groups, and build campaigns that talk to actual humans."
+          },
+          "step3": {
+            "title": "Create Ads That Don't Annoy People",
+            "description": "Good ad copy feels helpful, not pushy. We write copy that makes people want to click. Then we design visuals that stop the scroll. No ugly yellow banners."
+          },
+          "step4": {
+            "title": "Test Like You Care",
+            "description": "We A/B test everything. Ads, landing pages, audiences, bids. Every week is better than the last. We track ROAS obsessively and kill what doesn't work."
+          }
+        },
+        "deliverables": {
+          "1": "Google Ads campaigns (Search, Display, Shopping)",
+          "2": "Facebook and Instagram ads with custom audiences",
+          "3": "Retargeting campaigns (capturing people who left)",
+          "4": "Weekly optimization and bid management",
+          "5": "Detailed analytics dashboards",
+          "6": "Monthly strategy reviews and recommendations"
+        },
+        "faq": {
+          "1": {
+            "question": "How much should I spend on ads?",
+            "answer": "There's no magic number. But generally: test with $500-1000/month, see what works. Once you find a profitable campaign, scale it. We'll help you find the sweet spot."
+          },
+          "2": {
+            "question": "How long until I see results?",
+            "answer": "Google Ads: 1-2 weeks. Facebook: 2-4 weeks. Anything promising before that is luck. We need data to optimize. Patience pays off."
+          },
+          "3": {
+            "question": "Will you manage my ad account?",
+            "answer": "Yes. You keep admin access, but we handle everything—creation, optimization, reporting. You just approve budgets."
+          },
+          "4": {
+            "question": "What if I'm in a competitive industry?",
+            "answer": "Competitive = expensive. But smart targeting beats big budgets. We'll find niches within your market where you can win without spending fortune."
+          },
+          "5": {
+            "question": "Can you guarantee sales?",
+            "answer": "No. No one honest will promise that. What we DO guarantee is that we'll find the most efficient way to get in front of people likely to buy. The rest is up to your product and offer."
+          }
+        }
+      },
+      "webopt": {
+        "tagline": "Your website is slow, ugly, and losing customers. Let's fix it.",
+        "overview": "Website optimization that actually converts. We speed up your site, improve the UX, fix your SEO, and make it look modern. WordPress, Shopify, custom—whatever you're on, we know how to make it work.",
+        "why": "A slow website loses customers before they even see what you're selling. Bad UX means high bounce rates. Poor SEO means no traffic. We fix all three.",
+        "approach": {
+          "step1": {
+            "title": "Audit Everything",
+            "description": "Speed, design, functionality, SEO, mobile experience. We pull reports and find the biggest problems first."
+          },
+          "step2": {
+            "title": "Speed It Up",
+            "description": "Every second counts. Unoptimized images, bad hosting, bloated plugins—we eliminate the fat. Your site will load fast."
+          },
+          "step3": {
+            "title": "Design for Humans",
+            "description": "Modern, clean, usable. People should be able to find what they need in seconds. Not just pretty—functional."
+          },
+          "step4": {
+            "title": "SEO That Actually Works",
+            "description": "Keyword research, meta optimization, internal linking, schema markup. All the boring stuff that actually drives organic traffic."
+          }
+        },
+        "deliverables": {
+          "1": "Page speed optimization (sub-3 second load times)",
+          "2": "Mobile-responsive design refresh",
+          "3": "SEO technical audit and fixes",
+          "4": "Content optimization for search",
+          "5": "Conversion-focused UX improvements",
+          "6": "Monthly performance reports and recommendations"
+        },
+        "faq": {
+          "1": {
+            "question": "Do I need to move to a new platform?",
+            "answer": "Usually no. We optimize what you have. If your current platform is truly broken, then maybe. But most sites just need smart optimization."
+          },
+          "2": {
+            "question": "How long does optimization take?",
+            "answer": "Quick wins: 1-2 weeks. Full optimization: 4-8 weeks. SEO improvements take 2-3 months to show in rankings."
+          },
+          "3": {
+            "question": "Will this affect my content or settings?",
+            "answer": "Nope. We optimize the backend, improve structure, clean up code. Your existing content stays. We're not starting from scratch."
+          },
+          "4": {
+            "question": "What if I use Shopify/WordPress?",
+            "answer": "We specialize in both. Shopify apps, WordPress plugins, custom code—whatever it takes. We know those platforms inside out."
+          },
+          "5": {
+            "question": "How much will my rankings improve?",
+            "answer": "Depends on competition and current state. Some keywords improve in weeks. Competitive ones take months. But better is guaranteed."
+          }
+        }
+      },
+      "brand": {
+        "tagline": "Your brand looks like everyone else's. Let's make it memorable.",
+        "overview": "Brand strategy and design that makes you stand out. Logo, color system, typography, personality—everything working together. We don't make pretty designs. We build identities that sell.",
+        "why": "Generic branding blends in. Strong branding stands out and sticks in people's heads. Competitors are everywhere. A memorable brand is your only real advantage.",
+        "approach": {
+          "step1": {
+            "title": "Understand Your Brand (and Market)",
+            "description": "Before we design anything, we dig deep. Who are you? What's your story? What makes you different? Who's your customer? We research the market too."
+          },
+          "step2": {
+            "title": "Build Your Visual Identity",
+            "description": "Logo that's simple but memorable. Color palette that matches your personality. Typography that feels right. All cohesive, not random."
+          },
+          "step3": {
+            "title": "Create Your Brand Guidelines",
+            "description": "Rules so everyone using your brand stays consistent. How the logo is used. Color codes. Spacing. Tone of voice. A playbook."
+          },
+          "step4": {
+            "title": "Apply It Everywhere",
+            "description": "Website, social media, packaging, business cards, emails. Every touchpoint reflects your brand. Consistency builds recognition."
+          }
+        },
+        "deliverables": {
+          "1": "Custom logo design (with multiple concepts)",
+          "2": "Complete color palette and typography system",
+          "3": "Brand guidelines document (detailed, usable)",
+          "4": "Business card and stationery design",
+          "5": "Social media brand templates",
+          "6": "Email signature and web assets"
+        },
+        "faq": {
+          "1": {
+            "question": "How many logo options do I get?",
+            "answer": "We present 3-5 strong concepts. You pick your favorite direction, we refine. Usually 2-3 rounds of revisions included."
+          },
+          "2": {
+            "question": "Do I own the designs?",
+            "answer": "Yes. 100%. Once we're done, it's yours. Use it forever. No royalties, no licenses."
+          },
+          "3": {
+            "question": "How long does branding take?",
+            "answer": "2-4 weeks if you're responsive with feedback. We move fast but need your input to nail it."
+          },
+          "4": {
+            "question": "Can you redesign my existing brand?",
+            "answer": "Absolutely. Sometimes a refresh works. Sometimes we need a full rebrand. We'll be honest about what's needed."
+          },
+          "5": {
+            "question": "What if I want to change it later?",
+            "answer": "Rebrands happen. We usually offer a discount if you want updates. But good branding should last years, not months."
+          }
+        }
+      },
+      "ecommerce": {
+        "tagline": "Your e-commerce store is losing sales daily. Let's fix the leaks.",
+        "overview": "E-commerce optimization that boosts conversions. Product listings, checkout flow, SEO, inventory management—everything that turns browsers into buyers. We work with Shopify, WooCommerce, and custom platforms.",
+        "why": "Most online stores leave money on the table. Bad product photos, confusing descriptions, friction in checkout, poor SEO. Small fixes = big revenue increases.",
+        "approach": {
+          "step1": {
+            "title": "Audit Your Store",
+            "description": "Product pages, checkout flow, inventory system, marketing. We find the bottlenecks killing your conversions."
+          },
+          "step2": {
+            "title": "Optimize Product Pages",
+            "description": "Better photos, compelling descriptions, customer reviews. Product pages are your sales reps. We make them work harder."
+          },
+          "step3": {
+            "title": "Reduce Friction",
+            "description": "Simplify checkout, offer multiple payment options, reduce form fields. Every step towards purchase is an opportunity to lose the customer. We remove obstacles."
+          },
+          "step4": {
+            "title": "Drive More Traffic + Conversions",
+            "description": "SEO for product discovery. Email for repeat buyers. Paid ads for scale. More traffic + better conversion rate = revenue growth."
+          }
+        },
+        "deliverables": {
+          "1": "Product listing optimization (titles, descriptions, images)",
+          "2": "Checkout flow improvements (reduce abandonment)",
+          "3": "Customer review system setup and management",
+          "4": "Email marketing sequences (post-purchase, abandoned cart)",
+          "5": "SEO optimization for product discovery",
+          "6": "Monthly analytics and optimization recommendations"
+        },
+        "faq": {
+          "1": {
+            "question": "Can you help with fulfillment?",
+            "answer": "No. That's logistics. But we optimize everything before fulfillment—orders, tracking, communication."
+          },
+          "2": {
+            "question": "Do you write product descriptions?",
+            "answer": "Yes. We write for SEO AND persuasion. Boring descriptions kill sales. We make people want to buy."
+          },
+          "3": {
+            "question": "How fast can you optimize?",
+            "answer": "Quick wins: 1-2 weeks. Full store optimization: 4-6 weeks. Then we monitor and adjust ongoing."
+          },
+          "4": {
+            "question": "What about inventory management?",
+            "answer": "We set it up, integrate with your system, and make sure it flows properly. But YOU manage the actual stock levels."
+          },
+          "5": {
+            "question": "Can you help with product photography?",
+            "answer": "We can advise and edit photos you have. For professional product shoots, we partner with photographers."
+          }
+        }
+      },
+      "webapp": {
+        "tagline": "Your app idea deserves better than mediocre execution. Let's build it right.",
+        "overview": "Custom web app development. Fast, clean, modern code. React, Node, databases, APIs—whatever your idea needs. We build products, not projects. Scalable, maintainable, built for growth.",
+        "why": "Off-the-shelf solutions don't cut it anymore. Custom apps are how you scale, automate, and stay ahead. We build apps that work like software companies built them.",
+        "approach": {
+          "step1": {
+            "title": "Plan Before Building",
+            "description": "Wireframes, flow diagrams, database schema. We map it all out before a single line of code. This saves time and money."
+          },
+          "step2": {
+            "title": "Build With Modern Tech",
+            "description": "React for the frontend. Node or Next.js for the backend. Clean, scalable architecture. Code that's easy to maintain and update."
+          },
+          "step3": {
+            "title": "Test Everything",
+            "description": "Unit tests, integration tests, real-world testing. We don't ship bugs. Quality is non-negotiable."
+          },
+          "step4": {
+            "title": "Deploy and Monitor",
+            "description": "We handle deployment, setup monitoring, fix issues. Your app stays online and fast."
+          }
+        },
+        "deliverables": {
+          "1": "Complete custom web application",
+          "2": "Mobile-responsive design (works on all devices)",
+          "3": "Secure authentication and user management",
+          "4": "Database design and backend APIs",
+          "5": "Documentation for maintenance and updates",
+          "6": "Post-launch support (1 month included)"
+        },
+        "faq": {
+          "1": {
+            "question": "How much does a web app cost?",
+            "answer": "Simple apps: $5k-10k. Medium complexity: $15k-30k. Complex: $40k+. We give accurate quotes after planning phase."
+          },
+          "2": {
+            "question": "How long does development take?",
+            "answer": "Simple: 4-6 weeks. Medium: 2-3 months. Complex: 3-6 months. Depends on features and your feedback speed."
+          },
+          "3": {
+            "question": "Do you help with hosting and maintenance?",
+            "answer": "We deploy it. For ongoing hosting and maintenance, we offer a monthly retainer. Updates, security patches, monitoring."
+          },
+          "4": {
+            "question": "What about scaling as we grow?",
+            "answer": "We build with growth in mind. Good architecture scales. If you get 10x users, your app handles it."
+          },
+          "5": {
+            "question": "Can you integrate with my existing systems?",
+            "answer": "Usually yes. APIs, databases, payment systems—we integrate. Some integrations are easy, some are complex. We tell you upfront."
+          }
+        }
+      }
+    },
     "details": {
       "socialMedia": {
         "title": "Make Your Brand Worth Caring About",

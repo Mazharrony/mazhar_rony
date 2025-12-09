@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import { fadeInUp, staggerContainer, motionConfig } from '../utils/motion';
 import './Portfolio.css';
 

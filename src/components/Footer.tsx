@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
-import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import './Footer.css';
 
 const Footer: React.FC = () => {

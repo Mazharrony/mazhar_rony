@@ -1,7 +1,7 @@
 // src/components/Services.tsx
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import "./Services.css";
 
 const Services: React.FC = () => {
