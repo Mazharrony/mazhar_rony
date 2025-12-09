@@ -24,9 +24,8 @@ const Services: React.FC = () => {
       setMaxOffset(diff);
 
       if (typeof window !== "undefined") {
-        const base = Math.max(window.innerHeight, viewportRef.current.offsetHeight || 0);
-        // Enough vertical space for sticky to stay pinned while we slide horizontally
-        setSectionHeight(base + diff);
+        // 3x multiplier gives smooth scroll-jacking effect
+        setSectionHeight(diff * 3 + window.innerHeight);
       }
     };
 
@@ -48,20 +47,28 @@ const Services: React.FC = () => {
   // Scroll progress: section enters viewport and exits
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end center"],
+    offset: ["start start", "end end"],
   });
 
-  // Map progress to horizontal travel: complete scroll within progress range
-  const stripX = useTransform(scrollYProgress, [0, 0.7], [0, -maxOffset || 0]);
+  // Smooth easing with rest at start/end - cubic bezier for natural feel
+  const smoothProgress = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.9, 1],
+    [0, 0, 1, 1],
+    { ease: (t: number) => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2 }
+  );
+
+  // Map smooth progress to horizontal travel
+  const stripX = useTransform(smoothProgress, [0, 1], [0, -maxOffset || 0]);
 
   const services = [
-    { id: "social", titleKey: "services.items.0.title", bodyKey: "services.items.0.description", href: "#service/social-media-marketing" },
-    { id: "content", titleKey: "services.items.1.title", bodyKey: "services.items.1.description", href: "#service/content-video-production" },
-    { id: "ads", titleKey: "services.items.2.title", bodyKey: "services.items.2.description", href: "#service/google-meta-ads" },
-    { id: "webopt", titleKey: "services.items.3.title", bodyKey: "services.items.3.description", href: "#service/website-optimization" },
-    { id: "brand", titleKey: "services.items.4.title", bodyKey: "services.items.4.description", href: "#service/brand-strategy-design" },
-    { id: "ecommerce", titleKey: "services.items.5.title", bodyKey: "services.items.5.description", href: "#service/ecommerce-management" },
-    { id: "webapp", titleKey: "services.items.6.title", bodyKey: "services.items.6.description", href: "#service/web-app-development" },
+    { id: "social", titleKey: "services.items.0.title", bodyKey: "services.items.0.description", href: "/services/social-media-marketing" },
+    { id: "content", titleKey: "services.items.1.title", bodyKey: "services.items.1.description", href: "/services/content-video-production" },
+    { id: "ads", titleKey: "services.items.2.title", bodyKey: "services.items.2.description", href: "/services/google-meta-ads" },
+    { id: "webopt", titleKey: "services.items.3.title", bodyKey: "services.items.3.description", href: "/services/website-optimization" },
+    { id: "brand", titleKey: "services.items.4.title", bodyKey: "services.items.4.description", href: "/services/brand-strategy-design" },
+    { id: "ecommerce", titleKey: "services.items.5.title", bodyKey: "services.items.5.description", href: "/services/ecommerce-management" },
+    { id: "webapp", titleKey: "services.items.6.title", bodyKey: "services.items.6.description", href: "/services/web-app-development" },
   ];
 
   const innerClass = prefersReduced ? "services-inner reduced" : "services-inner sticky";

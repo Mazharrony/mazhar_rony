@@ -147,6 +147,113 @@
           {"icon": "🚀", "title": "Deployment & Maintenance", "detail": "Continuous integration and monitoring.", "accent": "#f97316"}
         ]
       }
+    },
+    "detail": {
+      "overview": {
+        "title": "What We Do"
+      },
+      "why": {
+        "title": "Why This Matters"
+      },
+      "approach": {
+        "title": "Our Approach"
+      },
+      "deliverables": {
+        "title": "What You Get"
+      },
+      "pricing": {
+        "title": "Investment",
+        "period": "month",
+        "cta": "Get Started",
+        "starter": {
+          "name": "Starter",
+          "price": "499",
+          "feature1": "Social media audit & strategy",
+          "feature2": "12 posts per month",
+          "feature3": "Basic analytics report",
+          "feature4": "Community management"
+        },
+        "professional": {
+          "name": "Professional",
+          "price": "999",
+          "feature1": "Everything in Starter",
+          "feature2": "24 posts + Stories daily",
+          "feature3": "Advanced analytics dashboard",
+          "feature4": "Paid ad management (up to $2k)",
+          "feature5": "Monthly strategy session"
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "price": "Custom",
+          "feature1": "Unlimited content creation",
+          "feature2": "Multi-platform management",
+          "feature3": "Dedicated account manager",
+          "feature4": "Custom reporting & insights",
+          "feature5": "Priority support 24/7"
+        }
+      },
+      "faq": {
+        "title": "Common Questions"
+      },
+      "cta": {
+        "title": "Ready to Get Started?",
+        "description": "Let's discuss your project and create a custom solution that fits your needs.",
+        "primary": "Start a Project",
+        "secondary": "View All Services"
+      },
+      "social": {
+        "tagline": "Build a powerful social presence that converts",
+        "overview": "Strategic social media marketing that combines creative storytelling with data-driven tactics. We manage your Instagram, Facebook, and TikTok to build engagement, grow your audience, and drive real business results.",
+        "why": "In today's digital landscape, social media is where your customers discover, research, and choose brands. A weak or inconsistent presence means lost opportunities. We help you stand out with authentic content that resonates and converts.",
+        "approach": {
+          "step1": {
+            "title": "Audit & Strategy",
+            "description": "We analyze your current presence, competitors, and audience to build a custom roadmap."
+          },
+          "step2": {
+            "title": "Content Creation",
+            "description": "High-quality visuals, Reels, and copy tailored to each platform's algorithm and audience."
+          },
+          "step3": {
+            "title": "Community Management",
+            "description": "Active engagement with your audience, responding to comments and messages promptly."
+          },
+          "step4": {
+            "title": "Analytics & Optimization",
+            "description": "Monthly reports with actionable insights to continuously improve performance."
+          }
+        },
+        "deliverables": {
+          "1": "Custom content calendar with posting schedule",
+          "2": "Professional photo/video content creation",
+          "3": "Engaging captions and hashtag research",
+          "4": "Story and Reel production",
+          "5": "Monthly analytics and performance reports",
+          "6": "Competitor analysis and trend monitoring"
+        },
+        "faq": {
+          "1": {
+            "question": "How many posts do you create per month?",
+            "answer": "It depends on the package. Starter includes 12 posts, Professional includes 24 posts plus daily Stories, and Enterprise is fully customized based on your needs."
+          },
+          "2": {
+            "question": "Do you handle paid advertising?",
+            "answer": "Yes! Our Professional and Enterprise packages include paid ad management. We create, optimize, and manage campaigns across Meta platforms."
+          },
+          "3": {
+            "question": "What platforms do you work with?",
+            "answer": "We specialize in Instagram, Facebook, and TikTok. If you need LinkedIn, Twitter, or YouTube, we can include those in a custom Enterprise package."
+          },
+          "4": {
+            "question": "Can I see the content before it's posted?",
+            "answer": "Absolutely. We use approval workflows where you review and approve all content before it goes live."
+          },
+          "5": {
+            "question": "What if I already have content?",
+            "answer": "We can work with your existing assets and supplement with new content as needed. Flexibility is key."
+          }
+        }
+      }
     }
   },
   "journey": {

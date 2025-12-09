@@ -1,150 +1,176 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { serviceData, type ServiceSlug } from '@/lib/services/serviceData';
 import './ServiceDetail.css';
-
-type ServiceSlug = 
-  | 'social-media-marketing' 
-  | 'content-video-production' 
-  | 'google-meta-ads' 
-  | 'website-optimization' 
-  | 'brand-strategy-design' 
-  | 'ecommerce-management'
-  | 'web-app-development';
 
 interface ServiceDetailProps {
   slug: ServiceSlug;
-  onClose: () => void;
 }
 
-const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug, onClose }) => {
+const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
   const { t } = useLanguage();
-  const [isLoading, setIsLoading] = useState(false);
+  const service = serviceData[slug];
 
-  // Map slugs to service details
-  const serviceMap: Record<ServiceSlug, { titleKey: string; descKey: string; skillsKey: string }> = {
-    'social-media-marketing': { titleKey: 'services.details.socialMedia.title', descKey: 'services.details.socialMedia.description', skillsKey: 'services.details.socialMedia.skills' },
-    'content-video-production': { titleKey: 'services.details.contentVideo.title', descKey: 'services.details.contentVideo.description', skillsKey: 'services.details.contentVideo.skills' },
-    'google-meta-ads': { titleKey: 'services.details.ads.title', descKey: 'services.details.ads.description', skillsKey: 'services.details.ads.skills' },
-    'website-optimization': { titleKey: 'services.details.website.title', descKey: 'services.details.website.description', skillsKey: 'services.details.website.skills' },
-    'brand-strategy-design': { titleKey: 'services.details.brand.title', descKey: 'services.details.brand.description', skillsKey: 'services.details.brand.skills' },
-    'ecommerce-management': { titleKey: 'services.details.ecommerce.title', descKey: 'services.details.ecommerce.description', skillsKey: 'services.details.ecommerce.skills' },
-    'web-app-development': { titleKey: 'services.details.webApp.title', descKey: 'services.details.webApp.description', skillsKey: 'services.details.webApp.skills' }
-  };
-
-  const service = serviceMap[slug];
-  if (!service) {
-    onClose();
-    return null;
-  }
-
-  const title = t(service.titleKey);
-  const description = t(service.descKey);
-  const skills = t(service.skillsKey) as any;
-
-  useEffect(() => {
-    // Disable scrolling when detail page is open
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, []);
-
-  // Handle ESC key to close
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
+  // Get translation keys for this service
+  const getKey = (section: string) => `services.detail.${service.id}.${section}`;
 
   return (
-    <motion.div
-      className="service-detail-backdrop"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      onClick={onClose}
-    >
-      <motion.div
-        className="service-detail-container"
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 40 }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          className="service-detail-close"
-          onClick={onClose}
-          aria-label="Close"
-        >
-          ✕
-        </button>
+    <div className="service-detail-page">
+      {/* Breadcrumb */}
+      <nav className="breadcrumb">
+        <Link href="/">{t('nav.home')}</Link>
+        <span className="breadcrumb-separator">›</span>
+        <Link href="/services">{t('nav.services')}</Link>
+        <span className="breadcrumb-separator">›</span>
+        <span className="breadcrumb-current">{t(service.titleKey)}</span>
+      </nav>
 
-        <div className="service-detail-content">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            {title}
-          </motion.h1>
+      {/* Hero Section */}
+      <section className="service-hero">
+        <span className="service-icon">{service.icon}</span>
+        <h1 className="service-title">{t(service.titleKey)}</h1>
+        <p className="service-tagline">{t(service.taglineKey)}</p>
+      </section>
 
-          <motion.p
-            className="service-detail-description"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-          >
-            {description}
-          </motion.p>
-
-          {skills && Array.isArray(skills) && skills.length > 0 && (
-            <motion.div
-              className="service-detail-skills"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <h2>{t('services.skillsHeading') || 'Key Services & Capabilities'}</h2>
-              <div className="skills-grid">
-                {skills.map((skill: any, index: number) => (
-                  <motion.div
-                    key={index}
-                    className="skill-item"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.25 + index * 0.05 }}
-                  >
-                    <div className="skill-icon">{skill.icon}</div>
-                    <div className="skill-body">
-                      <h3>{skill.title}</h3>
-                      <p>{skill.detail}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          )}
-
-          <motion.div
-            className="service-detail-cta"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <a href="#contact" className="cta-button" onClick={onClose}>
-              {t('common.getStarted') || 'Get Started'} →
-            </a>
-          </motion.div>
+      {/* Overview Card */}
+      <section className="service-section">
+        <div className="service-card">
+          <h2 className="section-title">{t('services.detail.overview.title')}</h2>
+          <p className="section-content">{t(service.overviewKey)}</p>
         </div>
-      </motion.div>
-    </motion.div>
+      </section>
+
+      {/* Why This Matters */}
+      <section className="service-section">
+        <div className="service-card">
+          <h2 className="section-title">{t('services.detail.why.title')}</h2>
+          <p className="section-content">{t(getKey('why'))}</p>
+        </div>
+      </section>
+
+      {/* Our Approach */}
+      <section className="service-section">
+        <h2 className="section-title centered">{t('services.detail.approach.title')}</h2>
+        <div className="approach-grid">
+          {[1, 2, 3, 4].map((step) => {
+            const titleKey = getKey(`approach.step${step}.title`);
+            const descKey = getKey(`approach.step${step}.description`);
+            const title = t(titleKey);
+            const desc = t(descKey);
+            // Skip if no translation
+            if (title === titleKey) return null;
+            return (
+              <div key={step} className="approach-card service-card">
+                <div className="step-number">{step}</div>
+                <h3 className="step-title">{title}</h3>
+                <p className="step-description">{desc}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* What You Get */}
+      <section className="service-section">
+        <div className="service-card">
+          <h2 className="section-title">{t('services.detail.deliverables.title')}</h2>
+          <ul className="deliverables-list">
+            {[1, 2, 3, 4, 5, 6].map((item) => {
+              const key = getKey(`deliverables.${item}`);
+              const text = t(key);
+              // Only show if translation exists
+              if (text === key) return null;
+              return (
+                <li key={item} className="deliverable-item">
+                  <span className="check-icon">✓</span>
+                  {text}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </section>
+
+      {/* Investment/Pricing */}
+      <section className="service-section">
+        <h2 className="section-title centered">{t('services.detail.pricing.title')}</h2>
+        <div className="pricing-grid">
+          {['starter', 'professional', 'enterprise'].map((tier) => {
+            const nameKey = `services.detail.pricing.${tier}.name`;
+            const name = t(nameKey);
+            if (name === nameKey) return null;
+            
+            return (
+              <div key={tier} className={`pricing-card service-card ${tier === 'professional' ? 'featured' : ''}`}>
+                <h3 className="pricing-tier">{name}</h3>
+                <div className="pricing-amount">
+                  <span className="currency">$</span>
+                  <span className="price">{t(`services.detail.pricing.${tier}.price`)}</span>
+                  <span className="period">/{t('services.detail.pricing.period')}</span>
+                </div>
+                <ul className="pricing-features">
+                  {[1, 2, 3, 4, 5].map((feature) => {
+                    const key = `services.detail.pricing.${tier}.feature${feature}`;
+                    const text = t(key);
+                    if (text === key) return null;
+                    return (
+                      <li key={feature}>
+                        <span className="check-icon">✓</span>
+                        {text}
+                      </li>
+                    );
+                  })}
+                </ul>
+                <Link href="/contact" className="pricing-cta">
+                  {t('services.detail.pricing.cta')}
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="service-section">
+        <div className="service-card">
+          <h2 className="section-title">{t('services.detail.faq.title')}</h2>
+          <div className="faq-list">
+            {[1, 2, 3, 4, 5].map((item) => {
+              const qKey = getKey(`faq.${item}.question`);
+              const aKey = getKey(`faq.${item}.answer`);
+              const question = t(qKey);
+              const answer = t(aKey);
+              if (question === qKey) return null;
+              return (
+                <details key={item} className="faq-item">
+                  <summary className="faq-question">{question}</summary>
+                  <p className="faq-answer">{answer}</p>
+                </details>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="service-cta">
+        <div className="cta-card service-card">
+          <h2 className="cta-title">{t('services.detail.cta.title')}</h2>
+          <p className="cta-description">{t('services.detail.cta.description')}</p>
+          <div className="cta-buttons">
+            <Link href="/contact" className="btn-primary">
+              {t('services.detail.cta.primary')}
+            </Link>
+            <Link href="/services" className="btn-secondary">
+              {t('services.detail.cta.secondary')}
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 
