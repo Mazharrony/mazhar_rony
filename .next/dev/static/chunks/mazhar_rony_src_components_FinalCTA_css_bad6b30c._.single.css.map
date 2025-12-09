@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/mazhar_rony/src/components/FinalCTA.css"],"sourcesContent":[".cta-inner {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 60px;\n  align-items: center;\n}\n\n.cta-images {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n  animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.cta-image-card {\n  aspect-ratio: 1;\n  border-radius: 20px;\n  box-shadow: var(--shadow);\n  transition: var(--transition);\n}\n\n.cta-image-card:hover {\n  transform: translateY(-8px);\n  box-shadow: var(--shadow-hover);\n  filter: grayscale(0%);\n}\n\n.cta-content {\n  animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.cta-content h2 {\n  margin-bottom: 20px;\n  line-height: 1.2;\n}\n\n.cta-content p {\n  margin-bottom: 32px;\n  max-width: 400px;\n}\n\n@media (max-width: 768px) {\n  .cta-inner {\n    grid-template-columns: 1fr;\n    gap: 40px;\n  }\n\n  .cta-images {\n    order: 2;\n  }\n\n  .cta-content {\n    order: 1;\n  }\n}\n"],"names":[],"mappings":"AAAA;;;;;;;AAOA;;;;;;;AAOA;;;;;;;AAOA;;;;;;AAMA;;;;AAIA;;;;;AAKA;;;;;AAKA;EACE;;;;;EAKA;;;;EAIA"}}]
-}

@@ -3,7 +3,7 @@
   background: var(--bg-primary);
   transition: background-color var(--theme-transition-duration) var(--theme-transition-easing);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .services-inner {
@@ -17,9 +17,12 @@
 }
 
 .services-inner.sticky {
-  min-height: 100vh;
+  height: 100vh;
   position: sticky;
   top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
 }
 
 .services-inner.reduced {

@@ -1,7 +1,147 @@
-[00:00:00.891] Server  LOG      ✓ Ready in 575ms
-[00:00:02.378] Browser LOG     Loaded translations for en: 12 keys
-[00:00:06.745] Browser LOG     Loaded translations for zh: 12 keys
-[00:00:12.378] Browser LOG     Loaded translations for en: 12 keys
-[00:00:14.612] Browser LOG     Loaded translations for zh: 12 keys
-[00:00:17.464] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:00:17.464] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:00:00.882] Server  LOG      ✓ Ready in 574ms
+[00:00:04.895] Browser LOG     Loaded translations for en: 12 keys
+[00:00:04.895] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:00:10.238] Browser LOG     Loaded translations for en: 12 keys
+[00:00:59.684] Browser LOG     Loaded translations for zh: 12 keys
+[00:03:54.723] Browser LOG     Loaded translations for en: 12 keys
+[00:06:20.080] Browser LOG     Loaded translations for zh: 12 keys
+[00:06:23.785] Browser LOG     Loaded translations for en: 12 keys
+[00:06:49.658] Browser LOG     Loaded translations for en: 12 keys
+[00:06:49.658] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:06:54.313] Browser LOG     Loaded translations for en: 12 keys
+[00:07:02.132] Browser LOG     Loaded translations for zh: 12 keys
+[00:09:05.486] Browser LOG     Loaded translations for en: 12 keys
+[00:09:13.580] Browser LOG     Loaded translations for ru: 12 keys
+[00:09:30.690] Browser LOG     Loaded translations for zh: 12 keys
+[00:09:49.060] Server  LOG      ✓ Compiled in 5ms
+[00:10:03.374] Server  LOG      ✓ Compiled in 4ms
+[00:10:20.250] Server  LOG      ✓ Compiled in 4ms
+[00:10:40.318] Server  LOG      ✓ Compiled in 4ms
+[00:10:54.907] Server  LOG      ✓ Compiled in 5ms
+[00:11:32.798] Server  LOG      ✓ Compiled in 8ms
+[00:11:50.509] Server  LOG      ✓ Compiled in 4ms
+[00:11:50.617] Browser ERROR   ./src/components/ServiceDetail.css:805:1
+Parsing CSS source code failed
+  803 |     padding: 3rem 2rem;
+  804 |   }
+> 805 | }
+      | ^
+  806 |
+  807 | /* Light Mode Adjustments */
+  808 | body:not(.dark) .why-card {
+
+Invalid empty selector
+
+Import trace:
+  Client Component Browser:
+    ./src/components/ServiceDetail.css [Client Component Browser]
+    ./src/components/ServiceDetail.tsx [Client Component Browser]
+    ./src/components/ServiceDetail.tsx [Server Component]
+    ./app/services/[slug]/page.tsx [Server Component]
+[00:11:55.188] Browser ERROR   ./src/components/ServiceDetail.css:805:1
+Parsing CSS source code failed
+  803 |     padding: 3rem 2rem;
+  804 |   }
+> 805 | }
+      | ^
+  806 |
+  807 | /* Light Mode Adjustments */
+  808 | body:not(.dark) .why-card {
+
+Invalid empty selector
+
+Import trace:
+  Client Component Browser:
+    ./src/components/ServiceDetail.css [Client Component Browser]
+    ./src/components/ServiceDetail.tsx [Client Component Browser]
+    ./src/components/ServiceDetail.tsx [Server Component]
+    ./app/services/[slug]/page.tsx [Server Component]
+[00:11:55.188] Browser LOG     Loaded translations for en: 12 keys
+[00:11:55.188] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:11:55.188] Browser ERROR   ./src/components/ServiceDetail.css:805:1
+Parsing CSS source code failed
+  803 |     padding: 3rem 2rem;
+  804 |   }
+> 805 | }
+      | ^
+  806 |
+  807 | /* Light Mode Adjustments */
+  808 | body:not(.dark) .why-card {
+
+Invalid empty selector
+
+Import trace:
+  Client Component Browser:
+    ./src/components/ServiceDetail.css [Client Component Browser]
+    ./src/components/ServiceDetail.tsx [Client Component Browser]
+    ./src/components/ServiceDetail.tsx [Server Component]
+    ./app/services/[slug]/page.tsx [Server Component]
+[00:11:58.029] Browser ERROR   ./src/components/ServiceDetail.css:805:1
+Parsing CSS source code failed
+  803 |     padding: 3rem 2rem;
+  804 |   }
+> 805 | }
+      | ^
+  806 |
+  807 | /* Light Mode Adjustments */
+  808 | body:not(.dark) .why-card {
+
+Invalid empty selector
+
+Import trace:
+  Client Component Browser:
+    ./src/components/ServiceDetail.css [Client Component Browser]
+    ./src/components/ServiceDetail.tsx [Client Component Browser]
+    ./src/components/ServiceDetail.tsx [Server Component]
+    ./app/services/[slug]/page.tsx [Server Component]
+[00:11:58.029] Browser LOG     Loaded translations for en: 12 keys
+[00:11:58.029] Browser ERROR   ./src/components/ServiceDetail.css:805:1
+Parsing CSS source code failed
+  803 |     padding: 3rem 2rem;
+  804 |   }
+> 805 | }
+      | ^
+  806 |
+  807 | /* Light Mode Adjustments */
+  808 | body:not(.dark) .why-card {
+
+Invalid empty selector
+
+Import trace:
+  Client Component Browser:
+    ./src/components/ServiceDetail.css [Client Component Browser]
+    ./src/components/ServiceDetail.tsx [Client Component Browser]
+    ./src/components/ServiceDetail.tsx [Server Component]
+    ./app/services/[slug]/page.tsx [Server Component]
+[00:11:58.029] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:12:00.886] Browser WARN    {}
+[00:12:29.877] Server  LOG      ✓ Compiled in 2ms
+[00:12:36.162] Browser LOG     Loaded translations for en: 12 keys
+[00:13:08.779] Browser LOG     Loaded translations for zh: 12 keys
+[00:13:29.859] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:30.121] Browser LOG     Loaded translations for en: 12 keys
+[00:13:30.121] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:13:33.784] Browser LOG     Loaded translations for zh: 12 keys
+[00:13:36.453] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:36.585] Browser LOG     Loaded translations for en: 12 keys
+[00:13:36.585] Browser LOG     Loaded translations for zh: 12 keys
+[00:13:42.936] Browser LOG     Loaded translations for en: 12 keys
+[00:13:43.913] Server  LOG      ✓ Compiled in 7ms
+[00:14:10.303] Browser LOG     Loaded translations for zh: 12 keys
+[00:14:23.465] Browser LOG     Loaded translations for en: 12 keys
+[00:15:18.640] Server  LOG      ✓ Compiled in 5ms
+[00:15:30.649] Server  LOG      ✓ Compiled in 5ms
+[00:17:12.899] Browser LOG     Loaded translations for en: 12 keys
+[00:17:12.899] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:17:19.278] Browser LOG     Loaded translations for en: 12 keys
+[00:17:38.697] Browser LOG     Loaded translations for zh: 12 keys
+[00:17:57.770] Browser LOG     Loaded translations for zh: 12 keys
+[00:20:07.000] Server  LOG      ✓ Compiled in 6ms
+[00:20:28.348] Server  LOG      ✓ Compiled in 5ms
+[00:20:37.758] Server  LOG      ✓ Compiled in 8ms
+[00:21:05.481] Server  LOG      ✓ Compiled in 6ms
+[00:21:13.582] Server  LOG      ✓ Compiled in 6ms
+[00:21:20.440] Server  LOG      ✓ Compiled in 7ms
+[00:22:38.561] Browser LOG     Loaded translations for en: 12 keys
+[00:22:38.561] Browser WARN    Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly.
+[00:22:42.719] Browser LOG     Loaded translations for en: 12 keys

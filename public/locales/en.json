@@ -34,37 +34,37 @@
     "subtitle": "Full-spectrum digital marketing and creative expertise",
     "items": [
       {
-        "title": "Social Media Marketing",
+        "title": "Make Your Brand Worth Caring About",
         "description": "Strategic content creation and campaign management across Instagram, Facebook, and TikTok."
       },
       {
-        "title": "Content & Video Production",
-        "description": "High-quality video editing, motion graphics, and creative content tailored for digital platforms."
+        "title": "Stop Posting Boring Videos",
+        "description": "Reels, TikToks, and content that actually stops the scroll. No stock footage BS."
       },
       {
-        "title": "Google & Meta Ads",
-        "description": "Performance-driven advertising campaigns with measurable ROI across search and social."
+        "title": "Ads That Don't Waste Money",
+        "description": "Google and Meta campaigns that actually convert. No vanity metrics, just ROI."
       },
       {
-        "title": "Website Optimization",
-        "description": "Speed, SEO, and user experience improvements for WordPress and Shopify platforms."
+        "title": "Fix Your Slow, Ugly Website",
+        "description": "Speed it up, make it rank, stop losing visitors. WordPress & Shopify specialists."
       },
       {
-        "title": "Brand Strategy & Design",
-        "description": "Complete brand identity development from concept to execution."
+        "title": "Build a Brand People Remember",
+        "description": "Not just a logo. A complete identity that makes you stand out and stick."
       },
       {
-        "title": "E-commerce Management",
-        "description": "Full-stack online store management, from product listings to conversion optimization."
+        "title": "Turn Your Store Into a Money Printer",
+        "description": "Optimize everything - listings, conversions, checkout. Less cart abandonment, more sales."
       },
       {
-        "title": "Web & App Development",
-        "description": "Custom web applications and responsive designs built with modern technology and best practices."
+        "title": "Build Apps That Don't Suck",
+        "description": "Custom web apps that are fast, clean, and actually solve problems. Modern tech, zero bloat."
       }
     ],
     "details": {
       "socialMedia": {
-        "title": "Social Media Marketing",
+        "title": "Make Your Brand Worth Caring About",
         "description": "High-impact social media strategy, execution, and optimization designed to drive visibility and conversions.",
         "skills": [
           {"icon": "📅", "title": "Content Strategy", "detail": "Build tailored content calendars aligned with brand goals.", "accent": "#6366f1"},
@@ -149,20 +149,21 @@
       }
     },
     "detail": {
+      "badge": "Let's Fix This",
       "overview": {
-        "title": "What We Do"
+        "title": "Here's What's Really Happening"
       },
       "why": {
-        "title": "Why This Matters"
+        "title": "The Problem Nobody Talks About"
       },
       "approach": {
-        "title": "Our Approach"
+        "title": "How We'll Actually Fix This"
       },
       "deliverables": {
-        "title": "What You Get"
+        "title": "What You're Actually Getting"
       },
       "pricing": {
-        "title": "Investment",
+        "title": "Real Talk: The Numbers",
         "period": "month",
         "cta": "Get Started",
         "starter": {
@@ -193,64 +194,64 @@
         }
       },
       "faq": {
-        "title": "Common Questions"
+        "title": "Questions You're Probably Thinking"
       },
       "cta": {
-        "title": "Ready to Get Started?",
-        "description": "Let's discuss your project and create a custom solution that fits your needs.",
-        "primary": "Start a Project",
-        "secondary": "View All Services"
+        "title": "Let's Stop Wasting Time",
+        "description": "Your competitors are already doing this. Every day you wait, you're leaving money on the table. Let's talk.",
+        "primary": "I'm Ready, Let's Talk",
+        "secondary": "Show Me More First"
       },
       "social": {
-        "tagline": "Build a powerful social presence that converts",
-        "overview": "Strategic social media marketing that combines creative storytelling with data-driven tactics. We manage your Instagram, Facebook, and TikTok to build engagement, grow your audience, and drive real business results.",
-        "why": "In today's digital landscape, social media is where your customers discover, research, and choose brands. A weak or inconsistent presence means lost opportunities. We help you stand out with authentic content that resonates and converts.",
+        "tagline": "Your Instagram looks like a ghost town. Let's change that.",
+        "overview": "You know that feeling when you post and... crickets? Yeah, we fix that. We don't do generic content calendars. We create stuff people actually want to see, share, and buy from. Instagram, TikTok, Facebook - wherever your people are scrolling, we're there making them stop.",
+        "why": "Real talk: Your competitors are posting right now. While you're overthinking that caption, they're building relationships with YOUR potential customers. Every scroll without your brand is a missed sale. We're not here to make your feed 'pretty' - we're here to make it profitable.",
         "approach": {
           "step1": {
-            "title": "Audit & Strategy",
-            "description": "We analyze your current presence, competitors, and audience to build a custom roadmap."
+            "title": "We Stalk Your Competitors (Legally)",
+            "description": "First, we figure out what's actually working in your space. Not guessing - we dig into the data, see what's getting engagement, and find the gaps your competitors are too lazy to fill."
           },
           "step2": {
-            "title": "Content Creation",
-            "description": "High-quality visuals, Reels, and copy tailored to each platform's algorithm and audience."
+            "title": "Create Content That Doesn't Suck",
+            "description": "No stock photos. No boring quotes. We make scroll-stopping content - Reels that hook in 0.5 seconds, captions that make people tap 'see more', visuals that look expensive but aren't cringe."
           },
           "step3": {
-            "title": "Community Management",
-            "description": "Active engagement with your audience, responding to comments and messages promptly."
+            "title": "Actually Talk to Your Audience",
+            "description": "DMs sitting unread? Comments ignored? That's money walking away. We engage like humans, not bots. Build real connections that turn followers into customers."
           },
           "step4": {
-            "title": "Analytics & Optimization",
-            "description": "Monthly reports with actionable insights to continuously improve performance."
+            "title": "Track What Actually Matters",
+            "description": "Forget vanity metrics. We track what drives sales - saves, shares, profile visits, link clicks. If something's not working, we pivot fast. No corporate BS, just results."
           }
         },
         "deliverables": {
-          "1": "Custom content calendar with posting schedule",
-          "2": "Professional photo/video content creation",
-          "3": "Engaging captions and hashtag research",
-          "4": "Story and Reel production",
-          "5": "Monthly analytics and performance reports",
-          "6": "Competitor analysis and trend monitoring"
+          "1": "Content that makes people stop scrolling (not easy, but we do it)",
+          "2": "Videos and photos that don't look like everyone else's",
+          "3": "Captions that actually get read, not skipped",
+          "4": "Reels and Stories that the algorithm loves",
+          "5": "Reports that show real ROI, not just follower counts",
+          "6": "We watch what's working (and steal the good ideas)"
         },
         "faq": {
           "1": {
-            "question": "How many posts do you create per month?",
-            "answer": "It depends on the package. Starter includes 12 posts, Professional includes 24 posts plus daily Stories, and Enterprise is fully customized based on your needs."
+            "question": "How much content do I actually get?",
+            "answer": "Starter: 12 posts/month (3 per week). Professional: 24 posts + daily Stories (basically, we're running your whole social). Enterprise: However much it takes to win. Quality over quantity, always."
           },
           "2": {
-            "question": "Do you handle paid advertising?",
-            "answer": "Yes! Our Professional and Enterprise packages include paid ad management. We create, optimize, and manage campaigns across Meta platforms."
+            "question": "Will you run ads or just post organically?",
+            "answer": "Organic is dead (kinda). Professional tier includes ad management - we'll put money behind what's working and kill what's not. No wasted budget on 'brand awareness' that doesn't convert."
           },
           "3": {
-            "question": "What platforms do you work with?",
-            "answer": "We specialize in Instagram, Facebook, and TikTok. If you need LinkedIn, Twitter, or YouTube, we can include those in a custom Enterprise package."
+            "question": "Which platforms?",
+            "answer": "Instagram, TikTok, Facebook - where people actually scroll. Need LinkedIn or Twitter? We can do that too, but let's be honest, your customers aren't there. We go where the ROI is."
           },
           "4": {
-            "question": "Can I see the content before it's posted?",
-            "answer": "Absolutely. We use approval workflows where you review and approve all content before it goes live."
+            "question": "Do I approve everything or do you just post?",
+            "answer": "You approve. We're confident, not reckless. You'll see everything before it goes live. Once you trust us (usually month 2), we can speed this up."
           },
           "5": {
-            "question": "What if I already have content?",
-            "answer": "We can work with your existing assets and supplement with new content as needed. Flexibility is key."
+            "question": "What if my content is already trash?",
+            "answer": "Then we start fresh. Seriously - bad content is worse than no content. We'll audit what you have, save anything good, and rebuild from there. No judgment, just solutions."
           }
         }
       }

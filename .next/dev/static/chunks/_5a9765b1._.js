@@ -554,9 +554,8 @@ var Services = function() {
                     var diff = Math.max(stripWidth - viewportWidth, 0);
                     setMaxOffset(diff);
                     if ("TURBOPACK compile-time truthy", 1) {
-                        var base = Math.max(window.innerHeight, viewportRef.current.offsetHeight || 0);
-                        // Enough vertical space for sticky to stay pinned while we slide horizontally
-                        setSectionHeight(base + diff);
+                        // 3x multiplier gives smooth scroll-jacking effect
+                        setSectionHeight(diff * 3 + window.innerHeight);
                     }
                 }
             }["Services.useLayoutEffect.measure"];
@@ -595,14 +594,32 @@ var Services = function() {
     var scrollYProgress = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$scroll$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useScroll"])({
         target: sectionRef,
         offset: [
-            "start end",
-            "end center"
+            "start start",
+            "end end"
         ]
     }).scrollYProgress;
-    // Map progress to horizontal travel: complete scroll within progress range
-    var stripX = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"])(scrollYProgress, [
+    // Smooth easing with rest at start/end - cubic bezier for natural feel
+    var smoothProgress = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"])(scrollYProgress, [
         0,
-        0.7
+        0.1,
+        0.9,
+        1
+    ], [
+        0,
+        0,
+        1,
+        1
+    ], {
+        ease: {
+            "Services.useTransform[smoothProgress]": function(t) {
+                return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+            }
+        }["Services.useTransform[smoothProgress]"]
+    });
+    // Map smooth progress to horizontal travel
+    var stripX = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"])(smoothProgress, [
+        0,
+        1
     ], [
         0,
         -maxOffset || 0
@@ -612,43 +629,43 @@ var Services = function() {
             id: "social",
             titleKey: "services.items.0.title",
             bodyKey: "services.items.0.description",
-            href: "#service/social-media-marketing"
+            href: "/services/social-media-marketing"
         },
         {
             id: "content",
             titleKey: "services.items.1.title",
             bodyKey: "services.items.1.description",
-            href: "#service/content-video-production"
+            href: "/services/content-video-production"
         },
         {
             id: "ads",
             titleKey: "services.items.2.title",
             bodyKey: "services.items.2.description",
-            href: "#service/google-meta-ads"
+            href: "/services/google-meta-ads"
         },
         {
             id: "webopt",
             titleKey: "services.items.3.title",
             bodyKey: "services.items.3.description",
-            href: "#service/website-optimization"
+            href: "/services/website-optimization"
         },
         {
             id: "brand",
             titleKey: "services.items.4.title",
             bodyKey: "services.items.4.description",
-            href: "#service/brand-strategy-design"
+            href: "/services/brand-strategy-design"
         },
         {
             id: "ecommerce",
             titleKey: "services.items.5.title",
             bodyKey: "services.items.5.description",
-            href: "#service/ecommerce-management"
+            href: "/services/ecommerce-management"
         },
         {
             id: "webapp",
             titleKey: "services.items.6.title",
             bodyKey: "services.items.6.description",
-            href: "#service/web-app-development"
+            href: "/services/web-app-development"
         }
     ];
     var innerClass = prefersReduced ? "services-inner reduced" : "services-inner sticky";
@@ -671,7 +688,7 @@ var Services = function() {
                             children: t("services.label")
                         }, void 0, false, {
                             fileName: "[project]/src/components/Services.tsx",
-                            lineNumber: 79,
+                            lineNumber: 86,
                             columnNumber: 11
                         }, _this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -679,7 +696,7 @@ var Services = function() {
                             children: t("services.title")
                         }, void 0, false, {
                             fileName: "[project]/src/components/Services.tsx",
-                            lineNumber: 80,
+                            lineNumber: 87,
                             columnNumber: 11
                         }, _this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -687,13 +704,13 @@ var Services = function() {
                             children: t("services.subtitle")
                         }, void 0, false, {
                             fileName: "[project]/src/components/Services.tsx",
-                            lineNumber: 81,
+                            lineNumber: 88,
                             columnNumber: 11
                         }, _this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/Services.tsx",
-                    lineNumber: 78,
+                    lineNumber: 85,
                     columnNumber: 9
                 }, _this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -714,7 +731,7 @@ var Services = function() {
                                         children: t(service.titleKey)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Services.tsx",
-                                        lineNumber: 92,
+                                        lineNumber: 99,
                                         columnNumber: 17
                                     }, _this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -722,7 +739,7 @@ var Services = function() {
                                         children: t(service.bodyKey)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Services.tsx",
-                                        lineNumber: 93,
+                                        lineNumber: 100,
                                         columnNumber: 17
                                     }, _this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -735,48 +752,49 @@ var Services = function() {
                                                 children: "→"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Services.tsx",
-                                                lineNumber: 95,
+                                                lineNumber: 102,
                                                 columnNumber: 42
                                             }, _this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Services.tsx",
-                                        lineNumber: 94,
+                                        lineNumber: 101,
                                         columnNumber: 17
                                     }, _this)
                                 ]
                             }, service.id, true, {
                                 fileName: "[project]/src/components/Services.tsx",
-                                lineNumber: 91,
+                                lineNumber: 98,
                                 columnNumber: 15
                             }, _this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/src/components/Services.tsx",
-                        lineNumber: 85,
+                        lineNumber: 92,
                         columnNumber: 11
                     }, _this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/Services.tsx",
-                    lineNumber: 84,
+                    lineNumber: 91,
                     columnNumber: 9
                 }, _this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/Services.tsx",
-            lineNumber: 77,
+            lineNumber: 84,
             columnNumber: 7
         }, _this)
     }, void 0, false, {
         fileName: "[project]/src/components/Services.tsx",
-        lineNumber: 71,
+        lineNumber: 78,
         columnNumber: 5
     }, _this);
 };
-_s(Services, "git+X9ykRzT3agUKsGg5YK7X9ZM=", false, function() {
+_s(Services, "cjltfJpZxlTBL6angf2yC1F93zI=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$i18n$2f$LanguageContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLanguage"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$scroll$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useScroll"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"]
     ];
 });

@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/mazhar_rony/src/components/Testimonials.css"],"sourcesContent":[".testimonials-grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 32px;\n}\n\n.testimonial-card {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n}\n\n.testimonial-quote {\n  font-size: 1.1rem;\n  font-weight: 500;\n  line-height: 1.6;\n  margin-bottom: 24px;\n  color: var(--text-primary);\n}\n\n.testimonial-author {\n  border-top: 1px solid var(--border-color);\n  padding-top: 16px;\n}\n\n.testimonial-author strong {\n  display: block;\n  margin-bottom: 4px;\n  color: var(--text-primary);\n}\n\n.testimonial-author p {\n  font-size: 0.9rem;\n  color: var(--text-secondary);\n  margin: 0;\n}\n\n@media (max-width: 1024px) {\n  .testimonials-grid {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n\n@media (max-width: 768px) {\n  .testimonials-grid {\n    grid-template-columns: 1fr;\n  }\n}\n"],"names":[],"mappings":"AAAA;;;;;;AAMA;;;;;;AAMA;;;;;;;;AAQA;;;;;AAKA;;;;;;AAMA;;;;;;AAMA;EACE;;;;;AAKF;EACE"}}]
-}
