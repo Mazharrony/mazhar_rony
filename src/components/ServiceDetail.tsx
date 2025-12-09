@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import { serviceData, type ServiceSlug } from '@/lib/services/serviceData';
 import './ServiceDetail.css';
@@ -31,6 +31,33 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
   const { t } = useLanguage();
   const service = serviceData[slug];
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Scroll-linked animations
+  const { scrollY } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end start'],
+  });
+
+  // Parallax for overview section (slower scroll)
+  const overviewY = useTransform(scrollY, [0, 800], [0, -100]);
+  const overviewBlur = useTransform(scrollY, [0, 400], [15, 0]);
+
+  // Parallax for why section (faster scroll)
+  const whyY = useTransform(scrollY, [200, 1000], [0, -150]);
+  const whyBlur = useTransform(scrollY, [200, 600], [15, 0]);
+
+  // Parallax for approach cards
+  const approachY = useTransform(scrollY, [800, 1400], [0, -120]);
+  const approachBlur = useTransform(scrollY, [800, 1200], [12, 0]);
+
+  // Parallax for deliverables
+  const deliverablesY = useTransform(scrollY, [1200, 1800], [0, -100]);
+  const deliverablesBlur = useTransform(scrollY, [1200, 1600], [12, 0]);
+
+  // Parallax for FAQ
+  const faqY = useTransform(scrollY, [1600, 2200], [0, -130]);
+  const faqBlur = useTransform(scrollY, [1600, 2000], [12, 0]);
 
   // Get translation keys for this service
   const getKey = (section: string) => `services.detail.${service.id}.${section}`;
@@ -107,7 +134,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
   };
 
   return (
-    <motion.div className="service-detail-page" initial="hidden" animate="visible" variants={containerVariants}>
+    <motion.div ref={containerRef} className="service-detail-page" initial="hidden" animate="visible" variants={containerVariants}>
       {/* Hero Section - Split Layout */}
       <motion.section className="service-hero" variants={itemVariants}>
         <div className="hero-grid">
@@ -126,15 +153,37 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
       </motion.section>
 
       {/* Overview + Why - Asymmetric Grid */}
-      <motion.section className="service-section overview-why-grid" variants={staggerContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-        <motion.div className="overview-card modern-card" variants={cardVariants} whileHover="hover">
+      <motion.section 
+        className="service-section overview-why-grid" 
+        variants={staggerContainerVariants} 
+        initial="hidden" 
+        whileInView="visible" 
+        viewport={{ once: true }}
+        style={{ y: overviewY }}
+      >
+        <motion.div 
+          className="overview-card modern-card" 
+          variants={cardVariants} 
+          whileHover="hover"
+          style={{
+            filter: overviewBlur.get() ? `blur(${overviewBlur})px` : 'blur(0px)',
+          }}
+        >
           <motion.span className="card-number" variants={numberVariants}>
             01
           </motion.span>
           <h2 className="section-title">{t('services.detail.overview.title')}</h2>
           <p className="section-content">{t(service.overviewKey)}</p>
         </motion.div>
-        <motion.div className="why-card modern-card accent-card" variants={cardVariants} whileHover="hover">
+        <motion.div 
+          className="why-card modern-card accent-card" 
+          variants={cardVariants} 
+          whileHover="hover"
+          style={{
+            y: whyY,
+            filter: whyBlur.get() ? `blur(${whyBlur})px` : 'blur(0px)',
+          }}
+        >
           <motion.span className="card-number" variants={numberVariants}>
             02
           </motion.span>
@@ -144,7 +193,17 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
       </motion.section>
 
       {/* Our Approach - Staggered Cards */}
-      <motion.section className="service-section approach-section" variants={staggerContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+      <motion.section 
+        className="service-section approach-section" 
+        variants={staggerContainerVariants} 
+        initial="hidden" 
+        whileInView="visible" 
+        viewport={{ once: true }}
+        style={{ 
+          y: approachY,
+          filter: approachBlur
+        }}
+      >
         <motion.div className="section-header" variants={itemVariants}>
           <span className="section-number">02</span>
           <h2 className="section-title-large">{t('services.detail.approach.title')}</h2>
@@ -173,7 +232,17 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
       </motion.section>
 
       {/* What You Get - Minimal List */}
-      <motion.section className="service-section deliverables-section" variants={staggerContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+      <motion.section 
+        className="service-section deliverables-section" 
+        variants={staggerContainerVariants} 
+        initial="hidden" 
+        whileInView="visible" 
+        viewport={{ once: true }}
+        style={{
+          y: deliverablesY,
+          filter: deliverablesBlur
+        }}
+      >
         <motion.div className="section-header-inline" variants={itemVariants}>
           <span className="section-number">03</span>
           <h2 className="section-title-large">{t('services.detail.deliverables.title')}</h2>
@@ -194,7 +263,17 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
       </motion.section>
 
       {/* FAQ - Expandable Modern */}
-      <motion.section className="service-section faq-section" variants={staggerContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+      <motion.section 
+        className="service-section faq-section" 
+        variants={staggerContainerVariants} 
+        initial="hidden" 
+        whileInView="visible" 
+        viewport={{ once: true }}
+        style={{
+          y: faqY,
+          filter: faqBlur
+        }}
+      >
         <motion.div className="section-header-inline" variants={itemVariants}>
           <span className="section-number">04</span>
           <h2 className="section-title-large">{t('services.detail.faq.title')}</h2>
