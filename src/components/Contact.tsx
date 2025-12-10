@@ -5,34 +5,97 @@ import { motion, useInView } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import './Contact.css';
 
+interface Brief {
+  projectType?: string;
+  deliverables?: string[];
+  goals?: string;
+  urgency?: 'low' | 'normal' | 'high';
+  notes?: string;
+  constraints?: string;
+}
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  message?: string;
+}
+
 const Contact: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(containerRef, { once: false, margin: "-100px" });
   const { t } = useLanguage();
   const [submitted, setSubmitted] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [brief, setBrief] = useState<any>(null);
+  const [brief, setBrief] = useState<Brief | null>(null);
   const [aiLoading, setAiLoading] = useState(false);
   const [aiError, setAiError] = useState(false);
+  const [errors, setErrors] = useState<FormErrors>({});
+
+  const validateForm = (name: string, email: string, message: string): boolean => {
+    const newErrors: FormErrors = {};
+    
+    // Validate name
+    if (!name || name.trim().length < 2) {
+      newErrors.name = 'Name must be at least 2 characters';
+    } else if (name.trim().length > 100) {
+      newErrors.name = 'Name must be less than 100 characters';
+    }
+    
+    // Validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+    
+    // Validate message
+    if (!message || message.trim().length < 10) {
+      newErrors.message = 'Message must be at least 10 characters';
+    } else if (message.trim().length > 5000) {
+      newErrors.message = 'Message must be less than 5000 characters';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    const formData = new FormData(e.target as HTMLFormElement);
+    const name = (formData.get('name') as string) || '';
+    const email = (formData.get('email') as string) || '';
+    const message = (formData.get('message') as string) || '';
+    const website = formData.get('website'); // Honeypot field
+
+    // Check honeypot (spam protection)
+    if (website) {
+      // Bot detected, silently fail
+      return;
+    }
+
+    // Validate form
+    if (!validateForm(name, email, message)) {
+      return;
+    }
+
     setIsAnimating(true);
     setAiLoading(true);
     setAiError(false);
     setBrief(null);
-
-    const formData = new FormData(e.target as HTMLFormElement);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
+    setErrors({});
 
     try {
       const res = await fetch('/api/brief', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message })
+        body: JSON.stringify({ name: name.trim(), email: email.trim(), message: message.trim() })
       });
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Request failed');
+      }
+
       const data = await res.json();
       if (data.brief) {
         setBrief(data.brief);
@@ -41,16 +104,21 @@ const Contact: React.FC = () => {
       }
     } catch (err) {
       setAiError(true);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Form submission error:', err);
+      }
+    } finally {
+      setAiLoading(false);
+      setSubmitted(true);
+      setIsAnimating(false);
+      setTimeout(() => {
+        setSubmitted(false);
+        (e.target as HTMLFormElement).reset();
+        setBrief(null);
+        setAiError(false);
+        setErrors({});
+      }, 6000);
     }
-    setAiLoading(false);
-    setSubmitted(true);
-    setIsAnimating(false);
-    setTimeout(() => {
-      setSubmitted(false);
-      (e.target as HTMLFormElement).reset();
-      setBrief(null);
-      setAiError(false);
-    }, 6000);
   };
 
   const contactMethods = [
@@ -131,6 +199,16 @@ const Contact: React.FC = () => {
             transition={{ delay: 0.4, duration: 0.6 }}
           >
             <form onSubmit={handleSubmit} className="contact-form">
+              {/* Honeypot field for spam protection */}
+              <input
+                type="text"
+                name="website"
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
+
               <div className="form-group">
                 <label htmlFor="name">{t('contact.form.name')}</label>
                 <input 
@@ -140,7 +218,15 @@ const Contact: React.FC = () => {
                   placeholder={t('contact.form.namePlaceholder')}
                   required
                   disabled={isAnimating || submitted}
+                  aria-required="true"
+                  aria-invalid={errors.name ? 'true' : 'false'}
+                  aria-describedby={errors.name ? 'name-error' : undefined}
                 />
+                {errors.name && (
+                  <span id="name-error" className="form-error" role="alert">
+                    {errors.name}
+                  </span>
+                )}
               </div>
 
               <div className="form-group">
@@ -152,7 +238,15 @@ const Contact: React.FC = () => {
                   placeholder={t('contact.form.emailPlaceholder')}
                   required
                   disabled={isAnimating || submitted}
+                  aria-required="true"
+                  aria-invalid={errors.email ? 'true' : 'false'}
+                  aria-describedby={errors.email ? 'email-error' : undefined}
                 />
+                {errors.email && (
+                  <span id="email-error" className="form-error" role="alert">
+                    {errors.email}
+                  </span>
+                )}
               </div>
 
               <div className="form-group">
@@ -175,7 +269,15 @@ const Contact: React.FC = () => {
                   rows={5}
                   required
                   disabled={isAnimating || submitted}
+                  aria-required="true"
+                  aria-invalid={errors.message ? 'true' : 'false'}
+                  aria-describedby={errors.message ? 'message-error' : undefined}
                 />
+                {errors.message && (
+                  <span id="message-error" className="form-error" role="alert">
+                    {errors.message}
+                  </span>
+                )}
               </div>
 
               <motion.button
@@ -257,7 +359,7 @@ const Contact: React.FC = () => {
             </div>
 
             <div className="methods-list">
-              {contactMethods.map((method: any, idx: number) => (
+              {contactMethods.map((method, idx: number) => (
                 <motion.a
                   key={idx}
                   href={method.href}

@@ -8,6 +8,7 @@ import About from '@/src/components/About';
 import Testimonials from '@/src/components/Testimonials';
 import FinalCTA from '@/src/components/FinalCTA';
 import Tools from '@/src/components/Tools';
+import Journey from '@/src/components/Journey';
 
 // Homepage preserves the original single-page layout
 // All sections remain on the same page for seamless scrolling experience
@@ -18,12 +19,7 @@ export default function HomePage() {
       <Tools />
       {/* Services Preview */}
       <Services />
-      {/* Journey/Experience Preview (placeholder) */}
-      {/* TODO: Replace with real Journey/Experience preview */}
-      <div style={{ padding: '64px 0', textAlign: 'center', color: '#888' }}>
-        <h2>My Journey</h2>
-        <p>[Journey/Experience preview coming soon]</p>
-      </div>
+      <Journey />
       {/* Portfolio Preview */}
       <Portfolio />
       {/* Contact Teaser (placeholder) */}

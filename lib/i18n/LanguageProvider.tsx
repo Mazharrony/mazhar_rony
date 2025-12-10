@@ -29,11 +29,14 @@ interface LanguageProviderProps {
   children: React.ReactNode;
 }
 
+type TranslationValue = string | { [key: string]: TranslationValue };
+type TranslationObject = Record<string, TranslationValue>;
+
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>('en');
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [detectedLang, setDetectedLang] = useState<Language>('en');
-  const [translations, setTranslations] = useState<Record<Language, any>>({
+  const [translations, setTranslations] = useState<Record<Language, TranslationObject>>({
     en: {},
     ar: {},
     ru: {},
@@ -46,7 +49,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     const loadTranslations = async () => {
       try {
         const langs: Language[] = ['en', 'ar', 'ru', 'zh', 'es'];
-        const loadedTranslations: Record<Language, any> = {
+        const loadedTranslations: Record<Language, TranslationObject> = {
           en: {},
           ar: {},
           ru: {},
@@ -63,7 +66,9 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
         
         setTranslations(loadedTranslations);
       } catch (error) {
-        console.error('Failed to load translations:', error);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Failed to load translations:', error);
+        }
       }
     };
 
@@ -114,7 +119,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   const t = (key: string): string => {
     // Support nested keys like 'services.detail.social.title'
     const keys = key.split('.');
-    let value: any = translations[language];
+    let value: string | TranslationObject | undefined = translations[language];
     
     for (const k of keys) {
       if (value && typeof value === 'object') {
@@ -127,7 +132,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     
     // Fallback to English if not found
     if (value === undefined) {
-      let fallback: any = translations['en'];
+      let fallback: string | TranslationObject | undefined = translations['en'];
       for (const k of keys) {
         if (fallback && typeof fallback === 'object') {
           fallback = fallback[k];

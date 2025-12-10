@@ -1,7 +1,6 @@
 import { MetadataRoute } from 'next';
 
-// TODO: Update with your actual production URL
-const SITE_URL = 'https://mazharrony.vercel.app';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mazharrony.vercel.app';
 
 export default function robots(): MetadataRoute.Robots {
   return {

@@ -2,6 +2,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import MobileServices from "./MobileServices";
 import "./Services.css";
 
 const Services: React.FC = () => {
@@ -13,6 +14,18 @@ const Services: React.FC = () => {
   const [maxOffset, setMaxOffset] = useState(0);
   const [sectionHeight, setSectionHeight] = useState<number | null>(null);
   const [prefersReduced, setPrefersReduced] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile viewport
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Measure strip width and viewport to derive maxOffset and required scroll height
   useLayoutEffect(() => {
@@ -24,8 +37,8 @@ const Services: React.FC = () => {
       setMaxOffset(diff);
 
       if (typeof window !== "undefined") {
-        // 3x multiplier gives smooth scroll-jacking effect
-        setSectionHeight(diff * 3 + window.innerHeight);
+        // 7x multiplier for ultra-fast horizontal scroll
+        setSectionHeight(diff * 7 + window.innerHeight);
       }
     };
 
@@ -50,13 +63,8 @@ const Services: React.FC = () => {
     offset: ["start start", "end end"],
   });
 
-  // Smooth easing with rest at start/end - cubic bezier for natural feel
-  const smoothProgress = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.9, 1],
-    [0, 0, 1, 1],
-    { ease: (t: number) => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2 }
-  );
+  // No hold: pure linear mapping for instant response
+  const smoothProgress = scrollYProgress;
 
   // Map smooth progress to horizontal travel
   const stripX = useTransform(smoothProgress, [0, 1], [0, -maxOffset || 0]);
@@ -74,6 +82,12 @@ const Services: React.FC = () => {
   const innerClass = prefersReduced ? "services-inner reduced" : "services-inner sticky";
   const viewportClass = prefersReduced ? "services-viewport scrollable" : "services-viewport";
 
+  // Render mobile component on mobile devices
+  if (isMobile) {
+    return <MobileServices services={services} />;
+  }
+
+  // Desktop version (unchanged)
   return (
     <section
       id="services"
@@ -88,11 +102,11 @@ const Services: React.FC = () => {
           <p className="services-subtitle">{t("services.subtitle")}</p>
         </div>
 
-        <div className={viewportClass} ref={viewportRef}>
+        <div className="services-viewport" ref={viewportRef}>
           <motion.div
             className="services-strip"
             ref={stripRef}
-            style={{ x: prefersReduced ? 0 : stripX }}
+            style={{ x: stripX }}
           >
             {services.map((service) => (
               <article key={service.id} className="service-card">

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-const SITE_URL = 'https://mazharrony.vercel.app';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mazharrony.vercel.app';
 
 export const metadata: Metadata = {
   title: 'Portfolio & Projects – Mazhar Rony',

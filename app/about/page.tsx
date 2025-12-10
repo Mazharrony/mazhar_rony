@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import AboutPage from '@/src/components/AboutPage';
 
-const SITE_URL = 'https://mazharrony.vercel.app';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mazharrony.vercel.app';
 
 export const metadata: Metadata = {
   title: "About – If You're Curious, Start Here",

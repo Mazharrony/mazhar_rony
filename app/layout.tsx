@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { LanguageProvider } from '@/lib/i18n/LanguageProvider';
 import { ThemeProvider } from '@/lib/ThemeContext';
+import { ErrorBoundary } from './error-boundary';
 import Header from '@/src/components/Header';
 import Footer from '@/src/components/Footer';
 import DarkModeSuggestion from '@/src/components/DarkModeSuggestion';
@@ -11,8 +12,8 @@ import '../src/App.css';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
-// TODO: Replace with your actual production URL
-const SITE_URL = 'https://mazharrony.vercel.app';
+// Use environment variable with fallback
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mazharrony.vercel.app';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -123,15 +124,17 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <LanguageProvider>
-          <ThemeProvider>
-            <LanguageConfirmation />
-            <Header />
-            <main>{children}</main>
-            <Footer />
-            <DarkModeSuggestion />
-          </ThemeProvider>
-        </LanguageProvider>
+        <ErrorBoundary>
+          <LanguageProvider>
+            <ThemeProvider>
+              <LanguageConfirmation />
+              <Header />
+              <main>{children}</main>
+              <Footer />
+              <DarkModeSuggestion />
+            </ThemeProvider>
+          </LanguageProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );

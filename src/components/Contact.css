@@ -95,15 +95,44 @@
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: rgba(99, 102, 241, 0.5);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  border-color: var(--text-primary);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
   background: var(--bg-primary);
+}
+
+.App.dark .form-group input:focus,
+.App.dark .form-group textarea:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
 }
 
 .form-group input:disabled,
 .form-group textarea:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.form-group input[aria-invalid="true"],
+.form-group textarea[aria-invalid="true"] {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.App.dark .form-group input[aria-invalid="true"],
+.App.dark .form-group textarea[aria-invalid="true"] {
+  border-color: #f87171;
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.2);
+}
+
+.form-error {
+  display: block;
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.App.dark .form-error {
+  color: #f87171;
 }
 
 .contact-submit {
@@ -209,8 +238,8 @@
 
 .contact-info {
   padding: 24px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(168, 85, 247, 0.02));
-  border: 1px solid rgba(99, 102, 241, 0.1);
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
   border-radius: 16px;
   text-align: center;
 }
@@ -230,7 +259,7 @@
 /* RTL Support */
 [dir="rtl"] .contact-method-card {
   border-left: none;
-  border-right: 4px solid var(--method-color);
+  border-right: 4px solid var(--border-color);
 }
 
 [dir="rtl"] .method-arrow {
