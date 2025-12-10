@@ -168,70 +168,76 @@
     }
   },
   "journey": {
-    "title": "Professional Journey",
-    "subtitle": "My Path",
-    "milestones": [
-      {
-        "year": "2012",
-        "title": "The Beginning",
-        "description": "Started my journey as a young student with a gifted laptop. Little did I know it would change everything.",
-        "color": "#6366f1"
+    "label": "Journey",
+    "title": "Curiosity, responsibility, and a lot of late nights.",
+    "subtitle": "From a village photo studio in 2012 to building brands and products in Dubai.",
+    "acts": {
+      "curiosity": {
+        "title": "Act I — Curiosity",
+        "range": "2012–2016",
+        "line1": "6th grade in a village; my uncle's Dubai laptop felt like a portal.",
+        "line2": "I learned Photoshop in the photo studio, fixing family shots and making random edits.",
+        "line3": "Posted a playful Facebook frame that hit 2M+ uses—first taste of reach."
       },
-      {
-        "year": "2014",
-        "title": "Learning Photoshop",
-        "description": "In a modest village studio, I learned Photoshop. Late nights, small screens, but endless passion.",
-        "color": "#a855f7"
+      "responsibility": {
+        "title": "Act II — Responsibility",
+        "range": "2017–2021",
+        "line1": "Dropped my diploma to earn for family—responsibility over the safe track.",
+        "line2": "Built a tiny marketing + merch shop; it struggled and shut down.",
+        "line3": "Tried a restaurant; Covid wiped it out. Debt and pressure, still learning design/marketing at night."
       },
-      {
-        "year": "2016",
-        "title": "Smartphone Era",
-        "description": "Transitioned to mobile editing. Instagram was exploding. Creative opportunities everywhere.",
-        "color": "#06b6d4"
-      },
-      {
-        "year": "2017",
-        "title": "First Breakthrough",
-        "description": "Freelance work started flowing in. Built my first real client base. The grind was paying off.",
-        "color": "#f59e0b"
-      },
-      {
-        "year": "2018",
-        "title": "Viral Moment",
-        "description": "Created a Facebook frame that reached 2M+ users. This was the validation I needed.",
-        "color": "#10b981"
-      },
-      {
-        "year": "2019-2020",
-        "title": "Agency & Business",
-        "description": "Opened a small marketing agency in Bangladesh. Started a product printing business. The dream was real.",
-        "color": "#f97316"
-      },
-      {
-        "year": "2020-2021",
-        "title": "COVID Collapse",
-        "description": "The pandemic hit hard. Everything shut down. Family pressure was immense. But we had to keep moving.",
-        "color": "#ef4444"
-      },
-      {
-        "year": "2022",
-        "title": "The Big Leap",
-        "description": "After selling the family cow, I came to Dubai. A difficult decision, but necessary for growth.",
-        "color": "#ec4899"
-      },
-      {
-        "year": "2022 (Feb-Mar)",
-        "title": "First Job in Dubai",
-        "description": "Got my first job after 1 month 17 days in a new country. Felt like a victory.",
-        "color": "#6366f1"
-      },
-      {
-        "year": "2025",
-        "title": "Today",
-        "description": "Creative direction at JNK Nutrition. Building brands. Creating impact. Living the dream.",
-        "color": "#a855f7"
+      "focus": {
+        "title": "Act III — Dubai & Focus",
+        "range": "2022–Now",
+        "line1": "Sold the family cow to reach Dubai; first job paid little, lessons were huge.",
+        "line2": "Moved from social to performance marketing, then web/app builds with AI tools.",
+        "line3": "Now a hybrid creative—brand, growth, and product in one. Looking for teams that care about outcomes over titles."
       }
-    ]
+    },
+    "tags": {
+      "curiosity": "Curiosity",
+      "failure": "Failure",
+      "risk": "Risk",
+      "turn": "Turning point",
+      "now": "Now"
+    },
+    "timeline": {
+      "y2012": {
+        "title": "First laptop & village studio",
+        "description": "Uncle's Dubai laptop and the photo studio PC became my first lab."
+      },
+      "y2015": {
+        "title": "Viral Facebook frame (2M+)",
+        "description": "Uploaded a fun frame; 2M+ uses proved the work could travel."
+      },
+      "y2018": {
+        "title": "Local marketing agency + merch",
+        "description": "Ran a tiny shop selling designs and prints; learned sales and failure up close."
+      },
+      "y2020": {
+        "title": "Restaurant, Covid, debt",
+        "description": "Locked down and shut; crawled out of debt while still studying at night."
+      },
+      "y2022": {
+        "title": "Moved to Dubai, first job",
+        "description": "Sold the family cow, took low pay for steep learning and exposure."
+      },
+      "y2023": {
+        "title": "Performance marketing → product builds",
+        "description": "Shifted from ads to funnels, sites, and flows—layering in AI assistance."
+      },
+      "y2024": {
+        "title": "Hybrid creative, AI-powered projects",
+        "description": "Building brands, growth systems, and AI workflows together."
+      }
+    },
+    "takeaways": {
+      "title": "What this means for you",
+      "bullet1": "I care about results, not certificates.",
+      "bullet2": "Calm under pressure, allergic to toxic environments.",
+      "bullet3": "Creative + marketing + tech in one person."
+    },
+    "cta": "Read the full story"
   },
   "portfolio": {
     "title": "Selected Work",

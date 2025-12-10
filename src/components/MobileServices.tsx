@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence, PanInfo } from 'framer-motion';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence, PanInfo, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import './MobileServices.css';
 
@@ -17,15 +17,107 @@ interface MobileServicesProps {
 }
 
 const MobileServices: React.FC<MobileServicesProps> = ({ services }) => {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [detailIndex, setDetailIndex] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const detailRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLElement | null)[]>([]);
 
-  // Close detail view
-  const closeDetail = () => {
-    setSelectedIndex(null);
+  // Track scroll position for card stack animation
+  const handleScroll = useCallback(() => {
+    if (!carouselRef.current) return;
+    
+    requestAnimationFrame(() => {
+      if (!carouselRef.current) return;
+      
+      const container = carouselRef.current;
+      const scrollLeft = container.scrollLeft;
+      const containerWidth = container.clientWidth;
+      const cardWidth = containerWidth * 0.85; // 85vw equivalent
+      const gap = 16; // 1rem gap
+      
+      // Calculate which card is in focus (0 = first card)
+      const currentIndex = Math.round(scrollLeft / (cardWidth + gap));
+      const maxIndex = services.length - 1;
+      const clampedIndex = Math.max(0, Math.min(currentIndex, maxIndex));
+      
+      // Calculate progress within current card (0 to 1)
+      const cardStart = clampedIndex * (cardWidth + gap);
+      const cardProgress = (scrollLeft - cardStart) / (cardWidth + gap);
+      const normalizedProgress = Math.max(0, Math.min(1, cardProgress));
+      
+      setScrollProgress(normalizedProgress);
+    });
+  }, [services.length]);
+
+  useEffect(() => {
+    const container = carouselRef.current;
+    if (!container) return;
+
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial calculation
+
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
+
+  // Calculate card transforms based on scroll position
+  const getCardStyle = (index: number) => {
+    if (!carouselRef.current) {
+      return { scale: 1.0, opacity: 1.0, y: 0 };
+    }
+    
+    const container = carouselRef.current;
+    const scrollLeft = container.scrollLeft;
+    const containerWidth = container.clientWidth;
+    const cardWidth = containerWidth * 0.85;
+    const gap = 16;
+    const totalCardWidth = cardWidth + gap;
+    
+    // Calculate card position relative to viewport center
+    const cardStart = index * totalCardWidth;
+    const cardCenter = cardStart + cardWidth / 2;
+    const viewportCenter = scrollLeft + containerWidth / 2;
+    const distance = (cardCenter - viewportCenter) / totalCardWidth;
+    
+    // Calculate scale, opacity, and translateY based on distance from center
+    let scale = 1.0;
+    let opacity = 1.0;
+    let translateY = 0;
+    
+    const absDistance = Math.abs(distance);
+    
+    if (absDistance < 0.1) {
+      // Front card (centered)
+      scale = 1.0;
+      opacity = 1.0;
+      translateY = 0;
+    } else if (absDistance < 0.6) {
+      // Next card (peeking) - distance 0.1 to 0.6
+      const progress = (absDistance - 0.1) / 0.5; // 0 to 1
+      scale = 1.0 - progress * 0.08; // 1.0 to 0.92
+      opacity = 1.0 - progress * 0.45; // 1.0 to 0.55
+      translateY = progress * 4; // 0 to 4px
+    } else if (absDistance < 1.1) {
+      // Third card (further back) - distance 0.6 to 1.1
+      const progress = (absDistance - 0.6) / 0.5; // 0 to 1
+      scale = 0.92 - progress * 0.07; // 0.92 to 0.85
+      opacity = 0.55 - progress * 0.25; // 0.55 to 0.30
+      translateY = 4 + progress * 4; // 4px to 8px
+    } else {
+      // Cards beyond third position
+      scale = 0.85;
+      opacity = 0.30;
+      translateY = 8;
+    }
+    
+    return {
+      scale: Math.max(0.85, Math.min(1.0, scale)),
+      opacity: Math.max(0.3, Math.min(1.0, opacity)),
+      y: translateY,
+    };
   };
 
   // Open detail view
@@ -34,18 +126,20 @@ const MobileServices: React.FC<MobileServicesProps> = ({ services }) => {
     setDetailIndex(index);
   };
 
+  // Close detail view
+  const closeDetail = () => {
+    setSelectedIndex(null);
+  };
+
   // Handle swipe in detail view
   const handleDetailDrag = (_: any, info: PanInfo) => {
     const threshold = 50;
     const velocity = info.velocity.x;
     const currentIndex = detailIndex;
 
-    // Use velocity for better swipe detection
     if ((info.offset.x > threshold || velocity > 500) && currentIndex > 0) {
-      // Swipe right - go to previous
       setDetailIndex(currentIndex - 1);
     } else if ((info.offset.x < -threshold || velocity < -500) && currentIndex < services.length - 1) {
-      // Swipe left - go to next
       setDetailIndex(currentIndex + 1);
     }
   };
@@ -62,8 +156,12 @@ const MobileServices: React.FC<MobileServicesProps> = ({ services }) => {
     };
   }, [selectedIndex]);
 
-  // Calculate card width (85vw)
-  const cardWidth = '85vw';
+  // Update detail index when swiping
+  useEffect(() => {
+    if (selectedIndex !== null) {
+      setDetailIndex(selectedIndex);
+    }
+  }, [selectedIndex]);
 
   return (
     <section id="services" className="mobile-services-section">
@@ -74,41 +172,48 @@ const MobileServices: React.FC<MobileServicesProps> = ({ services }) => {
           <p className="mobile-services-subtitle">{t('services.subtitle')}</p>
         </div>
 
-        {/* Carousel */}
+        {/* Card Stack Carousel */}
         <div className="mobile-services-carousel-wrapper">
           <div
             ref={carouselRef}
             className="mobile-services-carousel"
-            style={{
-              scrollSnapType: 'x mandatory',
-              WebkitOverflowScrolling: 'touch',
-            }}
           >
-            {services.map((service, index) => (
-              <motion.article
-                key={service.id}
-                className="mobile-service-card"
-                style={{
-                  width: cardWidth,
-                  minWidth: cardWidth,
-                }}
-                onClick={() => openDetail(index)}
-                whileTap={{ scale: 0.98 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <h3 className="mobile-service-card-title">
-                  {t(service.titleKey)}
-                </h3>
-                <p className="mobile-service-card-body">
-                  {t(service.bodyKey)}
-                </p>
-                <div className="mobile-service-card-link">
-                  {t('common.viewMore') || 'View More'} <span>→</span>
-                </div>
-              </motion.article>
-            ))}
+            {services.map((service, index) => {
+              const style = getCardStyle(index);
+              return (
+                <motion.article
+                  key={service.id}
+                  ref={(el) => {
+                    cardRefs.current[index] = el;
+                  }}
+                  className="mobile-service-card"
+                  style={{
+                    width: '85vw',
+                    minWidth: '85vw',
+                    scale: style.scale,
+                    opacity: style.opacity,
+                    y: style.y,
+                  }}
+                  onClick={() => openDetail(index)}
+                  whileTap={{ scale: (style.scale || 1.0) * 0.98 }}
+                  transition={{
+                    type: 'spring',
+                    stiffness: 300,
+                    damping: 30,
+                  }}
+                >
+                  <h3 className="mobile-service-card-title">
+                    {t(service.titleKey)}
+                  </h3>
+                  <p className="mobile-service-card-body">
+                    {t(service.bodyKey)}
+                  </p>
+                  <div className="mobile-service-card-link">
+                    {t('common.viewMore') || 'View More'} <span>→</span>
+                  </div>
+                </motion.article>
+              );
+            })}
           </div>
         </div>
 
@@ -124,7 +229,6 @@ const MobileServices: React.FC<MobileServicesProps> = ({ services }) => {
               onClick={closeDetail}
             >
               <motion.div
-                ref={detailRef}
                 className="mobile-services-detail-container"
                 initial={{ y: '100%' }}
                 animate={{ y: 0 }}
@@ -172,11 +276,10 @@ const MobileServices: React.FC<MobileServicesProps> = ({ services }) => {
                       initial={{ opacity: 0, x: 50 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -50 }}
-                      transition={{ 
+                      transition={{
                         type: 'spring',
                         stiffness: 300,
                         damping: 30,
-                        duration: 0.3 
                       }}
                     >
                       <h2 className="mobile-services-detail-title">
@@ -185,7 +288,7 @@ const MobileServices: React.FC<MobileServicesProps> = ({ services }) => {
                       <p className="mobile-services-detail-description">
                         {t(services[detailIndex].bodyKey)}
                       </p>
-                      
+
                       {/* View More Link */}
                       <a
                         href={services[detailIndex].href}
@@ -214,11 +317,6 @@ const MobileServices: React.FC<MobileServicesProps> = ({ services }) => {
                     />
                   ))}
                 </div>
-
-                {/* Swipe Hint */}
-                <div className="mobile-services-detail-swipe-hint">
-                  <span>Swipe to explore</span>
-                </div>
               </motion.div>
             </motion.div>
           )}
@@ -229,4 +327,3 @@ const MobileServices: React.FC<MobileServicesProps> = ({ services }) => {
 };
 
 export default MobileServices;
-
