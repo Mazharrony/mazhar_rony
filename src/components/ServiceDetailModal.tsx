@@ -40,9 +40,15 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug, onClose }) => {
     return null;
   }
 
+  interface Skill {
+    icon: string;
+    title: string;
+    detail: string;
+  }
+
   const title = t(service.titleKey);
   const description = t(service.descKey);
-  const skills = t(service.skillsKey) as any;
+  const skills = t(service.skillsKey) as string | Skill[];
 
   useEffect(() => {
     // Disable scrolling when detail page is open
@@ -113,7 +119,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug, onClose }) => {
             >
               <h2>{t('services.skillsHeading') || 'Key Services & Capabilities'}</h2>
               <div className="skills-grid">
-                {skills.map((skill: any, index: number) => (
+                {(Array.isArray(skills) ? skills : []).map((skill: Skill, index: number) => (
                   <motion.div
                     key={index}
                     className="skill-item"

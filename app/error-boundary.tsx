@@ -61,6 +61,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
               cursor: 'pointer',
               fontSize: '1rem'
             }}
+            aria-label="Refresh page to recover from error"
           >
             Refresh Page
           </button>

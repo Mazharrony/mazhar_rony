@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import ServiceDetailClient from '@/src/components/ServiceDetail';
 import { serviceData, isValidServiceSlug, type ServiceSlug } from '@/lib/services/serviceData';
 
-const SITE_URL = 'https://mazharrony.vercel.app';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mazharrony.vercel.app';
 
 type Props = {
   params: Promise<{ slug: string }>;

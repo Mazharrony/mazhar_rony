@@ -77,7 +77,7 @@ const Team: React.FC = () => {
         </motion.div>
 
         <div className="grid grid-4">
-          {team.map((member: any, index: number) => (
+          {team.map((member: TeamMember, index: number) => (
             <motion.div 
               key={index} 
               className="team-card card"

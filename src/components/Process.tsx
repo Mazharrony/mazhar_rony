@@ -9,7 +9,16 @@ const Process: React.FC = () => {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-80px" });
 
-  const experiences = [
+  interface Experience {
+    number: string;
+    title: string;
+    company: string;
+    location: string;
+    period: string;
+    description: string;
+  }
+
+  const experiences: Experience[] = [
     { 
       number: '01', 
       title: 'Freelance Creative Manager',
@@ -54,7 +63,7 @@ const Process: React.FC = () => {
   const smoothVelocity = useSpring(velocity, { damping: 35, stiffness: 150 });
   const velocityX = useTransform(smoothVelocity, [-1000, 0, 1000], [40, 0, -40]);
 
-  const ExperienceItem: React.FC<{ exp: typeof experiences[number]; index: number }> = ({ exp, index }) => {
+  const ExperienceItem: React.FC<{ exp: Experience; index: number }> = ({ exp, index }) => {
     const cardRef = React.useRef<HTMLDivElement | null>(null);
     const cardInView = useInView(cardRef, { amount: 0.45, margin: "-10% 0px -10% 0px" });
 
@@ -205,7 +214,7 @@ const Process: React.FC = () => {
               />
               
               <div className="experience-list">
-                {experiences.map((exp: any, index: number) => (
+                {experiences.map((exp: Experience, index: number) => (
                   <ExperienceItem key={index} exp={exp} index={index} />
                 ))}
               </div>

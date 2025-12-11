@@ -28,9 +28,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "react-dev": "react-scripts start",
-    "react-build": "react-scripts build"
+    "lint": "next lint"
   },
   "eslintConfig": {
     "extends": [

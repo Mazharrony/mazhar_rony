@@ -41,7 +41,7 @@ const PortfolioModal: React.FC<PortfolioModalProps> = ({ item, onClose }) => {
         transition={{ duration: 0.3 }}
         onClick={(e) => e.stopPropagation()}
       >
-        <button className="modal-close" onClick={onClose}>
+        <button className="modal-close" onClick={onClose} aria-label="Close portfolio modal">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M18 6L6 18M6 6l12 12" />
           </svg>
@@ -235,7 +235,7 @@ const Portfolio: React.FC = () => {
 
         <div className="grid grid-2">
           <AnimatePresence mode="popLayout">
-            {filtered.map((item: any, index: number) => (
+            {filtered.map((item: PortfolioItem, index: number) => (
               <motion.div
                 key={item.id}
                 className="portfolio-card"

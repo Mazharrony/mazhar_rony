@@ -11,8 +11,13 @@ const Footer: React.FC = () => {
   const isInView = useInView(ref, { once: false, margin: "-50px" });
   const { t } = useLanguage();
 
+  interface FooterLink {
+    label: string;
+    href: string;
+  }
+
   // Footer navigation links
-  const footerLinks = [
+  const footerLinks: FooterLink[] = [
     { label: t('footer.nav.about'), href: '/about' },
     { label: t('footer.nav.journey'), href: '/journey' },
     { label: t('footer.nav.work'), href: '/work' },
@@ -37,7 +42,7 @@ const Footer: React.FC = () => {
 
             {/* Footer links */}
             <nav className="footer-nav">
-              {footerLinks.map((link: any, i: number) => (
+              {footerLinks.map((link: FooterLink, i: number) => (
                 <motion.div
                   key={link.label}
                   initial={{ opacity: 0, y: 10 }}
