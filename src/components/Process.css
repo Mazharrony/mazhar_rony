@@ -51,6 +51,7 @@
   box-shadow: 0 0 24px rgba(99, 102, 241, 0.08);
 }
 
+body.dark .timeline-line,
 .App.dark .timeline-line {
   background: linear-gradient(
     180deg,
@@ -101,6 +102,7 @@
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+body.dark .node-inner,
 .App.dark .node-inner {
   border-color: rgba(255, 255, 255, 0.14);
   box-shadow: 
@@ -118,6 +120,7 @@
     0 0 32px rgba(99, 102, 241, 0.15);
 }
 
+body.dark .timeline-node:hover .node-inner,
 .App.dark .timeline-node:hover .node-inner {
   border-color: rgba(99, 102, 241, 0.5);
   box-shadow: 
@@ -146,6 +149,7 @@
   overflow: hidden;
 }
 
+body.dark .experience-card,
 .App.dark .experience-card {
   border-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
@@ -156,6 +160,7 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
+body.dark .experience-card:hover,
 .App.dark .experience-card:hover {
   border-color: rgba(255, 255, 255, 0.14);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -211,6 +216,7 @@
   margin: 0;
 }
 
+body.dark .job-description,
 .App.dark .job-description {
   color: rgba(255, 255, 255, 0.7);
 }

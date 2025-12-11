@@ -2,37 +2,39 @@
 
 import React from 'react';
 import { motion, useInView, useScroll, useVelocity, useSpring, useTransform, useMotionValue } from 'framer-motion';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import { fadeInLeft, motionConfig } from '../utils/motion';
 import './Process.css';
 
 const Process: React.FC = () => {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-80px" });
+  const { t } = useLanguage();
 
   const experiences = [
     { 
       number: '01', 
-      title: 'Freelance Creative Manager',
-      company: 'JNK Nutrition',
-      location: 'Dubai',
-      period: 'May 2025–Present',
-      description: 'Managing creative direction, digital strategy, content production, and campaign optimization for fitness & supplement brands.' 
+      title: t('journey.items.now.role'),
+      company: t('journey.items.now.company'),
+      location: t('journey.items.now.location'),
+      period: t('journey.items.now.period'),
+      description: t('journey.items.now.summary')
     },
     { 
       number: '02', 
-      title: 'Marketing & IT Coordinator',
-      company: 'Avion Realty Properties',
-      location: 'Dubai',
-      period: 'Jan 2023–Apr 2025',
-      description: 'Directed digital marketing operations, property portal management, and lead generation strategies.' 
+      title: t('journey.items.network.role'),
+      company: t('journey.items.network.company'),
+      location: t('journey.items.network.location'),
+      period: t('journey.items.network.period'),
+      description: t('journey.items.network.summary')
     },
     { 
       number: '03', 
-      title: 'Admin & Digital Marketing Executive',
-      company: 'Gheroub Al Shams Auto Workshop',
-      location: 'Sharjah',
-      period: 'Feb 2022–Nov 2022',
-      description: 'Managed digital presence, content creation, and customer engagement.' 
+      title: t('journey.items.early.role'),
+      company: t('journey.items.early.company'),
+      location: t('journey.items.early.location'),
+      period: t('journey.items.early.period'),
+      description: t('journey.items.early.summary')
     }
   ];
 
@@ -171,13 +173,13 @@ const Process: React.FC = () => {
               variants={fadeInLeft}
               transition={{ delay: 0.1 }}
             >
-              Professional<br/>Experience &<br/>Track Record
+              {t('process.title')}
             </motion.h2>
             <motion.p
               variants={fadeInLeft}
               transition={{ delay: 0.2 }}
             >
-              3+ years managing digital marketing and creative operations across fitness, supplement, real estate, and automotive industries. Proven expertise in brand strategy, content production, and performance marketing.
+              {t('process.subtitle')}
             </motion.p>
             <motion.button 
               className="btn btn-primary"
@@ -191,7 +193,7 @@ const Process: React.FC = () => {
               }}
               whileTap={{ scale: 0.97 }}
             >
-              Contact me
+              {t('contact.title')}
             </motion.button>
           </motion.div>
 

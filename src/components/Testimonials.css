@@ -35,6 +35,33 @@
   margin: 0;
 }
 
+/* Dark mode support */
+body.dark .testimonial-card,
+.App.dark .testimonial-card {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark .testimonial-quote,
+.App.dark .testimonial-quote {
+  color: #ffffff !important;
+}
+
+body.dark .testimonial-author,
+.App.dark .testimonial-author {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark .testimonial-author strong,
+.App.dark .testimonial-author strong {
+  color: #ffffff !important;
+}
+
+body.dark .testimonial-author p,
+.App.dark .testimonial-author p {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
 @media (max-width: 1024px) {
   .testimonials-grid {
     grid-template-columns: repeat(2, 1fr);

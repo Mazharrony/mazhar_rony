@@ -788,6 +788,30 @@
       "contact": "Contacto"
     }
   },
+  "testimonials": {
+    "title": "Lo que dicen los clientes felices",
+    "items": [
+      {
+        "quote": "Trabajo excepcional y atención al detalle. Realmente entienden nuestra visión de marca.",
+        "author": "Jessica Smith",
+        "role": "CEO, TechStartup"
+      },
+      {
+        "quote": "El proceso de diseño fue fluido y colaborativo. Los resultados superaron las expectativas.",
+        "author": "Michael Chen",
+        "role": "Fundador, Agencia Creativa"
+      },
+      {
+        "quote": "Profesionales, creativos y un placer trabajar con ellos. ¡Altamente recomendado!",
+        "author": "Emma Davis",
+        "role": "Directora de Marketing"
+      }
+    ]
+  },
+  "process": {
+    "title": "Experiencia Profesional y Trayectoria",
+    "subtitle": "Más de 3 años gestionando marketing digital y operaciones creativas en industrias de fitness, suplementos, bienes raíces y automotriz. Experiencia comprobada en estrategia de marca, producción de contenido y marketing de rendimiento."
+  },
   "finalCTA": {
     "title": "Porque tu proyecto merece lo mejor, siempre",
     "description": "Trabajemos juntos para crear algo extraordinario. Contáctame y hablemos de tu proyecto.",

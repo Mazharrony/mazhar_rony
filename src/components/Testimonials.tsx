@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import { fadeInUp, staggerContainer, motionConfig } from '../utils/motion';
 import './Testimonials.css';
 
@@ -14,24 +15,32 @@ interface Testimonial {
 const Testimonials: React.FC = () => {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-80px" });
+  const { t } = useLanguage();
 
-  const testimonials: Testimonial[] = [
-    {
-      quote: 'Exceptional work and attention to detail. They truly understand our brand vision.',
-      author: 'Jessica Smith',
-      role: 'CEO, TechStartup'
-    },
-    {
-      quote: 'The design process was smooth and collaborative. Results exceeded expectations.',
-      author: 'Michael Chen',
-      role: 'Founder, Creative Agency'
-    },
-    {
-      quote: 'Professional, creative, and a pleasure to work with. Highly recommended!',
-      author: 'Emma Davis',
-      role: 'Marketing Director'
-    }
-  ];
+  const testimonialsRaw = t('testimonials.items');
+  const testimonials: Testimonial[] = Array.isArray(testimonialsRaw) 
+    ? testimonialsRaw.map((item: any) => ({
+        quote: item.quote || '',
+        author: item.author || '',
+        role: item.role || ''
+      }))
+    : [
+        {
+          quote: 'Exceptional work and attention to detail. They truly understand our brand vision.',
+          author: 'Jessica Smith',
+          role: 'CEO, TechStartup'
+        },
+        {
+          quote: 'The design process was smooth and collaborative. Results exceeded expectations.',
+          author: 'Michael Chen',
+          role: 'Founder, Creative Agency'
+        },
+        {
+          quote: 'Professional, creative, and a pleasure to work with. Highly recommended!',
+          author: 'Emma Davis',
+          role: 'Marketing Director'
+        }
+      ];
 
   const cardVariant = {
     hidden: { opacity: 0, y: 50, scale: 0.92, filter: 'blur(10px)' },
@@ -57,7 +66,7 @@ const Testimonials: React.FC = () => {
           animate={isInView ? "visible" : "hidden"}
           variants={staggerContainer}
         >
-          <motion.h2 variants={fadeInUp}>What happy clients say</motion.h2>
+          <motion.h2 variants={fadeInUp}>{t('testimonials.title')}</motion.h2>
         </motion.div>
 
         <div className="testimonials-grid">

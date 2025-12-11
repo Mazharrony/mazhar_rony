@@ -788,6 +788,30 @@
     "description": "Let's work together to create something extraordinary. Get in touch and let's discuss your project.",
     "cta": "Get started"
   },
+  "testimonials": {
+    "title": "What happy clients say",
+    "items": [
+      {
+        "quote": "Exceptional work and attention to detail. They truly understand our brand vision.",
+        "author": "Jessica Smith",
+        "role": "CEO, TechStartup"
+      },
+      {
+        "quote": "The design process was smooth and collaborative. Results exceeded expectations.",
+        "author": "Michael Chen",
+        "role": "Founder, Creative Agency"
+      },
+      {
+        "quote": "Professional, creative, and a pleasure to work with. Highly recommended!",
+        "author": "Emma Davis",
+        "role": "Marketing Director"
+      }
+    ]
+  },
+  "process": {
+    "title": "Professional Experience & Track Record",
+    "subtitle": "3+ years managing digital marketing and creative operations across fitness, supplement, real estate, and automotive industries. Proven expertise in brand strategy, content production, and performance marketing."
+  },
   "common": {
     "learnMore": "Learn more",
     "viewMore": "View more",
