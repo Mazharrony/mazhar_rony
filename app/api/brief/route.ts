@@ -62,13 +62,23 @@ function checkRateLimit(identifier: string): boolean {
 }
 
 export async function POST(req: NextRequest) {
+  // #region agent log
+  const logData = {location:'brief/route.ts:64',message:'API POST request received',data:{timestamp:Date.now()},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'};
+  await fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(logData)}).catch(()=>{});
+  // #endregion
   try {
     // Get client IP for rate limiting
     const forwarded = req.headers.get('x-forwarded-for');
     const ip = forwarded ? forwarded.split(',')[0] : req.headers.get('x-real-ip') || 'unknown';
+    // #region agent log
+    await fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'brief/route.ts:68',message:'Rate limit check',data:{ip},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+    // #endregion
     
     // Check rate limit
     if (!checkRateLimit(ip)) {
+      // #region agent log
+      await fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'brief/route.ts:72',message:'Rate limit exceeded',data:{ip},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+      // #endregion
       return NextResponse.json(
         { error: 'Too many requests. Please try again later.' },
         { status: 429 }
@@ -76,10 +86,17 @@ export async function POST(req: NextRequest) {
     }
 
     // Validate environment variable
-    if (!process.env.OPENAI_API_KEY) {
+    const hasApiKey = !!process.env.OPENAI_API_KEY;
+    // #region agent log
+    await fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'brief/route.ts:79',message:'API key check',data:{hasApiKey},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+    // #endregion
+    if (!hasApiKey) {
       if (process.env.NODE_ENV === 'development') {
         console.error('OPENAI_API_KEY is not configured');
       }
+      // #region agent log
+      await fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'brief/route.ts:84',message:'API key missing error',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+      // #endregion
       return NextResponse.json(
         { error: 'Service configuration error' },
         { status: 500 }
@@ -88,9 +105,18 @@ export async function POST(req: NextRequest) {
 
     // Parse and validate input
     const body = await req.json();
+    // #region agent log
+    await fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'brief/route.ts:90',message:'Request body parsed',data:{hasName:!!body.name,hasEmail:!!body.email,hasMessage:!!body.message},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+    // #endregion
     const validation = validateInput(body);
+    // #region agent log
+    await fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'brief/route.ts:92',message:'Input validation result',data:{valid:validation.valid,error:validation.error},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+    // #endregion
 
     if (!validation.valid || !validation.data) {
+      // #region agent log
+      await fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'brief/route.ts:95',message:'Validation failed',data:{error:validation.error},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+      // #endregion
       return NextResponse.json(
         { error: validation.error || 'Invalid input' },
         { status: 400 }
@@ -124,6 +150,9 @@ export async function POST(req: NextRequest) {
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
+      // #region agent log
+      await fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'brief/route.ts:125',message:'OpenAI API error response',data:{status:response.status,hasErrorData:!!Object.keys(errorData).length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+      // #endregion
       if (process.env.NODE_ENV === 'development') {
         console.error('OpenAI API error:', response.status, errorData);
       }
@@ -156,6 +185,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ brief });
   } catch (err) {
+    // #region agent log
+    await fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'brief/route.ts:158',message:'API route catch block',data:{error:err instanceof Error?err.message:String(err)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+    // #endregion
     // Log error for debugging (server-side only)
     if (process.env.NODE_ENV === 'development') {
       console.error('API route error:', err);

@@ -3,6 +3,8 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
+import DatePicker from './DatePicker';
+import TimezonePicker from './TimezonePicker';
 import './Contact.css';
 
 interface Brief {
@@ -20,6 +22,14 @@ interface FormErrors {
   message?: string;
 }
 
+interface MeetingFormErrors {
+  name?: string;
+  email?: string;
+  date?: string;
+  time?: string;
+  context?: string;
+}
+
 const Contact: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(containerRef, { once: false, margin: "-100px" });
@@ -30,6 +40,23 @@ const Contact: React.FC = () => {
   const [aiLoading, setAiLoading] = useState(false);
   const [aiError, setAiError] = useState(false);
   const [errors, setErrors] = useState<FormErrors>({});
+  
+  // Meeting form states
+  const [meetingSubmitted, setMeetingSubmitted] = useState(false);
+  const [meetingAnimating, setMeetingAnimating] = useState(false);
+  const [meetingErrors, setMeetingErrors] = useState<MeetingFormErrors>({});
+  const [meetingDate, setMeetingDate] = useState('');
+  const [meetingTimezone, setMeetingTimezone] = useState(() => {
+    // Auto-detect preferred timezone on component mount
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const offset = -new Date().getTimezoneOffset() / 60;
+      const offsetStr = offset >= 0 ? `+${offset}` : `${offset}`;
+      return `GMT${offsetStr}`;
+    } catch {
+      return '';
+    }
+  });
 
   const validateForm = (name: string, email: string, message: string): boolean => {
     const newErrors: FormErrors = {};
@@ -121,6 +148,134 @@ const Contact: React.FC = () => {
     }
   };
 
+  const validateMeetingForm = (name: string, email: string, date: string, time: string, context: string): boolean => {
+    const newErrors: MeetingFormErrors = {};
+    
+    // Validate name
+    if (!name || name.trim().length < 2) {
+      newErrors.name = 'Name must be at least 2 characters';
+    }
+    
+    // Validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+    
+    // Validate date
+    if (!date) {
+      newErrors.date = 'Please select a preferred date';
+    } else {
+      const selectedDate = new Date(date);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      if (selectedDate < today) {
+        newErrors.date = 'Please select a future date';
+      }
+    }
+    
+    // Validate time
+    if (!time) {
+      newErrors.time = 'Please select a preferred time';
+    }
+    
+    // Validate context
+    if (!context || context.trim().length < 10) {
+      newErrors.context = 'Please provide meeting context (at least 10 characters)';
+    }
+    
+    setMeetingErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleMeetingSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target as HTMLFormElement);
+    const name = (formData.get('meeting-name') as string) || '';
+    const email = (formData.get('meeting-email') as string) || '';
+    const date = meetingDate || (formData.get('meeting-date') as string) || '';
+    const time = (formData.get('meeting-time') as string) || '';
+    const timezone = meetingTimezone || (formData.get('meeting-timezone') as string) || '';
+    const context = (formData.get('meeting-context') as string) || '';
+    const duration = (formData.get('meeting-duration') as string) || '60min';
+    const website = formData.get('website-meeting'); // Honeypot field
+
+    // Check honeypot
+    if (website) {
+      return;
+    }
+
+    // Validate form
+    if (!validateMeetingForm(name, email, date, time, context)) {
+      return;
+    }
+
+    setMeetingAnimating(true);
+    setMeetingErrors({});
+
+    // Format email content
+    const emailBody = `
+New Meeting Request
+
+Name: ${name}
+Email: ${email}
+Preferred Date: ${date}
+Preferred Time: ${time}
+Timezone: ${timezone || 'Not specified'}
+Duration: ${duration}
+Meeting Context:
+${context}
+
+---
+This meeting request was submitted from the contact page.
+    `.trim();
+
+    try {
+      // Try to send via API first
+      const response = await fetch('/api/meeting', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          date,
+          time,
+          timezone: timezone.trim(),
+          duration,
+          context: context.trim()
+        })
+      });
+
+      if (response.ok) {
+        // API request successful
+        setMeetingSubmitted(true);
+      } else {
+        // API failed, use mailto as fallback
+        const mailtoLink = `mailto:hello@meetmazhar.site?subject=Meeting Request - ${encodeURIComponent(name)}&body=${encodeURIComponent(emailBody)}`;
+        window.location.href = mailtoLink;
+        setMeetingSubmitted(true);
+      }
+    } catch (err) {
+      // API error, use mailto as fallback
+      const mailtoLink = `mailto:hello@meetmazhar.site?subject=Meeting Request - ${encodeURIComponent(name)}&body=${encodeURIComponent(emailBody)}`;
+      window.location.href = mailtoLink;
+      setMeetingSubmitted(true);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Meeting form submission error:', err);
+      }
+    } finally {
+      setMeetingAnimating(false);
+      setTimeout(() => {
+        setMeetingSubmitted(false);
+        (e.target as HTMLFormElement).reset();
+        setMeetingErrors({});
+        setMeetingDate('');
+        setMeetingTimezone('');
+      }, 6000);
+    }
+  };
+
   const contactMethods = [
     {
       icon: (
@@ -155,27 +310,29 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <section className="fold contact" ref={containerRef}>
-      <div className="container">
+    <section className="contact-section" ref={containerRef}>
+      <div className="contact-container">
+        {/* Header Section */}
         <motion.div
           className="contact-header"
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.7 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          <motion.span
-            className="section-label"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 0.1 }}
+          <motion.button
+            className="contact-label-button"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
           >
             {t('contact.label')}
-          </motion.span>
+          </motion.button>
           
           <motion.h1
+            className="contact-title"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.2, duration: 0.7 }}
+            transition={{ delay: 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             {t('contact.title')}
           </motion.h1>
@@ -184,19 +341,20 @@ const Contact: React.FC = () => {
             className="contact-subtitle"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
           >
             {t('contact.subtitle')}
           </motion.p>
         </motion.div>
 
-        <div className="contact-content">
-          {/* Contact Form */}
+        {/* Main Content Grid */}
+        <div className="contact-content-grid">
+          {/* Contact Form Card */}
           <motion.div
-            className="contact-form-wrapper"
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
+            className="contact-form-card"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ delay: 0.4, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <form onSubmit={handleSubmit} className="contact-form">
               {/* Honeypot field for spam protection */}
@@ -266,7 +424,7 @@ const Contact: React.FC = () => {
                   id="message" 
                   name="message"
                   placeholder={t('contact.form.messagePlaceholder')}
-                  rows={5}
+                  rows={6}
                   required
                   disabled={isAnimating || submitted}
                   aria-required="true"
@@ -282,10 +440,10 @@ const Contact: React.FC = () => {
 
               <motion.button
                 type="submit"
-                className="btn btn-primary contact-submit"
+                className="contact-submit-button"
                 disabled={isAnimating || submitted}
-                whileHover={{ scale: submitted ? 1 : 1.05, y: submitted ? 0 : -4 }}
-                whileTap={{ scale: submitted ? 1 : 0.95 }}
+                whileHover={submitted ? {} : { scale: 1.02 }}
+                whileTap={submitted ? {} : { scale: 0.98 }}
               >
                 {submitted ? (
                   <motion.span
@@ -298,7 +456,7 @@ const Contact: React.FC = () => {
                 ) : isAnimating ? (
                   <motion.span
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity }}
+                    transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                   >
                     ✈️
                   </motion.span>
@@ -306,52 +464,54 @@ const Contact: React.FC = () => {
                   <span>{t('contact.form.submit')}</span>
                 )}
               </motion.button>
-
             </form>
+
+            {/* AI Brief Result */}
+            {(aiLoading || brief || aiError) && (
+              <motion.div
+                className="ai-brief-card"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+              >
+                {aiLoading && (
+                  <div className="ai-loading">
+                    <span>Thinking…</span>
+                  </div>
+                )}
+                {brief && (
+                  <div className="ai-brief-content">
+                    <strong>Here's what I understood from your message:</strong>
+                    <ul>
+                      {brief.projectType && <li><b>Project type:</b> {brief.projectType}</li>}
+                      {brief.deliverables && Array.isArray(brief.deliverables) && (
+                        <li><b>Deliverables:</b>
+                          <ul>
+                            {brief.deliverables.map((d: string, i: number) => <li key={i}>{d}</li>)}
+                          </ul>
+                        </li>
+                      )}
+                      {brief.goals && <li><b>Goals:</b> {brief.goals}</li>}
+                      {brief.urgency && <li><b>Urgency:</b> {brief.urgency}</li>}
+                      {brief.notes && <li><b>Notes:</b> {brief.notes}</li>}
+                    </ul>
+                  </div>
+                )}
+                {aiError && (
+                  <div className="ai-error">
+                    <span>Couldn't generate a brief, but your message was sent!</span>
+                  </div>
+                )}
+              </motion.div>
+            )}
           </motion.div>
 
-          {/* Smart Brief Helper AI Result */}
-          {(aiLoading || brief || aiError) && (
-            <motion.div
-              className="ai-brief-box"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              style={{ marginTop: 32 }}
-            >
-              {aiLoading && (
-                <span style={{ fontSize: '1.1rem', color: '#6366f1' }}>Thinking…</span>
-              )}
-              {brief && (
-                <div>
-                  <strong>Here’s what I understood from your message:</strong>
-                  <ul style={{ marginTop: 12, marginBottom: 0 }}>
-                    {brief.projectType && <li><b>Project type:</b> {brief.projectType}</li>}
-                    {brief.deliverables && Array.isArray(brief.deliverables) && (
-                      <li><b>Deliverables:</b>
-                        <ul>
-                          {brief.deliverables.map((d: string, i: number) => <li key={i}>{d}</li>)}
-                        </ul>
-                      </li>
-                    )}
-                    {brief.goals && <li><b>Goals:</b> {brief.goals}</li>}
-                    {brief.urgency && <li><b>Urgency:</b> {brief.urgency}</li>}
-                    {brief.notes && <li><b>Notes:</b> {brief.notes}</li>}
-                  </ul>
-                </div>
-              )}
-              {aiError && (
-                <span style={{ color: '#f59e0b' }}>Couldn’t generate a brief, but your message was sent!</span>
-              )}
-            </motion.div>
-          )}
-
-          {/* Contact Methods */}
+          {/* Contact Methods Card */}
           <motion.div
-            className="contact-methods"
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
+            className="contact-methods-card"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ delay: 0.5, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="methods-header">
               <h3>{t('contact.quickContact.title')}</h3>
@@ -363,49 +523,212 @@ const Contact: React.FC = () => {
                 <motion.a
                   key={idx}
                   href={method.href}
-                  className="contact-method-card"
+                  className="contact-method-item"
                   target={method.label === 'WhatsApp' ? '_blank' : undefined}
                   rel={method.label === 'WhatsApp' ? 'noopener noreferrer' : undefined}
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: 0.6 + idx * 0.1 }}
-                  whileHover={{
-                    y: -8,
-                    boxShadow: '0 12px 32px rgba(0, 0, 0, 0.15)',
-                    transition: { duration: 0.3 }
-                  }}
+                  transition={{ delay: 0.6 + idx * 0.08, duration: 0.4 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <motion.span 
-                    className="method-icon"
-                    whileHover={{ scale: 1.2, rotate: 10 }}
-                  >
+                  <div className="method-icon-wrapper">
                     {method.icon}
-                  </motion.span>
+                  </div>
                   <div className="method-content">
                     <span className="method-label">{method.label}</span>
                     <span className="method-value">{method.value}</span>
                   </div>
-                  <motion.span 
-                    className="method-arrow"
-                    initial={{ x: 0 }}
-                    whileHover={{ x: 6 }}
-                  >
-                    →
-                  </motion.span>
+                  <span className="method-arrow">→</span>
                 </motion.a>
               ))}
             </div>
 
             <motion.div
-              className="contact-info"
+              className="contact-info-card"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ delay: 0.95 }}
+              transition={{ delay: 0.9, duration: 0.5 }}
             >
-              <p>{t('contact.info.location')}</p>
-              <p>{t('contact.info.availability')}</p>
-              <p>{t('contact.info.responseTime')}</p>
+              <div className="info-item">
+                <span className="info-text">{t('contact.info.location')}</span>
+              </div>
+              <div className="info-item">
+                <span className="info-text">{t('contact.info.availability')}</span>
+              </div>
+              <div className="info-item">
+                <span className="info-text">{t('contact.info.responseTime')}</span>
+              </div>
             </motion.div>
+          </motion.div>
+
+          {/* Meeting Scheduling Form Card */}
+          <motion.div
+            className="contact-meeting-card"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ delay: 0.6, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="meeting-header">
+              <h3>{t('contact.meeting.title')}</h3>
+              <p>{t('contact.meeting.subtitle')}</p>
+            </div>
+
+            <form onSubmit={handleMeetingSubmit} className="meeting-form">
+              {/* Honeypot field */}
+              <input
+                type="text"
+                name="website-meeting"
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
+
+              <div className="form-group">
+                <label htmlFor="meeting-name">{t('contact.meeting.form.name')}</label>
+                <input 
+                  type="text" 
+                  id="meeting-name" 
+                  name="meeting-name"
+                  placeholder={t('contact.meeting.form.namePlaceholder')}
+                  required
+                  disabled={meetingAnimating || meetingSubmitted}
+                  aria-required="true"
+                  aria-invalid={meetingErrors.name ? 'true' : 'false'}
+                />
+                {meetingErrors.name && (
+                  <span className="form-error" role="alert">{meetingErrors.name}</span>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="meeting-email">{t('contact.meeting.form.email')}</label>
+                <input 
+                  type="email" 
+                  id="meeting-email" 
+                  name="meeting-email"
+                  placeholder={t('contact.meeting.form.emailPlaceholder')}
+                  required
+                  disabled={meetingAnimating || meetingSubmitted}
+                  aria-required="true"
+                  aria-invalid={meetingErrors.email ? 'true' : 'false'}
+                />
+                {meetingErrors.email && (
+                  <span className="form-error" role="alert">{meetingErrors.email}</span>
+                )}
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="meeting-date">{t('contact.meeting.form.date')}</label>
+                  <DatePicker
+                    id="meeting-date"
+                    name="meeting-date"
+                    value={meetingDate}
+                    onChange={setMeetingDate}
+                    min={new Date().toISOString().split('T')[0]}
+                    required
+                    disabled={meetingAnimating || meetingSubmitted}
+                    aria-required="true"
+                    aria-invalid={meetingErrors.date ? 'true' : 'false'}
+                  />
+                  {meetingErrors.date && (
+                    <span className="form-error" role="alert">{meetingErrors.date}</span>
+                  )}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="meeting-time">{t('contact.meeting.form.time')}</label>
+                  <input 
+                    type="time" 
+                    id="meeting-time" 
+                    name="meeting-time"
+                    required
+                    disabled={meetingAnimating || meetingSubmitted}
+                    aria-required="true"
+                    aria-invalid={meetingErrors.time ? 'true' : 'false'}
+                  />
+                  {meetingErrors.time && (
+                    <span className="form-error" role="alert">{meetingErrors.time}</span>
+                  )}
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="meeting-timezone">{t('contact.meeting.form.timezone')}</label>
+                  <TimezonePicker
+                    id="meeting-timezone"
+                    name="meeting-timezone"
+                    value={meetingTimezone}
+                    onChange={setMeetingTimezone}
+                    placeholder={t('contact.meeting.form.timezonePlaceholder')}
+                    disabled={meetingAnimating || meetingSubmitted}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="meeting-duration">{t('contact.meeting.form.duration')}</label>
+                  <select 
+                    id="meeting-duration" 
+                    name="meeting-duration"
+                    disabled={meetingAnimating || meetingSubmitted}
+                    className="form-select"
+                    defaultValue="60min"
+                  >
+                    <option value="30min">{t('contact.meeting.form.durationOptions.30min')}</option>
+                    <option value="60min">{t('contact.meeting.form.durationOptions.60min')}</option>
+                    <option value="90min">{t('contact.meeting.form.durationOptions.90min')}</option>
+                    <option value="custom">{t('contact.meeting.form.durationOptions.custom')}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="meeting-context">{t('contact.meeting.form.context')}</label>
+                <textarea 
+                  id="meeting-context" 
+                  name="meeting-context"
+                  placeholder={t('contact.meeting.form.contextPlaceholder')}
+                  rows={4}
+                  required
+                  disabled={meetingAnimating || meetingSubmitted}
+                  aria-required="true"
+                  aria-invalid={meetingErrors.context ? 'true' : 'false'}
+                />
+                {meetingErrors.context && (
+                  <span className="form-error" role="alert">{meetingErrors.context}</span>
+                )}
+              </div>
+
+              <motion.button
+                type="submit"
+                className="contact-submit-button"
+                disabled={meetingAnimating || meetingSubmitted}
+                whileHover={meetingSubmitted ? {} : { scale: 1.02 }}
+                whileTap={meetingSubmitted ? {} : { scale: 0.98 }}
+              >
+                {meetingSubmitted ? (
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {t('contact.meeting.form.success')}
+                  </motion.span>
+                ) : meetingAnimating ? (
+                  <motion.span
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                  >
+                    ✈️
+                  </motion.span>
+                ) : (
+                  <span>{t('contact.meeting.form.submit')}</span>
+                )}
+              </motion.button>
+            </form>
           </motion.div>
         </div>
       </div>

@@ -521,20 +521,8 @@ const Services = ()=>{
             "end end"
         ]
     });
-    // Smooth easing with rest at start/end - cubic bezier for natural feel
-    const smoothProgress = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useTransform"])(scrollYProgress, [
-        0,
-        0.1,
-        0.9,
-        1
-    ], [
-        0,
-        0,
-        1,
-        1
-    ], {
-        ease: (t)=>t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2
-    });
+    // No hold: pure linear mapping for instant response
+    const smoothProgress = scrollYProgress;
     // Map smooth progress to horizontal travel
     const stripX = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useTransform"])(smoothProgress, [
         0,
@@ -607,7 +595,7 @@ const Services = ()=>{
                             children: t("services.label")
                         }, void 0, false, {
                             fileName: "[project]/src/components/Services.tsx",
-                            lineNumber: 86,
+                            lineNumber: 81,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -615,7 +603,7 @@ const Services = ()=>{
                             children: t("services.title")
                         }, void 0, false, {
                             fileName: "[project]/src/components/Services.tsx",
-                            lineNumber: 87,
+                            lineNumber: 82,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -623,13 +611,13 @@ const Services = ()=>{
                             children: t("services.subtitle")
                         }, void 0, false, {
                             fileName: "[project]/src/components/Services.tsx",
-                            lineNumber: 88,
+                            lineNumber: 83,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/Services.tsx",
-                    lineNumber: 85,
+                    lineNumber: 80,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -649,7 +637,7 @@ const Services = ()=>{
                                         children: t(service.titleKey)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Services.tsx",
-                                        lineNumber: 99,
+                                        lineNumber: 94,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -657,7 +645,7 @@ const Services = ()=>{
                                         children: t(service.bodyKey)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Services.tsx",
-                                        lineNumber: 100,
+                                        lineNumber: 95,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -670,40 +658,40 @@ const Services = ()=>{
                                                 children: "→"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Services.tsx",
-                                                lineNumber: 102,
+                                                lineNumber: 97,
                                                 columnNumber: 42
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Services.tsx",
-                                        lineNumber: 101,
+                                        lineNumber: 96,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, service.id, true, {
                                 fileName: "[project]/src/components/Services.tsx",
-                                lineNumber: 98,
+                                lineNumber: 93,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0)))
                     }, void 0, false, {
                         fileName: "[project]/src/components/Services.tsx",
-                        lineNumber: 92,
+                        lineNumber: 87,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/src/components/Services.tsx",
-                    lineNumber: 91,
+                    lineNumber: 86,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/Services.tsx",
-            lineNumber: 84,
+            lineNumber: 79,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/src/components/Services.tsx",
-        lineNumber: 78,
+        lineNumber: 73,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };

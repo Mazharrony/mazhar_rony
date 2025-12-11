@@ -542,114 +542,6 @@
           {"icon": "🚀", "title": "Deployment & Maintenance", "detail": "Continuous integration and monitoring.", "accent": "#f97316"}
         ]
       }
-    },
-    "detail": {
-      "badge": "Let's Fix This",
-      "overview": {
-        "title": "Here's What's Really Happening"
-      },
-      "why": {
-        "title": "The Problem Nobody Talks About"
-      },
-      "approach": {
-        "title": "How We'll Actually Fix This"
-      },
-      "deliverables": {
-        "title": "What You're Actually Getting"
-      },
-      "pricing": {
-        "title": "Real Talk: The Numbers",
-        "period": "month",
-        "cta": "Get Started",
-        "starter": {
-          "name": "Starter",
-          "price": "499",
-          "feature1": "Social media audit & strategy",
-          "feature2": "12 posts per month",
-          "feature3": "Basic analytics report",
-          "feature4": "Community management"
-        },
-        "professional": {
-          "name": "Professional",
-          "price": "999",
-          "feature1": "Everything in Starter",
-          "feature2": "24 posts + Stories daily",
-          "feature3": "Advanced analytics dashboard",
-          "feature4": "Paid ad management (up to $2k)",
-          "feature5": "Monthly strategy session"
-        },
-        "enterprise": {
-          "name": "Enterprise",
-          "price": "Custom",
-          "feature1": "Unlimited content creation",
-          "feature2": "Multi-platform management",
-          "feature3": "Dedicated account manager",
-          "feature4": "Custom reporting & insights",
-          "feature5": "Priority support 24/7"
-        }
-      },
-      "faq": {
-        "title": "Questions You're Probably Thinking"
-      },
-      "cta": {
-        "title": "Let's Stop Wasting Time",
-        "description": "Your competitors are already doing this. Every day you wait, you're leaving money on the table. Let's talk.",
-        "primary": "I'm Ready, Let's Talk",
-        "secondary": "Show Me More First"
-      },
-      "social": {
-        "tagline": "Your Instagram looks like a ghost town. Let's change that.",
-        "overview": "You know that feeling when you post and... crickets? Yeah, we fix that. We don't do generic content calendars. We create stuff people actually want to see, share, and buy from. Instagram, TikTok, Facebook - wherever your people are scrolling, we're there making them stop.",
-        "why": "Real talk: Your competitors are posting right now. While you're overthinking that caption, they're building relationships with YOUR potential customers. Every scroll without your brand is a missed sale. We're not here to make your feed 'pretty' - we're here to make it profitable.",
-        "approach": {
-          "step1": {
-            "title": "We Stalk Your Competitors (Legally)",
-            "description": "First, we figure out what's actually working in your space. Not guessing - we dig into the data, see what's getting engagement, and find the gaps your competitors are too lazy to fill."
-          },
-          "step2": {
-            "title": "Create Content That Doesn't Suck",
-            "description": "No stock photos. No boring quotes. We make scroll-stopping content - Reels that hook in 0.5 seconds, captions that make people tap 'see more', visuals that look expensive but aren't cringe."
-          },
-          "step3": {
-            "title": "Actually Talk to Your Audience",
-            "description": "DMs sitting unread? Comments ignored? That's money walking away. We engage like humans, not bots. Build real connections that turn followers into customers."
-          },
-          "step4": {
-            "title": "Track What Actually Matters",
-            "description": "Forget vanity metrics. We track what drives sales - saves, shares, profile visits, link clicks. If something's not working, we pivot fast. No corporate BS, just results."
-          }
-        },
-        "deliverables": {
-          "1": "Content that makes people stop scrolling (not easy, but we do it)",
-          "2": "Videos and photos that don't look like everyone else's",
-          "3": "Captions that actually get read, not skipped",
-          "4": "Reels and Stories that the algorithm loves",
-          "5": "Reports that show real ROI, not just follower counts",
-          "6": "We watch what's working (and steal the good ideas)"
-        },
-        "faq": {
-          "1": {
-            "question": "How much content do I actually get?",
-            "answer": "Starter: 12 posts/month (3 per week). Professional: 24 posts + daily Stories (basically, we're running your whole social). Enterprise: However much it takes to win. Quality over quantity, always."
-          },
-          "2": {
-            "question": "Will you run ads or just post organically?",
-            "answer": "Organic is dead (kinda). Professional tier includes ad management - we'll put money behind what's working and kill what's not. No wasted budget on 'brand awareness' that doesn't convert."
-          },
-          "3": {
-            "question": "Which platforms?",
-            "answer": "Instagram, TikTok, Facebook - where people actually scroll. Need LinkedIn or Twitter? We can do that too, but let's be honest, your customers aren't there. We go where the ROI is."
-          },
-          "4": {
-            "question": "Do I approve everything or do you just post?",
-            "answer": "You approve. We're confident, not reckless. You'll see everything before it goes live. Once you trust us (usually month 2), we can speed this up."
-          },
-          "5": {
-            "question": "What if my content is already trash?",
-            "answer": "Then we start fresh. Seriously - bad content is worse than no content. We'll audit what you have, save anything good, and rebuild from there. No judgment, just solutions."
-          }
-        }
-      }
     }
   },
   "journey": {
@@ -774,8 +666,35 @@
     },
     "info": {
       "location": "Based in Dubai, UAE",
-      "availability": "Working with clients worldwide 🌍",
+      "availability": "Working with clients worldwide",
       "responseTime": "Usually reply within 24 hours"
+    },
+    "meeting": {
+      "title": "Schedule a Meeting",
+      "subtitle": "Let's find a time that works for both of us",
+      "form": {
+        "name": "Your Name",
+        "namePlaceholder": "What should I call you?",
+        "email": "Email",
+        "emailPlaceholder": "where.to@reach.you",
+        "date": "Preferred Date",
+        "time": "Preferred Time",
+        "timezone": "Your Timezone",
+        "timezonePlaceholder": "e.g., GMT+4, EST, PST",
+        "context": "Meeting Context",
+        "contextPlaceholder": "What would you like to discuss? Project details, collaboration, consultation, etc.",
+        "duration": "Duration",
+        "durationOptions": {
+          "30min": "30 minutes",
+          "60min": "1 hour",
+          "90min": "1.5 hours",
+          "custom": "Custom"
+        },
+        "submit": "Schedule Meeting",
+        "sending": "Scheduling...",
+        "success": "✓ Meeting request sent! I'll confirm via email.",
+        "error": "Something went wrong. Please try again."
+      }
     }
   },
   "aboutPage": {

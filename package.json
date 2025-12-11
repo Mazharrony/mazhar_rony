@@ -51,6 +51,10 @@
     ]
   },
   "devDependencies": {
-    "sass": "^1.94.2"
+    "@tailwindcss/postcss": "^4.1.17",
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "sass": "^1.94.2",
+    "tailwindcss": "^4.1.17"
   }
 }

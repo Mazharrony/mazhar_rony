@@ -13,10 +13,10 @@ const Footer: React.FC = () => {
 
   // Footer navigation links
   const footerLinks = [
-    { label: t('footer.nav.about'), href: '/about' },
-    { label: t('footer.nav.journey'), href: '/journey' },
-    { label: t('footer.nav.work'), href: '/work' },
-    { label: t('footer.nav.contact'), href: '/contact' },
+    { label: t('footer.nav.about'), href: '/about', key: 'footer-about' },
+    { label: t('footer.nav.journey'), href: '/journey', key: 'footer-journey' },
+    { label: t('footer.nav.work'), href: '/work', key: 'footer-work' },
+    { label: t('footer.nav.contact'), href: '/contact', key: 'footer-contact' },
   ];
 
   return (
@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
             <nav className="footer-nav">
               {footerLinks.map((link: any, i: number) => (
                 <motion.div
-                  key={link.label}
+                  key={link.key || `footer-link-${link.href}-${i}`}
                   initial={{ opacity: 0, y: 10 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                   transition={{ delay: i * 0.05 }}

@@ -166,3 +166,5 @@ The mobile carousel is fully implemented and ready to test. The component automa
 - ✅ `src/components/MobileServices.css` (new)
 - ✅ `src/components/Services.tsx` (updated)
 
+
+

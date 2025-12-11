@@ -214,7 +214,8 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
             const descKey = getKey(`approach.step${step}.description`);
             const title = t(titleKey);
             const desc = t(descKey);
-            if (title === titleKey) return null;
+            // Only hide if both are empty (translation not found)
+            if (!title && !desc) return null;
             return (
               <motion.div key={step} className={`approach-card modern-card stagger-${step}`} variants={cardVariants} whileHover="hover">
                 <div className="step-header">
@@ -223,8 +224,8 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
                   </motion.span>
                   <div className="step-line"></div>
                 </div>
-                <h3 className="step-title">{title}</h3>
-                <p className="step-description">{desc}</p>
+                {title && <h3 className="step-title">{title}</h3>}
+                {desc && <p className="step-description">{desc}</p>}
               </motion.div>
             );
           })}
@@ -251,7 +252,8 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
           {[1, 2, 3, 4, 5, 6].map((item) => {
             const key = getKey(`deliverables.${item}`);
             const text = t(key);
-            if (text === key) return null;
+            // Only hide if empty (translation not found)
+            if (!text) return null;
             return (
               <motion.div key={item} className="deliverable-item-minimal" variants={itemVariants}>
                 <span className="item-dash">—</span>
@@ -284,7 +286,8 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
             const aKey = getKey(`faq.${item}.answer`);
             const question = t(qKey);
             const answer = t(aKey);
-            if (question === qKey) return null;
+            // Only hide if both are empty (translation not found)
+            if (!question && !answer) return null;
             return (
               <motion.details
                 key={item}
@@ -294,12 +297,14 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
                 onChange={() => setExpandedFaq(expandedFaq === item ? null : item)}
               >
                 <summary className="faq-modern-question">
-                  <span className="faq-q-text">{question}</span>
+                  {question && <span className="faq-q-text">{question}</span>}
                   <span className="faq-toggle"></span>
                 </summary>
-                <motion.p className="faq-modern-answer" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.3 }}>
-                  {answer}
-                </motion.p>
+                {answer && (
+                  <motion.p className="faq-modern-answer" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.3 }}>
+                    {answer}
+                  </motion.p>
+                )}
               </motion.details>
             );
           })}

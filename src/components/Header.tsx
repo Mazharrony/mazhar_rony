@@ -158,35 +158,99 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu (Drawer) */}
+      {/* Mobile Menu (Drawer) - Full Screen Overlay */}
       {mobileMenuOpen && (
-        <motion.div
-          className="mobile-menu"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3 }}
-        >
-          <nav className="mobile-nav">
-            {navItems.map((item) => (
-              <Link
-                key={item.key}
-                href={item.href}
+        <>
+          {/* Backdrop Overlay */}
+          <motion.div
+            className="mobile-menu-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          
+          {/* Drawer Container */}
+          <motion.div
+            className="mobile-menu-drawer"
+            initial={{ x: language === 'ar' ? '-100%' : '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: language === 'ar' ? '-100%' : '100%' }}
+            transition={{ 
+              type: 'spring',
+              damping: 30,
+              stiffness: 300,
+              mass: 0.5
+            }}
+          >
+            {/* Drawer Header */}
+            <div className="mobile-menu-header">
+              <h2 className="mobile-menu-title">{t('header.brand')}</h2>
+              <motion.button
+                className="mobile-menu-close"
                 onClick={() => setMobileMenuOpen(false)}
-                className={`mobile-nav-link ${isActiveLink(item.href) ? 'active' : ''}`}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label="Close menu"
               >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </motion.button>
+            </div>
 
-          {/* Mobile CTA */}
-          <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-            <motion.button className="mobile-cta">
-              {t('header.cta')}
-            </motion.button>
-          </Link>
-        </motion.div>
+            {/* Navigation Links */}
+            <nav className="mobile-nav">
+              {navItems.map((item, index) => {
+                const isActive = isActiveLink(item.href);
+                return (
+                  <motion.div
+                    key={item.key}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05, duration: 0.3 }}
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`mobile-nav-link ${isActive ? 'active' : ''}`}
+                    >
+                      <span className="mobile-nav-link-text">{item.label}</span>
+                      {isActive && (
+                        <motion.div
+                          className="mobile-nav-link-indicator"
+                          layoutId="mobileNavIndicator"
+                          initial={false}
+                          transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                        />
+                      )}
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </nav>
+
+            {/* CTA Section */}
+            <motion.div
+              className="mobile-menu-cta-section"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.3 }}
+            >
+              <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+                <motion.button
+                  className="mobile-cta"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {t('header.cta')}
+                </motion.button>
+              </Link>
+            </motion.div>
+          </motion.div>
+        </>
       )}
     </motion.header>
   );

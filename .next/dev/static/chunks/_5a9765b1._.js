@@ -554,8 +554,8 @@ var Services = function() {
                     var diff = Math.max(stripWidth - viewportWidth, 0);
                     setMaxOffset(diff);
                     if ("TURBOPACK compile-time truthy", 1) {
-                        // 3x multiplier gives smooth scroll-jacking effect
-                        setSectionHeight(diff * 3 + window.innerHeight);
+                        // 7x multiplier for ultra-fast horizontal scroll
+                        setSectionHeight(diff * 7 + window.innerHeight);
                     }
                 }
             }["Services.useLayoutEffect.measure"];
@@ -598,24 +598,8 @@ var Services = function() {
             "end end"
         ]
     }).scrollYProgress;
-    // Smooth easing with rest at start/end - cubic bezier for natural feel
-    var smoothProgress = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"])(scrollYProgress, [
-        0,
-        0.1,
-        0.9,
-        1
-    ], [
-        0,
-        0,
-        1,
-        1
-    ], {
-        ease: {
-            "Services.useTransform[smoothProgress]": function(t) {
-                return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-            }
-        }["Services.useTransform[smoothProgress]"]
-    });
+    // No hold: pure linear mapping for instant response
+    var smoothProgress = scrollYProgress;
     // Map smooth progress to horizontal travel
     var stripX = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"])(smoothProgress, [
         0,
@@ -688,7 +672,7 @@ var Services = function() {
                             children: t("services.label")
                         }, void 0, false, {
                             fileName: "[project]/src/components/Services.tsx",
-                            lineNumber: 86,
+                            lineNumber: 81,
                             columnNumber: 11
                         }, _this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -696,7 +680,7 @@ var Services = function() {
                             children: t("services.title")
                         }, void 0, false, {
                             fileName: "[project]/src/components/Services.tsx",
-                            lineNumber: 87,
+                            lineNumber: 82,
                             columnNumber: 11
                         }, _this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -704,13 +688,13 @@ var Services = function() {
                             children: t("services.subtitle")
                         }, void 0, false, {
                             fileName: "[project]/src/components/Services.tsx",
-                            lineNumber: 88,
+                            lineNumber: 83,
                             columnNumber: 11
                         }, _this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/Services.tsx",
-                    lineNumber: 85,
+                    lineNumber: 80,
                     columnNumber: 9
                 }, _this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -731,7 +715,7 @@ var Services = function() {
                                         children: t(service.titleKey)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Services.tsx",
-                                        lineNumber: 99,
+                                        lineNumber: 94,
                                         columnNumber: 17
                                     }, _this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -739,7 +723,7 @@ var Services = function() {
                                         children: t(service.bodyKey)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Services.tsx",
-                                        lineNumber: 100,
+                                        lineNumber: 95,
                                         columnNumber: 17
                                     }, _this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -752,49 +736,48 @@ var Services = function() {
                                                 children: "→"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Services.tsx",
-                                                lineNumber: 102,
+                                                lineNumber: 97,
                                                 columnNumber: 42
                                             }, _this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/Services.tsx",
-                                        lineNumber: 101,
+                                        lineNumber: 96,
                                         columnNumber: 17
                                     }, _this)
                                 ]
                             }, service.id, true, {
                                 fileName: "[project]/src/components/Services.tsx",
-                                lineNumber: 98,
+                                lineNumber: 93,
                                 columnNumber: 15
                             }, _this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/src/components/Services.tsx",
-                        lineNumber: 92,
+                        lineNumber: 87,
                         columnNumber: 11
                     }, _this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/Services.tsx",
-                    lineNumber: 91,
+                    lineNumber: 86,
                     columnNumber: 9
                 }, _this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/Services.tsx",
-            lineNumber: 84,
+            lineNumber: 79,
             columnNumber: 7
         }, _this)
     }, void 0, false, {
         fileName: "[project]/src/components/Services.tsx",
-        lineNumber: 78,
+        lineNumber: 73,
         columnNumber: 5
     }, _this);
 };
-_s(Services, "cjltfJpZxlTBL6angf2yC1F93zI=", false, function() {
+_s(Services, "git+X9ykRzT3agUKsGg5YK7X9ZM=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$i18n$2f$LanguageProvider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLanguage"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$scroll$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useScroll"],
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"]
     ];
 });

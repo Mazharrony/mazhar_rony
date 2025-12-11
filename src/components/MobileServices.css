@@ -1,15 +1,40 @@
-/* Mobile Services Section */
+/* Mobile Services Section - Responsive */
 .mobile-services-section {
-  padding: 80px 0;
+  padding: 60px 0;
   background: var(--bg-primary);
   position: relative;
   overflow: hidden;
+  /* Smooth scrolling */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 480px) {
+  .mobile-services-section {
+    padding: 40px 0;
+  }
+}
+
+/* Hide scrollbar globally for clean app look */
+.mobile-services-section * {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.mobile-services-section *::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .mobile-services-container {
   max-width: 100%;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+@media (max-width: 480px) {
+  .mobile-services-container {
+    padding: 0 16px;
+  }
 }
 
 /* Header */
@@ -47,65 +72,104 @@
   color: var(--text-secondary);
 }
 
-/* Carousel Wrapper - Card Stack Container */
-.mobile-services-carousel-wrapper {
-  margin-top: 2rem;
-  overflow: visible;
-  position: relative;
-  padding: 0 7.5vw; /* Center cards with side padding */
-  height: 420px; /* Fixed height for card stack */
-  display: flex;
-  align-items: center;
+@media (max-width: 480px) {
+  .mobile-services-title {
+    font-size: 1.75rem;
+  }
+  
+  .mobile-services-subtitle {
+    font-size: 0.9rem;
+  }
 }
 
-.mobile-services-carousel {
+/* Vertical Cards Container - 2️⃣ No Scrollbar (Clean App Look) */
+.mobile-services-cards-container {
+  margin-top: 2rem;
   display: flex;
-  overflow-x: auto;
-  overflow-y: visible;
+  flex-direction: column;
+  gap: -25px; /* Reduced negative gap to prevent content overlap */
+  width: 100%;
+  /* Smooth scrolling without visible scrollbar */
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  gap: 1rem;
-  scroll-snap-type: x mandatory;
-  scroll-padding: 0 7.5vw;
-  overscroll-behavior-x: contain;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  padding: 2rem 0;
-  /* Show ~1.2 cards at a time */
-  padding-right: 15vw; /* Extra padding to show peek of next card */
+  /* Enable 3D stacking context for cascading effect */
+  perspective: 1000px;
+  position: relative;
+  align-items: flex-start; /* Align to left for diagonal offset */
 }
 
-.mobile-services-carousel::-webkit-scrollbar {
-  display: none;
+@media (max-width: 480px) {
+  .mobile-services-cards-container {
+    gap: -20px; /* Smaller overlap on small screens */
+    margin-top: 1.5rem;
+  }
 }
 
-/* Service Card - Using existing service-card styles */
+/* Service Card - Cascading Stack Effect with Overlapping (1️⃣ Card Show Pattern) */
 .mobile-service-card {
-  flex-shrink: 0;
-  width: 85vw;
-  min-width: 85vw;
-  padding: 1.8rem 1.9rem;
-  border-radius: 26px;
+  width: 100%;
+  padding: 1.4rem 1.4rem 1.8rem 1.4rem; /* Increased bottom padding to prevent content overlap */
+  border-radius: 20px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.008));
   border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem; /* Smaller gap */
   cursor: pointer;
   position: relative;
-  overflow: hidden;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  overflow: visible; /* Changed from hidden to visible to show content */
+  /* Smooth transitions with optimized easing */
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              box-shadow 0.3s ease, 
+              opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  flex-shrink: 0;
   will-change: transform, opacity;
   transform-origin: center center;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Enable 3D transforms for depth */
+  transform-style: preserve-3d;
+  /* Overlapping effect - reduced overlap to prevent content hiding */
+  margin-top: -30px; /* Reduced negative margin */
+  margin-bottom: 20px; /* Added bottom margin to ensure content visibility */
+  margin-left: 0;
+  margin-right: auto;
+  /* Smooth hardware acceleration */
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  /* Ensure minimum height for content */
+  min-height: 140px;
+}
+
+/* First card doesn't have negative margin */
+.mobile-service-card:first-child {
+  margin-top: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .mobile-service-card {
+    padding: 1.2rem 1.2rem 1.6rem 1.2rem; /* Increased bottom padding */
+    border-radius: 16px;
+    margin-top: -25px; /* Reduced overlap on small screens */
+    margin-bottom: 15px; /* Bottom margin for content visibility */
+    gap: 0.4rem;
+    min-height: 130px;
+  }
+  
+  .mobile-service-card:first-child {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 375px) {
+  .mobile-service-card {
+    padding: 1rem 1rem 1.4rem 1rem; /* Increased bottom padding */
+    margin-top: -20px; /* Further reduced overlap */
+    margin-bottom: 12px;
+    min-height: 120px;
+  }
 }
 
 .mobile-service-card::before {
@@ -118,38 +182,63 @@
   pointer-events: none;
 }
 
+.mobile-service-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
 .mobile-service-card-title {
-  font-size: 1.1rem;
+  font-size: 0.95rem; /* Smaller title */
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: -0.01em;
   line-height: 1.3;
+  margin: 0;
 }
 
 .mobile-service-card-body {
-  font-size: 0.92rem;
+  font-size: 0.85rem; /* Smaller description */
   opacity: 0.75;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.5;
   letter-spacing: -0.005em;
   flex: 1;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  line-clamp: 2; /* Standard property */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .mobile-service-card-title {
+    font-size: 0.9rem;
+  }
+  
+  .mobile-service-card-body {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
 }
 
 .mobile-service-card-link {
-  margin-top: 0.75rem;
+  margin-top: 0.8rem; /* Increased margin to ensure visibility above overlap */
   align-self: flex-start;
   border: none;
   background: none;
-  font-size: 0.9rem;
+  font-size: 0.85rem; /* Smaller link text */
   font-weight: 500;
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
   cursor: pointer;
-  padding: 0;
+  padding: 0.3rem 0; /* Added vertical padding for better click area */
   color: var(--text-primary);
   text-decoration: none;
   transition: all 0.28s cubic-bezier(0.17, 0.67, 0.3, 1);
+  position: relative;
+  z-index: 1; /* Ensure button is above overlapping cards */
 }
 
 .mobile-service-card-link span {
@@ -178,49 +267,54 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 9999;
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  /* Smooth overlay animation */
+  will-change: opacity;
 }
 
-/* Detail Container (Bottom Sheet Style) */
+/* Detail Container - 4️⃣ Full Page Style (Fixed, Content Swipes) */
 .mobile-services-detail-container {
   width: 100%;
-  max-height: 90vh;
+  height: 100vh; /* Full screen height */
+  max-height: 100vh;
   background: var(--bg-primary);
-  border-radius: 24px 24px 0 0;
+  border-radius: 24px 24px 0 0; /* Rounded top corners */
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.2);
-  touch-action: pan-y;
+  overflow: hidden; /* Prevent content overflow */
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3); /* Top shadow for depth */
+  touch-action: pan-y; /* Only vertical scroll, no horizontal drag on container */
+  /* Smooth container animation */
+  will-change: transform, opacity;
+  /* Prevent content overflow during drag */
+  isolation: isolate;
+  /* Container stays fixed, only content moves */
 }
 
-/* Drag handle indicator */
-.mobile-services-detail-container::before {
-  content: '';
+/* Header Bar with Navigation */
+.mobile-services-detail-header-bar {
   position: absolute;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 4px;
-  background: var(--text-secondary);
-  opacity: 0.3;
-  border-radius: 2px;
-  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  z-index: 10;
+  background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-/* Close Button */
-.mobile-services-detail-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+.mobile-services-detail-nav-button {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -230,9 +324,35 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 10;
   color: var(--text-primary);
   transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.mobile-services-detail-nav-button:active:not(:disabled) {
+  transform: scale(0.95);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.mobile-services-detail-nav-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Close Button */
+.mobile-services-detail-close {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
 .mobile-services-detail-close:active {
@@ -240,20 +360,75 @@
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* Detail Content */
+/* Detail Content - 4️⃣ Full Page View */
 .mobile-services-detail-content {
   flex: 1;
   overflow-y: auto;
-  padding: 3rem 1.5rem 1.5rem;
+  padding: 4.5rem 1.5rem 2rem; /* Extra top padding for header bar */
   -webkit-overflow-scrolling: touch;
   position: relative;
+  overflow-x: hidden; /* Prevent horizontal scroll and black space */
+  /* Hide scrollbar in detail view too */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* Prevent content from showing outside during swipe */
+  contain: layout style paint;
+}
+
+.mobile-services-detail-content::-webkit-scrollbar {
+  display: none;
 }
 
 .mobile-services-detail-slide {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0;
+  /* Smooth slide animation */
+  will-change: transform, opacity;
+  /* Ensure content stays within bounds */
+  width: 100%;
+  position: relative;
+  /* Prevent content overflow */
+  overflow: hidden;
+  /* Content can be dragged horizontally */
+  cursor: grab;
+}
+
+.mobile-services-detail-slide:active {
+  cursor: grabbing;
+}
+
+/* Detail Header */
+.mobile-services-detail-header {
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-services-detail-badge {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 1rem;
 }
 
 .mobile-services-detail-title {
@@ -261,7 +436,25 @@
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1.2;
+  margin: 0 0 0.75rem 0;
+}
+
+.mobile-services-detail-tagline {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  opacity: 0.9;
+  line-height: 1.5;
   margin: 0;
+  font-style: italic;
+}
+
+/* Detail Body */
+.mobile-services-detail-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  animation: fadeInUp 0.6s ease-out 0.3s both;
 }
 
 .mobile-services-detail-description {
@@ -272,25 +465,210 @@
   margin: 0;
 }
 
-.mobile-services-detail-link {
-  margin-top: auto;
-  padding: 1rem 1.5rem;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  border-radius: 12px;
-  color: #6366f1;
+/* Detail Sections */
+.mobile-services-detail-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.mobile-services-detail-section {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: fadeInUp 0.5s ease-out both;
+}
+
+.mobile-services-detail-section:nth-of-type(1) {
+  animation-delay: 0.1s;
+}
+
+.mobile-services-detail-section:nth-of-type(2) {
+  animation-delay: 0.2s;
+}
+
+.mobile-services-detail-section:nth-of-type(3) {
+  animation-delay: 0.3s;
+}
+
+.mobile-services-detail-section:nth-of-type(4) {
+  animation-delay: 0.4s;
+}
+
+.mobile-services-detail-section:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.mobile-services-detail-section-title {
+  font-size: 1.25rem;
   font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.75rem 0;
+  line-height: 1.3;
+}
+
+.mobile-services-detail-section-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  opacity: 0.85;
+  margin: 0;
+}
+
+.mobile-services-detail-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mobile-services-detail-list li {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  opacity: 0.85;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.mobile-services-detail-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Approach Steps */
+.mobile-services-detail-approach-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.mobile-services-detail-approach-step {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 3px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.mobile-services-detail-approach-step:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-left-color: rgba(255, 255, 255, 0.4);
+}
+
+.mobile-services-detail-approach-step-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+.mobile-services-detail-approach-step-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  opacity: 0.85;
+  margin: 0;
+}
+
+/* FAQ Section */
+.mobile-services-detail-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.mobile-services-detail-faq-item {
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.mobile-services-detail-faq-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-services-detail-faq-question {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.75rem 0;
+  line-height: 1.4;
+}
+
+.mobile-services-detail-faq-answer {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  opacity: 0.85;
+  margin: 0;
+}
+
+/* CTA Section */
+.mobile-services-detail-cta-section {
+  padding: 2rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.mobile-services-detail-cta-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.mobile-services-detail-cta-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  opacity: 0.85;
+  margin: 0 0 1.5rem 0;
+}
+
+.mobile-services-detail-link {
+  padding: 1rem 2rem;
+  background: var(--text-primary);
+  border: 1px solid var(--text-primary);
+  border-radius: 12px;
+  color: var(--bg-primary);
+  font-weight: 600;
+  font-size: 1rem;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  align-self: flex-start;
+  align-self: center;
   transition: all 0.3s ease;
+  width: 100%;
+  justify-content: center;
+  max-width: 300px;
 }
 
 .mobile-services-detail-link:active {
   transform: scale(0.98);
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.9);
 }
 
 .mobile-services-detail-link span {
@@ -301,13 +679,156 @@
   transform: translateX(4px);
 }
 
+/* Responsive Detail Page */
+@media (max-width: 480px) {
+  .mobile-services-detail-header-bar {
+    padding: 0.75rem 0.75rem;
+  }
+
+  .mobile-services-detail-nav-button,
+  .mobile-services-detail-close {
+    width: 36px;
+    height: 36px;
+  }
+
+  .mobile-services-detail-content {
+    padding: 4rem 1.2rem 2rem; /* Adjusted for smaller header */
+  }
+
+  .mobile-services-detail-title {
+    font-size: 1.75rem;
+  }
+
+  .mobile-services-detail-tagline {
+    font-size: 1rem;
+  }
+
+  .mobile-services-detail-approach-step-title {
+    font-size: 0.95rem;
+  }
+
+  .mobile-services-detail-approach-step-text {
+    font-size: 0.85rem;
+  }
+
+  .mobile-services-detail-faq-question {
+    font-size: 0.95rem;
+  }
+
+  .mobile-services-detail-faq-answer {
+    font-size: 0.85rem;
+  }
+
+  .mobile-services-detail-description {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .mobile-services-detail-section {
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+
+  .mobile-services-detail-section-title {
+    font-size: 1.1rem;
+  }
+
+  .mobile-services-detail-section-text {
+    font-size: 0.9rem;
+  }
+
+  .mobile-services-detail-cta {
+    padding: 1.5rem 1.2rem;
+    border-radius: 16px;
+  }
+
+  .mobile-services-detail-cta-title {
+    font-size: 1.25rem;
+  }
+
+  .mobile-services-detail-cta-description {
+    font-size: 0.9rem;
+  }
+
+  .mobile-services-detail-link {
+    padding: 0.9rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .mobile-services-detail-close {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 375px) {
+  .mobile-services-detail-header-bar {
+    padding: 0.5rem 0.5rem;
+  }
+
+  .mobile-services-detail-nav-button,
+  .mobile-services-detail-close {
+    width: 32px;
+    height: 32px;
+  }
+
+  .mobile-services-detail-content {
+    padding: 3.5rem 1rem 1.5rem; /* Adjusted for smaller header */
+  }
+
+  .mobile-services-detail-title {
+    font-size: 1.5rem;
+  }
+
+  .mobile-services-detail-tagline {
+    font-size: 0.95rem;
+  }
+
+  .mobile-services-detail-approach-step-title {
+    font-size: 0.9rem;
+  }
+
+  .mobile-services-detail-approach-step-text {
+    font-size: 0.8rem;
+  }
+
+  .mobile-services-detail-faq-question {
+    font-size: 0.9rem;
+  }
+
+  .mobile-services-detail-faq-answer {
+    font-size: 0.8rem;
+  }
+
+  .mobile-services-detail-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .mobile-services-detail-body {
+    gap: 1.5rem;
+  }
+
+  .mobile-services-detail-sections {
+    gap: 1.5rem;
+  }
+
+  .mobile-services-detail-section {
+    padding: 1rem;
+  }
+}
+
 /* Indicators */
 .mobile-services-detail-indicators {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
   padding: 1rem 1.5rem;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .mobile-services-detail-indicator {
@@ -326,18 +847,7 @@
   opacity: 1;
   width: 24px;
   border-radius: 4px;
-  background: #6366f1;
-}
-
-/* Swipe Hint */
-.mobile-services-detail-swipe-hint {
-  text-align: center;
-  padding: 0.75rem;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  opacity: 0.6;
-  border-top: 1px solid var(--border-color);
-  display: none; /* Hide for now, can be enabled if needed */
+  background: var(--text-primary);
 }
 
 /* RTL Support */

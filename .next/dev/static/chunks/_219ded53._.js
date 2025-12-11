@@ -8,6 +8,7 @@ __turbopack_context__.s([
     "useLanguage",
     ()=>useLanguage
 ]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_async_to_generator$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@swc/helpers/esm/_async_to_generator.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_sliced_to_array$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@swc/helpers/esm/_sliced_to_array.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_type_of$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@swc/helpers/esm/_type_of.js [app-client] (ecmascript)");
@@ -160,7 +161,9 @@ var LanguageProvider = function(param) {
                                             ];
                                         case 10:
                                             error = _state.sent();
-                                            console.error('Failed to load translations:', error);
+                                            if ("TURBOPACK compile-time truthy", 1) {
+                                                console.error('Failed to load translations:', error);
+                                            }
                                             return [
                                                 3,
                                                 11
@@ -313,14 +316,14 @@ var LanguageProvider = function(param) {
                                         children: detectedLang.toUpperCase()
                                     }, void 0, false, {
                                         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                        lineNumber: 166,
+                                        lineNumber: 170,
                                         columnNumber: 47
                                     }, _this),
                                     ". Continue?"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                lineNumber: 166,
+                                lineNumber: 170,
                                 columnNumber: 15
                             }, _this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -334,7 +337,7 @@ var LanguageProvider = function(param) {
                                         children: "Yes"
                                     }, void 0, false, {
                                         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                        lineNumber: 168,
+                                        lineNumber: 172,
                                         columnNumber: 17
                                     }, _this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -345,35 +348,35 @@ var LanguageProvider = function(param) {
                                         children: "English"
                                     }, void 0, false, {
                                         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                        lineNumber: 174,
+                                        lineNumber: 178,
                                         columnNumber: 17
                                     }, _this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                lineNumber: 167,
+                                lineNumber: 171,
                                 columnNumber: 15
                             }, _this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                        lineNumber: 165,
+                        lineNumber: 169,
                         columnNumber: 13
                     }, _this)
                 }, void 0, false, {
                     fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                    lineNumber: 159,
+                    lineNumber: 163,
                     columnNumber: 11
                 }, _this)
             }, void 0, false, {
                 fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                lineNumber: 157,
+                lineNumber: 161,
                 columnNumber: 7
             }, _this)
         ]
     }, void 0, true, {
         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-        lineNumber: 146,
+        lineNumber: 150,
         columnNumber: 5
     }, _this);
 };

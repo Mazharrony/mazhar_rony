@@ -200,6 +200,7 @@ p {
   cursor: pointer;
   transition: var(--transition);
   white-space: nowrap;
+  -webkit-user-select: none;
   user-select: none;
   border: none;
   border-radius: 999px;

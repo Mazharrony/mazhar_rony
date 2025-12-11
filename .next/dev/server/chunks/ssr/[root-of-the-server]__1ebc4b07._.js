@@ -68,7 +68,9 @@ const LanguageProvider = ({ children })=>{
                 }
                 setTranslations(loadedTranslations);
             } catch (error) {
-                console.error('Failed to load translations:', error);
+                if ("TURBOPACK compile-time truthy", 1) {
+                    console.error('Failed to load translations:', error);
+                }
             }
         };
         loadTranslations().then(()=>{
@@ -171,14 +173,14 @@ const LanguageProvider = ({ children })=>{
                                         children: detectedLang.toUpperCase()
                                     }, void 0, false, {
                                         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                        lineNumber: 166,
+                                        lineNumber: 170,
                                         columnNumber: 47
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     ". Continue?"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                lineNumber: 166,
+                                lineNumber: 170,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -190,7 +192,7 @@ const LanguageProvider = ({ children })=>{
                                         children: "Yes"
                                     }, void 0, false, {
                                         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                        lineNumber: 168,
+                                        lineNumber: 172,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -199,35 +201,35 @@ const LanguageProvider = ({ children })=>{
                                         children: "English"
                                     }, void 0, false, {
                                         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                        lineNumber: 174,
+                                        lineNumber: 178,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                lineNumber: 167,
+                                lineNumber: 171,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                        lineNumber: 165,
+                        lineNumber: 169,
                         columnNumber: 13
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                    lineNumber: 159,
+                    lineNumber: 163,
                     columnNumber: 11
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                lineNumber: 157,
+                lineNumber: 161,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-        lineNumber: 146,
+        lineNumber: 150,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };

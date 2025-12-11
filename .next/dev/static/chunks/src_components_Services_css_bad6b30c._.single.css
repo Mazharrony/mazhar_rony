@@ -1,4 +1,47 @@
 /* [project]/src/components/Services.css [app-client] (css) */
+@media (max-width: 768px) {
+  .services-section {
+    padding: 5rem 0;
+  }
+
+  .services-viewport {
+    -webkit-overflow-scrolling: touch;
+    margin-top: 2.5rem;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-bottom: 1rem;
+    padding-left: 16px;
+    padding-right: 16px;
+    overflow-x: auto;
+  }
+
+  .services-strip {
+    scroll-snap-type: x mandatory;
+    flex-direction: row;
+    gap: 16px;
+    padding-bottom: 8px;
+    display: flex;
+  }
+
+  .service-card {
+    scroll-snap-align: start;
+    border-radius: 20px;
+    min-width: 80vw;
+    max-width: 90vw;
+    padding: 1.5rem 1.6rem;
+    box-shadow: 0 6px 32px #0000002e;
+  }
+
+  .service-card:active {
+    transform: scale(.98);
+    box-shadow: 0 2px 12px #0000001f;
+  }
+
+  .services-title {
+    font-size: 1.8rem;
+  }
+}
+
 .services-section {
   background: var(--bg-primary);
   transition: background-color var(--theme-transition-duration) var(--theme-transition-easing);
@@ -78,12 +121,15 @@
 
 .services-strip {
   will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
   gap: 1.5rem;
   display: inline-flex;
   transform: translate3d(0, 0, 0);
 }
 
 .service-card {
+  -webkit-backdrop-filter: blur(8px);
   background: linear-gradient(135deg, #ffffff06, #ffffff02);
   border: 1px solid #ffffff0f;
   border-radius: 26px;
@@ -92,7 +138,7 @@
   min-width: 320px;
   max-width: 360px;
   padding: 1.8rem 1.9rem;
-  transition: all .35s cubic-bezier(.17, .67, .3, 1);
+  transition: all .4s cubic-bezier(.17, .67, .3, 1);
   display: flex;
   position: relative;
   overflow: hidden;
@@ -143,9 +189,9 @@
 }
 
 .service-card:hover {
-  border-color: #ffffff14;
-  transform: translateY(-4px);
-  box-shadow: 0 24px 60px #0000001f;
+  border-color: #ffffff1f;
+  transform: translateY(-6px)scale(1.02);
+  box-shadow: 0 28px 70px #00000026;
 }
 
 .service-card:hover:before {
@@ -157,26 +203,11 @@
   transform: translateX(4px);
 }
 
-@media (max-width: 768px) {
-  .services-section {
-    padding: 5rem 0;
-  }
-
-  .services-viewport {
-    margin-top: 2.5rem;
-  }
-
-  .service-card {
-    min-width: 260px;
-    padding: 1.5rem 1.6rem;
-  }
-
-  .services-title {
-    font-size: 1.8rem;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
+  .service-card, .service-card:before, .service-card-link {
+    transition: none;
+  }
+
   .services-strip {
     transition: none !important;
     transform: translate3d(0, 0, 0) !important;
