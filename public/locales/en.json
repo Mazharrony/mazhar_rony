@@ -468,6 +468,34 @@
           {"icon": "📊", "title": "Analytics & Insights", "detail": "Measure growth, refine strategy, and track KPIs.", "accent": "#f59e0b"},
           {"icon": "🚀", "title": "Paid Boosting", "detail": "Amplify top-performing content for wider reach.", "accent": "#10b981"},
           {"icon": "🤝", "title": "Community Engagement", "detail": "Manage comments, messages, and interactions.", "accent": "#f97316"}
+        ],
+        "stats": [
+          {"icon": "📈", "value": 250, "suffix": "%", "label": "Average Growth", "description": "Increase in engagement rates", "accent": "#6366f1"},
+          {"icon": "👥", "value": 2, "suffix": "M+", "label": "Total Reach", "description": "People reached across campaigns", "accent": "#a855f7"},
+          {"icon": "💰", "value": 180, "suffix": "%", "label": "ROI Improvement", "description": "Average return on ad spend", "accent": "#10b981"},
+          {"icon": "⚡", "value": 48, "suffix": "hrs", "label": "Response Time", "description": "Average engagement response", "accent": "#f59e0b"}
+        ],
+        "testimonials": [
+          {"quote": "Our Instagram engagement tripled in just 3 months. The content strategy was spot-on and the community management made all the difference.", "name": "Sarah Ahmed", "role": "Marketing Director", "company": "Fitness Brand Dubai", "initials": "SA", "accent": "#6366f1"},
+          {"quote": "Finally, someone who gets it. No fluff, just results. Our follower growth and conversion rates have never been better.", "name": "Mohammed Al-Rashid", "role": "Founder", "company": "E-commerce Startup", "initials": "MR", "accent": "#a855f7"},
+          {"quote": "The team transformed our social presence completely. Professional, creative, and they actually understand our brand voice.", "name": "Emma Thompson", "role": "Brand Manager", "company": "Lifestyle Brand", "initials": "ET", "accent": "#10b981"}
+        ],
+        "techStack": [
+          {"name": "Instagram", "description": "Primary platform management", "icon": "📷"},
+          {"name": "TikTok", "description": "Short-form video content", "icon": "🎵"},
+          {"name": "Facebook", "description": "Community & ad management", "icon": "👥"},
+          {"name": "Canva Pro", "description": "Design & asset creation", "icon": "🎨"},
+          {"name": "CapCut", "description": "Video editing & production", "icon": "✂️"},
+          {"name": "Meta Business", "description": "Analytics & insights", "icon": "📊"}
+        ],
+        "caseStudies": [
+          {"title": "Fitness Brand Transformation", "category": "Social Media", "description": "Complete Instagram overhaul for a supplement brand, resulting in 300% engagement increase and 2M+ viral frame reach.", "image": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", "results": [{"value": "300%", "label": "Engagement Increase"}, {"value": "2M+", "label": "Viral Reach"}, {"value": "45%", "label": "Conversion Rate"}]},
+          {"title": "E-commerce Social Strategy", "category": "Content Strategy", "description": "Multi-platform content strategy that increased profile visits by 250% and drove 40% more website traffic.", "image": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)", "results": [{"value": "250%", "label": "Profile Visits"}, {"value": "40%", "label": "Website Traffic"}, {"value": "180%", "label": "ROAS"}]}
+        ],
+        "relatedServices": [
+          {"title": "Content & Video Production", "description": "Create scroll-stopping videos and visuals that complement your social strategy.", "icon": "🎬", "href": "/services/content-video-production", "accent": "#a855f7"},
+          {"title": "Google & Meta Ads", "description": "Amplify your best content with targeted paid campaigns that convert.", "icon": "📢", "href": "/services/google-meta-ads", "accent": "#6366f1"},
+          {"title": "Brand Strategy & Design", "description": "Build a cohesive brand identity that works across all social platforms.", "icon": "🎨", "href": "/services/brand-strategy-design", "accent": "#10b981"}
         ]
       },
       "contentVideo": {
@@ -695,52 +723,225 @@
         "success": "✓ Meeting request sent! I'll confirm via email.",
         "error": "Something went wrong. Please try again."
       }
+    },
+    "scheduler": {
+      "title": "Let's Schedule a Meeting",
+      "subtitle": "I'll help you find the perfect time",
+      "greeting": "Hi there! 👋 I'm here to help you schedule a meeting with Mazhar. Let's start with your name - what should I call you?",
+      "askEmail": "Nice to meet you, {{name}}! What's your email address?",
+      "invalidEmail": "Hmm, that doesn't look like a valid email. Could you try again?",
+      "askProject": "Great! Now, what type of project are you interested in?",
+      "projectOptions": {
+        "website": "Website Development",
+        "marketing": "Marketing & Social Media",
+        "branding": "Branding & Design",
+        "other": "Something Else"
+      },
+      "askProjectDetails": "Tell me more about your project. What are you looking to achieve?",
+      "askUrgency": "Got it! How urgent is this project?",
+      "urgencyOptions": {
+        "low": "Low - Just exploring options",
+        "normal": "Normal - Planning ahead",
+        "high": "High - Need to start soon"
+      },
+      "askBudget": "What's your budget range? (Don't worry, this helps me understand the scope)",
+      "budgetOptions": {
+        "small": "Small Budget",
+        "medium": "Medium Budget",
+        "large": "Large Budget",
+        "discuss": "Prefer to Discuss"
+      },
+      "askDate": "Perfect! When would you like to schedule our meeting?",
+      "askTime": "What time works best for you?",
+      "askDuration": "How long should we plan for?",
+      "durationOptions": {
+        "30min": "30 minutes",
+        "60min": "1 hour",
+        "90min": "1.5 hours"
+      },
+      "askTimezone": "What's your timezone?",
+      "askAdditionalNotes": "Any additional notes or questions you'd like to share?",
+      "submitting": "Perfect! I'm submitting your meeting request now...",
+      "success": "🎉 All set! Your meeting request has been sent. Mazhar will confirm the details via email soon. Looking forward to connecting!",
+      "inputPlaceholder": {
+        "text": "Type your response...",
+        "email": "your.email@example.com",
+        "textarea": "Share your thoughts...",
+        "timezone": "Select your timezone"
+      }
     }
   },
   "aboutPage": {
+    "hero": {
+      "label": "About"
+    },
     "title": "If You're Curious, Start Here.",
-    "subtitle": "A quiet story about how I learned to create.",
+    "subtitle": "A quiet story about how a boy with a hand-me-down laptop learned to create a life of his own.",
+    "stats": {
+      "title": "By The Numbers",
+      "list": [
+        {
+          "icon": "🎯",
+          "value": "50+",
+          "label": "Projects Completed"
+        },
+        {
+          "icon": "📈",
+          "value": "2M+",
+          "label": "Reach Generated"
+        },
+        {
+          "icon": "🏆",
+          "value": "4",
+          "label": "Brands Managed"
+        },
+        {
+          "icon": "⏱️",
+          "value": "12+",
+          "label": "Years Learning"
+        }
+      ]
+    },
     "identity": {
-      "body1": "I'm a multi-skill creative who works across design, branding, content, marketing, and web. Not because I wanted to master everything, but because curiosity kept pulling me deeper.",
-      "body2": "I value calm energy over chaos, honesty over hype, and always learning over pretending I know it all. Every project is a chance to create something that feels real and alive."
+      "title": "Who I Am",
+      "body1": "I'm a multi-skill creative — someone who works across design, branding, content, marketing, web, and AI-assisted work.",
+      "body2": "Not because I wanted to master everything. But because curiosity kept pulling me forward.",
+      "body3": "One question led to another. One tool led to another. One challenge opened the door to the next.",
+      "body4": "I value calm energy over chaos, clarity over noise, and honesty over performance.",
+      "body5": "I'm not interested in pretending to know everything. But I care deeply about the work. I care about meaning. I care about building things that feel alive, warm, and human.",
+      "body6": "Every project is not just a task — it's a small universe where creativity, strategy, and feeling meet each other quietly.",
+      "body7": "That's who I am. Someone who creates with intention, curiosity, and a quiet hunger to understand more."
     },
     "story": {
-      "intro": "I grew up in a quiet village where internet was slow and dreams felt distant. My uncle worked as a cleaner in Dubai. One day, he sent me a laptop—an old one, but it changed everything.",
-      "laptop": "I found a small studio nearby and asked them to teach me Photoshop. They let me watch, practice, and slowly figure things out. I spent hours experimenting, failing, and trying again.",
-      "smartphone": "Then the laptop died. I couldn't afford a new one, so I started editing on my smartphone—small screen, slow apps, but I kept going. It felt impossible, but giving up felt worse.",
-      "freelance": "Eventually, my father, working abroad, sent me a new laptop. I started taking small freelance projects—social media posts, simple designs. Nothing huge, but it felt like progress.",
-      "viral": "One day, I created a Facebook frame for a local campaign. It went viral—over 2 million people used it. Suddenly, people knew my work. It felt surreal.",
-      "agency": "I joined a local marketing agency and later started a small printing business. Things were moving. I was learning fast, working hard, and building something.",
-      "covid": "Then COVID hit. The agency shut down. My restaurant venture failed. Everything I built started crumbling. We sold our family cow to raise money for my ticket to Dubai.",
-      "dubai": "I arrived in Dubai with hope and uncertainty. It took 1 month and 17 days to land my first job. Some workplaces inspired me. Others drained me. But every experience taught me something.",
-      "today": "Today, I'm still learning, still creating, still figuring things out. I don't claim to have all the answers. But I know how to care about the work, show up with honesty, and keep moving forward."
+      "title": "The Journey",
+      "intro": "I grew up in a small village — the kind where evenings move slowly, where people know each other's footsteps, and where dreams feel like faraway cities with unreachable skylines.",
+      "laptop": "My uncle worked in Dubai as a cleaner. One day, he sent me a laptop — old, heavy, slow, almost broken. But to me, it was everything. That single moment opened a crack in the universe.",
+      "studio": "There was a small photo studio in the market. I would stand at the door and watch them edit pictures. Eventually, I asked, 'Can you teach me?' They didn't laugh. They didn't dismiss me. They simply said, 'Sit. Watch. Learn.'",
+      "learning": "So I watched. Then practiced. Then experimented. Then failed. Then tried again. Learning became my escape — my quiet rebellion against limitations.",
+      "smartphone": "And then, the laptop died. We couldn't afford a replacement. So I switched to my smartphone — editing on a tiny screen, using slow apps, fighting lag and limitations every day. But even then, I couldn't stop. Curiosity kept pushing me forward.",
+      "freelance": "Later, my father — working abroad and fighting his own battles — sent me money for a new laptop. With that, another chapter began. I took small freelance jobs, built simple posts, designed local graphics. Every small task felt like a step forward.",
+      "viral": "Then one day, I created a Facebook frame for a local campaign. It went viral — over two million people used it. I couldn't believe what I was seeing. My small creation had reached a world I had never seen.",
+      "agency": "After working small freelance jobs and gaining momentum, I eventually joined a local marketing agency. It became my real training ground — a place where I learned branding, social content, client communication, and the early foundation of creative strategy. For the first time, I felt like my skills were becoming something real, something useful.",
+      "agencyStruggle": "But life isn't a straight line. The agency started to struggle. Budgets dropped, clients left, and slowly, the work dried up. Eventually, the agency had to shut down completely. I suddenly found myself without a job — and with a family depending on me.",
+      "restaurant": "Out of responsibility, not ambition, I decided to start a restaurant business. It wasn't my dream, but it was a way to support my family, to survive, to keep moving. I learned cooking, sourcing, delivery, customer service — everything I had never imagined I'd do. For a while, it worked. Not perfectly, not smoothly, but enough to keep us going.",
+      "covid": "And then COVID happened. In a matter of weeks, the restaurant fell apart. Customers disappeared. Expenses didn't. The economy collapsed. And with it, everything I had built collapsed too. Debt grew. Pressure grew. Reality pushed harder than ever.",
+      "dubai": "It reached a point where staying wasn't an option anymore. I needed to try again — somewhere bigger, somewhere with opportunity. My family made a painful decision: we sold our last cow to buy my ticket to Dubai. It wasn't dramatic. It was quiet. It was heavy. It was full of hope and heartbreak tangled together. I left home with a small bag, a bigger dream, and the weight of my family's trust on my shoulders."
+    },
+    "dubai": {
+      "title": "Dubai — The Chapter That Changed Everything",
+      "intro": "Dubai didn't make life easy. But it made possibilities bigger.",
+      "tools": "For the first time in my life, I had: fast internet, good tools and modern software, a powerful computer, and an environment that didn't limit my curiosity.",
+      "learning": "I learned more in those first months than I had learned in years. I learned because I finally had the tools. I learned because the world finally felt reachable. I learned because curiosity evolved into hunger — the hunger to grow, to understand, to build, to become.",
+      "routine": "My routine was simple and brutal: Full-time job by day. Freelancing by night. Learning everywhere in between.",
+      "growth": "Days turned into weeks. Weeks into months. Months into years. All filled with learning — not for certificates, not for approval, but for the joy of understanding.",
+      "change": "Dubai didn't hand me success. But it gave me the environment where curiosity could breathe freely for the first time. And that changed everything.",
+      "today": "I began shaping brands, designing systems, building websites, improving marketing strategies, editing videos, solving creative problems — and discovering that creativity is limitless when you nurture it with intention. I'm still learning. Still improving. Still growing into the person I once hoped I could be. I don't have all the answers. But I have enough curiosity to keep searching."
+    },
+    "skills": {
+      "title": "Core Expertise",
+      "list": [
+        {
+          "name": "Digital Marketing",
+          "level": "Expert",
+          "category": "Strategy & Execution"
+        },
+        {
+          "name": "Brand Design",
+          "level": "Advanced",
+          "category": "Visual Identity"
+        },
+        {
+          "name": "Video Production",
+          "level": "Advanced",
+          "category": "Content Creation"
+        },
+        {
+          "name": "Web Development",
+          "level": "Intermediate",
+          "category": "Frontend & CMS"
+        },
+        {
+          "name": "Social Media",
+          "level": "Expert",
+          "category": "Content & Growth"
+        },
+        {
+          "name": "Performance Ads",
+          "level": "Expert",
+          "category": "Google & Meta"
+        }
+      ]
+    },
+    "philosophy": {
+      "title": "My Approach",
+      "list": [
+        {
+          "icon": "🎨",
+          "title": "Creative First",
+          "description": "Every project starts with understanding the story. Design and strategy follow naturally when you know what you're trying to say."
+        },
+        {
+          "icon": "📊",
+          "title": "Data-Informed",
+          "description": "I believe in the power of data, but never at the expense of creativity. The best work balances intuition with insights."
+        },
+        {
+          "icon": "🤝",
+          "title": "Collaborative",
+          "description": "Great work happens when everyone feels heard. I value open communication and honest feedback throughout the process."
+        },
+        {
+          "icon": "⚡",
+          "title": "Results-Driven",
+          "description": "Beautiful work means nothing if it doesn't move the needle. I focus on outcomes that matter to your business."
+        }
+      ]
     },
     "beliefs": {
-      "title": "What I Believe In",
-      "list": [
-        "Creativity over formality",
-        "Kindness over pressure",
-        "Softness over noise",
-        "Stories over slogans",
-        "Care over speed",
-        "Emotion + logic together"
-      ]
+      "title": "What I Believe",
+      "intro": "These beliefs guide everything I create. They are not rules, but quiet principles that shape the way I see design, work, and the world.",
+      "body1": "I believe creativity should feel human, not mechanical.",
+      "body2": "I believe good design is felt first, understood second.",
+      "body3": "I believe clarity is more powerful than noise.",
+      "body4": "I believe curiosity grows ideas, while pressure kills them.",
+      "body5": "And I believe people remember how something made them feel, far more than the metrics behind it.",
+      "closing": "These are the foundations of my work — simple, honest, and intentional."
     },
     "howIWork": {
       "title": "How I Work",
+      "intro": "I work quietly, thoughtfully, and with intention.",
+      "intro2": "I don't chase chaos; I protect calm environments where ideas can breathe.",
+      "beliefs": "I believe in:",
       "list": [
-        "Calm thinking before fast execution",
-        "Out-of-the-box ideas that feel grounded",
-        "No fake professionalism—just real conversations",
-        "Clear explanations without the jargon",
-        "Design that feels alive, not just polished",
-        "Fast when needed, thoughtful always"
-      ]
+        "clear and respectful communication",
+        "simple processes",
+        "meaningful decisions",
+        "empathy in problem-solving",
+        "designing solutions that actually help people"
+      ],
+      "philosophy": "I refine until things feel right.",
+      "philosophy2": "I simplify until they feel effortless.",
+      "philosophy3": "I design with emotion, clarity, and purpose.",
+      "principles": "I don't decorate.",
+      "principles2": "I design.",
+      "principles3": "I don't rush.",
+      "principles4": "I refine.",
+      "closing": "This is my approach — slow enough to think, fast enough to execute, always focused on what truly matters."
+    },
+    "whatIBuild": {
+      "title": "What I Want to Build",
+      "intro": "I want to build work that feels alive — brands with personality, websites with warmth, and stories that stay in the mind long after someone closes the tab.",
+      "body": "I want to craft experiences that feel human, intentional, and quietly powerful.",
+      "closing": "Most importantly, I want to work with people who care — people who value meaning over noise, clarity over chaos, and creativity that makes a difference.",
+      "final": "Together, we can create something that truly matters."
     },
     "closing": {
-      "line1": "If any part of this journey feels familiar to you,",
-      "line2": "maybe we can create something meaningful together.",
-      "cta": "maybe."
+      "title": "If You're Still Here",
+      "line1": "Maybe you saw a part of yourself in my story.",
+      "line2": "Maybe you understand the quiet hunger to grow and create.",
+      "line3": "Maybe you're here because you want to build something meaningful too.",
+      "line4": "If so — maybe we can create something together.",
+      "cta": "Let's talk"
     }
   },
   "tools": {

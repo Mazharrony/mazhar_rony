@@ -9,6 +9,7 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (key: string) => string;
+  tObject: (key: string) => any;
   showConfirmation: boolean;
   detectedLanguage: Language | null;
   confirmLanguage: (lang: Language) => void;
@@ -192,11 +193,43 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     return result;
   };
 
+  // Helper function to get objects/arrays from translations
+  const tObject = (key: string): any => {
+    const keys = key.split('.');
+    let value: any = translations[language];
+    
+    for (const k of keys) {
+      if (value && typeof value === 'object') {
+        value = value[k];
+      } else {
+        value = undefined;
+        break;
+      }
+    }
+    
+    // Fallback to English if not found
+    if (value === undefined) {
+      let fallback: any = translations['en'];
+      for (const k of keys) {
+        if (fallback && typeof fallback === 'object') {
+          fallback = fallback[k];
+        } else {
+          fallback = undefined;
+          break;
+        }
+      }
+      value = fallback;
+    }
+    
+    return value;
+  };
+
   return (
     <LanguageContext.Provider value={{ 
       language, 
       setLanguage, 
       t,
+      tObject,
       showConfirmation,
       detectedLanguage: detectedLang,
       confirmLanguage,

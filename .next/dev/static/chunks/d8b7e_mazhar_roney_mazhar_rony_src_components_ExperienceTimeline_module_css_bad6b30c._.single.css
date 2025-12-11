@@ -1,0 +1,424 @@
+/* [project]/mazhar_rony/mazhar_roney/mazhar_rony/src/components/ExperienceTimeline.module.css [app-client] (css) */
+.ExperienceTimeline-module__K5La7a__section {
+  background: var(--bg-primary);
+  padding: 120px 0;
+  position: relative;
+}
+
+.ExperienceTimeline-module__K5La7a__section[data-rtl="true"] {
+  direction: rtl;
+}
+
+.ExperienceTimeline-module__K5La7a__header {
+  text-align: center;
+  max-width: 800px;
+  margin-bottom: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ExperienceTimeline-module__K5La7a__eyebrow {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  font-size: .95rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.ExperienceTimeline-module__K5La7a__title {
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.ExperienceTimeline-module__K5La7a__subtitle {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  line-height: 1.7;
+}
+
+.ExperienceTimeline-module__K5La7a__timelineWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+}
+
+.ExperienceTimeline-module__K5La7a__timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+
+.ExperienceTimeline-module__K5La7a__timeline:before {
+  content: "";
+  background: linear-gradient(to bottom, transparent, var(--border-color) 10%, var(--border-color) 90%, transparent);
+  z-index: 0;
+  width: 2px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ExperienceTimeline-module__K5La7a__section[data-rtl="true"] .ExperienceTimeline-module__K5La7a__timeline:before {
+  left: auto;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.ExperienceTimeline-module__K5La7a__timelineItem {
+  z-index: 1;
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.ExperienceTimeline-module__K5La7a__timelineItem:last-child {
+  margin-bottom: 0;
+}
+
+.ExperienceTimeline-module__K5La7a__timelineItem:before {
+  content: "";
+  background: var(--bg-primary);
+  border: 3px solid var(--border-color);
+  z-index: 2;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  transition: all .4s cubic-bezier(.16, 1, .3, 1);
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ExperienceTimeline-module__K5La7a__section[data-rtl="true"] .ExperienceTimeline-module__K5La7a__timelineItem:before {
+  left: auto;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.ExperienceTimeline-module__K5La7a__timelineItem[data-visible="true"]:before {
+  border-color: #6366f1;
+  animation: 2s ease-in-out infinite ExperienceTimeline-module__K5La7a__pulse;
+  box-shadow: 0 0 0 4px #6366f11a, 0 0 20px #6366f14d;
+}
+
+@keyframes ExperienceTimeline-module__K5La7a__pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 4px #6366f11a, 0 0 20px #6366f14d;
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px #6366f10d, 0 0 30px #6366f166;
+  }
+}
+
+.ExperienceTimeline-module__K5La7a__card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  border-radius: 20px;
+  width: calc(50% - 48px);
+  padding: 32px;
+  transition: all .6s cubic-bezier(.16, 1, .3, 1);
+  position: relative;
+  transform: translateY(24px)scale(.98);
+  box-shadow: 0 4px 20px #0000000f;
+}
+
+.ExperienceTimeline-module__K5La7a__timelineItem[data-visible="true"] .ExperienceTimeline-module__K5La7a__card {
+  opacity: 1;
+  transform: translateY(0)scale(1);
+}
+
+.ExperienceTimeline-module__K5La7a__timelineItem[data-side="left"] .ExperienceTimeline-module__K5La7a__card {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.ExperienceTimeline-module__K5La7a__timelineItem[data-side="right"] .ExperienceTimeline-module__K5La7a__card, .ExperienceTimeline-module__K5La7a__section[data-rtl="true"] .ExperienceTimeline-module__K5La7a__timelineItem[data-side="left"] .ExperienceTimeline-module__K5La7a__card {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.ExperienceTimeline-module__K5La7a__section[data-rtl="true"] .ExperienceTimeline-module__K5La7a__timelineItem[data-side="right"] .ExperienceTimeline-module__K5La7a__card {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.App.dark .ExperienceTimeline-module__K5La7a__card {
+  background: #1e293b99;
+  border-color: #ffffff1a;
+  box-shadow: 0 4px 20px #0000004d;
+}
+
+.App.dark .ExperienceTimeline-module__K5La7a__card:hover {
+  border-color: #6366f14d;
+  box-shadow: 0 8px 32px #6366f126;
+}
+
+.ExperienceTimeline-module__K5La7a__card:hover {
+  border-color: #6366f133;
+  transform: translateY(-4px)scale(1.01);
+  box-shadow: 0 8px 32px #0000001f;
+}
+
+.ExperienceTimeline-module__K5La7a__timelineItem[data-visible="true"] .ExperienceTimeline-module__K5La7a__card:hover {
+  transform: translateY(-4px)scale(1.01);
+}
+
+.ExperienceTimeline-module__K5La7a__metaRow {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  display: flex;
+}
+
+.ExperienceTimeline-module__K5La7a__badge {
+  color: #6366f1;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #6366f11a, #8b5cf61a);
+  border: 1px solid #6366f133;
+  border-radius: 999px;
+  align-items: center;
+  padding: 6px 14px;
+  font-size: .85rem;
+  font-weight: 600;
+  display: inline-flex;
+}
+
+.ExperienceTimeline-module__K5La7a__period {
+  color: var(--text-secondary);
+  font-size: .9rem;
+  font-weight: 500;
+}
+
+.ExperienceTimeline-module__K5La7a__role {
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.ExperienceTimeline-module__K5La7a__companyRow {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  display: flex;
+}
+
+.ExperienceTimeline-module__K5La7a__company {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.ExperienceTimeline-module__K5La7a__location {
+  color: var(--text-secondary);
+  padding-left: 12px;
+  font-size: .95rem;
+  position: relative;
+}
+
+.ExperienceTimeline-module__K5La7a__location:before {
+  content: "•";
+  color: var(--text-secondary);
+  opacity: .5;
+  position: absolute;
+  left: 0;
+}
+
+.ExperienceTimeline-module__K5La7a__section[data-rtl="true"] .ExperienceTimeline-module__K5La7a__location {
+  padding-left: 0;
+  padding-right: 12px;
+}
+
+.ExperienceTimeline-module__K5La7a__section[data-rtl="true"] .ExperienceTimeline-module__K5La7a__location:before {
+  left: auto;
+  right: 0;
+}
+
+.ExperienceTimeline-module__K5La7a__summary {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.ExperienceTimeline-module__K5La7a__highlights {
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.ExperienceTimeline-module__K5La7a__highlightItem {
+  color: var(--text-secondary);
+  align-items: flex-start;
+  gap: 12px;
+  font-size: .95rem;
+  line-height: 1.6;
+  display: flex;
+}
+
+.ExperienceTimeline-module__K5La7a__bullet {
+  background: #6366f1;
+  border-radius: 50%;
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: 8px;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .ExperienceTimeline-module__K5La7a__section {
+    padding: 80px 0;
+  }
+
+  .ExperienceTimeline-module__K5La7a__header {
+    margin-bottom: 60px;
+    padding: 0 20px;
+  }
+
+  .ExperienceTimeline-module__K5La7a__title {
+    font-size: 2rem;
+  }
+
+  .ExperienceTimeline-module__K5La7a__subtitle {
+    font-size: 1.1rem;
+  }
+
+  .ExperienceTimeline-module__K5La7a__timelineWrapper {
+    padding: 0 20px;
+  }
+
+  .ExperienceTimeline-module__K5La7a__timeline:before {
+    left: 24px;
+    transform: none;
+  }
+
+  .ExperienceTimeline-module__K5La7a__section[data-rtl="true"] .ExperienceTimeline-module__K5La7a__timeline:before {
+    left: auto;
+    right: 24px;
+    transform: none;
+  }
+
+  .ExperienceTimeline-module__K5La7a__timelineItem:before {
+    left: 24px;
+    transform: translateX(-50%);
+  }
+
+  .ExperienceTimeline-module__K5La7a__section[data-rtl="true"] .ExperienceTimeline-module__K5La7a__timelineItem:before {
+    left: auto;
+    right: 24px;
+    transform: translateX(50%);
+  }
+
+  .ExperienceTimeline-module__K5La7a__card {
+    width: 100%;
+    padding: 24px;
+    margin-left: 48px !important;
+    margin-right: 0 !important;
+  }
+
+  .ExperienceTimeline-module__K5La7a__section[data-rtl="true"] .ExperienceTimeline-module__K5La7a__card {
+    margin-left: 0 !important;
+    margin-right: 48px !important;
+  }
+
+  .ExperienceTimeline-module__K5La7a__timelineItem {
+    margin-bottom: 60px;
+  }
+
+  .ExperienceTimeline-module__K5La7a__role {
+    font-size: 1.3rem;
+  }
+
+  .ExperienceTimeline-module__K5La7a__company {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ExperienceTimeline-module__K5La7a__section {
+    padding: 60px 0;
+  }
+
+  .ExperienceTimeline-module__K5La7a__header {
+    margin-bottom: 48px;
+  }
+
+  .ExperienceTimeline-module__K5La7a__title {
+    font-size: 1.75rem;
+  }
+
+  .ExperienceTimeline-module__K5La7a__subtitle {
+    font-size: 1rem;
+  }
+
+  .ExperienceTimeline-module__K5La7a__card {
+    padding: 20px;
+    margin-left: 40px !important;
+  }
+
+  .ExperienceTimeline-module__K5La7a__section[data-rtl="true"] .ExperienceTimeline-module__K5La7a__card {
+    margin-right: 40px !important;
+  }
+
+  .ExperienceTimeline-module__K5La7a__timeline:before {
+    left: 20px;
+  }
+
+  .ExperienceTimeline-module__K5La7a__section[data-rtl="true"] .ExperienceTimeline-module__K5La7a__timeline:before {
+    right: 20px;
+  }
+
+  .ExperienceTimeline-module__K5La7a__timelineItem:before {
+    left: 20px;
+  }
+
+  .ExperienceTimeline-module__K5La7a__section[data-rtl="true"] .ExperienceTimeline-module__K5La7a__timelineItem:before {
+    right: 20px;
+  }
+
+  .ExperienceTimeline-module__K5La7a__metaRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .ExperienceTimeline-module__K5La7a__companyRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .ExperienceTimeline-module__K5La7a__location {
+    padding-left: 0;
+  }
+
+  .ExperienceTimeline-module__K5La7a__section[data-rtl="true"] .ExperienceTimeline-module__K5La7a__location {
+    padding-right: 0;
+  }
+
+  .ExperienceTimeline-module__K5La7a__location:before {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=d8b7e_mazhar_roney_mazhar_rony_src_components_ExperienceTimeline_module_css_bad6b30c._.single.css.map*/

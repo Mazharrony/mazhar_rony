@@ -151,6 +151,7 @@ const Hero: React.FC = () => {
             </motion.span>
             
             <motion.h1
+              className="gradient-text"
               initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
               animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 40, filter: 'blur(8px)' }}
               transition={{ delay: 0.3, duration: 0.75, ease: [0.22, 1, 0.36, 1] }}

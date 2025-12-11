@@ -1,48 +1,48 @@
 globalThis.__BUILD_MANIFEST = {
   "pages": {
     "/_app": [
-      "static/chunks/node_modules_next_dist_compiled_8ca6b690._.js",
-      "static/chunks/node_modules_next_dist_shared_lib_82dc2e9d._.js",
-      "static/chunks/node_modules_next_dist_client_d0aa886c._.js",
-      "static/chunks/node_modules_next_dist_b0a279d5._.js",
-      "static/chunks/node_modules_next_app_72f3d36f.js",
-      "static/chunks/[next]_entry_page-loader_ts_742e4b53._.js",
-      "static/chunks/node_modules_react-dom_4411d9bd._.js",
-      "static/chunks/node_modules_8d9fab5d._.js",
-      "static/chunks/[root-of-the-server]__45f039c3._.js",
-      "static/chunks/pages__app_2da965e7._.js",
-      "static/chunks/turbopack-pages__app_44f5ebd6._.js"
+      "static/chunks/4193b_next_dist_compiled_9e25278a._.js",
+      "static/chunks/4193b_next_dist_shared_lib_71ac094a._.js",
+      "static/chunks/4193b_next_dist_client_a475c57e._.js",
+      "static/chunks/4193b_next_dist_be998915._.js",
+      "static/chunks/4193b_next_app_37eeec02.js",
+      "static/chunks/[next]_entry_page-loader_ts_d17b8328._.js",
+      "static/chunks/4193b_react-dom_4f5c34a3._.js",
+      "static/chunks/4193b_b2c46132._.js",
+      "static/chunks/[root-of-the-server]__e73a2756._.js",
+      "static/chunks/mazhar_rony_mazhar_roney_mazhar_rony_pages__app_2da965e7._.js",
+      "static/chunks/turbopack-mazhar_rony_mazhar_roney_mazhar_rony_pages__app_fa384224._.js"
     ],
     "/_error": [
-      "static/chunks/node_modules_next_dist_compiled_8ca6b690._.js",
-      "static/chunks/node_modules_next_dist_shared_lib_cf5b50a6._.js",
-      "static/chunks/node_modules_next_dist_client_d0aa886c._.js",
-      "static/chunks/node_modules_next_dist_19fd0646._.js",
-      "static/chunks/node_modules_next_error_1cfbb379.js",
-      "static/chunks/[next]_entry_page-loader_ts_43b523b5._.js",
-      "static/chunks/node_modules_react-dom_4411d9bd._.js",
-      "static/chunks/node_modules_8d9fab5d._.js",
-      "static/chunks/[root-of-the-server]__092393de._.js",
-      "static/chunks/pages__error_2da965e7._.js",
-      "static/chunks/turbopack-pages__error_1d2f155e._.js"
+      "static/chunks/4193b_next_dist_compiled_9e25278a._.js",
+      "static/chunks/4193b_next_dist_shared_lib_f7576d96._.js",
+      "static/chunks/4193b_next_dist_client_a475c57e._.js",
+      "static/chunks/4193b_next_dist_5b8a4b2f._.js",
+      "static/chunks/4193b_next_error_db84a536.js",
+      "static/chunks/[next]_entry_page-loader_ts_d19b4477._.js",
+      "static/chunks/4193b_react-dom_4f5c34a3._.js",
+      "static/chunks/4193b_b2c46132._.js",
+      "static/chunks/[root-of-the-server]__b8070885._.js",
+      "static/chunks/mazhar_rony_mazhar_roney_mazhar_rony_pages__error_2da965e7._.js",
+      "static/chunks/turbopack-mazhar_rony_mazhar_roney_mazhar_rony_pages__error_167a48b2._.js"
     ]
   },
   "devFiles": [],
   "polyfillFiles": [
-    "static/chunks/node_modules_next_dist_build_polyfills_polyfill-nomodule.js"
+    "static/chunks/4193b_next_dist_build_polyfills_polyfill-nomodule.js"
   ],
   "lowPriorityFiles": [],
   "rootMainFiles": [
-    "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_7fb4a226._.js",
-    "static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js",
-    "static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_9212ccad._.js",
-    "static/chunks/node_modules_next_dist_compiled_next-devtools_index_1dd7fb59.js",
-    "static/chunks/node_modules_next_dist_compiled_a0e4c7b4._.js",
-    "static/chunks/node_modules_next_dist_client_aaee43fe._.js",
-    "static/chunks/node_modules_next_dist_7a8122d0._.js",
-    "static/chunks/node_modules_b7c5773f._.js",
-    "static/chunks/_a0ff3932._.js",
-    "static/chunks/turbopack-_ab46212d._.js"
+    "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_7e50fd33._.js",
+    "static/chunks/4193b_next_dist_compiled_react-dom_3089e5a3._.js",
+    "static/chunks/4193b_next_dist_compiled_react-server-dom-turbopack_b4495952._.js",
+    "static/chunks/4193b_next_dist_compiled_next-devtools_index_c0a4846e.js",
+    "static/chunks/4193b_next_dist_compiled_5f907d3d._.js",
+    "static/chunks/4193b_next_dist_client_1992e762._.js",
+    "static/chunks/4193b_next_dist_d62686f9._.js",
+    "static/chunks/4193b_37a8a5d7._.js",
+    "static/chunks/mazhar_rony_mazhar_roney_mazhar_rony_a0ff3932._.js",
+    "static/chunks/turbopack-mazhar_rony_mazhar_roney_mazhar_rony_998c34bb._.js"
   ]
 };
 globalThis.__BUILD_MANIFEST.lowPriorityFiles = [

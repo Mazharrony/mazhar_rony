@@ -5,6 +5,7 @@ import { motion, useInView } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import DatePicker from './DatePicker';
 import TimezonePicker from './TimezonePicker';
+import ConversationalScheduler from './ConversationalScheduler';
 import './Contact.css';
 
 interface Brief {
@@ -331,7 +332,7 @@ This meeting request was submitted from the contact page.
           </motion.button>
           
           <motion.h1
-            className="contact-title"
+            className="contact-title gradient-text"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -564,174 +565,14 @@ This meeting request was submitted from the contact page.
             </motion.div>
           </motion.div>
 
-          {/* Meeting Scheduling Form Card */}
+          {/* Conversational AI Meeting Scheduler */}
           <motion.div
             className="contact-meeting-card"
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             transition={{ delay: 0.6, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="meeting-header">
-              <h3>{t('contact.meeting.title')}</h3>
-              <p>{t('contact.meeting.subtitle')}</p>
-            </div>
-
-            <form onSubmit={handleMeetingSubmit} className="meeting-form">
-              {/* Honeypot field */}
-              <input
-                type="text"
-                name="website-meeting"
-                style={{ display: 'none' }}
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-              />
-
-              <div className="form-group">
-                <label htmlFor="meeting-name">{t('contact.meeting.form.name')}</label>
-                <input 
-                  type="text" 
-                  id="meeting-name" 
-                  name="meeting-name"
-                  placeholder={t('contact.meeting.form.namePlaceholder')}
-                  required
-                  disabled={meetingAnimating || meetingSubmitted}
-                  aria-required={true}
-                  aria-invalid={meetingErrors.name ? true : false}
-                />
-                {meetingErrors.name && (
-                  <span className="form-error" role="alert">{meetingErrors.name}</span>
-                )}
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="meeting-email">{t('contact.meeting.form.email')}</label>
-                <input 
-                  type="email" 
-                  id="meeting-email" 
-                  name="meeting-email"
-                  placeholder={t('contact.meeting.form.emailPlaceholder')}
-                  required
-                  disabled={meetingAnimating || meetingSubmitted}
-                  aria-required={true}
-                  aria-invalid={meetingErrors.email ? true : false}
-                />
-                {meetingErrors.email && (
-                  <span className="form-error" role="alert">{meetingErrors.email}</span>
-                )}
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="meeting-date">{t('contact.meeting.form.date')}</label>
-                  <DatePicker
-                    id="meeting-date"
-                    name="meeting-date"
-                    value={meetingDate}
-                    onChange={setMeetingDate}
-                    min={new Date().toISOString().split('T')[0]}
-                    required
-                    disabled={meetingAnimating || meetingSubmitted}
-                    aria-required={true}
-                    aria-invalid={meetingErrors.date ? true : false}
-                  />
-                  {meetingErrors.date && (
-                    <span className="form-error" role="alert">{meetingErrors.date}</span>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="meeting-time">{t('contact.meeting.form.time')}</label>
-                  <input 
-                    type="time" 
-                    id="meeting-time" 
-                    name="meeting-time"
-                    required
-                    disabled={meetingAnimating || meetingSubmitted}
-                    aria-required={true}
-                    aria-invalid={meetingErrors.time ? true : false}
-                  />
-                  {meetingErrors.time && (
-                    <span className="form-error" role="alert">{meetingErrors.time}</span>
-                  )}
-                </div>
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="meeting-timezone">{t('contact.meeting.form.timezone')}</label>
-                  <TimezonePicker
-                    id="meeting-timezone"
-                    name="meeting-timezone"
-                    value={meetingTimezone}
-                    onChange={setMeetingTimezone}
-                    placeholder={t('contact.meeting.form.timezonePlaceholder')}
-                    disabled={meetingAnimating || meetingSubmitted}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="meeting-duration">{t('contact.meeting.form.duration')}</label>
-                  <select 
-                    id="meeting-duration" 
-                    name="meeting-duration"
-                    value={meetingDuration}
-                    onChange={(e) => setMeetingDuration(e.target.value)}
-                    disabled={meetingAnimating || meetingSubmitted}
-                    className="form-select"
-                  >
-                    <option value="30min">{t('contact.meeting.form.durationOptions.30min')}</option>
-                    <option value="60min">{t('contact.meeting.form.durationOptions.60min')}</option>
-                    <option value="90min">{t('contact.meeting.form.durationOptions.90min')}</option>
-                    <option value="custom">{t('contact.meeting.form.durationOptions.custom')}</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="meeting-context">{t('contact.meeting.form.context')}</label>
-                <textarea 
-                  id="meeting-context" 
-                  name="meeting-context"
-                  placeholder={t('contact.meeting.form.contextPlaceholder')}
-                  rows={4}
-                  required
-                  disabled={meetingAnimating || meetingSubmitted}
-                  aria-required={true}
-                  aria-invalid={meetingErrors.context ? true : false}
-                />
-                {meetingErrors.context && (
-                  <span className="form-error" role="alert">{meetingErrors.context}</span>
-                )}
-              </div>
-
-              <motion.button
-                type="submit"
-                className="contact-submit-button"
-                disabled={meetingAnimating || meetingSubmitted}
-                whileHover={meetingSubmitted ? {} : { scale: 1.02 }}
-                whileTap={meetingSubmitted ? {} : { scale: 0.98 }}
-              >
-                {meetingSubmitted ? (
-                  <motion.span
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {t('contact.meeting.form.success')}
-                  </motion.span>
-                ) : meetingAnimating ? (
-                  <motion.span
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                  >
-                    ✈️
-                  </motion.span>
-                ) : (
-                  <span>{t('contact.meeting.form.submit')}</span>
-                )}
-              </motion.button>
-            </form>
+            <ConversationalScheduler />
           </motion.div>
         </div>
       </div>

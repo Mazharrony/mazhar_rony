@@ -41,13 +41,15 @@
 .mobile-services-header {
   text-align: center;
   margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
 }
 
 .mobile-services-pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.3rem 1rem;
+  display: inline-block;
+  padding: 8px 20px;
   border-radius: 999px;
   font-size: 0.75rem;
   letter-spacing: 0.15em;
@@ -56,7 +58,11 @@
   border: 1px solid rgba(255, 255, 255, 0.06);
   color: var(--text-secondary);
   opacity: 0.7;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
+  position: relative;
+  vertical-align: baseline;
+  line-height: 1.5;
+  font-weight: 700;
 }
 
 .mobile-services-title {
@@ -64,12 +70,16 @@
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
+  margin-top: 0;
+  text-align: center;
 }
 
 .mobile-services-subtitle {
   font-size: 0.98rem;
   opacity: 0.7;
   color: var(--text-secondary);
+  text-align: center;
+  margin-top: 0;
 }
 
 @media (max-width: 480px) {

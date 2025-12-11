@@ -200,7 +200,7 @@ const Portfolio: React.FC = () => {
           variants={staggerContainer}
         >
           <motion.span className="section-label" variants={fadeInUp}>{t('portfolio.label')}</motion.span>
-          <motion.h2 variants={fadeInUp}>{t('portfolio.title')}</motion.h2>
+          <motion.h2 className="gradient-text" variants={fadeInUp}>{t('portfolio.title')}</motion.h2>
           <motion.p className="section-subtitle" variants={fadeInUp}>
             {t('portfolio.subtitle')}
           </motion.p>

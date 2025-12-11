@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import { serviceData, type ServiceSlug } from '@/lib/services/serviceData';
 import './ServiceDetail.css';
@@ -28,10 +28,11 @@ const AedIcon = () => (
 );
 
 const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
-  const { t } = useLanguage();
+  const { t, tObject } = useLanguage();
   const service = serviceData[slug];
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [countersAnimated, setCountersAnimated] = useState(false);
 
   // Scroll-linked animations
   const { scrollY } = useScroll({
@@ -55,12 +56,118 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
   const deliverablesY = useTransform(scrollY, [1200, 1800], [0, -100]);
   const deliverablesBlur = useTransform(scrollY, [1200, 1600], [12, 0]);
 
+  // Parallax for skills
+  const skillsY = useTransform(scrollY, [1400, 2000], [0, -110]);
+  const skillsBlur = useTransform(scrollY, [1400, 1800], [12, 0]);
+
   // Parallax for FAQ
-  const faqY = useTransform(scrollY, [1600, 2200], [0, -130]);
-  const faqBlur = useTransform(scrollY, [1600, 2000], [12, 0]);
+  const faqY = useTransform(scrollY, [1800, 2400], [0, -130]);
+  const faqBlur = useTransform(scrollY, [1800, 2200], [12, 0]);
+
+  // Parallax for stats section
+  const statsY = useTransform(scrollY, [600, 1000], [0, -80]);
+  const statsBlur = useTransform(scrollY, [600, 800], [10, 0]);
+
+  // Parallax for testimonials
+  const testimonialsY = useTransform(scrollY, [1000, 1400], [0, -90]);
+  const testimonialsBlur = useTransform(scrollY, [1000, 1200], [10, 0]);
+
+  // Parallax for case studies
+  const caseStudiesY = useTransform(scrollY, [1600, 2000], [0, -100]);
+  const caseStudiesBlur = useTransform(scrollY, [1600, 1800], [10, 0]);
 
   // Get translation keys for this service
   const getKey = (section: string) => `services.detail.${service.id}.${section}`;
+  
+  // Map service IDs to details keys
+  const detailsKeyMap: Record<string, string> = {
+    'social': 'services.details.socialMedia',
+    'content': 'services.details.contentVideo',
+    'ads': 'services.details.ads',
+    'webopt': 'services.details.website',
+    'brand': 'services.details.brand',
+    'ecommerce': 'services.details.ecommerce',
+    'webapp': 'services.details.webApp',
+  };
+  
+  const detailsKey = detailsKeyMap[service.id] || '';
+  
+  // Helper to safely get translation data using tObject
+  const getDetailsData = (key: string) => {
+    if (!detailsKey) return null;
+    try {
+      const data = tObject(`${detailsKey}.${key}`);
+      
+      // Check if it's a valid array
+      if (Array.isArray(data)) {
+        return data.length > 0 ? data : null;
+      }
+      
+      // Check if it's a valid object
+      if (data && typeof data === 'object' && !Array.isArray(data)) {
+        return Object.keys(data).length > 0 ? data : null;
+      }
+      
+      return null;
+    } catch (e) {
+      if (process.env.NODE_ENV === 'development') {
+        console.warn(`Translation key not found: ${detailsKey}.${key}`, e);
+      }
+      return null;
+    }
+  };
+  
+  const skills = getDetailsData('skills');
+  const stats = getDetailsData('stats');
+  const testimonials = getDetailsData('testimonials');
+  const caseStudies = getDetailsData('caseStudies');
+  const techStack = getDetailsData('techStack');
+  const relatedServices = getDetailsData('relatedServices');
+
+  // Debug: Log what we're getting
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🔍 Service Detail Debug:', {
+        serviceId: service.id,
+        detailsKey,
+        stats: stats ? `Found ${Array.isArray(stats) ? stats.length : 'object'} items` : 'NOT FOUND',
+        testimonials: testimonials ? `Found ${Array.isArray(testimonials) ? testimonials.length : 'object'} items` : 'NOT FOUND',
+        caseStudies: caseStudies ? `Found ${Array.isArray(caseStudies) ? caseStudies.length : 'object'} items` : 'NOT FOUND',
+        techStack: techStack ? `Found ${Array.isArray(techStack) ? techStack.length : 'object'} items` : 'NOT FOUND',
+        relatedServices: relatedServices ? `Found ${Array.isArray(relatedServices) ? relatedServices.length : 'object'} items` : 'NOT FOUND',
+        rawStats: tObject(`${detailsKey}.stats`),
+      });
+    }
+  }, [service.id, detailsKey, stats, testimonials, caseStudies, techStack, relatedServices]);
+
+  // Animated counter component
+  const AnimatedCounter: React.FC<{ value: number; suffix?: string; prefix?: string }> = ({ value, suffix = '', prefix = '' }) => {
+    const [count, setCount] = useState(0);
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+
+    useEffect(() => {
+      if (isInView && !countersAnimated) {
+        setCountersAnimated(true);
+        const duration = 2000;
+        const steps = 60;
+        const increment = value / steps;
+        let current = 0;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= value) {
+            setCount(value);
+            clearInterval(timer);
+          } else {
+            setCount(Math.floor(current));
+          }
+        }, duration / steps);
+        return () => clearInterval(timer);
+      }
+    }, [isInView, value]);
+
+    return <span ref={ref}>{prefix}{count}{suffix}</span>;
+  };
 
   // Animation variants
   const containerVariants = {
@@ -142,7 +249,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
             <motion.div className="service-badge" variants={numberVariants}>
               {t('services.detail.badge')}
             </motion.div>
-            <h1 className="service-title">{t(service.titleKey)}</h1>
+            <h1 className="service-title gradient-text">{t(service.titleKey)}</h1>
             <p className="service-tagline">{t(service.taglineKey)}</p>
           </motion.div>
           <motion.div className="hero-accent" variants={numberVariants}>
@@ -264,6 +371,369 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
         </motion.div>
       </motion.section>
 
+      {/* Skills & Capabilities - Grid */}
+      {skills && Array.isArray(skills) && skills.length > 0 && (
+        <motion.section 
+          className="service-section skills-section" 
+          variants={staggerContainerVariants} 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true }}
+          style={{
+            y: skillsY,
+            filter: skillsBlur
+          }}
+        >
+          <motion.div className="section-header-inline" variants={itemVariants}>
+            <span className="section-number">04</span>
+            <h2 className="section-title-large">Key Capabilities</h2>
+          </motion.div>
+          <motion.div className="skills-grid-modern" variants={staggerContainerVariants}>
+            {skills.map((skill: any, index: number) => (
+              <motion.div
+                key={index}
+                className="skill-card-modern"
+                variants={cardVariants}
+                whileHover="hover"
+                style={{
+                  '--accent-color': skill.accent || '#6366f1',
+                } as React.CSSProperties}
+              >
+                <div className="skill-icon-modern" style={{ color: skill.accent || '#6366f1' }}>
+                  {skill.icon}
+                </div>
+                <h3 className="skill-title-modern">{skill.title}</h3>
+                <p className="skill-detail-modern">{skill.detail}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.section>
+      )}
+
+      {/* Stats & Metrics - Animated Counters */}
+      <motion.section 
+        className="service-section stats-section" 
+        variants={staggerContainerVariants} 
+        initial="hidden" 
+        whileInView="visible" 
+        viewport={{ once: true }}
+        style={{
+          y: statsY,
+          filter: statsBlur
+        }}
+      >
+          <motion.div className="section-header-inline" variants={itemVariants}>
+          <span className="section-number">04</span>
+          <h2 className="section-title-large">Results That Matter</h2>
+        </motion.div>
+        {stats && Array.isArray(stats) && stats.length > 0 ? (
+          <motion.div className="stats-grid-modern" variants={staggerContainerVariants}>
+            {stats.map((stat: any, index: number) => (
+              <motion.div
+                key={index}
+                className="stat-card-modern"
+                variants={cardVariants}
+                whileHover="hover"
+              >
+                <div className="stat-icon-modern" style={{ color: stat.accent || '#6366f1' }}>
+                  {stat.icon}
+                </div>
+                <div className="stat-value-modern">
+                  <AnimatedCounter 
+                    value={stat.value} 
+                    suffix={stat.suffix || ''} 
+                    prefix={stat.prefix || ''} 
+                  />
+                </div>
+                <h3 className="stat-label-modern">{stat.label}</h3>
+                <p className="stat-description-modern">{stat.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          <motion.div className="stats-grid-modern" variants={staggerContainerVariants}>
+            <motion.div className="stat-card-modern" variants={cardVariants}>
+              <div className="stat-icon-modern">📈</div>
+              <div className="stat-value-modern"><AnimatedCounter value={250} suffix="%" /></div>
+              <h3 className="stat-label-modern">Average Growth</h3>
+              <p className="stat-description-modern">Increase in engagement rates</p>
+            </motion.div>
+            <motion.div className="stat-card-modern" variants={cardVariants}>
+              <div className="stat-icon-modern">👥</div>
+              <div className="stat-value-modern"><AnimatedCounter value={2} suffix="M+" /></div>
+              <h3 className="stat-label-modern">Total Reach</h3>
+              <p className="stat-description-modern">People reached across campaigns</p>
+            </motion.div>
+            <motion.div className="stat-card-modern" variants={cardVariants}>
+              <div className="stat-icon-modern">💰</div>
+              <div className="stat-value-modern"><AnimatedCounter value={180} suffix="%" /></div>
+              <h3 className="stat-label-modern">ROI Improvement</h3>
+              <p className="stat-description-modern">Average return on ad spend</p>
+            </motion.div>
+            <motion.div className="stat-card-modern" variants={cardVariants}>
+              <div className="stat-icon-modern">⚡</div>
+              <div className="stat-value-modern"><AnimatedCounter value={48} suffix="hrs" /></div>
+              <h3 className="stat-label-modern">Response Time</h3>
+              <p className="stat-description-modern">Average engagement response</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </motion.section>
+
+      {/* Testimonials - Client Quotes */}
+      <motion.section 
+        className="service-section testimonials-section" 
+        variants={staggerContainerVariants} 
+        initial="hidden" 
+        whileInView="visible" 
+        viewport={{ once: true }}
+        style={{
+          y: testimonialsY,
+          filter: testimonialsBlur
+        }}
+      >
+          <motion.div className="section-header-inline" variants={itemVariants}>
+            <span className="section-number">05</span>
+            <h2 className="section-title-large">What Clients Say</h2>
+          </motion.div>
+        {testimonials && Array.isArray(testimonials) && testimonials.length > 0 ? (
+          <motion.div className="testimonials-grid-modern" variants={staggerContainerVariants}>
+            {testimonials.map((testimonial: any, index: number) => (
+              <motion.div
+                key={index}
+                className="testimonial-card-modern"
+                variants={cardVariants}
+                whileHover="hover"
+              >
+                <div className="testimonial-quote-icon">"</div>
+                <p className="testimonial-text-modern">{testimonial.quote}</p>
+                <div className="testimonial-author-modern">
+                  <div className="author-avatar-modern" style={{ background: testimonial.accent || '#6366f1' }}>
+                    {testimonial.initials || testimonial.name.charAt(0)}
+                  </div>
+                  <div className="author-info-modern">
+                    <h4 className="author-name-modern">{testimonial.name}</h4>
+                    <p className="author-role-modern">{testimonial.role}</p>
+                    <p className="author-company-modern">{testimonial.company}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          <motion.div className="testimonials-grid-modern" variants={staggerContainerVariants}>
+            <motion.div className="testimonial-card-modern" variants={cardVariants}>
+              <div className="testimonial-quote-icon">"</div>
+              <p className="testimonial-text-modern">Our Instagram engagement tripled in just 3 months. The content strategy was spot-on and the community management made all the difference.</p>
+              <div className="testimonial-author-modern">
+                <div className="author-avatar-modern" style={{ background: '#6366f1' }}>SA</div>
+                <div className="author-info-modern">
+                  <h4 className="author-name-modern">Sarah Ahmed</h4>
+                  <p className="author-role-modern">Marketing Director</p>
+                  <p className="author-company-modern">Fitness Brand Dubai</p>
+                </div>
+              </div>
+            </motion.div>
+            <motion.div className="testimonial-card-modern" variants={cardVariants}>
+              <div className="testimonial-quote-icon">"</div>
+              <p className="testimonial-text-modern">Finally, someone who gets it. No fluff, just results. Our follower growth and conversion rates have never been better.</p>
+              <div className="testimonial-author-modern">
+                <div className="author-avatar-modern" style={{ background: '#a855f7' }}>MR</div>
+                <div className="author-info-modern">
+                  <h4 className="author-name-modern">Mohammed Al-Rashid</h4>
+                  <p className="author-role-modern">Founder</p>
+                  <p className="author-company-modern">E-commerce Startup</p>
+                </div>
+              </div>
+            </motion.div>
+            <motion.div className="testimonial-card-modern" variants={cardVariants}>
+              <div className="testimonial-quote-icon">"</div>
+              <p className="testimonial-text-modern">The team transformed our social presence completely. Professional, creative, and they actually understand our brand voice.</p>
+              <div className="testimonial-author-modern">
+                <div className="author-avatar-modern" style={{ background: '#10b981' }}>ET</div>
+                <div className="author-info-modern">
+                  <h4 className="author-name-modern">Emma Thompson</h4>
+                  <p className="author-role-modern">Brand Manager</p>
+                  <p className="author-company-modern">Lifestyle Brand</p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </motion.section>
+
+      {/* Technology Stack */}
+      <motion.section 
+        className="service-section tech-stack-section" 
+        variants={staggerContainerVariants} 
+        initial="hidden" 
+        whileInView="visible" 
+        viewport={{ once: true }}
+      >
+        <motion.div className="section-header-inline" variants={itemVariants}>
+          <span className="section-number">06</span>
+          <h2 className="section-title-large">Tools & Technology</h2>
+        </motion.div>
+        {techStack && Array.isArray(techStack) && techStack.length > 0 ? (
+          <motion.div className="tech-stack-grid-modern" variants={staggerContainerVariants}>
+            {techStack.map((tech: any, index: number) => (
+              <motion.div
+                key={index}
+                className="tech-item-modern"
+                variants={cardVariants}
+                whileHover="hover"
+              >
+                {tech.icon && (
+                  <div className="tech-icon-modern">
+                    {tech.icon}
+                  </div>
+                )}
+                {tech.logo && (
+                  <img 
+                    src={tech.logo} 
+                    alt={tech.name}
+                    className="tech-logo-modern"
+                  />
+                )}
+                <h3 className="tech-name-modern">{tech.name}</h3>
+                <p className="tech-description-modern">{tech.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          <motion.div className="tech-stack-grid-modern" variants={staggerContainerVariants}>
+            <motion.div className="tech-item-modern" variants={cardVariants}>
+              <div className="tech-icon-modern">📷</div>
+              <h3 className="tech-name-modern">Instagram</h3>
+              <p className="tech-description-modern">Primary platform management</p>
+            </motion.div>
+            <motion.div className="tech-item-modern" variants={cardVariants}>
+              <div className="tech-icon-modern">🎵</div>
+              <h3 className="tech-name-modern">TikTok</h3>
+              <p className="tech-description-modern">Short-form video content</p>
+            </motion.div>
+            <motion.div className="tech-item-modern" variants={cardVariants}>
+              <div className="tech-icon-modern">👥</div>
+              <h3 className="tech-name-modern">Facebook</h3>
+              <p className="tech-description-modern">Community & ad management</p>
+            </motion.div>
+            <motion.div className="tech-item-modern" variants={cardVariants}>
+              <div className="tech-icon-modern">🎨</div>
+              <h3 className="tech-name-modern">Canva Pro</h3>
+              <p className="tech-description-modern">Design & asset creation</p>
+            </motion.div>
+            <motion.div className="tech-item-modern" variants={cardVariants}>
+              <div className="tech-icon-modern">✂️</div>
+              <h3 className="tech-name-modern">CapCut</h3>
+              <p className="tech-description-modern">Video editing & production</p>
+            </motion.div>
+            <motion.div className="tech-item-modern" variants={cardVariants}>
+              <div className="tech-icon-modern">📊</div>
+              <h3 className="tech-name-modern">Meta Business</h3>
+              <p className="tech-description-modern">Analytics & insights</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </motion.section>
+
+      {/* Case Studies Preview */}
+      <motion.section 
+        className="service-section case-studies-section" 
+        variants={staggerContainerVariants} 
+        initial="hidden" 
+        whileInView="visible" 
+        viewport={{ once: true }}
+        style={{
+          y: caseStudiesY,
+          filter: caseStudiesBlur
+        }}
+      >
+        <motion.div className="section-header-inline" variants={itemVariants}>
+          <span className="section-number">07</span>
+          <h2 className="section-title-large">Featured Work</h2>
+        </motion.div>
+        {caseStudies && Array.isArray(caseStudies) && caseStudies.length > 0 ? (
+          <motion.div className="case-studies-grid-modern" variants={staggerContainerVariants}>
+            {caseStudies.map((study: any, index: number) => (
+              <motion.div
+                key={index}
+                className="case-study-card-modern"
+                variants={cardVariants}
+                whileHover="hover"
+              >
+                <div className="case-study-image-modern" style={{ background: study.image || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
+                  {study.imageUrl && (
+                    <img src={study.imageUrl} alt={study.title} />
+                  )}
+                </div>
+                <div className="case-study-content-modern">
+                  <span className="case-study-category-modern">{study.category}</span>
+                  <h3 className="case-study-title-modern">{study.title}</h3>
+                  <p className="case-study-description-modern">{study.description}</p>
+                  {study.results && (
+                    <div className="case-study-results-modern">
+                      {study.results.map((result: any, idx: number) => (
+                        <div key={idx} className="result-item-modern">
+                          <span className="result-value-modern">{result.value}</span>
+                          <span className="result-label-modern">{result.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          <motion.div className="case-studies-grid-modern" variants={staggerContainerVariants}>
+            <motion.div className="case-study-card-modern" variants={cardVariants}>
+              <div className="case-study-image-modern" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}></div>
+              <div className="case-study-content-modern">
+                <span className="case-study-category-modern">Social Media</span>
+                <h3 className="case-study-title-modern">Fitness Brand Transformation</h3>
+                <p className="case-study-description-modern">Complete Instagram overhaul for a supplement brand, resulting in 300% engagement increase and 2M+ viral frame reach.</p>
+                <div className="case-study-results-modern">
+                  <div className="result-item-modern">
+                    <span className="result-value-modern">300%</span>
+                    <span className="result-label-modern">Engagement Increase</span>
+                  </div>
+                  <div className="result-item-modern">
+                    <span className="result-value-modern">2M+</span>
+                    <span className="result-label-modern">Viral Reach</span>
+                  </div>
+                  <div className="result-item-modern">
+                    <span className="result-value-modern">45%</span>
+                    <span className="result-label-modern">Conversion Rate</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+            <motion.div className="case-study-card-modern" variants={cardVariants}>
+              <div className="case-study-image-modern" style={{ background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' }}></div>
+              <div className="case-study-content-modern">
+                <span className="case-study-category-modern">Content Strategy</span>
+                <h3 className="case-study-title-modern">E-commerce Social Strategy</h3>
+                <p className="case-study-description-modern">Multi-platform content strategy that increased profile visits by 250% and drove 40% more website traffic.</p>
+                <div className="case-study-results-modern">
+                  <div className="result-item-modern">
+                    <span className="result-value-modern">250%</span>
+                    <span className="result-label-modern">Profile Visits</span>
+                  </div>
+                  <div className="result-item-modern">
+                    <span className="result-value-modern">40%</span>
+                    <span className="result-label-modern">Website Traffic</span>
+                  </div>
+                  <div className="result-item-modern">
+                    <span className="result-value-modern">180%</span>
+                    <span className="result-label-modern">ROAS</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </motion.section>
+
       {/* FAQ - Expandable Modern */}
       <motion.section 
         className="service-section faq-section" 
@@ -277,7 +747,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
         }}
       >
         <motion.div className="section-header-inline" variants={itemVariants}>
-          <span className="section-number">04</span>
+          <span className="section-number">08</span>
           <h2 className="section-title-large">{t('services.detail.faq.title')}</h2>
         </motion.div>
         <motion.div className="faq-modern" variants={staggerContainerVariants}>
@@ -309,6 +779,64 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
             );
           })}
         </motion.div>
+      </motion.section>
+
+      {/* Related Services */}
+      <motion.section 
+        className="service-section related-services-section" 
+        variants={staggerContainerVariants} 
+        initial="hidden" 
+        whileInView="visible" 
+        viewport={{ once: true }}
+      >
+        <motion.div className="section-header-inline" variants={itemVariants}>
+          <span className="section-number">09</span>
+          <h2 className="section-title-large">You Might Also Like</h2>
+        </motion.div>
+        {relatedServices && Array.isArray(relatedServices) && relatedServices.length > 0 ? (
+          <motion.div className="related-services-grid-modern" variants={staggerContainerVariants}>
+            {relatedServices.map((related: any, index: number) => (
+              <motion.div
+                key={index}
+                className="related-service-card-modern"
+                variants={cardVariants}
+                whileHover="hover"
+              >
+                <div className="related-service-icon-modern" style={{ color: related.accent || '#6366f1' }}>
+                  {related.icon}
+                </div>
+                <h3 className="related-service-title-modern">{related.title}</h3>
+                <p className="related-service-description-modern">{related.description}</p>
+                {related.href && (
+                  <Link href={related.href} className="related-service-link-modern">
+                    Learn More →
+                  </Link>
+                )}
+              </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          <motion.div className="related-services-grid-modern" variants={staggerContainerVariants}>
+            <motion.div className="related-service-card-modern" variants={cardVariants}>
+              <div className="related-service-icon-modern" style={{ color: '#a855f7' }}>🎬</div>
+              <h3 className="related-service-title-modern">Content & Video Production</h3>
+              <p className="related-service-description-modern">Create scroll-stopping videos and visuals that complement your social strategy.</p>
+              <Link href="/services/content-video-production" className="related-service-link-modern">Learn More →</Link>
+            </motion.div>
+            <motion.div className="related-service-card-modern" variants={cardVariants}>
+              <div className="related-service-icon-modern" style={{ color: '#6366f1' }}>📢</div>
+              <h3 className="related-service-title-modern">Google & Meta Ads</h3>
+              <p className="related-service-description-modern">Amplify your best content with targeted paid campaigns that convert.</p>
+              <Link href="/services/google-meta-ads" className="related-service-link-modern">Learn More →</Link>
+            </motion.div>
+            <motion.div className="related-service-card-modern" variants={cardVariants}>
+              <div className="related-service-icon-modern" style={{ color: '#10b981' }}>🎨</div>
+              <h3 className="related-service-title-modern">Brand Strategy & Design</h3>
+              <p className="related-service-description-modern">Build a cohesive brand identity that works across all social platforms.</p>
+              <Link href="/services/brand-strategy-design" className="related-service-link-modern">Learn More →</Link>
+            </motion.div>
+          </motion.div>
+        )}
       </motion.section>
 
       {/* Final CTA - Full Width */}
