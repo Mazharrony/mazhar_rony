@@ -57,6 +57,7 @@ const Contact: React.FC = () => {
       return '';
     }
   });
+  const [meetingDuration, setMeetingDuration] = useState('60min');
 
   const validateForm = (name: string, email: string, message: string): boolean => {
     const newErrors: FormErrors = {};
@@ -198,7 +199,7 @@ const Contact: React.FC = () => {
     const time = (formData.get('meeting-time') as string) || '';
     const timezone = meetingTimezone || (formData.get('meeting-timezone') as string) || '';
     const context = (formData.get('meeting-context') as string) || '';
-    const duration = (formData.get('meeting-duration') as string) || '60min';
+    const duration = meetingDuration || (formData.get('meeting-duration') as string) || '60min';
     const website = formData.get('website-meeting'); // Honeypot field
 
     // Check honeypot
@@ -272,6 +273,7 @@ This meeting request was submitted from the contact page.
         setMeetingErrors({});
         setMeetingDate('');
         setMeetingTimezone('');
+        setMeetingDuration('60min');
       }, 6000);
     }
   };
@@ -673,9 +675,10 @@ This meeting request was submitted from the contact page.
                   <select 
                     id="meeting-duration" 
                     name="meeting-duration"
+                    value={meetingDuration}
+                    onChange={(e) => setMeetingDuration(e.target.value)}
                     disabled={meetingAnimating || meetingSubmitted}
                     className="form-select"
-                    defaultValue="60min"
                   >
                     <option value="30min">{t('contact.meeting.form.durationOptions.30min')}</option>
                     <option value="60min">{t('contact.meeting.form.durationOptions.60min')}</option>
