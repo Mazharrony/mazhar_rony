@@ -8,7 +8,7 @@ import { serviceData, type ServiceSlug } from '@/lib/services/serviceData';
 import './ServicesPage.css';
 
 const ServicesPageClient: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, tObject } = useLanguage();
   const [hoveredService, setHoveredService] = useState<string | null>(null);
 
   // Map service IDs to detail keys
@@ -74,7 +74,7 @@ const ServicesPageClient: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
@@ -87,7 +87,7 @@ const ServicesPageClient: React.FC = () => {
       scale: 1,
       transition: {
         duration: 0.7,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
     hover: {
@@ -95,7 +95,7 @@ const ServicesPageClient: React.FC = () => {
       scale: 1.02,
       transition: {
         duration: 0.4,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
@@ -128,7 +128,8 @@ const ServicesPageClient: React.FC = () => {
           {services.map((service, index) => {
             const title = t(service.detail?.titleKey || service.titleKey);
             const description = t(service.detail?.descKey || '');
-            const skills = (t(service.detail?.skillsKey || '') as any[]) || [];
+            const skillsData = service.detail?.skillsKey ? tObject(service.detail.skillsKey) : null;
+            const skills = Array.isArray(skillsData) ? skillsData : [];
 
             return (
               <motion.article
@@ -238,3 +239,4 @@ const ServicesPageClient: React.FC = () => {
 };
 
 export default ServicesPageClient;
+
