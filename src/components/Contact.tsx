@@ -378,8 +378,8 @@ This meeting request was submitted from the contact page.
                   placeholder={t('contact.form.namePlaceholder')}
                   required
                   disabled={isAnimating || submitted}
-                  aria-required="true"
-                  aria-invalid={errors.name ? 'true' : 'false'}
+                  aria-required={true}
+                  aria-invalid={errors.name ? true : false}
                   aria-describedby={errors.name ? 'name-error' : undefined}
                 />
                 {errors.name && (
@@ -398,8 +398,8 @@ This meeting request was submitted from the contact page.
                   placeholder={t('contact.form.emailPlaceholder')}
                   required
                   disabled={isAnimating || submitted}
-                  aria-required="true"
-                  aria-invalid={errors.email ? 'true' : 'false'}
+                  aria-required={true}
+                  aria-invalid={errors.email ? true : false}
                   aria-describedby={errors.email ? 'email-error' : undefined}
                 />
                 {errors.email && (
@@ -429,8 +429,8 @@ This meeting request was submitted from the contact page.
                   rows={6}
                   required
                   disabled={isAnimating || submitted}
-                  aria-required="true"
-                  aria-invalid={errors.message ? 'true' : 'false'}
+                  aria-required={true}
+                  aria-invalid={errors.message ? true : false}
                   aria-describedby={errors.message ? 'message-error' : undefined}
                 />
                 {errors.message && (
@@ -596,8 +596,8 @@ This meeting request was submitted from the contact page.
                   placeholder={t('contact.meeting.form.namePlaceholder')}
                   required
                   disabled={meetingAnimating || meetingSubmitted}
-                  aria-required="true"
-                  aria-invalid={meetingErrors.name ? 'true' : 'false'}
+                  aria-required={true}
+                  aria-invalid={meetingErrors.name ? true : false}
                 />
                 {meetingErrors.name && (
                   <span className="form-error" role="alert">{meetingErrors.name}</span>
@@ -613,8 +613,8 @@ This meeting request was submitted from the contact page.
                   placeholder={t('contact.meeting.form.emailPlaceholder')}
                   required
                   disabled={meetingAnimating || meetingSubmitted}
-                  aria-required="true"
-                  aria-invalid={meetingErrors.email ? 'true' : 'false'}
+                  aria-required={true}
+                  aria-invalid={meetingErrors.email ? true : false}
                 />
                 {meetingErrors.email && (
                   <span className="form-error" role="alert">{meetingErrors.email}</span>
@@ -632,8 +632,8 @@ This meeting request was submitted from the contact page.
                     min={new Date().toISOString().split('T')[0]}
                     required
                     disabled={meetingAnimating || meetingSubmitted}
-                    aria-required="true"
-                    aria-invalid={meetingErrors.date ? 'true' : 'false'}
+                    aria-required={true}
+                    aria-invalid={meetingErrors.date ? true : false}
                   />
                   {meetingErrors.date && (
                     <span className="form-error" role="alert">{meetingErrors.date}</span>
@@ -648,8 +648,8 @@ This meeting request was submitted from the contact page.
                     name="meeting-time"
                     required
                     disabled={meetingAnimating || meetingSubmitted}
-                    aria-required="true"
-                    aria-invalid={meetingErrors.time ? 'true' : 'false'}
+                    aria-required={true}
+                    aria-invalid={meetingErrors.time ? true : false}
                   />
                   {meetingErrors.time && (
                     <span className="form-error" role="alert">{meetingErrors.time}</span>
@@ -697,8 +697,8 @@ This meeting request was submitted from the contact page.
                   rows={4}
                   required
                   disabled={meetingAnimating || meetingSubmitted}
-                  aria-required="true"
-                  aria-invalid={meetingErrors.context ? 'true' : 'false'}
+                  aria-required={true}
+                  aria-invalid={meetingErrors.context ? true : false}
                 />
                 {meetingErrors.context && (
                   <span className="form-error" role="alert">{meetingErrors.context}</span>

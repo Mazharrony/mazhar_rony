@@ -12,8 +12,8 @@ interface DatePickerProps {
   min?: string;
   required?: boolean;
   disabled?: boolean;
-  'aria-required'?: string;
-  'aria-invalid'?: string;
+  'aria-required'?: boolean | 'true' | 'false';
+  'aria-invalid'?: boolean | 'true' | 'false' | 'grammar' | 'spelling';
 }
 
 const DatePicker: React.FC<DatePickerProps> = ({
@@ -291,4 +291,5 @@ const DatePicker: React.FC<DatePickerProps> = ({
 };
 
 export default DatePicker;
+
 
