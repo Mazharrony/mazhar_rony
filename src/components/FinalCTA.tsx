@@ -1,10 +1,19 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform, MotionValue } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import { motionConfig } from '../utils/motion';
 import './FinalCTA.css';
+
+interface ImageVariant {
+  hidden: {
+    opacity: number;
+    scale: number;
+    rotate: number;
+  };
+  y: MotionValue<number>;
+}
 
 const FinalCTA: React.FC = () => {
   const ref = useRef(null);
@@ -22,7 +31,7 @@ const FinalCTA: React.FC = () => {
   const y3 = useTransform(scrollYProgress, [0, 1], [0, -30]);
   const y4 = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
-  const imageVariants = [
+  const imageVariants: ImageVariant[] = [
     { hidden: { opacity: 0, scale: 0.8, rotate: -5 }, y: y1 },
     { hidden: { opacity: 0, scale: 0.8, rotate: 3 }, y: y2 },
     { hidden: { opacity: 0, scale: 0.8, rotate: -3 }, y: y3 },
@@ -34,7 +43,7 @@ const FinalCTA: React.FC = () => {
       <div className="container">
         <div className="cta-inner">
           <div className="cta-images">
-            {imageVariants.map((variant: any, index: number) => (
+            {imageVariants.map((variant: ImageVariant, index: number) => (
               <motion.div
                 key={index}
                 className="cta-image-card grayscale"

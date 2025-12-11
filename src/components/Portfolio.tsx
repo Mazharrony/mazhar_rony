@@ -235,7 +235,7 @@ const Portfolio: React.FC = () => {
 
         <div className="grid grid-2">
           <AnimatePresence mode="popLayout">
-            {filtered.map((item: any, index: number) => (
+            {filtered.map((item: PortfolioItem, index: number) => (
               <motion.div
                 key={item.id}
                 className="portfolio-card"

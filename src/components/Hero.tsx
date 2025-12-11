@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useInView, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useInView, useMotionValue, useSpring, useTransform, AnimatePresence, MotionValue } from 'framer-motion';
+import Image from 'next/image';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import './Hero.css';
 
@@ -30,8 +31,8 @@ const HeroVideo: React.FC = () => {
 
 interface FloatingIconProps {
   className: string;
-  mouseX: any;
-  mouseY: any;
+  mouseX: MotionValue<number>;
+  mouseY: MotionValue<number>;
   xMultiplier: number;
   yMultiplier: number;
   delay: number;
@@ -94,10 +95,13 @@ const FloatingIcon: React.FC<FloatingIconProps> = ({
           ease: isAnimating ? [0.17, 0.67, 0.3, 1] : [0.17, 0.67, 0.3, 1.08]
         }}
       >
-        <img 
+        <Image 
           src={`https://cdn.simpleicons.org/${currentTool}`}
           alt={currentTool}
           className="tool-icon"
+          width={24}
+          height={24}
+          unoptimized
         />
       </motion.div>
     </motion.div>

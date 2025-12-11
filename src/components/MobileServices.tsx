@@ -132,7 +132,7 @@ const MobileServices: React.FC<MobileServicesProps> = ({ services }) => {
   };
 
   // Handle swipe in detail view
-  const handleDetailDrag = (_: any, info: PanInfo) => {
+  const handleDetailDrag = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     const threshold = 50;
     const velocity = info.velocity.x;
     const currentIndex = detailIndex;
