@@ -269,7 +269,7 @@ const MobileServices: React.FC<MobileServicesProps> = ({ services }) => {
       <div className="mobile-services-container">
         <div className="mobile-services-header">
           <p className="mobile-services-pill">{t('services.label') || 'Services'}</p>
-          <h2 className="mobile-services-title gradient-text">{t('services.title')}</h2>
+          <h2 className="mobile-services-title">{t('services.title')}</h2>
           <p className="mobile-services-subtitle">{t('services.subtitle')}</p>
         </div>
 
@@ -456,7 +456,7 @@ const MobileServices: React.FC<MobileServicesProps> = ({ services }) => {
                         <span className="mobile-services-detail-badge">
                           {t('services.detail.badge') || 'Service Details'}
                         </span>
-                        <h2 className="mobile-services-detail-title gradient-text">
+                        <h2 className="mobile-services-detail-title">
                           {t(services[detailIndex].titleKey)}
                         </h2>
                         {/* Tagline */}

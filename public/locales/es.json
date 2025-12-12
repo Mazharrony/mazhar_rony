@@ -26,18 +26,7 @@
     "titleAccent": "con espíritu colaborativo",
     "description1": "Especialista en Marketing Digital y Creatividad orientado a resultados, con experiencia en gestión de sitios web, SEO, Google Ads, marketing en redes sociales, fotografía y videografía",
     "description2": "Hábil en desarrollar, ejecutar y analizar estrategias de marketing basadas en datos que aumentan la visibilidad de la marca y generan resultados medibles. Con experiencia gestionando múltiples marcas como @corechamps, @musclerulz, @prosciencenutra y @jnknutrition, manejando todas las operaciones digitales desde diseño de contenido y producción de video hasta optimización de campañas publicitarias y mantenimiento web",
-    "skills": [
-      "SEO",
-      "Google Ads",
-      "Meta Ads",
-      "Estrategia de Contenido",
-      "Producción de Video",
-      "Shopify",
-      "WordPress",
-      "Figma",
-      "Photoshop",
-      "Estrategia de Marca"
-    ]
+    "skills": ["SEO", "Google Ads", "Meta Ads", "Estrategia de Contenido", "Producción de Video", "Shopify", "WordPress", "Figma", "Photoshop", "Estrategia de Marca"]
   },
   "services": {
     "label": "Servicios",
@@ -78,451 +67,84 @@
         "title": "Marketing en Redes Sociales",
         "description": "Estrategia de redes sociales de alto impacto, ejecución y optimización diseñada para impulsar visibilidad y conversiones",
         "skills": [
-          {
-            "icon": "📅",
-            "title": "Estrategia de Contenido",
-            "detail": "Construir calendarios de contenido personalizados alineados con objetivos de marca",
-            "accent": "#6366f1"
-          },
-          {
-            "icon": "🎨",
-            "title": "Producción Creativa",
-            "detail": "Visuales dinámicos, edición de Reels/TikTok y activos de marca",
-            "accent": "#a855f7"
-          },
-          {
-            "icon": "⚙️",
-            "title": "Optimización de Plataformas",
-            "detail": "Publicación consciente del algoritmo y tácticas de engagement",
-            "accent": "#06b6d4"
-          },
-          {
-            "icon": "📊",
-            "title": "Analítica e Insights",
-            "detail": "Medir crecimiento, refinar estrategia y rastrear KPIs",
-            "accent": "#f59e0b"
-          },
-          {
-            "icon": "🚀",
-            "title": "Impulso Pagado",
-            "detail": "Amplificar contenido de mejor rendimiento para mayor alcance",
-            "accent": "#10b981"
-          },
-          {
-            "icon": "🤝",
-            "title": "Engagement Comunitario",
-            "detail": "Gestionar comentarios, mensajes e interacciones",
-            "accent": "#f97316"
-          }
-        ],
-        "stats": [
-          {
-            "icon": "📈",
-            "value": 250,
-            "suffix": "%",
-            "label": "Average Growth",
-            "description": "Increase in engagement rates",
-            "accent": "#6366f1"
-          },
-          {
-            "icon": "👥",
-            "value": 2,
-            "suffix": "M+",
-            "label": "Total Reach",
-            "description": "People reached across campaigns",
-            "accent": "#a855f7"
-          },
-          {
-            "icon": "💰",
-            "value": 180,
-            "suffix": "%",
-            "label": "ROI Improvement",
-            "description": "Average return on ad spend",
-            "accent": "#10b981"
-          },
-          {
-            "icon": "⚡",
-            "value": 48,
-            "suffix": "hrs",
-            "label": "Response Time",
-            "description": "Average engagement response",
-            "accent": "#f59e0b"
-          }
-        ],
-        "testimonials": [
-          {
-            "quote": "Our Instagram engagement tripled in just 3 months. The content strategy was spot-on and the community management made all the difference.",
-            "name": "Sarah Ahmed",
-            "role": "Marketing Director",
-            "company": "Fitness Brand Dubai",
-            "initials": "SA",
-            "accent": "#6366f1"
-          },
-          {
-            "quote": "Finally, someone who gets it. No fluff, just results. Our follower growth and conversion rates have never been better.",
-            "name": "Mohammed Al-Rashid",
-            "role": "Founder",
-            "company": "E-commerce Startup",
-            "initials": "MR",
-            "accent": "#a855f7"
-          },
-          {
-            "quote": "The team transformed our social presence completely. Professional, creative, and they actually understand our brand voice.",
-            "name": "Emma Thompson",
-            "role": "Brand Manager",
-            "company": "Lifestyle Brand",
-            "initials": "ET",
-            "accent": "#10b981"
-          }
-        ],
-        "techStack": [
-          {
-            "name": "Instagram",
-            "description": "Primary platform management",
-            "icon": "📷"
-          },
-          {
-            "name": "TikTok",
-            "description": "Short-form video content",
-            "icon": "🎵"
-          },
-          {
-            "name": "Facebook",
-            "description": "Community & ad management",
-            "icon": "👥"
-          },
-          {
-            "name": "Canva Pro",
-            "description": "Design & asset creation",
-            "icon": "🎨"
-          },
-          {
-            "name": "CapCut",
-            "description": "Video editing & production",
-            "icon": "✂️"
-          },
-          {
-            "name": "Meta Business",
-            "description": "Analytics & insights",
-            "icon": "📊"
-          }
-        ],
-        "caseStudies": [
-          {
-            "title": "Fitness Brand Transformation",
-            "category": "Social Media",
-            "description": "Complete Instagram overhaul for a supplement brand, resulting in 300% engagement increase and 2M+ viral frame reach.",
-            "image": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-            "results": [
-              {
-                "value": "300%",
-                "label": "Engagement Increase"
-              },
-              {
-                "value": "2M+",
-                "label": "Viral Reach"
-              },
-              {
-                "value": "45%",
-                "label": "Conversion Rate"
-              }
-            ]
-          },
-          {
-            "title": "E-commerce Social Strategy",
-            "category": "Content Strategy",
-            "description": "Multi-platform content strategy that increased profile visits by 250% and drove 40% more website traffic.",
-            "image": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-            "results": [
-              {
-                "value": "250%",
-                "label": "Profile Visits"
-              },
-              {
-                "value": "40%",
-                "label": "Website Traffic"
-              },
-              {
-                "value": "180%",
-                "label": "ROAS"
-              }
-            ]
-          }
-        ],
-        "relatedServices": [
-          {
-            "title": "Content & Video Production",
-            "description": "Create scroll-stopping videos and visuals that complement your social strategy.",
-            "icon": "🎬",
-            "href": "/services/content-video-production",
-            "accent": "#a855f7"
-          },
-          {
-            "title": "Google & Meta Ads",
-            "description": "Amplify your best content with targeted paid campaigns that convert.",
-            "icon": "📢",
-            "href": "/services/google-meta-ads",
-            "accent": "#6366f1"
-          },
-          {
-            "title": "Brand Strategy & Design",
-            "description": "Build a cohesive brand identity that works across all social platforms.",
-            "icon": "🎨",
-            "href": "/services/brand-strategy-design",
-            "accent": "#10b981"
-          }
+          {"icon": "📅", "title": "Estrategia de Contenido", "detail": "Construir calendarios de contenido personalizados alineados con objetivos de marca", "accent": "#6366f1"},
+          {"icon": "🎨", "title": "Producción Creativa", "detail": "Visuales dinámicos, edición de Reels/TikTok y activos de marca", "accent": "#a855f7"},
+          {"icon": "⚙️", "title": "Optimización de Plataformas", "detail": "Publicación consciente del algoritmo y tácticas de engagement", "accent": "#06b6d4"},
+          {"icon": "📊", "title": "Analítica e Insights", "detail": "Medir crecimiento, refinar estrategia y rastrear KPIs", "accent": "#f59e0b"},
+          {"icon": "🚀", "title": "Impulso Pagado", "detail": "Amplificar contenido de mejor rendimiento para mayor alcance", "accent": "#10b981"},
+          {"icon": "🤝", "title": "Engagement Comunitario", "detail": "Gestionar comentarios, mensajes e interacciones", "accent": "#f97316"}
         ]
       },
       "contentVideo": {
         "title": "Producción de Contenido y Video",
         "description": "Producción multimedia profesional para plataformas sociales, anuncios y narrativa de marca",
         "skills": [
-          {
-            "icon": "✂️",
-            "title": "Edición de Formato Corto",
-            "detail": "Reels, TikTok y Shorts optimizados para atención",
-            "accent": "#6366f1"
-          },
-          {
-            "icon": "✨",
-            "title": "Motion Graphics",
-            "detail": "Transiciones limpias y animaciones de marca",
-            "accent": "#a855f7"
-          },
-          {
-            "icon": "🎞️",
-            "title": "Corrección de Color",
-            "detail": "Tonos cinematográficos y salida pulida",
-            "accent": "#06b6d4"
-          },
-          {
-            "icon": "📸",
-            "title": "Fotografía de Productos",
-            "detail": "Tomas limpias y modernas para e-commerce",
-            "accent": "#f59e0b"
-          },
-          {
-            "icon": "🔊",
-            "title": "Diseño de Sonido",
-            "detail": "Mezcla de audio nítida y mejora",
-            "accent": "#10b981"
-          },
-          {
-            "icon": "📝",
-            "title": "Storyboarding",
-            "detail": "Dirección visual y planificación de flujo",
-            "accent": "#f97316"
-          }
+          {"icon": "✂️", "title": "Edición de Formato Corto", "detail": "Reels, TikTok y Shorts optimizados para atención", "accent": "#6366f1"},
+          {"icon": "✨", "title": "Motion Graphics", "detail": "Transiciones limpias y animaciones de marca", "accent": "#a855f7"},
+          {"icon": "🎞️", "title": "Corrección de Color", "detail": "Tonos cinematográficos y salida pulida", "accent": "#06b6d4"},
+          {"icon": "📸", "title": "Fotografía de Productos", "detail": "Tomas limpias y modernas para e-commerce", "accent": "#f59e0b"},
+          {"icon": "🔊", "title": "Diseño de Sonido", "detail": "Mezcla de audio nítida y mejora", "accent": "#10b981"},
+          {"icon": "📝", "title": "Storyboarding", "detail": "Dirección visual y planificación de flujo", "accent": "#f97316"}
         ]
       },
       "ads": {
         "title": "Anuncios Google y Meta",
         "description": "Campañas publicitarias orientadas a conversión con segmentación precisa y optimización continua",
         "skills": [
-          {
-            "icon": "🧪",
-            "title": "Pruebas A/B",
-            "detail": "Experimentación para identificar creativos ganadores",
-            "accent": "#6366f1"
-          },
-          {
-            "icon": "🎯",
-            "title": "Segmentación de Audiencia",
-            "detail": "Segmentación, retargeting y audiencias similares",
-            "accent": "#a855f7"
-          },
-          {
-            "icon": "💰",
-            "title": "Optimización de Presupuesto",
-            "detail": "Mejorar ROAS con asignación inteligente de gasto",
-            "accent": "#06b6d4"
-          },
-          {
-            "icon": "🛤️",
-            "title": "Estrategia de Embudo",
-            "detail": "Conciencia, retargeting y rutas de conversión",
-            "accent": "#f59e0b"
-          },
-          {
-            "icon": "📌",
-            "title": "Configuración Pixel/Evento",
-            "detail": "Seguimiento preciso para reportes mejorados",
-            "accent": "#10b981"
-          },
-          {
-            "icon": "📈",
-            "title": "Análisis de Rendimiento",
-            "detail": "Dashboards semanales e insights",
-            "accent": "#f97316"
-          }
+          {"icon": "🧪", "title": "Pruebas A/B", "detail": "Experimentación para identificar creativos ganadores", "accent": "#6366f1"},
+          {"icon": "🎯", "title": "Segmentación de Audiencia", "detail": "Segmentación, retargeting y audiencias similares", "accent": "#a855f7"},
+          {"icon": "💰", "title": "Optimización de Presupuesto", "detail": "Mejorar ROAS con asignación inteligente de gasto", "accent": "#06b6d4"},
+          {"icon": "🛤️", "title": "Estrategia de Embudo", "detail": "Conciencia, retargeting y rutas de conversión", "accent": "#f59e0b"},
+          {"icon": "📌", "title": "Configuración Pixel/Evento", "detail": "Seguimiento preciso para reportes mejorados", "accent": "#10b981"},
+          {"icon": "📈", "title": "Análisis de Rendimiento", "detail": "Dashboards semanales e insights", "accent": "#f97316"}
         ]
       },
       "website": {
         "title": "Optimización de Sitios Web",
         "description": "Mejorando velocidad, SEO y experiencia de usuario en WordPress y Shopify",
         "skills": [
-          {
-            "icon": "⚡",
-            "title": "Optimización de Velocidad",
-            "detail": "Reducir tiempos de carga para mejor UX",
-            "accent": "#6366f1"
-          },
-          {
-            "icon": "🔍",
-            "title": "Estructura SEO",
-            "detail": "Metadatos, esquemas y correcciones en página",
-            "accent": "#a855f7"
-          },
-          {
-            "icon": "🧭",
-            "title": "Mejoras UI/UX",
-            "detail": "Navegación y flujo más limpio",
-            "accent": "#06b6d4"
-          },
-          {
-            "icon": "🧱",
-            "title": "Diseño de Landing Page",
-            "detail": "Diseños listos para conversión",
-            "accent": "#f59e0b"
-          },
-          {
-            "icon": "🧩",
-            "title": "Gestión Plugin/Tema",
-            "detail": "Configuraciones ligeras y estables",
-            "accent": "#10b981"
-          },
-          {
-            "icon": "📉",
-            "title": "Revisión de Analíticas",
-            "detail": "Análisis de comportamiento y mejoras",
-            "accent": "#f97316"
-          }
+          {"icon": "⚡", "title": "Optimización de Velocidad", "detail": "Reducir tiempos de carga para mejor UX", "accent": "#6366f1"},
+          {"icon": "🔍", "title": "Estructura SEO", "detail": "Metadatos, esquemas y correcciones en página", "accent": "#a855f7"},
+          {"icon": "🧭", "title": "Mejoras UI/UX", "detail": "Navegación y flujo más limpio", "accent": "#06b6d4"},
+          {"icon": "🧱", "title": "Diseño de Landing Page", "detail": "Diseños listos para conversión", "accent": "#f59e0b"},
+          {"icon": "🧩", "title": "Gestión Plugin/Tema", "detail": "Configuraciones ligeras y estables", "accent": "#10b981"},
+          {"icon": "📉", "title": "Revisión de Analíticas", "detail": "Análisis de comportamiento y mejoras", "accent": "#f97316"}
         ]
       },
       "brand": {
         "title": "Estrategia de Marca y Diseño",
         "description": "Construyendo identidades de marca fuertes que comunican claramente en todas las plataformas",
         "skills": [
-          {
-            "icon": "🌀",
-            "title": "Sistemas de Logo",
-            "detail": "Conjuntos de identidad modulares y escalables",
-            "accent": "#6366f1"
-          },
-          {
-            "icon": "🎨",
-            "title": "Selección Color/Tipo",
-            "detail": "Coincidencia de tono, voz y personalidad",
-            "accent": "#a855f7"
-          },
-          {
-            "icon": "📦",
-            "title": "Diseño de Empaque",
-            "detail": "Visuales listos para producto",
-            "accent": "#06b6d4"
-          },
-          {
-            "icon": "📘",
-            "title": "Desarrollo Guía de Marca",
-            "detail": "Reglas para mantener todo alineado",
-            "accent": "#f59e0b"
-          },
-          {
-            "icon": "🧭",
-            "title": "Dirección Creativa",
-            "detail": "Lenguaje visual consistente",
-            "accent": "#10b981"
-          },
-          {
-            "icon": "🖼️",
-            "title": "Producción de Activos",
-            "detail": "Iconos, gráficos, plantillas",
-            "accent": "#f97316"
-          }
+          {"icon": "🌀", "title": "Sistemas de Logo", "detail": "Conjuntos de identidad modulares y escalables", "accent": "#6366f1"},
+          {"icon": "🎨", "title": "Selección Color/Tipo", "detail": "Coincidencia de tono, voz y personalidad", "accent": "#a855f7"},
+          {"icon": "📦", "title": "Diseño de Empaque", "detail": "Visuales listos para producto", "accent": "#06b6d4"},
+          {"icon": "📘", "title": "Desarrollo Guía de Marca", "detail": "Reglas para mantener todo alineado", "accent": "#f59e0b"},
+          {"icon": "🧭", "title": "Dirección Creativa", "detail": "Lenguaje visual consistente", "accent": "#10b981"},
+          {"icon": "🖼️", "title": "Producción de Activos", "detail": "Iconos, gráficos, plantillas", "accent": "#f97316"}
         ]
       },
       "ecommerce": {
         "title": "Gestión de E-commerce",
         "description": "Optimizando listados de productos, rendimiento de tienda y flujo de conversión",
         "skills": [
-          {
-            "icon": "🗂️",
-            "title": "Gestión de Catálogo",
-            "detail": "Estructuras de productos organizadas",
-            "accent": "#6366f1"
-          },
-          {
-            "icon": "🛒",
-            "title": "Optimización de Conversión",
-            "detail": "Mejorar tasa de añadir al carrito y compra",
-            "accent": "#a855f7"
-          },
-          {
-            "icon": "🔑",
-            "title": "Copy SEO de Producto",
-            "detail": "Descripciones amigables con búsqueda",
-            "accent": "#06b6d4"
-          },
-          {
-            "icon": "📦",
-            "title": "Planificación de Inventario",
-            "detail": "Seguimiento de stock fluido",
-            "accent": "#f59e0b"
-          },
-          {
-            "icon": "🎯",
-            "title": "Estrategia Promocional",
-            "detail": "Ofertas estacionales y paquetes",
-            "accent": "#10b981"
-          },
-          {
-            "icon": "📑",
-            "title": "Reportes",
-            "detail": "Insights de rendimiento y recomendaciones",
-            "accent": "#f97316"
-          }
+          {"icon": "🗂️", "title": "Gestión de Catálogo", "detail": "Estructuras de productos organizadas", "accent": "#6366f1"},
+          {"icon": "🛒", "title": "Optimización de Conversión", "detail": "Mejorar tasa de añadir al carrito y compra", "accent": "#a855f7"},
+          {"icon": "🔑", "title": "Copy SEO de Producto", "detail": "Descripciones amigables con búsqueda", "accent": "#06b6d4"},
+          {"icon": "📦", "title": "Planificación de Inventario", "detail": "Seguimiento de stock fluido", "accent": "#f59e0b"},
+          {"icon": "🎯", "title": "Estrategia Promocional", "detail": "Ofertas estacionales y paquetes", "accent": "#10b981"},
+          {"icon": "📑", "title": "Reportes", "detail": "Insights de rendimiento y recomendaciones", "accent": "#f97316"}
         ]
       },
       "webApp": {
         "title": "Desarrollo Web y Aplicaciones",
         "description": "Construyendo aplicaciones web personalizadas y diseños responsivos utilizando tecnología moderna y mejores prácticas",
         "skills": [
-          {
-            "icon": "⚛️",
-            "title": "React y Frontend",
-            "detail": "Interfaces de usuario modernas y de alto rendimiento",
-            "accent": "#6366f1"
-          },
-          {
-            "icon": "🗄️",
-            "title": "Desarrollo Backend",
-            "detail": "Arquitecturas de servidor escalables",
-            "accent": "#a855f7"
-          },
-          {
-            "icon": "📱",
-            "title": "Diseño Responsivo",
-            "detail": "Diseños mobile-first y accesibles",
-            "accent": "#06b6d4"
-          },
-          {
-            "icon": "⚡",
-            "title": "Optimización de Rendimiento",
-            "detail": "Ejecución de código rápida y eficiente",
-            "accent": "#f59e0b"
-          },
-          {
-            "icon": "🔒",
-            "title": "Mejores Prácticas de Seguridad",
-            "detail": "Protección de datos y cumplimiento",
-            "accent": "#10b981"
-          },
-          {
-            "icon": "🚀",
-            "title": "Implementación y Mantenimiento",
-            "detail": "Integración continua y monitoreo",
-            "accent": "#f97316"
-          }
+          {"icon": "⚛️", "title": "React y Frontend", "detail": "Interfaces de usuario modernas y de alto rendimiento", "accent": "#6366f1"},
+          {"icon": "🗄️", "title": "Desarrollo Backend", "detail": "Arquitecturas de servidor escalables", "accent": "#a855f7"},
+          {"icon": "📱", "title": "Diseño Responsivo", "detail": "Diseños mobile-first y accesibles", "accent": "#06b6d4"},
+          {"icon": "⚡", "title": "Optimización de Rendimiento", "detail": "Ejecución de código rápida y eficiente", "accent": "#f59e0b"},
+          {"icon": "🔒", "title": "Mejores Prácticas de Seguridad", "detail": "Protección de datos y cumplimiento", "accent": "#10b981"},
+          {"icon": "🚀", "title": "Implementación y Mantenimiento", "detail": "Integración continua y monitoreo", "accent": "#f97316"}
         ]
       }
     },
@@ -1078,79 +700,6 @@
       "location": "Basado en Dubái, EAU",
       "availability": "Trabajando con clientes de todo el mundo",
       "responseTime": "Suelo responder en 24 horas"
-    },
-    "meeting": {
-      "title": "Schedule a Meeting",
-      "subtitle": "Let's find a time that works for both of us",
-      "form": {
-        "name": "Your Name",
-        "namePlaceholder": "What should I call you?",
-        "email": "Email",
-        "emailPlaceholder": "where.to@reach.you",
-        "date": "Preferred Date",
-        "time": "Preferred Time",
-        "timezone": "Your Timezone",
-        "timezonePlaceholder": "e.g., GMT+4, EST, PST",
-        "context": "Meeting Context",
-        "contextPlaceholder": "What would you like to discuss? Project details, collaboration, consultation, etc.",
-        "duration": "Duration",
-        "durationOptions": {
-          "30min": "30 minutes",
-          "60min": "1 hour",
-          "90min": "1.5 hours",
-          "custom": "Custom"
-        },
-        "submit": "Schedule Meeting",
-        "sending": "Scheduling...",
-        "success": "✓ Meeting request sent! I'll confirm via email.",
-        "error": "Something went wrong. Please try again."
-      }
-    },
-    "scheduler": {
-      "title": "Agendemos una reunión",
-      "subtitle": "Te ayudaré a encontrar el momento perfecto",
-      "greeting": "¡Hola! 👋 Estoy aquí para ayudarte a agendar una reunión con Mazhar. Empecemos con tu nombre - ¿cómo debo llamarte?",
-      "askEmail": "¡Encantado de conocerte, {{name}}! ¿Cuál es tu dirección de correo electrónico?",
-      "invalidEmail": "Hmm, eso no parece un correo electrónico válido. ¿Podrías intentar de nuevo?",
-      "askProject": "¡Genial! Ahora, ¿qué tipo de proyecto te interesa?",
-      "projectOptions": {
-        "website": "Desarrollo de sitios web",
-        "marketing": "Marketing y redes sociales",
-        "branding": "Branding y diseño",
-        "other": "Algo más"
-      },
-      "askProjectDetails": "Cuéntame más sobre tu proyecto. ¿Qué buscas lograr?",
-      "askUrgency": "¡Entendido! ¿Qué tan urgente es este proyecto?",
-      "urgencyOptions": {
-        "low": "Baja - Solo explorando opciones",
-        "normal": "Normal - Planificando con anticipación",
-        "high": "Alta - Necesito empezar pronto"
-      },
-      "askBudget": "¿Cuál es tu rango de presupuesto? (No te preocupes, esto me ayuda a entender el alcance)",
-      "budgetOptions": {
-        "small": "Presupuesto pequeño",
-        "medium": "Presupuesto medio",
-        "large": "Presupuesto grande",
-        "discuss": "Prefiero discutirlo"
-      },
-      "askDate": "¡Perfecto! ¿Cuándo te gustaría agendar nuestra reunión?",
-      "askTime": "¿Qué hora te funciona mejor?",
-      "askDuration": "¿Cuánto tiempo deberíamos planificar?",
-      "durationOptions": {
-        "30min": "30 minutos",
-        "60min": "1 hora",
-        "90min": "1.5 horas"
-      },
-      "askTimezone": "¿Cuál es tu zona horaria?",
-      "askAdditionalNotes": "¿Tienes alguna nota adicional o pregunta que te gustaría compartir?",
-      "submitting": "¡Perfecto! Estoy enviando tu solicitud de reunión ahora...",
-      "success": "🎉 ¡Todo listo! Tu solicitud de reunión ha sido enviada. Mazhar confirmará los detalles por correo electrónico pronto. ¡Espero conectar contigo!",
-      "inputPlaceholder": {
-        "text": "Escribe tu respuesta...",
-        "email": "tu.email@example.com",
-        "textarea": "Comparte tus pensamientos...",
-        "timezone": "Selecciona tu zona horaria"
-      }
     }
   },
   "aboutPage": {
@@ -1158,13 +707,7 @@
     "subtitle": "Una historia tranquila sobre cómo aprendí a crear.",
     "identity": {
       "body1": "Soy un creativo multidisciplinario que trabaja en diseño, branding, contenido, marketing y web. No porque quisiera dominar todo, sino porque la curiosidad seguía tirándome más profundo.",
-      "body2": "Valoro la energía tranquila sobre el caos, la honestidad sobre el ruido, y siempre aprender en lugar de fingir que lo sé todo. Cada proyecto es una oportunidad para crear algo que se sienta real y vivo.",
-      "title": "Quién soy",
-      "body3": "Una pregunta llevó a otra. Una herramienta llevó a otra. Un desafío abrió la puerta al siguiente.",
-      "body4": "Valoro la energía tranquila sobre el caos, la claridad sobre el ruido, y la honestidad sobre el rendimiento.",
-      "body5": "No me interesa fingir que sé todo. Pero me importa profundamente el trabajo. Me importa el significado. Me importa construir cosas que se sientan vivas, cálidas y humanas.",
-      "body6": "Cada proyecto no es solo una tarea — es un pequeño universo donde la creatividad, la estrategia y el sentimiento se encuentran en silencio.",
-      "body7": "Eso es quien soy. Alguien que crea con intención, curiosidad y un hambre silenciosa de entender más."
+      "body2": "Valoro la energía tranquila sobre el caos, la honestidad sobre el ruido, y siempre aprender en lugar de fingir que lo sé todo. Cada proyecto es una oportunidad para crear algo que se sienta real y vivo."
     },
     "story": {
       "intro": "Crecí en un pueblo tranquilo donde el internet era lento y los sueños parecían distantes. Mi tío trabajaba como limpiador en Dubai. Un día, me envió una laptop—vieja, pero lo cambió todo.",
@@ -1175,12 +718,7 @@
       "agency": "Me uní a una agencia de marketing local y luego inicié un pequeño negocio de impresión. Las cosas se movían. Estaba aprendiendo rápido, trabajando duro y construyendo algo.",
       "covid": "Luego llegó COVID. La agencia cerró. Mi empresa de restaurante fracasó. Todo lo que había construido comenzó a desmoronarse. Vendimos nuestra vaca familiar para reunir dinero para mi boleto a Dubai.",
       "dubai": "Llegué a Dubai con esperanza e incertidumbre. Me tomó 1 mes y 17 días conseguir mi primer trabajo. Algunos lugares me inspiraron. Otros me agotaron. Pero cada experiencia me enseñó algo.",
-      "today": "Hoy, todavía estoy aprendiendo, todavía creando, todavía descubriendo. No afirmo tener todas las respuestas. Pero sé cómo cuidar el trabajo, presentarme con honestidad y seguir adelante.",
-      "title": "El viaje",
-      "studio": "Había un pequeño estudio fotográfico en el mercado. Me paraba en la puerta y los observaba editar fotos. Finalmente, pregunté: '¿Pueden enseñarme?' No se rieron. No me despidieron. Simplemente dijeron: 'Siéntate. Observa. Aprende.'",
-      "learning": "Observé. Luego practiqué. Luego experimenté. Luego fallé. Luego lo intenté de nuevo. El aprendizaje se convirtió en mi escape — mi rebelión silenciosa contra las limitaciones.",
-      "agencyStruggle": "Pero la vida no es una línea recta. La agencia comenzó a luchar. Los presupuestos cayeron, los clientes se fueron, y lentamente el trabajo se secó. Finalmente, la agencia tuvo que cerrar por completo. De repente me encontré sin trabajo — y con una familia dependiendo de mí.",
-      "restaurant": "Por responsabilidad, no por ambición, decidí iniciar un negocio de restaurante. No era mi sueño, pero era una forma de apoyar a mi familia, sobrevivir, seguir adelante. Aprendí a cocinar, abastecerme, entregar, servicio al cliente — todo lo que nunca imaginé que haría. Por un tiempo, funcionó. No perfectamente, no sin problemas, pero lo suficiente para seguir adelante."
+      "today": "Hoy, todavía estoy aprendiendo, todavía creando, todavía descubriendo. No afirmo tener todas las respuestas. Pero sé cómo cuidar el trabajo, presentarme con honestidad y seguir adelante."
     },
     "beliefs": {
       "title": "En qué creo",
@@ -1191,14 +729,7 @@
         "Historias sobre eslóganes",
         "Cuidado sobre velocidad",
         "Emoción + lógica juntas"
-      ],
-      "intro": "Estas creencias guían todo lo que creo. No son reglas, sino principios silenciosos que dan forma a la forma en que veo el diseño, el trabajo y el mundo.",
-      "body1": "Creo que la creatividad debe sentirse humana, no mecánica.",
-      "body2": "Creo que el buen diseño se siente primero, se entiende segundo.",
-      "body3": "Creo que la claridad es más poderosa que el ruido.",
-      "body4": "Creo que la curiosidad hace crecer las ideas, mientras que la presión las mata.",
-      "body5": "Y creo que la gente recuerda cómo algo los hizo sentir, mucho más que las métricas detrás de ello.",
-      "closing": "Estos son los fundamentos de mi trabajo — simples, honestos e intencionales."
+      ]
     },
     "howIWork": {
       "title": "Cómo trabajo",
@@ -1209,131 +740,12 @@
         "Explicaciones claras sin la jerga",
         "Diseño que se siente vivo, no solo pulido",
         "Rápido cuando es necesario, reflexivo siempre"
-      ],
-      "intro": "Trabajo en silencio, pensativamente y con intención.",
-      "intro2": "No persigo el caos; protejo ambientes tranquilos donde las ideas pueden respirar.",
-      "beliefs": "Creo en:",
-      "philosophy": "Refino hasta que las cosas se sientan bien.",
-      "philosophy2": "Simplifico hasta que se sientan sin esfuerzo.",
-      "philosophy3": "Diseño con emoción, claridad y propósito.",
-      "principles": "No decoro.",
-      "principles2": "Diseño.",
-      "principles3": "No me apresuro.",
-      "principles4": "Refino.",
-      "closing": "Este es mi enfoque — lo suficientemente lento para pensar, lo suficientemente rápido para ejecutar, siempre enfocado en lo que realmente importa."
+      ]
     },
     "closing": {
-      "line1": "Tal vez viste una parte de ti mismo en mi historia.",
-      "line2": "Tal vez entiendes el hambre silenciosa de crecer y crear.",
-      "cta": "Hablemos",
-      "title": "Si todavía estás aquí",
-      "line3": "Tal vez estás aquí porque también quieres construir algo significativo.",
-      "line4": "Si es así — tal vez podemos crear algo juntos."
-    },
-    "hero": {
-      "label": "Acerca"
-    },
-    "stats": {
-      "title": "En números",
-      "list": [
-        {
-          "icon": "🎯",
-          "value": "50+",
-          "label": "Proyectos completados"
-        },
-        {
-          "icon": "📈",
-          "value": "2M+",
-          "label": "Alcance generado"
-        },
-        {
-          "icon": "🏆",
-          "value": "4",
-          "label": "Marcas gestionadas"
-        },
-        {
-          "icon": "⏱️",
-          "value": "12+",
-          "label": "Años aprendiendo"
-        }
-      ]
-    },
-    "dubai": {
-      "title": "Dubái — El capítulo que cambió todo",
-      "intro": "Dubái no hizo la vida fácil. Pero hizo las posibilidades más grandes.",
-      "tools": "Por primera vez en mi vida, tuve: internet rápido, buenas herramientas y software moderno, una computadora poderosa, y un ambiente que no limitaba mi curiosidad.",
-      "learning": "Aprendí más en esos primeros meses de lo que había aprendido en años. Aprendí porque finalmente tenía las herramientas. Aprendí porque el mundo finalmente se sentía alcanzable. Aprendí porque la curiosidad evolucionó en hambre — el hambre de crecer, entender, construir, convertirse.",
-      "routine": "Mi rutina era simple y brutal: Trabajo de tiempo completo durante el día. Trabajo independiente por la noche. Aprendiendo en todas partes entre medio.",
-      "growth": "Los días se convirtieron en semanas. Las semanas en meses. Los meses en años. Todo lleno de aprendizaje — no para certificados, no para aprobación, sino por la alegría de entender.",
-      "change": "Dubái no me entregó el éxito. Pero me dio el ambiente donde la curiosidad podía respirar libremente por primera vez. Y eso cambió todo.",
-      "today": "Comencé a dar forma a marcas, diseñar sistemas, construir sitios web, mejorar estrategias de marketing, editar videos, resolver problemas creativos — y descubrir que la creatividad es ilimitada cuando la nutres con intención. Todavía estoy aprendiendo. Todavía mejorando. Todavía creciendo en la persona que una vez esperé ser. No tengo todas las respuestas. Pero tengo suficiente curiosidad para seguir buscando."
-    },
-    "skills": {
-      "title": "Experiencia central",
-      "list": [
-        {
-          "name": "Marketing digital",
-          "level": "Experto",
-          "category": "Estrategia y ejecución"
-        },
-        {
-          "name": "Diseño de marca",
-          "level": "Avanzado",
-          "category": "Identidad visual"
-        },
-        {
-          "name": "Producción de video",
-          "level": "Avanzado",
-          "category": "Creación de contenido"
-        },
-        {
-          "name": "Desarrollo web",
-          "level": "Intermedio",
-          "category": "Frontend y CMS"
-        },
-        {
-          "name": "Redes sociales",
-          "level": "Experto",
-          "category": "Contenido y crecimiento"
-        },
-        {
-          "name": "Anuncios de rendimiento",
-          "level": "Experto",
-          "category": "Google y Meta"
-        }
-      ]
-    },
-    "philosophy": {
-      "title": "Mi enfoque",
-      "list": [
-        {
-          "icon": "🎨",
-          "title": "Creatividad primero",
-          "description": "Cada proyecto comienza con entender la historia. El diseño y la estrategia siguen naturalmente cuando sabes lo que intentas decir."
-        },
-        {
-          "icon": "📊",
-          "title": "Basado en datos",
-          "description": "Creo en el poder de los datos, pero nunca a expensas de la creatividad. El mejor trabajo equilibra la intuición con las ideas."
-        },
-        {
-          "icon": "🤝",
-          "title": "Colaborativo",
-          "description": "El gran trabajo ocurre cuando todos se sienten escuchados. Valoro la comunicación abierta y la retroalimentación honesta durante todo el proceso."
-        },
-        {
-          "icon": "⚡",
-          "title": "Orientado a resultados",
-          "description": "El trabajo hermoso no significa nada si no mueve la aguja. Me enfoco en resultados que importan para tu negocio."
-        }
-      ]
-    },
-    "whatIBuild": {
-      "title": "Lo que quiero construir",
-      "intro": "Quiero construir trabajo que se sienta vivo — marcas con personalidad, sitios web con calidez, e historias que permanezcan en la mente mucho después de que alguien cierre la pestaña.",
-      "body": "Quiero crear experiencias que se sientan humanas, intencionales y silenciosamente poderosas.",
-      "closing": "Lo más importante, quiero trabajar con personas que se preocupan — personas que valoran el significado sobre el ruido, la claridad sobre el caos, y la creatividad que marca la diferencia.",
-      "final": "Juntos, podemos crear algo que realmente importa."
+      "line1": "Si alguna parte de este viaje te resulta familiar,",
+      "line2": "quizás podamos crear algo significativo juntos.",
+      "cta": "quizás."
     }
   },
   "tools": {

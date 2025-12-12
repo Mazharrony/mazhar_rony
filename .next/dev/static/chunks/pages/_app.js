@@ -1,13 +1,13 @@
 __turbopack_load_page_chunks__("/_app", [
-  "static/chunks/4193b_next_dist_compiled_9e25278a._.js",
-  "static/chunks/4193b_next_dist_shared_lib_71ac094a._.js",
-  "static/chunks/4193b_next_dist_client_a475c57e._.js",
-  "static/chunks/4193b_next_dist_be998915._.js",
-  "static/chunks/4193b_next_app_37eeec02.js",
-  "static/chunks/[next]_entry_page-loader_ts_d17b8328._.js",
-  "static/chunks/4193b_react-dom_4f5c34a3._.js",
-  "static/chunks/4193b_b2c46132._.js",
-  "static/chunks/[root-of-the-server]__e73a2756._.js",
-  "static/chunks/mazhar_rony_mazhar_roney_mazhar_rony_pages__app_2da965e7._.js",
-  "static/chunks/turbopack-mazhar_rony_mazhar_roney_mazhar_rony_pages__app_fa384224._.js"
+  "static/chunks/node_modules_next_dist_compiled_8ca6b690._.js",
+  "static/chunks/node_modules_next_dist_shared_lib_82dc2e9d._.js",
+  "static/chunks/node_modules_next_dist_client_d0aa886c._.js",
+  "static/chunks/node_modules_next_dist_b0a279d5._.js",
+  "static/chunks/node_modules_next_app_72f3d36f.js",
+  "static/chunks/[next]_entry_page-loader_ts_742e4b53._.js",
+  "static/chunks/node_modules_react-dom_4411d9bd._.js",
+  "static/chunks/node_modules_8d9fab5d._.js",
+  "static/chunks/[root-of-the-server]__45f039c3._.js",
+  "static/chunks/pages__app_2da965e7._.js",
+  "static/chunks/turbopack-pages__app_44f5ebd6._.js"
 ])

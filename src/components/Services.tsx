@@ -98,7 +98,7 @@ const Services: React.FC = () => {
       <div className={innerClass}>
         <div className="services-header">
           <p className="services-pill">{t("services.label")}</p>
-          <h2 className="services-title gradient-text">{t("services.title")}</h2>
+          <h2 className="services-title">{t("services.title")}</h2>
           <p className="services-subtitle">{t("services.subtitle")}</p>
         </div>
 

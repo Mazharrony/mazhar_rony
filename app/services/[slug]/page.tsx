@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import ServiceDetail from '@/src/components/ServiceDetail';
+import ServiceDetailClient from '@/src/components/ServiceDetail';
 import { serviceData, isValidServiceSlug, type ServiceSlug } from '@/lib/services/serviceData';
 
 const SITE_URL = 'https://mazharrony.vercel.app';
@@ -47,5 +47,5 @@ export default async function ServiceDetailPage({ params }: Props) {
     notFound();
   }
 
-  return <ServiceDetail slug={slug as ServiceSlug} />;
+  return <ServiceDetailClient slug={slug as ServiceSlug} />;
 }
