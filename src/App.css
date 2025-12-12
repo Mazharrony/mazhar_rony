@@ -12,6 +12,7 @@
   --text-primary: #1a1a1a;
   --text-secondary: #666666;
   --border-color: #e0e0e0;
+  --accent-primary: #6366f1;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -28,6 +29,7 @@
   --text-primary: #ffffff;
   --text-secondary: #d4d4d4;
   --border-color: #404040;
+  --accent-primary: #818cf8;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.32);
   --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.48);
 }
@@ -39,6 +41,7 @@ body.dark {
   --text-primary: #ffffff;
   --text-secondary: #d4d4d4;
   --border-color: #404040;
+  --accent-primary: #818cf8;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.32);
   --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.48);
 }
@@ -107,6 +110,10 @@ main {
   transition: background-color var(--theme-transition-duration) var(--theme-transition-easing);
 }
 
+.fold.portfolio {
+  overflow: visible;
+}
+
 .fold:nth-child(even) {
   background-color: var(--bg-secondary);
   transition: background-color var(--theme-transition-duration) var(--theme-transition-easing);
@@ -167,12 +174,44 @@ html.theme-transitioning .fold:nth-child(3n) {
   }
 }
 
+/* Gradient Text Effect */
+.gradient-text {
+  background: linear-gradient(135deg, #31375B 0%, #777AFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+body.dark .gradient-text,
+.App.dark .gradient-text {
+  background: linear-gradient(135deg, #E0E0FF 0%, #7A6FF0 50%, #A020F0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 h1 {
   font-size: 3.5rem;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--text-primary);
+}
+
+h1.gradient-text {
+  background: linear-gradient(135deg, #31375B 0%, #777AFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.dark h1.gradient-text,
+.App.dark h1.gradient-text {
+  background: linear-gradient(135deg, #E0E0FF 0%, #7A6FF0 50%, #A020F0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 h2 {
@@ -183,11 +222,41 @@ h2 {
   color: var(--text-primary);
 }
 
+h2.gradient-text {
+  background: linear-gradient(135deg, #31375B 0%, #777AFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.dark h2.gradient-text,
+.App.dark h2.gradient-text {
+  background: linear-gradient(135deg, #E0E0FF 0%, #7A6FF0 50%, #A020F0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 h3 {
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1.4;
   color: var(--text-primary);
+}
+
+h3.gradient-text {
+  background: linear-gradient(135deg, #31375B 0%, #777AFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.dark h3.gradient-text,
+.App.dark h3.gradient-text {
+  background: linear-gradient(135deg, #E0E0FF 0%, #7A6FF0 50%, #A020F0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 h4 {
@@ -321,6 +390,9 @@ p {
   letter-spacing: 0.1em;
   margin-bottom: 16px;
   border: 1px solid var(--border-color);
+  position: relative;
+  vertical-align: baseline;
+  line-height: 1.5;
 }
 
 .section-header h2 {
