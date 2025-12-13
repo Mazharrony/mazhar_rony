@@ -43,25 +43,6 @@ const LanguageProvider = ({ children })=>{
         es: {}
     });
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                location: 'LanguageProvider.tsx:47',
-                message: 'Translation loading started',
-                data: {
-                    timestamp: Date.now()
-                },
-                timestamp: Date.now(),
-                sessionId: 'debug-session',
-                runId: 'run1',
-                hypothesisId: 'A'
-            })
-        }).catch(()=>{});
-        // #endregion
         // Load translations from JSON files
         const loadTranslations = async ()=>{
             try {
@@ -79,134 +60,52 @@ const LanguageProvider = ({ children })=>{
                     zh: {},
                     es: {}
                 };
+                // Helper function to fetch with retry
+                const fetchWithRetry = async (url, retries = 2)=>{
+                    for(let i = 0; i <= retries; i++){
+                        try {
+                            const response = await fetch(url, {
+                                cache: 'no-cache',
+                                headers: {
+                                    'Accept': 'application/json'
+                                }
+                            });
+                            if (response.ok) {
+                                return response;
+                            }
+                            if (i < retries) {
+                                await new Promise((resolve)=>setTimeout(resolve, 100 * (i + 1)));
+                            }
+                        } catch (error) {
+                            if (i < retries) {
+                                await new Promise((resolve)=>setTimeout(resolve, 100 * (i + 1)));
+                            } else {
+                                throw error;
+                            }
+                        }
+                    }
+                    return null;
+                };
                 for (const lang of langs){
-                    // #region agent log
-                    fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            location: 'LanguageProvider.tsx:61',
-                            message: 'Fetching translation file',
-                            data: {
-                                lang,
-                                url: `/locales/${lang}.json`
-                            },
-                            timestamp: Date.now(),
-                            sessionId: 'debug-session',
-                            runId: 'run1',
-                            hypothesisId: 'A'
-                        })
-                    }).catch(()=>{});
-                    // #endregion
-                    const response = await fetch(`/locales/${lang}.json`);
-                    // #region agent log
-                    fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            location: 'LanguageProvider.tsx:63',
-                            message: 'Translation fetch response',
-                            data: {
-                                lang,
-                                ok: response.ok,
-                                status: response.status
-                            },
-                            timestamp: Date.now(),
-                            sessionId: 'debug-session',
-                            runId: 'run1',
-                            hypothesisId: 'A'
-                        })
-                    }).catch(()=>{});
-                    // #endregion
-                    if (response.ok) {
-                        loadedTranslations[lang] = await response.json();
-                        // #region agent log
-                        fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                location: 'LanguageProvider.tsx:65',
-                                message: 'Translation loaded successfully',
-                                data: {
-                                    lang,
-                                    keysCount: Object.keys(loadedTranslations[lang]).length
-                                },
-                                timestamp: Date.now(),
-                                sessionId: 'debug-session',
-                                runId: 'run1',
-                                hypothesisId: 'A'
-                            })
-                        }).catch(()=>{});
-                    // #endregion
-                    } else {
-                        // #region agent log
-                        fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                location: 'LanguageProvider.tsx:67',
-                                message: 'Translation fetch failed',
-                                data: {
-                                    lang,
-                                    status: response.status
-                                },
-                                timestamp: Date.now(),
-                                sessionId: 'debug-session',
-                                runId: 'run1',
-                                hypothesisId: 'A'
-                            })
-                        }).catch(()=>{});
-                    // #endregion
+                    try {
+                        const response = await fetchWithRetry(`/locales/${lang}.json`);
+                        if (response && response.ok) {
+                            const data = await response.json();
+                            loadedTranslations[lang] = data;
+                        } else {
+                            if ("TURBOPACK compile-time truthy", 1) {
+                                console.warn(`Failed to load translations for ${lang}:`, response?.status || 'Network error');
+                            }
+                        }
+                    } catch (fetchError) {
+                        if ("TURBOPACK compile-time truthy", 1) {
+                            console.warn(`Error fetching translations for ${lang}:`, fetchError);
+                        }
+                    // Continue with other languages even if one fails
                     }
                 }
                 setTranslations(loadedTranslations);
-                // #region agent log
-                fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        location: 'LanguageProvider.tsx:70',
-                        message: 'All translations loaded',
-                        data: {
-                            loadedLangs: Object.keys(loadedTranslations)
-                        },
-                        timestamp: Date.now(),
-                        sessionId: 'debug-session',
-                        runId: 'run1',
-                        hypothesisId: 'A'
-                    })
-                }).catch(()=>{});
-            // #endregion
             } catch (error) {
-                // #region agent log
-                fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        location: 'LanguageProvider.tsx:72',
-                        message: 'Translation loading error',
-                        data: {
-                            error: error instanceof Error ? error.message : String(error)
-                        },
-                        timestamp: Date.now(),
-                        sessionId: 'debug-session',
-                        runId: 'run1',
-                        hypothesisId: 'A'
-                    })
-                }).catch(()=>{});
-                // #endregion
                 if ("TURBOPACK compile-time truthy", 1) {
                     console.error('Failed to load translations:', error);
                 }
@@ -215,69 +114,10 @@ const LanguageProvider = ({ children })=>{
         loadTranslations().then(()=>{
             // Detect and set language
             const detected = detectLanguageImpl();
-            // #region agent log
-            fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    location: 'LanguageProvider.tsx:78',
-                    message: 'Language detection',
-                    data: {
-                        detected
-                    },
-                    timestamp: Date.now(),
-                    sessionId: 'debug-session',
-                    runId: 'run1',
-                    hypothesisId: 'A'
-                })
-            }).catch(()=>{});
-            // #endregion
             const saved = localStorage.getItem('preferredLanguage');
-            // #region agent log
-            fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    location: 'LanguageProvider.tsx:79',
-                    message: 'LocalStorage read',
-                    data: {
-                        saved,
-                        detected
-                    },
-                    timestamp: Date.now(),
-                    sessionId: 'debug-session',
-                    runId: 'run1',
-                    hypothesisId: 'B'
-                })
-            }).catch(()=>{});
-            // #endregion
             setDetectedLang(detected);
             const finalLang = saved || detected;
             setLanguageState(finalLang);
-            // #region agent log
-            fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    location: 'LanguageProvider.tsx:83',
-                    message: 'Language state set',
-                    data: {
-                        finalLang,
-                        showConfirmation: !saved && detected !== 'en'
-                    },
-                    timestamp: Date.now(),
-                    sessionId: 'debug-session',
-                    runId: 'run1',
-                    hypothesisId: 'A'
-                })
-            }).catch(()=>{});
-            // #endregion
             // Show confirmation if no preference saved and detected language is not English
             if (!saved && detected !== 'en') {
                 setShowConfirmation(true);
@@ -309,27 +149,48 @@ const LanguageProvider = ({ children })=>{
         setShowConfirmation(false);
     };
     const t = (key)=>{
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                location: 'LanguageProvider.tsx:119',
-                message: 'Translation lookup',
-                data: {
-                    key,
-                    language
-                },
-                timestamp: Date.now(),
-                sessionId: 'debug-session',
-                runId: 'run1',
-                hypothesisId: 'F'
-            })
-        }).catch(()=>{});
-        // #endregion
-        // Support nested keys like 'services.detail.social.title'
+        try {
+            // Support nested keys like 'services.detail.social.title'
+            const keys = key.split('.');
+            let value = translations[language];
+            // If translations haven't loaded yet, try English fallback immediately
+            if (!value || Object.keys(value).length === 0) {
+                value = translations['en'];
+            }
+            for (const k of keys){
+                if (value && typeof value === 'object') {
+                    value = value[k];
+                } else {
+                    value = undefined;
+                    break;
+                }
+            }
+            // Fallback to English if not found
+            if (value === undefined) {
+                let fallback = translations['en'];
+                for (const k of keys){
+                    if (fallback && typeof fallback === 'object') {
+                        fallback = fallback[k];
+                    } else {
+                        fallback = undefined;
+                        break;
+                    }
+                }
+                value = fallback;
+            }
+            // If value is a string, return it. If it's an object or undefined, return empty string instead of key
+            const result = typeof value === 'string' ? value : '';
+            return result;
+        } catch (error) {
+            // If anything goes wrong, return empty string to prevent crashes
+            if ("TURBOPACK compile-time truthy", 1) {
+                console.warn('Translation error for key:', key, error);
+            }
+            return '';
+        }
+    };
+    // Helper function to get objects/arrays from translations
+    const tObject = (key)=>{
         const keys = key.split('.');
         let value = translations[language];
         for (const k of keys){
@@ -342,26 +203,6 @@ const LanguageProvider = ({ children })=>{
         }
         // Fallback to English if not found
         if (value === undefined) {
-            // #region agent log
-            fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    location: 'LanguageProvider.tsx:134',
-                    message: 'Translation key missing, using fallback',
-                    data: {
-                        key,
-                        language
-                    },
-                    timestamp: Date.now(),
-                    sessionId: 'debug-session',
-                    runId: 'run1',
-                    hypothesisId: 'F'
-                })
-            }).catch(()=>{});
-            // #endregion
             let fallback = translations['en'];
             for (const k of keys){
                 if (fallback && typeof fallback === 'object') {
@@ -373,37 +214,15 @@ const LanguageProvider = ({ children })=>{
             }
             value = fallback;
         }
-        // If value is a string, return it. If it's an object or undefined, return empty string instead of key
-        const result = typeof value === 'string' ? value : '';
-        // #region agent log
-        if (result === '' && typeof value !== 'string') {
-            fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    location: 'LanguageProvider.tsx:147',
-                    message: 'Translation key not found, returning empty string',
-                    data: {
-                        key,
-                        language
-                    },
-                    timestamp: Date.now(),
-                    sessionId: 'debug-session',
-                    runId: 'run1',
-                    hypothesisId: 'F'
-                })
-            }).catch(()=>{});
-        }
-        // #endregion
-        return result;
+        return value;
     };
+    // Always render children immediately, even if translations aren't loaded yet
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(LanguageContext.Provider, {
         value: {
             language,
             setLanguage,
             t,
+            tObject,
             showConfirmation,
             detectedLanguage: detectedLang,
             confirmLanguage,
@@ -436,14 +255,14 @@ const LanguageProvider = ({ children })=>{
                                         children: detectedLang.toUpperCase()
                                     }, void 0, false, {
                                         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                        lineNumber: 216,
+                                        lineNumber: 260,
                                         columnNumber: 47
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     ". Continue?"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                lineNumber: 216,
+                                lineNumber: 260,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -455,7 +274,7 @@ const LanguageProvider = ({ children })=>{
                                         children: "Yes"
                                     }, void 0, false, {
                                         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                        lineNumber: 218,
+                                        lineNumber: 262,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -464,77 +283,41 @@ const LanguageProvider = ({ children })=>{
                                         children: "English"
                                     }, void 0, false, {
                                         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                        lineNumber: 224,
+                                        lineNumber: 268,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                lineNumber: 217,
+                                lineNumber: 261,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                        lineNumber: 215,
+                        lineNumber: 259,
                         columnNumber: 13
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                    lineNumber: 209,
+                    lineNumber: 253,
                     columnNumber: 11
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                lineNumber: 207,
+                lineNumber: 251,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-        lineNumber: 196,
+        lineNumber: 239,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
 const useLanguage = ()=>{
     const context = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useContext"])(LanguageContext);
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            location: 'LanguageProvider.tsx:194',
-            message: 'useLanguage hook called',
-            data: {
-                hasContext: !!context
-            },
-            timestamp: Date.now(),
-            sessionId: 'debug-session',
-            runId: 'run1',
-            hypothesisId: 'E'
-        })
-    }).catch(()=>{});
-    // #endregion
     if (!context) {
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                location: 'LanguageProvider.tsx:196',
-                message: 'useLanguage error: context missing',
-                data: {},
-                timestamp: Date.now(),
-                sessionId: 'debug-session',
-                runId: 'run1',
-                hypothesisId: 'E'
-            })
-        }).catch(()=>{});
-        // #endregion
         throw new Error('useLanguage must be used within LanguageProvider');
     }
     return context;
@@ -923,18 +706,13 @@ const Header = ()=>{
     // Header shrinks slightly when scrolled (80px → 60px)
     const headerHeight = scrollY > 20 ? 60 : 80;
     const isScrolled = scrollY > 20;
-    // Navigation items: match spec (About, Journey, Work, Services, Contact)
+    // Navigation items: match spec (About, Work, Services, Contact)
     // Note: Home is implied via brand click
     const navItems = [
         {
             label: t('header.nav.about'),
             href: '/about',
             key: 'about'
-        },
-        {
-            label: t('header.nav.journey'),
-            href: '/journey',
-            key: 'journey'
         },
         {
             label: t('header.nav.work'),
@@ -1027,17 +805,17 @@ const Header = ()=>{
                                     children: t('header.brand')
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Header.tsx",
-                                    lineNumber: 73,
+                                    lineNumber: 72,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Header.tsx",
-                                lineNumber: 68,
+                                lineNumber: 67,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/src/components/Header.tsx",
-                            lineNumber: 67,
+                            lineNumber: 66,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -1069,23 +847,23 @@ const Header = ()=>{
                                             children: item.label
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Header.tsx",
-                                            lineNumber: 91,
+                                            lineNumber: 90,
                                             columnNumber: 21
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Header.tsx",
-                                        lineNumber: 90,
+                                        lineNumber: 89,
                                         columnNumber: 19
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, item.key, false, {
                                     fileName: "[project]/src/components/Header.tsx",
-                                    lineNumber: 84,
+                                    lineNumber: 83,
                                     columnNumber: 17
                                 }, ("TURBOPACK compile-time value", void 0));
                             })
                         }, void 0, false, {
                             fileName: "[project]/src/components/Header.tsx",
-                            lineNumber: 80,
+                            lineNumber: 79,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1109,17 +887,17 @@ const Header = ()=>{
                                                         children: lang.label
                                                     }, lang.code, false, {
                                                         fileName: "[project]/src/components/Header.tsx",
-                                                        lineNumber: 116,
+                                                        lineNumber: 115,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Header.tsx",
-                                                lineNumber: 109,
+                                                lineNumber: 108,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0))
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Header.tsx",
-                                            lineNumber: 108,
+                                            lineNumber: 107,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -1135,7 +913,7 @@ const Header = ()=>{
                                             children: theme === 'light' ? '🌙' : '☀️'
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Header.tsx",
-                                            lineNumber: 124,
+                                            lineNumber: 123,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1152,18 +930,18 @@ const Header = ()=>{
                                                 children: t('header.cta')
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Header.tsx",
-                                                lineNumber: 136,
+                                                lineNumber: 135,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0))
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Header.tsx",
-                                            lineNumber: 135,
+                                            lineNumber: 134,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/Header.tsx",
-                                    lineNumber: 106,
+                                    lineNumber: 105,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -1176,6 +954,11 @@ const Header = ()=>{
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {}, void 0, false, {
                                             fileName: "[project]/src/components/Header.tsx",
+                                            lineNumber: 152,
+                                            columnNumber: 15
+                                        }, ("TURBOPACK compile-time value", void 0)),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {}, void 0, false, {
+                                            fileName: "[project]/src/components/Header.tsx",
                                             lineNumber: 153,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)),
@@ -1183,33 +966,28 @@ const Header = ()=>{
                                             fileName: "[project]/src/components/Header.tsx",
                                             lineNumber: 154,
                                             columnNumber: 15
-                                        }, ("TURBOPACK compile-time value", void 0)),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {}, void 0, false, {
-                                            fileName: "[project]/src/components/Header.tsx",
-                                            lineNumber: 155,
-                                            columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/Header.tsx",
-                                    lineNumber: 147,
+                                    lineNumber: 146,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/Header.tsx",
-                            lineNumber: 104,
+                            lineNumber: 103,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/Header.tsx",
-                    lineNumber: 65,
+                    lineNumber: 64,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/src/components/Header.tsx",
-                lineNumber: 64,
+                lineNumber: 63,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             mobileMenuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -1231,7 +1009,7 @@ const Header = ()=>{
                         onClick: ()=>setMobileMenuOpen(false)
                     }, void 0, false, {
                         fileName: "[project]/src/components/Header.tsx",
-                        lineNumber: 165,
+                        lineNumber: 164,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1260,7 +1038,7 @@ const Header = ()=>{
                                         children: t('header.brand')
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Header.tsx",
-                                        lineNumber: 189,
+                                        lineNumber: 188,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -1290,7 +1068,7 @@ const Header = ()=>{
                                                     y2: "18"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Header.tsx",
-                                                    lineNumber: 198,
+                                                    lineNumber: 197,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -1300,24 +1078,24 @@ const Header = ()=>{
                                                     y2: "18"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Header.tsx",
-                                                    lineNumber: 199,
+                                                    lineNumber: 198,
                                                     columnNumber: 19
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/Header.tsx",
-                                            lineNumber: 197,
+                                            lineNumber: 196,
                                             columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Header.tsx",
-                                        lineNumber: 190,
+                                        lineNumber: 189,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/Header.tsx",
-                                lineNumber: 188,
+                                lineNumber: 187,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -1347,7 +1125,7 @@ const Header = ()=>{
                                                     children: item.label
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Header.tsx",
-                                                    lineNumber: 220,
+                                                    lineNumber: 219,
                                                     columnNumber: 23
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 isActive && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1361,24 +1139,24 @@ const Header = ()=>{
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Header.tsx",
-                                                    lineNumber: 222,
+                                                    lineNumber: 221,
                                                     columnNumber: 25
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/Header.tsx",
-                                            lineNumber: 215,
+                                            lineNumber: 214,
                                             columnNumber: 21
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, item.key, false, {
                                         fileName: "[project]/src/components/Header.tsx",
-                                        lineNumber: 209,
+                                        lineNumber: 208,
                                         columnNumber: 19
                                     }, ("TURBOPACK compile-time value", void 0));
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Header.tsx",
-                                lineNumber: 205,
+                                lineNumber: 204,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1409,23 +1187,23 @@ const Header = ()=>{
                                         children: t('header.cta')
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Header.tsx",
-                                        lineNumber: 243,
+                                        lineNumber: 242,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Header.tsx",
-                                    lineNumber: 242,
+                                    lineNumber: 241,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Header.tsx",
-                                lineNumber: 236,
+                                lineNumber: 235,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Header.tsx",
-                        lineNumber: 175,
+                        lineNumber: 174,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
@@ -1433,7 +1211,7 @@ const Header = ()=>{
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/Header.tsx",
-        lineNumber: 57,
+        lineNumber: 56,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };

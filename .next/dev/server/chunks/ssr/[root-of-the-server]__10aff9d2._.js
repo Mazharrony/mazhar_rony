@@ -409,7 +409,6 @@ const jsonLd = {
                     addressCountry: 'AE'
                 }
             },
-            // TODO: Add your actual social media URLs
             sameAs: []
         },
         {

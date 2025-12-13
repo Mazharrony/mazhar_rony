@@ -3,6 +3,7 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/about/page": "app/about/page.js",
   "/api/brief/route": "app/api/brief/route.js",
+  "/api/meeting/route": "app/api/meeting/route.js",
   "/contact/page": "app/contact/page.js",
   "/journey/page": "app/journey/page.js",
   "/page": "app/page.js",
@@ -10,5 +11,7 @@
   "/services/[slug]/page": "app/services/[slug]/page.js",
   "/services/page": "app/services/page.js",
   "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/stories/[id]/page": "app/stories/[id]/page.js",
+  "/stories/page": "app/stories/page.js",
   "/work/page": "app/work/page.js"
 }

@@ -10,10 +10,10 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_async_to_generator$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@swc/helpers/esm/_async_to_generator.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_instanceof$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@swc/helpers/esm/_instanceof.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_sliced_to_array$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@swc/helpers/esm/_sliced_to_array.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_type_of$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@swc/helpers/esm/_type_of.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tslib$2f$tslib$2e$es6$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$5f$_generator__as__$5f3e$__ = __turbopack_context__.i("[project]/node_modules/tslib/tslib.es6.mjs [app-client] (ecmascript) <export __generator as _>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tslib$2f$tslib$2e$es6$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$5f$_values__as__$5f3e$__ = __turbopack_context__.i("[project]/node_modules/tslib/tslib.es6.mjs [app-client] (ecmascript) <export __values as _>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
@@ -59,42 +59,21 @@ var LanguageProvider = function(param) {
     }), 2), translations = _useState3[0], setTranslations = _useState3[1];
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "LanguageProvider.useEffect": function() {
-            // #region agent log
-            fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    location: 'LanguageProvider.tsx:47',
-                    message: 'Translation loading started',
-                    data: {
-                        timestamp: Date.now()
-                    },
-                    timestamp: Date.now(),
-                    sessionId: 'debug-session',
-                    runId: 'run1',
-                    hypothesisId: 'A'
-                })
-            })["catch"]({
-                "LanguageProvider.useEffect": function() {}
-            }["LanguageProvider.useEffect"]);
-            // #endregion
             // Load translations from JSON files
             var loadTranslations = {
                 "LanguageProvider.useEffect.loadTranslations": function() {
                     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_async_to_generator$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])({
                         "LanguageProvider.useEffect.loadTranslations": function() {
-                            var langs, loadedTranslations, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, lang, response, err, error;
+                            var langs, loadedTranslations, fetchWithRetry, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, lang, response, data, fetchError, err, error;
                             return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tslib$2f$tslib$2e$es6$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$5f$_generator__as__$5f3e$__["_"])(this, {
                                 "LanguageProvider.useEffect.loadTranslations": function(_state) {
                                     switch(_state.label){
                                         case 0:
                                             _state.trys.push([
                                                 0,
-                                                11,
+                                                14,
                                                 ,
-                                                12
+                                                15
                                             ]);
                                             langs = [
                                                 'en',
@@ -110,150 +89,226 @@ var LanguageProvider = function(param) {
                                                 zh: {},
                                                 es: {}
                                             };
+                                            // Helper function to fetch with retry
+                                            fetchWithRetry = ({
+                                                "LanguageProvider.useEffect.loadTranslations": function(url) {
+                                                    var retries = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 2;
+                                                    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_async_to_generator$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])({
+                                                        "LanguageProvider.useEffect.loadTranslations": function() {
+                                                            var _loop, i, _ret;
+                                                            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tslib$2f$tslib$2e$es6$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$5f$_generator__as__$5f3e$__["_"])(this, {
+                                                                "LanguageProvider.useEffect.loadTranslations": function(_state) {
+                                                                    switch(_state.label){
+                                                                        case 0:
+                                                                            _loop = ({
+                                                                                "LanguageProvider.useEffect.loadTranslations": function(i) {
+                                                                                    var response, error;
+                                                                                    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tslib$2f$tslib$2e$es6$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$5f$_generator__as__$5f3e$__["_"])(this, {
+                                                                                        "LanguageProvider.useEffect.loadTranslations": function(_state) {
+                                                                                            switch(_state.label){
+                                                                                                case 0:
+                                                                                                    _state.trys.push([
+                                                                                                        0,
+                                                                                                        4,
+                                                                                                        ,
+                                                                                                        8
+                                                                                                    ]);
+                                                                                                    return [
+                                                                                                        4,
+                                                                                                        fetch(url, {
+                                                                                                            cache: 'no-cache',
+                                                                                                            headers: {
+                                                                                                                Accept: 'application/json'
+                                                                                                            }
+                                                                                                        })
+                                                                                                    ];
+                                                                                                case 1:
+                                                                                                    response = _state.sent();
+                                                                                                    if (response.ok) {
+                                                                                                        return [
+                                                                                                            2,
+                                                                                                            {
+                                                                                                                v: response
+                                                                                                            }
+                                                                                                        ];
+                                                                                                    }
+                                                                                                    if (!(i < retries)) return [
+                                                                                                        3,
+                                                                                                        3
+                                                                                                    ];
+                                                                                                    return [
+                                                                                                        4,
+                                                                                                        new Promise({
+                                                                                                            "LanguageProvider.useEffect.loadTranslations": function(resolve) {
+                                                                                                                return setTimeout(resolve, 100 * (i + 1));
+                                                                                                            }
+                                                                                                        }["LanguageProvider.useEffect.loadTranslations"])
+                                                                                                    ];
+                                                                                                case 2:
+                                                                                                    _state.sent();
+                                                                                                    _state.label = 3;
+                                                                                                case 3:
+                                                                                                    return [
+                                                                                                        3,
+                                                                                                        8
+                                                                                                    ];
+                                                                                                case 4:
+                                                                                                    error = _state.sent();
+                                                                                                    if (!(i < retries)) return [
+                                                                                                        3,
+                                                                                                        6
+                                                                                                    ];
+                                                                                                    return [
+                                                                                                        4,
+                                                                                                        new Promise({
+                                                                                                            "LanguageProvider.useEffect.loadTranslations": function(resolve) {
+                                                                                                                return setTimeout(resolve, 100 * (i + 1));
+                                                                                                            }
+                                                                                                        }["LanguageProvider.useEffect.loadTranslations"])
+                                                                                                    ];
+                                                                                                case 5:
+                                                                                                    _state.sent();
+                                                                                                    return [
+                                                                                                        3,
+                                                                                                        7
+                                                                                                    ];
+                                                                                                case 6:
+                                                                                                    throw error;
+                                                                                                case 7:
+                                                                                                    return [
+                                                                                                        3,
+                                                                                                        8
+                                                                                                    ];
+                                                                                                case 8:
+                                                                                                    return [
+                                                                                                        2
+                                                                                                    ];
+                                                                                            }
+                                                                                        }
+                                                                                    }["LanguageProvider.useEffect.loadTranslations"]);
+                                                                                }
+                                                                            })["LanguageProvider.useEffect.loadTranslations"];
+                                                                            i = 0;
+                                                                            _state.label = 1;
+                                                                        case 1:
+                                                                            if (!(i <= retries)) return [
+                                                                                3,
+                                                                                4
+                                                                            ];
+                                                                            return [
+                                                                                5,
+                                                                                (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tslib$2f$tslib$2e$es6$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__$5f$_values__as__$5f3e$__["_"])(_loop(i))
+                                                                            ];
+                                                                        case 2:
+                                                                            _ret = _state.sent();
+                                                                            if ((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_type_of$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])(_ret) === "object") return [
+                                                                                2,
+                                                                                _ret.v
+                                                                            ];
+                                                                            _state.label = 3;
+                                                                        case 3:
+                                                                            i++;
+                                                                            return [
+                                                                                3,
+                                                                                1
+                                                                            ];
+                                                                        case 4:
+                                                                            return [
+                                                                                2,
+                                                                                null
+                                                                            ];
+                                                                    }
+                                                                }
+                                                            }["LanguageProvider.useEffect.loadTranslations"]);
+                                                        }
+                                                    }["LanguageProvider.useEffect.loadTranslations"])();
+                                                }
+                                            })["LanguageProvider.useEffect.loadTranslations"];
                                             _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
                                             _state.label = 1;
                                         case 1:
                                             _state.trys.push([
                                                 1,
-                                                8,
-                                                9,
-                                                10
+                                                11,
+                                                12,
+                                                13
                                             ]);
                                             _iterator = langs[Symbol.iterator]();
                                             _state.label = 2;
                                         case 2:
                                             if (!!(_iteratorNormalCompletion = (_step = _iterator.next()).done)) return [
                                                 3,
-                                                7
+                                                10
                                             ];
                                             lang = _step.value;
-                                            // #region agent log
-                                            fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                                                method: 'POST',
-                                                headers: {
-                                                    'Content-Type': 'application/json'
-                                                },
-                                                body: JSON.stringify({
-                                                    location: 'LanguageProvider.tsx:61',
-                                                    message: 'Fetching translation file',
-                                                    data: {
-                                                        lang: lang,
-                                                        url: "/locales/".concat(lang, ".json")
-                                                    },
-                                                    timestamp: Date.now(),
-                                                    sessionId: 'debug-session',
-                                                    runId: 'run1',
-                                                    hypothesisId: 'A'
-                                                })
-                                            })["catch"]({
-                                                "LanguageProvider.useEffect.loadTranslations": function() {}
-                                            }["LanguageProvider.useEffect.loadTranslations"]);
+                                            _state.label = 3;
+                                        case 3:
+                                            _state.trys.push([
+                                                3,
+                                                8,
+                                                ,
+                                                9
+                                            ]);
                                             return [
                                                 4,
-                                                fetch("/locales/".concat(lang, ".json"))
+                                                fetchWithRetry("/locales/".concat(lang, ".json"))
                                             ];
-                                        case 3:
+                                        case 4:
                                             response = _state.sent();
-                                            // #region agent log
-                                            fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                                                method: 'POST',
-                                                headers: {
-                                                    'Content-Type': 'application/json'
-                                                },
-                                                body: JSON.stringify({
-                                                    location: 'LanguageProvider.tsx:63',
-                                                    message: 'Translation fetch response',
-                                                    data: {
-                                                        lang: lang,
-                                                        ok: response.ok,
-                                                        status: response.status
-                                                    },
-                                                    timestamp: Date.now(),
-                                                    sessionId: 'debug-session',
-                                                    runId: 'run1',
-                                                    hypothesisId: 'A'
-                                                })
-                                            })["catch"]({
-                                                "LanguageProvider.useEffect.loadTranslations": function() {}
-                                            }["LanguageProvider.useEffect.loadTranslations"]);
-                                            if (!response.ok) return [
+                                            if (!(response && response.ok)) return [
                                                 3,
-                                                5
+                                                6
                                             ];
                                             return [
                                                 4,
                                                 response.json()
                                             ];
-                                        case 4:
-                                            loadedTranslations[lang] = _state.sent();
-                                            // #region agent log
-                                            fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                                                method: 'POST',
-                                                headers: {
-                                                    'Content-Type': 'application/json'
-                                                },
-                                                body: JSON.stringify({
-                                                    location: 'LanguageProvider.tsx:65',
-                                                    message: 'Translation loaded successfully',
-                                                    data: {
-                                                        lang: lang,
-                                                        keysCount: Object.keys(loadedTranslations[lang]).length
-                                                    },
-                                                    timestamp: Date.now(),
-                                                    sessionId: 'debug-session',
-                                                    runId: 'run1',
-                                                    hypothesisId: 'A'
-                                                })
-                                            })["catch"]({
-                                                "LanguageProvider.useEffect.loadTranslations": function() {}
-                                            }["LanguageProvider.useEffect.loadTranslations"]);
+                                        case 5:
+                                            data = _state.sent();
+                                            loadedTranslations[lang] = data;
                                             return [
                                                 3,
-                                                6
+                                                7
                                             ];
-                                        case 5:
-                                            // #region agent log
-                                            fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                                                method: 'POST',
-                                                headers: {
-                                                    'Content-Type': 'application/json'
-                                                },
-                                                body: JSON.stringify({
-                                                    location: 'LanguageProvider.tsx:67',
-                                                    message: 'Translation fetch failed',
-                                                    data: {
-                                                        lang: lang,
-                                                        status: response.status
-                                                    },
-                                                    timestamp: Date.now(),
-                                                    sessionId: 'debug-session',
-                                                    runId: 'run1',
-                                                    hypothesisId: 'A'
-                                                })
-                                            })["catch"]({
-                                                "LanguageProvider.useEffect.loadTranslations": function() {}
-                                            }["LanguageProvider.useEffect.loadTranslations"]);
-                                            _state.label = 6;
                                         case 6:
+                                            if ("TURBOPACK compile-time truthy", 1) {
+                                                console.warn("Failed to load translations for ".concat(lang, ":"), (response === null || response === void 0 ? void 0 : response.status) || 'Network error');
+                                            }
+                                            _state.label = 7;
+                                        case 7:
+                                            return [
+                                                3,
+                                                9
+                                            ];
+                                        case 8:
+                                            fetchError = _state.sent();
+                                            if ("TURBOPACK compile-time truthy", 1) {
+                                                console.warn("Error fetching translations for ".concat(lang, ":"), fetchError);
+                                            }
+                                            return [
+                                                3,
+                                                9
+                                            ];
+                                        case 9:
                                             _iteratorNormalCompletion = true;
                                             return [
                                                 3,
                                                 2
                                             ];
-                                        case 7:
+                                        case 10:
                                             return [
                                                 3,
-                                                10
+                                                13
                                             ];
-                                        case 8:
+                                        case 11:
                                             err = _state.sent();
                                             _didIteratorError = true;
                                             _iteratorError = err;
                                             return [
                                                 3,
-                                                10
+                                                13
                                             ];
-                                        case 9:
+                                        case 12:
                                             try {
                                                 if (!_iteratorNormalCompletion && _iterator["return"] != null) {
                                                     _iterator["return"]();
@@ -266,63 +321,22 @@ var LanguageProvider = function(param) {
                                             return [
                                                 7
                                             ];
-                                        case 10:
+                                        case 13:
                                             setTranslations(loadedTranslations);
-                                            // #region agent log
-                                            fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                                                method: 'POST',
-                                                headers: {
-                                                    'Content-Type': 'application/json'
-                                                },
-                                                body: JSON.stringify({
-                                                    location: 'LanguageProvider.tsx:70',
-                                                    message: 'All translations loaded',
-                                                    data: {
-                                                        loadedLangs: Object.keys(loadedTranslations)
-                                                    },
-                                                    timestamp: Date.now(),
-                                                    sessionId: 'debug-session',
-                                                    runId: 'run1',
-                                                    hypothesisId: 'A'
-                                                })
-                                            })["catch"]({
-                                                "LanguageProvider.useEffect.loadTranslations": function() {}
-                                            }["LanguageProvider.useEffect.loadTranslations"]);
                                             return [
                                                 3,
-                                                12
+                                                15
                                             ];
-                                        case 11:
+                                        case 14:
                                             error = _state.sent();
-                                            // #region agent log
-                                            fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                                                method: 'POST',
-                                                headers: {
-                                                    'Content-Type': 'application/json'
-                                                },
-                                                body: JSON.stringify({
-                                                    location: 'LanguageProvider.tsx:72',
-                                                    message: 'Translation loading error',
-                                                    data: {
-                                                        error: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_instanceof$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])(error, Error) ? error.message : String(error)
-                                                    },
-                                                    timestamp: Date.now(),
-                                                    sessionId: 'debug-session',
-                                                    runId: 'run1',
-                                                    hypothesisId: 'A'
-                                                })
-                                            })["catch"]({
-                                                "LanguageProvider.useEffect.loadTranslations": function() {}
-                                            }["LanguageProvider.useEffect.loadTranslations"]);
-                                            // #endregion
                                             if ("TURBOPACK compile-time truthy", 1) {
                                                 console.error('Failed to load translations:', error);
                                             }
                                             return [
                                                 3,
-                                                12
+                                                15
                                             ];
-                                        case 12:
+                                        case 15:
                                             return [
                                                 2
                                             ];
@@ -337,75 +351,10 @@ var LanguageProvider = function(param) {
                 "LanguageProvider.useEffect": function() {
                     // Detect and set language
                     var detected = detectLanguageImpl();
-                    // #region agent log
-                    fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            location: 'LanguageProvider.tsx:78',
-                            message: 'Language detection',
-                            data: {
-                                detected: detected
-                            },
-                            timestamp: Date.now(),
-                            sessionId: 'debug-session',
-                            runId: 'run1',
-                            hypothesisId: 'A'
-                        })
-                    })["catch"]({
-                        "LanguageProvider.useEffect": function() {}
-                    }["LanguageProvider.useEffect"]);
-                    // #endregion
                     var saved = localStorage.getItem('preferredLanguage');
-                    // #region agent log
-                    fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            location: 'LanguageProvider.tsx:79',
-                            message: 'LocalStorage read',
-                            data: {
-                                saved: saved,
-                                detected: detected
-                            },
-                            timestamp: Date.now(),
-                            sessionId: 'debug-session',
-                            runId: 'run1',
-                            hypothesisId: 'B'
-                        })
-                    })["catch"]({
-                        "LanguageProvider.useEffect": function() {}
-                    }["LanguageProvider.useEffect"]);
-                    // #endregion
                     setDetectedLang(detected);
                     var finalLang = saved || detected;
                     setLanguageState(finalLang);
-                    // #region agent log
-                    fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            location: 'LanguageProvider.tsx:83',
-                            message: 'Language state set',
-                            data: {
-                                finalLang: finalLang,
-                                showConfirmation: !saved && detected !== 'en'
-                            },
-                            timestamp: Date.now(),
-                            sessionId: 'debug-session',
-                            runId: 'run1',
-                            hypothesisId: 'A'
-                        })
-                    })["catch"]({
-                        "LanguageProvider.useEffect": function() {}
-                    }["LanguageProvider.useEffect"]);
-                    // #endregion
                     // Show confirmation if no preference saved and detected language is not English
                     if (!saved && detected !== 'en') {
                         setShowConfirmation(true);
@@ -439,27 +388,82 @@ var LanguageProvider = function(param) {
         setShowConfirmation(false);
     };
     var t = function(key) {
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                location: 'LanguageProvider.tsx:119',
-                message: 'Translation lookup',
-                data: {
-                    key: key,
-                    language: language
-                },
-                timestamp: Date.now(),
-                sessionId: 'debug-session',
-                runId: 'run1',
-                hypothesisId: 'F'
-            })
-        })["catch"](function() {});
-        // #endregion
-        // Support nested keys like 'services.detail.social.title'
+        try {
+            // Support nested keys like 'services.detail.social.title'
+            var keys = key.split('.');
+            var value = translations[language];
+            // If translations haven't loaded yet, try English fallback immediately
+            if (!value || Object.keys(value).length === 0) {
+                value = translations['en'];
+            }
+            var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
+            try {
+                for(var _iterator = keys[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                    var k = _step.value;
+                    if (value && (typeof value === "undefined" ? "undefined" : (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_type_of$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])(value)) === 'object') {
+                        value = value[k];
+                    } else {
+                        value = undefined;
+                        break;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally{
+                try {
+                    if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+                        _iterator["return"]();
+                    }
+                } finally{
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+            // Fallback to English if not found
+            if (value === undefined) {
+                var fallback = translations['en'];
+                var _iteratorNormalCompletion1 = true, _didIteratorError1 = false, _iteratorError1 = undefined;
+                try {
+                    for(var _iterator1 = keys[Symbol.iterator](), _step1; !(_iteratorNormalCompletion1 = (_step1 = _iterator1.next()).done); _iteratorNormalCompletion1 = true){
+                        var k1 = _step1.value;
+                        if (fallback && (typeof fallback === "undefined" ? "undefined" : (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$swc$2f$helpers$2f$esm$2f$_type_of$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["_"])(fallback)) === 'object') {
+                            fallback = fallback[k1];
+                        } else {
+                            fallback = undefined;
+                            break;
+                        }
+                    }
+                } catch (err) {
+                    _didIteratorError1 = true;
+                    _iteratorError1 = err;
+                } finally{
+                    try {
+                        if (!_iteratorNormalCompletion1 && _iterator1["return"] != null) {
+                            _iterator1["return"]();
+                        }
+                    } finally{
+                        if (_didIteratorError1) {
+                            throw _iteratorError1;
+                        }
+                    }
+                }
+                value = fallback;
+            }
+            // If value is a string, return it. If it's an object or undefined, return empty string instead of key
+            var result = typeof value === 'string' ? value : '';
+            return result;
+        } catch (error) {
+            // If anything goes wrong, return empty string to prevent crashes
+            if ("TURBOPACK compile-time truthy", 1) {
+                console.warn('Translation error for key:', key, error);
+            }
+            return '';
+        }
+    };
+    // Helper function to get objects/arrays from translations
+    var tObject = function(key) {
         var keys = key.split('.');
         var value = translations[language];
         var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
@@ -489,26 +493,6 @@ var LanguageProvider = function(param) {
         }
         // Fallback to English if not found
         if (value === undefined) {
-            // #region agent log
-            fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    location: 'LanguageProvider.tsx:134',
-                    message: 'Translation key missing, using fallback',
-                    data: {
-                        key: key,
-                        language: language
-                    },
-                    timestamp: Date.now(),
-                    sessionId: 'debug-session',
-                    runId: 'run1',
-                    hypothesisId: 'F'
-                })
-            })["catch"](function() {});
-            // #endregion
             var fallback = translations['en'];
             var _iteratorNormalCompletion1 = true, _didIteratorError1 = false, _iteratorError1 = undefined;
             try {
@@ -537,37 +521,15 @@ var LanguageProvider = function(param) {
             }
             value = fallback;
         }
-        // If value is a string, return it. If it's an object or undefined, return empty string instead of key
-        var result = typeof value === 'string' ? value : '';
-        // #region agent log
-        if (result === '' && typeof value !== 'string') {
-            fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    location: 'LanguageProvider.tsx:147',
-                    message: 'Translation key not found, returning empty string',
-                    data: {
-                        key: key,
-                        language: language
-                    },
-                    timestamp: Date.now(),
-                    sessionId: 'debug-session',
-                    runId: 'run1',
-                    hypothesisId: 'F'
-                })
-            })["catch"](function() {});
-        }
-        // #endregion
-        return result;
+        return value;
     };
+    // Always render children immediately, even if translations aren't loaded yet
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(LanguageContext.Provider, {
         value: {
             language: language,
             setLanguage: setLanguage,
             t: t,
+            tObject: tObject,
             showConfirmation: showConfirmation,
             detectedLanguage: detectedLang,
             confirmLanguage: confirmLanguage,
@@ -600,14 +562,14 @@ var LanguageProvider = function(param) {
                                         children: detectedLang.toUpperCase()
                                     }, void 0, false, {
                                         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                        lineNumber: 216,
+                                        lineNumber: 260,
                                         columnNumber: 47
                                     }, _this),
                                     ". Continue?"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                lineNumber: 216,
+                                lineNumber: 260,
                                 columnNumber: 15
                             }, _this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -621,7 +583,7 @@ var LanguageProvider = function(param) {
                                         children: "Yes"
                                     }, void 0, false, {
                                         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                        lineNumber: 218,
+                                        lineNumber: 262,
                                         columnNumber: 17
                                     }, _this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -632,80 +594,44 @@ var LanguageProvider = function(param) {
                                         children: "English"
                                     }, void 0, false, {
                                         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                        lineNumber: 224,
+                                        lineNumber: 268,
                                         columnNumber: 17
                                     }, _this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                                lineNumber: 217,
+                                lineNumber: 261,
                                 columnNumber: 15
                             }, _this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                        lineNumber: 215,
+                        lineNumber: 259,
                         columnNumber: 13
                     }, _this)
                 }, void 0, false, {
                     fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                    lineNumber: 209,
+                    lineNumber: 253,
                     columnNumber: 11
                 }, _this)
             }, void 0, false, {
                 fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-                lineNumber: 207,
+                lineNumber: 251,
                 columnNumber: 7
             }, _this)
         ]
     }, void 0, true, {
         fileName: "[project]/lib/i18n/LanguageProvider.tsx",
-        lineNumber: 196,
+        lineNumber: 239,
         columnNumber: 5
     }, _this);
 };
-_s(LanguageProvider, "jMkIC9L9WI3YzI/IUc6RwbWPPVo=");
+_s(LanguageProvider, "l6RRhvscaTmBNWT8jzjRoF5B0WE=");
 _c = LanguageProvider;
 var useLanguage = function() {
     _s1();
     var context = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useContext"])(LanguageContext);
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            location: 'LanguageProvider.tsx:194',
-            message: 'useLanguage hook called',
-            data: {
-                hasContext: !!context
-            },
-            timestamp: Date.now(),
-            sessionId: 'debug-session',
-            runId: 'run1',
-            hypothesisId: 'E'
-        })
-    })["catch"](function() {});
-    // #endregion
     if (!context) {
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                location: 'LanguageProvider.tsx:196',
-                message: 'useLanguage error: context missing',
-                data: {},
-                timestamp: Date.now(),
-                sessionId: 'debug-session',
-                runId: 'run1',
-                hypothesisId: 'E'
-            })
-        })["catch"](function() {});
-        // #endregion
         throw new Error('useLanguage must be used within LanguageProvider');
     }
     return context;
@@ -1181,18 +1107,13 @@ var Header = function() {
     // Header shrinks slightly when scrolled (80px → 60px)
     var headerHeight = scrollY > 20 ? 60 : 80;
     var isScrolled = scrollY > 20;
-    // Navigation items: match spec (About, Journey, Work, Services, Contact)
+    // Navigation items: match spec (About, Work, Services, Contact)
     // Note: Home is implied via brand click
     var navItems = [
         {
             label: t('header.nav.about'),
             href: '/about',
             key: 'about'
-        },
-        {
-            label: t('header.nav.journey'),
-            href: '/journey',
-            key: 'journey'
         },
         {
             label: t('header.nav.work'),
@@ -1285,17 +1206,17 @@ var Header = function() {
                                     children: t('header.brand')
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Header.tsx",
-                                    lineNumber: 73,
+                                    lineNumber: 72,
                                     columnNumber: 15
                                 }, _this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Header.tsx",
-                                lineNumber: 68,
+                                lineNumber: 67,
                                 columnNumber: 13
                             }, _this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/Header.tsx",
-                            lineNumber: 67,
+                            lineNumber: 66,
                             columnNumber: 11
                         }, _this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -1327,23 +1248,23 @@ var Header = function() {
                                             children: item.label
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Header.tsx",
-                                            lineNumber: 91,
+                                            lineNumber: 90,
                                             columnNumber: 21
                                         }, _this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Header.tsx",
-                                        lineNumber: 90,
+                                        lineNumber: 89,
                                         columnNumber: 19
                                     }, _this)
                                 }, item.key, false, {
                                     fileName: "[project]/src/components/Header.tsx",
-                                    lineNumber: 84,
+                                    lineNumber: 83,
                                     columnNumber: 17
                                 }, _this);
                             })
                         }, void 0, false, {
                             fileName: "[project]/src/components/Header.tsx",
-                            lineNumber: 80,
+                            lineNumber: 79,
                             columnNumber: 11
                         }, _this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1370,18 +1291,18 @@ var Header = function() {
                                                         children: lang.label
                                                     }, lang.code, false, {
                                                         fileName: "[project]/src/components/Header.tsx",
-                                                        lineNumber: 116,
+                                                        lineNumber: 115,
                                                         columnNumber: 21
                                                     }, _this);
                                                 })
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Header.tsx",
-                                                lineNumber: 109,
+                                                lineNumber: 108,
                                                 columnNumber: 17
                                             }, _this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Header.tsx",
-                                            lineNumber: 108,
+                                            lineNumber: 107,
                                             columnNumber: 15
                                         }, _this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -1397,7 +1318,7 @@ var Header = function() {
                                             children: theme === 'light' ? '🌙' : '☀️'
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Header.tsx",
-                                            lineNumber: 124,
+                                            lineNumber: 123,
                                             columnNumber: 15
                                         }, _this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1414,18 +1335,18 @@ var Header = function() {
                                                 children: t('header.cta')
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/Header.tsx",
-                                                lineNumber: 136,
+                                                lineNumber: 135,
                                                 columnNumber: 17
                                             }, _this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/Header.tsx",
-                                            lineNumber: 135,
+                                            lineNumber: 134,
                                             columnNumber: 15
                                         }, _this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/Header.tsx",
-                                    lineNumber: 106,
+                                    lineNumber: 105,
                                     columnNumber: 13
                                 }, _this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -1440,6 +1361,11 @@ var Header = function() {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {}, void 0, false, {
                                             fileName: "[project]/src/components/Header.tsx",
+                                            lineNumber: 152,
+                                            columnNumber: 15
+                                        }, _this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {}, void 0, false, {
+                                            fileName: "[project]/src/components/Header.tsx",
                                             lineNumber: 153,
                                             columnNumber: 15
                                         }, _this),
@@ -1447,33 +1373,28 @@ var Header = function() {
                                             fileName: "[project]/src/components/Header.tsx",
                                             lineNumber: 154,
                                             columnNumber: 15
-                                        }, _this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {}, void 0, false, {
-                                            fileName: "[project]/src/components/Header.tsx",
-                                            lineNumber: 155,
-                                            columnNumber: 15
                                         }, _this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/Header.tsx",
-                                    lineNumber: 147,
+                                    lineNumber: 146,
                                     columnNumber: 13
                                 }, _this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/Header.tsx",
-                            lineNumber: 104,
+                            lineNumber: 103,
                             columnNumber: 11
                         }, _this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/Header.tsx",
-                    lineNumber: 65,
+                    lineNumber: 64,
                     columnNumber: 9
                 }, _this)
             }, void 0, false, {
                 fileName: "[project]/src/components/Header.tsx",
-                lineNumber: 64,
+                lineNumber: 63,
                 columnNumber: 7
             }, _this),
             mobileMenuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -1497,7 +1418,7 @@ var Header = function() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/src/components/Header.tsx",
-                        lineNumber: 165,
+                        lineNumber: 164,
                         columnNumber: 11
                     }, _this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1526,7 +1447,7 @@ var Header = function() {
                                         children: t('header.brand')
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Header.tsx",
-                                        lineNumber: 189,
+                                        lineNumber: 188,
                                         columnNumber: 15
                                     }, _this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].button, {
@@ -1558,7 +1479,7 @@ var Header = function() {
                                                     y2: "18"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Header.tsx",
-                                                    lineNumber: 198,
+                                                    lineNumber: 197,
                                                     columnNumber: 19
                                                 }, _this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
@@ -1568,24 +1489,24 @@ var Header = function() {
                                                     y2: "18"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Header.tsx",
-                                                    lineNumber: 199,
+                                                    lineNumber: 198,
                                                     columnNumber: 19
                                                 }, _this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/Header.tsx",
-                                            lineNumber: 197,
+                                            lineNumber: 196,
                                             columnNumber: 17
                                         }, _this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Header.tsx",
-                                        lineNumber: 190,
+                                        lineNumber: 189,
                                         columnNumber: 15
                                     }, _this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/Header.tsx",
-                                lineNumber: 188,
+                                lineNumber: 187,
                                 columnNumber: 13
                             }, _this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
@@ -1617,7 +1538,7 @@ var Header = function() {
                                                     children: item.label
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Header.tsx",
-                                                    lineNumber: 220,
+                                                    lineNumber: 219,
                                                     columnNumber: 23
                                                 }, _this),
                                                 isActive && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1631,24 +1552,24 @@ var Header = function() {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Header.tsx",
-                                                    lineNumber: 222,
+                                                    lineNumber: 221,
                                                     columnNumber: 25
                                                 }, _this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/Header.tsx",
-                                            lineNumber: 215,
+                                            lineNumber: 214,
                                             columnNumber: 21
                                         }, _this)
                                     }, item.key, false, {
                                         fileName: "[project]/src/components/Header.tsx",
-                                        lineNumber: 209,
+                                        lineNumber: 208,
                                         columnNumber: 19
                                     }, _this);
                                 })
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Header.tsx",
-                                lineNumber: 205,
+                                lineNumber: 204,
                                 columnNumber: 13
                             }, _this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1681,23 +1602,23 @@ var Header = function() {
                                         children: t('header.cta')
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Header.tsx",
-                                        lineNumber: 243,
+                                        lineNumber: 242,
                                         columnNumber: 17
                                     }, _this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Header.tsx",
-                                    lineNumber: 242,
+                                    lineNumber: 241,
                                     columnNumber: 15
                                 }, _this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Header.tsx",
-                                lineNumber: 236,
+                                lineNumber: 235,
                                 columnNumber: 13
                             }, _this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/Header.tsx",
-                        lineNumber: 175,
+                        lineNumber: 174,
                         columnNumber: 11
                     }, _this)
                 ]
@@ -1705,7 +1626,7 @@ var Header = function() {
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/Header.tsx",
-        lineNumber: 57,
+        lineNumber: 56,
         columnNumber: 5
     }, _this);
 };

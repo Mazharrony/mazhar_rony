@@ -1,6 +1,6 @@
 // src/components/Services.tsx
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import MobileServices from "./MobileServices";
 import "./Services.css";
@@ -42,9 +42,14 @@ const Services: React.FC = () => {
       }
     };
 
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    // Use requestAnimationFrame for smoother measurements
+    const rafMeasure = () => {
+      requestAnimationFrame(measure);
+    };
+
+    rafMeasure();
+    window.addEventListener("resize", rafMeasure);
+    return () => window.removeEventListener("resize", rafMeasure);
   }, [language]);
 
   // Respect prefers-reduced-motion
@@ -63,11 +68,23 @@ const Services: React.FC = () => {
     offset: ["start start", "end end"],
   });
 
-  // No hold: pure linear mapping for instant response
-  const smoothProgress = scrollYProgress;
+  // Smooth spring animation for butter-smooth scrolling
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    mass: 0.5,
+    restDelta: 0.001,
+  });
 
-  // Map smooth progress to horizontal travel
-  const stripX = useTransform(smoothProgress, [0, 1], [0, -maxOffset || 0]);
+  // Map smooth progress to horizontal travel with easing
+  const stripX = useTransform(
+    smoothProgress,
+    [0, 1],
+    [0, -maxOffset || 0],
+    {
+      clamp: false, // Allow slight overscroll for natural feel
+    }
+  );
 
   const services = [
     { id: "social", titleKey: "services.items.0.title", bodyKey: "services.items.0.description", href: "/services/social-media-marketing" },
@@ -106,7 +123,16 @@ const Services: React.FC = () => {
           <motion.div
             className="services-strip"
             ref={stripRef}
-            style={{ x: stripX }}
+            style={{ 
+              x: stripX,
+              willChange: 'transform',
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 100,
+              damping: 30,
+              mass: 0.5,
+            }}
           >
             {services.map((service) => (
               <article key={service.id} className="service-card">

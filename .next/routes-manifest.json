@@ -27,6 +27,14 @@
         "nxtPslug": "nxtPslug"
       },
       "namedRegex": "^/services/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/stories/[id]",
+      "regex": "^/stories/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/stories/(?<nxtPid>[^/]+?)(?:/)?$"
     }
   ],
   "staticRoutes": [
@@ -61,6 +69,12 @@
       "namedRegex": "^/api/brief(?:/)?$"
     },
     {
+      "page": "/api/meeting",
+      "regex": "^/api/meeting(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/meeting(?:/)?$"
+    },
+    {
       "page": "/contact",
       "regex": "^/contact(?:/)?$",
       "routeKeys": {},
@@ -89,6 +103,12 @@
       "regex": "^/sitemap\\.xml(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/sitemap\\.xml(?:/)?$"
+    },
+    {
+      "page": "/stories",
+      "regex": "^/stories(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/stories(?:/)?$"
     },
     {
       "page": "/work",

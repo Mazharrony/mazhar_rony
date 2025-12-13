@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import { fadeInUp, staggerContainer, motionConfig } from '../utils/motion';
@@ -241,20 +242,20 @@ const PortfolioModal: React.FC<PortfolioModalProps> = ({ item, onClose }) => {
                 title={item.title}
               />
             ) : currentImage.startsWith('/') ? (
-              <img 
-                src={currentImage} 
-                alt={item.title}
-                style={{ 
-                  maxWidth: '100%', 
-                  maxHeight: '100%', 
-                  width: 'auto', 
-                  height: 'auto',
-                  objectFit: 'contain', 
-                  borderRadius: '12px', 
-                  backgroundColor: '#f5f5f5',
-                  display: 'block'
-                }}
-              />
+              <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '400px' }}>
+                <Image 
+                  src={currentImage} 
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                  style={{ 
+                    objectFit: 'contain', 
+                    borderRadius: '12px', 
+                    backgroundColor: '#f5f5f5'
+                  }}
+                  priority={currentImageIndex === 0}
+                />
+              </div>
             ) : (
               <div style={{ background: currentImage, width: '100%', height: '100%', borderRadius: '12px' }} />
             )}
@@ -453,12 +454,18 @@ const PortfolioModal: React.FC<PortfolioModalProps> = ({ item, onClose }) => {
 
 const Portfolio: React.FC = () => {
   const ref = React.useRef(null);
+  const [mounted, setMounted] = React.useState(false);
   const isInView = useInView(ref, { once: false, margin: "-80px" });
   const { t } = useLanguage();
 
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
+
+  // Prevent hydration mismatch by only animating after mount
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Portfolio items - automatically uses images from public/portfolio/images/
   // Just upload PNG/JPG files to that folder and they'll appear here
@@ -708,13 +715,14 @@ const Portfolio: React.FC = () => {
       <div className="container">
         <motion.div 
           className="section-header"
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={staggerContainer}
+          initial={false}
+          animate={mounted && isInView ? "visible" : "visible"}
+          variants={mounted ? staggerContainer : undefined}
+          suppressHydrationWarning
         >
-          <motion.span className="section-label" variants={fadeInUp}>{t('portfolio.label')}</motion.span>
-          <motion.h2 className="gradient-text" variants={fadeInUp}>{t('portfolio.title')}</motion.h2>
-          <motion.p className="section-subtitle" variants={fadeInUp}>
+          <motion.span className="section-label" variants={mounted ? fadeInUp : undefined} suppressHydrationWarning>{t('portfolio.label')}</motion.span>
+          <motion.h2 className="gradient-text" variants={mounted ? fadeInUp : undefined} suppressHydrationWarning>{t('portfolio.title')}</motion.h2>
+          <motion.p className="section-subtitle" variants={mounted ? fadeInUp : undefined} suppressHydrationWarning>
             {t('portfolio.subtitle')}
           </motion.p>
         </motion.div>
@@ -736,22 +744,33 @@ const Portfolio: React.FC = () => {
 
         <div className="grid grid-2">
           <AnimatePresence mode="popLayout">
-            {filtered.map((item: any, index: number) => (
+            {filtered.map((item: any, index: number) => {
+              const isFirstThree = index < 3;
+              return (
               <motion.div
                 key={item.id}
                 className="portfolio-card"
                 onClick={() => setSelectedItem(item.id)}
                 custom={index}
-                layout
-                initial="hidden"
-                animate="visible"
+                layout={mounted}
+                initial={false}
+                animate={mounted ? "visible" : "visible"}
                 exit="exit"
-                variants={cardVariant}
+                variants={mounted ? cardVariant : undefined}
                 whileHover={{
                   y: -12,
                   scale: 1.02,
                   boxShadow: '0 20px 60px rgba(0,0,0,0.18)',
                   transition: { duration: 0.35, ease: [0.4, 0, 0.2, 1] }
+                }}
+                role="button"
+                tabIndex={0}
+                aria-label={`View ${item.title} portfolio item`}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setSelectedItem(item.id);
+                  }
                 }}
               >
                 <motion.div 
@@ -762,6 +781,7 @@ const Portfolio: React.FC = () => {
                     filter: 'grayscale(0%)',
                     transition: { duration: 0.45 }
                   }}
+                  style={{ willChange: 'transform' }}
                 >
                   {item.category === 'web' ? (
                     <WebMockupPlaceholder 
@@ -769,14 +789,20 @@ const Portfolio: React.FC = () => {
                       title={item.title}
                     />
                   ) : item.image.startsWith('/') && !imageErrors[item.id] ? (
-                    <img 
-                      src={item.image} 
-                      alt={item.title}
-                      style={{ width: '100%', height: '100%', objectFit: 'contain', backgroundColor: '#f5f5f5' }}
-                      onError={() => {
-                        setImageErrors(prev => ({ ...prev, [item.id]: true }));
-                      }}
-                    />
+                    <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px' }}>
+                      <Image 
+                        src={item.image} 
+                        alt={item.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        style={{ objectFit: 'contain', backgroundColor: '#f5f5f5' }}
+                        loading={isFirstThree ? 'eager' : 'lazy'}
+                        priority={isFirstThree}
+                        onError={() => {
+                          setImageErrors(prev => ({ ...prev, [item.id]: true }));
+                        }}
+                      />
+                    </div>
                   ) : (
                     <div style={{ 
                       background: item.image, 
@@ -877,7 +903,8 @@ const Portfolio: React.FC = () => {
                   </div>
                 </motion.div>
               </motion.div>
-            ))}
+              );
+            })}
           </AnimatePresence>
         </div>
 

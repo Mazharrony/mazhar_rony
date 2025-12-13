@@ -29,11 +29,10 @@ const Header: React.FC = () => {
   const headerHeight = scrollY > 20 ? 60 : 80;
   const isScrolled = scrollY > 20;
 
-  // Navigation items: match spec (About, Journey, Work, Services, Contact)
+  // Navigation items: match spec (About, Work, Services, Contact)
   // Note: Home is implied via brand click
   const navItems = [
     { label: t('header.nav.about'), href: '/about', key: 'about' },
-    { label: t('header.nav.journey'), href: '/journey', key: 'journey' },
     { label: t('header.nav.work'), href: '/work', key: 'work' },
     { label: t('header.nav.services'), href: '/services', key: 'services' },
     { label: t('header.nav.contact'), href: '/contact', key: 'contact' },

@@ -3,6 +3,7 @@
   "/_not-found/page": "/_not-found",
   "/about/page": "/about",
   "/api/brief/route": "/api/brief",
+  "/api/meeting/route": "/api/meeting",
   "/contact/page": "/contact",
   "/journey/page": "/journey",
   "/page": "/",
@@ -10,5 +11,7 @@
   "/services/[slug]/page": "/services/[slug]",
   "/services/page": "/services",
   "/sitemap.xml/route": "/sitemap.xml",
+  "/stories/[id]/page": "/stories/[id]",
+  "/stories/page": "/stories",
   "/work/page": "/work"
 }

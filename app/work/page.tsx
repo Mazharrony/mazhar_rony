@@ -33,19 +33,50 @@ const portfolioJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
   itemListElement: [
-    // TODO: Add your actual projects here
     {
       '@type': 'CreativeWork',
-      name: 'Brand Identity Project',
-      description: 'Complete branding solution for a Dubai-based business',
+      name: 'RDX Shot - Pre Workout Branding',
+      description: 'Complete branding package for RDX Shot pre-workout product line with premium packaging design across all flavor variants.',
       creator: {
         '@type': 'Person',
         name: 'Mazhar Rony'
       },
-      // image: 'URL to project image',
-      // url: 'URL to case study if applicable',
+      image: `${SITE_URL}/portfolio/images/rdx-shot-main.png`,
+      dateCreated: '2024-01-01'
     },
-    // Add more projects...
+    {
+      '@type': 'CreativeWork',
+      name: 'CMC Auto - Automotive Website',
+      description: 'Modern, responsive automotive website with seamless user experience and fast loading times.',
+      creator: {
+        '@type': 'Person',
+        name: 'Mazhar Rony'
+      },
+      url: 'https://cmcauto.ae',
+      dateCreated: '2024-01-01'
+    },
+    {
+      '@type': 'CreativeWork',
+      name: 'Benex - Oil & Gas Solutions',
+      description: 'Comprehensive B2B website showcasing oil & gas solutions and electrical supplies with intuitive navigation.',
+      creator: {
+        '@type': 'Person',
+        name: 'Mazhar Rony'
+      },
+      url: 'https://benex.ae',
+      dateCreated: '2024-01-01'
+    },
+    {
+      '@type': 'CreativeWork',
+      name: 'Muscle Show 2025 Social Media Campaign',
+      description: 'High-impact social media campaign creative that generated significant engagement and event attendance.',
+      creator: {
+        '@type': 'Person',
+        name: 'Mazhar Rony'
+      },
+      image: `${SITE_URL}/portfolio/images/Muscle Show 2025.jpg`,
+      dateCreated: '2024-01-01'
+    }
   ]
 };
 

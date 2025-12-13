@@ -1,5 +1,6 @@
 /* Modern Service Detail Page - Unique Design */
 .service-detail-page {
+  position: relative; /* Required for Framer Motion useScroll target */
   max-width: 1400px;
   margin: 0 auto;
   padding: 100px 2rem 80px;

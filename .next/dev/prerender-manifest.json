@@ -1,1 +1,11 @@
-{"version":4,"routes":{"/services/social-media-marketing":{},"/services/content-video-production":{},"/services/google-meta-ads":{},"/services/website-optimization":{},"/services/brand-strategy-design":{},"/services/ecommerce-management":{},"/services/web-app-development":{}},"dynamicRoutes":{"/services/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/services/[slug]","routeRegex":"^\\/services\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"e4234f9f2db3ffa1a546280c4287ae7a","previewModeSigningKey":"0885dc73a5fee524d78b7958df931f671bc8d64e37148871ea571b3c3ce6bc33","previewModeEncryptionKey":"ad05cc296ce9cc3e849e5b999b61e603c2bd9759489b97d5eef82a5f757b6369"}}
+{
+  "version": 4,
+  "routes": {},
+  "dynamicRoutes": {},
+  "notFoundRoutes": [],
+  "preview": {
+    "previewModeId": "8d17af734782318866a1a91854eb56a4",
+    "previewModeSigningKey": "189cf47fa200d5954584044e251627da5b09504cb11b179803423d51df0d15d6",
+    "previewModeEncryptionKey": "11c840aa805f0e413387387ad47aa039bc437b73cd166445448d5b34e68866f1"
+  }
+}

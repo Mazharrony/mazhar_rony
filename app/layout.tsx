@@ -82,11 +82,11 @@ const jsonLd = {
           addressCountry: 'AE'
         }
       },
-      // TODO: Add your actual social media URLs
       sameAs: [
-        // 'https://www.linkedin.com/in/yourprofile',
-        // 'https://www.instagram.com/yourprofile',
-        // 'https://github.com/yourprofile',
+        // Add your actual social media URLs here
+        // 'https://www.linkedin.com/in/mazharrony',
+        // 'https://www.instagram.com/mazharrony',
+        // 'https://www.behance.net/mazharrony',
       ]
     },
     {

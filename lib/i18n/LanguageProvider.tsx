@@ -46,9 +46,6 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   });
 
   useEffect(() => {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageProvider.tsx:47',message:'Translation loading started',data:{timestamp:Date.now()},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-    // #endregion
     // Load translations from JSON files
     const loadTranslations = async () => {
       try {
@@ -61,34 +58,54 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
           es: {}
         };
         
+        // Helper function to fetch with retry
+        const fetchWithRetry = async (url: string, retries = 2): Promise<Response | null> => {
+          for (let i = 0; i <= retries; i++) {
+            try {
+              const response = await fetch(url, {
+                cache: 'no-cache',
+                headers: {
+                  'Accept': 'application/json',
+                }
+              });
+              if (response.ok) {
+                return response;
+              }
+              if (i < retries) {
+                await new Promise(resolve => setTimeout(resolve, 100 * (i + 1)));
+              }
+            } catch (error) {
+              if (i < retries) {
+                await new Promise(resolve => setTimeout(resolve, 100 * (i + 1)));
+              } else {
+                throw error;
+              }
+            }
+          }
+          return null;
+        };
+        
         for (const lang of langs) {
-          // #region agent log
-          fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageProvider.tsx:61',message:'Fetching translation file',data:{lang,url:`/locales/${lang}.json`},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-          // #endregion
-          const response = await fetch(`/locales/${lang}.json`);
-          // #region agent log
-          fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageProvider.tsx:63',message:'Translation fetch response',data:{lang,ok:response.ok,status:response.status},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-          // #endregion
-          if (response.ok) {
-            loadedTranslations[lang] = await response.json();
-            // #region agent log
-            fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageProvider.tsx:65',message:'Translation loaded successfully',data:{lang,keysCount:Object.keys(loadedTranslations[lang]).length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-            // #endregion
-          } else {
-            // #region agent log
-            fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageProvider.tsx:67',message:'Translation fetch failed',data:{lang,status:response.status},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-            // #endregion
+          try {
+            const response = await fetchWithRetry(`/locales/${lang}.json`);
+            if (response && response.ok) {
+              const data = await response.json();
+              loadedTranslations[lang] = data;
+            } else {
+              if (process.env.NODE_ENV === 'development') {
+                console.warn(`Failed to load translations for ${lang}:`, response?.status || 'Network error');
+              }
+            }
+          } catch (fetchError) {
+            if (process.env.NODE_ENV === 'development') {
+              console.warn(`Error fetching translations for ${lang}:`, fetchError);
+            }
+            // Continue with other languages even if one fails
           }
         }
         
         setTranslations(loadedTranslations);
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageProvider.tsx:70',message:'All translations loaded',data:{loadedLangs:Object.keys(loadedTranslations)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-        // #endregion
       } catch (error) {
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageProvider.tsx:72',message:'Translation loading error',data:{error:error instanceof Error?error.message:String(error)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-        // #endregion
         if (process.env.NODE_ENV === 'development') {
           console.error('Failed to load translations:', error);
         }
@@ -98,20 +115,11 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     loadTranslations().then(() => {
       // Detect and set language
       const detected = detectLanguageImpl();
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageProvider.tsx:78',message:'Language detection',data:{detected},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-      // #endregion
       const saved = localStorage.getItem('preferredLanguage');
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageProvider.tsx:79',message:'LocalStorage read',data:{saved,detected},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-      // #endregion
 
       setDetectedLang(detected);
       const finalLang = saved as Language || detected;
       setLanguageState(finalLang);
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageProvider.tsx:83',message:'Language state set',data:{finalLang,showConfirmation:!saved&&detected!=='en'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-      // #endregion
 
       // Show confirmation if no preference saved and detected language is not English
       if (!saved && detected !== 'en') {
@@ -150,47 +158,49 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   };
 
   const t = (key: string): string => {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageProvider.tsx:119',message:'Translation lookup',data:{key,language},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'F'})}).catch(()=>{});
-    // #endregion
-    // Support nested keys like 'services.detail.social.title'
-    const keys = key.split('.');
-    let value: string | TranslationObject | undefined = translations[language];
-    
-    for (const k of keys) {
-      if (value && typeof value === 'object') {
-        value = value[k];
-      } else {
-        value = undefined;
-        break;
+    try {
+      // Support nested keys like 'services.detail.social.title'
+      const keys = key.split('.');
+      let value: string | TranslationObject | undefined = translations[language];
+      
+      // If translations haven't loaded yet, try English fallback immediately
+      if (!value || Object.keys(value).length === 0) {
+        value = translations['en'];
       }
-    }
-    
-    // Fallback to English if not found
-    if (value === undefined) {
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageProvider.tsx:134',message:'Translation key missing, using fallback',data:{key,language},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'F'})}).catch(()=>{});
-      // #endregion
-      let fallback: string | TranslationObject | undefined = translations['en'];
+      
       for (const k of keys) {
-        if (fallback && typeof fallback === 'object') {
-          fallback = fallback[k];
+        if (value && typeof value === 'object') {
+          value = value[k];
         } else {
-          fallback = undefined;
+          value = undefined;
           break;
         }
       }
-      value = fallback;
+      
+      // Fallback to English if not found
+      if (value === undefined) {
+        let fallback: string | TranslationObject | undefined = translations['en'];
+        for (const k of keys) {
+          if (fallback && typeof fallback === 'object') {
+            fallback = fallback[k];
+          } else {
+            fallback = undefined;
+            break;
+          }
+        }
+        value = fallback;
+      }
+      
+      // If value is a string, return it. If it's an object or undefined, return empty string instead of key
+      const result = typeof value === 'string' ? value : '';
+      return result;
+    } catch (error) {
+      // If anything goes wrong, return empty string to prevent crashes
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('Translation error for key:', key, error);
+      }
+      return '';
     }
-    
-    // If value is a string, return it. If it's an object or undefined, return empty string instead of key
-    const result = typeof value === 'string' ? value : '';
-    // #region agent log
-    if (result === '' && typeof value !== 'string') {
-      fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageProvider.tsx:147',message:'Translation key not found, returning empty string',data:{key,language},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'F'})}).catch(()=>{});
-    }
-    // #endregion
-    return result;
   };
 
   // Helper function to get objects/arrays from translations
@@ -224,6 +234,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     return value;
   };
 
+  // Always render children immediately, even if translations aren't loaded yet
   return (
     <LanguageContext.Provider value={{ 
       language, 
@@ -271,13 +282,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
 
 export const useLanguage = (): LanguageContextType => {
   const context = useContext(LanguageContext);
-  // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageProvider.tsx:194',message:'useLanguage hook called',data:{hasContext:!!context},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
-  // #endregion
   if (!context) {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/c45ab0e7-0401-428e-a70b-621f6a3647f1',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LanguageProvider.tsx:196',message:'useLanguage error: context missing',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
-    // #endregion
     throw new Error('useLanguage must be used within LanguageProvider');
   }
   return context;

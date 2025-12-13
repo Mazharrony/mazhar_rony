@@ -124,10 +124,11 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
   const techStack = getDetailsData('techStack');
   const relatedServices = getDetailsData('relatedServices');
 
-  // Debug: Log what we're getting
+  // Debug: Log what we're getting (development only)
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('🔍 Service Detail Debug:', {
+    if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
+      // Only log in development mode
+      const debugInfo = {
         serviceId: service.id,
         detailsKey,
         stats: stats ? `Found ${Array.isArray(stats) ? stats.length : 'object'} items` : 'NOT FOUND',
@@ -135,10 +136,14 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
         caseStudies: caseStudies ? `Found ${Array.isArray(caseStudies) ? caseStudies.length : 'object'} items` : 'NOT FOUND',
         techStack: techStack ? `Found ${Array.isArray(techStack) ? techStack.length : 'object'} items` : 'NOT FOUND',
         relatedServices: relatedServices ? `Found ${Array.isArray(relatedServices) ? relatedServices.length : 'object'} items` : 'NOT FOUND',
-        rawStats: tObject(`${detailsKey}.stats`),
-      });
+        rawStats: tObject(`${detailsKey}.stats`)
+      };
+      // Only log if explicitly enabled via localStorage (development only)
+      if (typeof window !== 'undefined' && localStorage.getItem('debug-service-detail') === 'true') {
+        console.log('🔍 Service Detail Debug:', debugInfo);
+      }
     }
-  }, [service.id, detailsKey, stats, testimonials, caseStudies, techStack, relatedServices]);
+  }, [service.id, detailsKey, stats, testimonials, caseStudies, techStack, relatedServices, tObject]);
 
   // Animated counter component
   const AnimatedCounter: React.FC<{ value: number; suffix?: string; prefix?: string }> = ({ value, suffix = '', prefix = '' }) => {

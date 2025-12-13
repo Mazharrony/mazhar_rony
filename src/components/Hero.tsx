@@ -21,6 +21,8 @@ const HeroVideo: React.FC = () => {
       muted
       loop
       playsInline
+      preload="metadata"
+      aria-label="Hero background video"
     >
       <source src="/hero-video.mp4" type="video/mp4" />
       Your browser does not support the video tag.

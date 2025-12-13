@@ -38,6 +38,8 @@ const contactJsonLd = {
   mainEntity: {
     '@type': 'Person',
     name: 'Mazhar Rony',
+    telephone: '+971-50-721-7156',
+    email: 'hello@meetmazhar.site',
   }
 };
 

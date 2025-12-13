@@ -58,7 +58,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$AboutPage$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/AboutPage.tsx [app-rsc] (ecmascript)");
 ;
 ;
-const SITE_URL = 'https://mazharrony.vercel.app';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mazharrony.vercel.app';
 const metadata = {
     title: "About – If You're Curious, Start Here",
     description: 'A quiet story about how I learned to create. From a village with slow internet to Dubai—learning design, branding, and building meaningful work.',

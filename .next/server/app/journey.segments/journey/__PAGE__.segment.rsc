@@ -1,5 +1,9 @@
 1:"$Sreact.fragment"
-2:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/44cd96693135f9b9.js"],"OutletBoundary"]
-3:"$Sreact.suspense"
-0:{"buildId":"gtVTkcKVNL7Mi9LshVR2S","rsc":["$","$1","c",{"children":[["$","section",null,{"id":"journey","className":"fold process","children":["$","div",null,{"className":"container","children":[["$","h1",null,{"className":"page-title","children":"My Journey"}],["$","p",null,{"children":"Journey timeline coming soon. For now, see the experience section on the homepage."}]]}]}],null,["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"loading":null,"isPartial":false}
-4:null
+2:I[47257,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/44cd96693135f9b9.js"],"ClientPageRoot"]
+3:I[2434,["/_next/static/chunks/8cdfa6f3473f7372.js","/_next/static/chunks/3471a1d27e562268.js","/_next/static/chunks/cdf324ed9a71bb6f.js","/_next/static/chunks/6122889a8ee5c78a.js"],"default"]
+6:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/44cd96693135f9b9.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+0:{"buildId":"_7JdaBxpSf9OIqAHEBzqE","rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/_next/static/chunks/6122889a8ee5c78a.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"loading":null,"isPartial":false}
+4:{}
+5:"$0:rsc:props:children:0:props:serverProvidedParams:params"
+8:null
