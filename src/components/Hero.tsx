@@ -186,18 +186,6 @@ const Hero: React.FC = () => {
               >
                 {t('hero.cta')}
               </motion.button>
-              <motion.button 
-                className="btn btn-secondary"
-                whileHover={{ 
-                  scale: 1.05, 
-                  y: -4,
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
-                  transition: { duration: 0.3 }
-                }}
-                whileTap={{ scale: 0.97 }}
-              >
-                {t('header.cta')}
-              </motion.button>
             </motion.div>
           </div>
 

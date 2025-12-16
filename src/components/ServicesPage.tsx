@@ -76,7 +76,7 @@ const ServicesPage: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
@@ -88,7 +88,7 @@ const ServicesPage: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.7,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
     hover: {
@@ -120,9 +120,6 @@ const ServicesPage: React.FC = () => {
             <motion.div className="services-hero-cta" variants={itemVariants}>
               <Link href="/contact" className="services-cta-primary">
                 {t('services.page.hero.ctaPrimary') || 'Get Started'} <span>→</span>
-              </Link>
-              <Link href="/contact" className="services-cta-secondary">
-                {t('services.page.hero.ctaSecondary') || 'Contact Sales'}
               </Link>
             </motion.div>
           </motion.div>
@@ -250,7 +247,7 @@ const ServicesPage: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
                 whileInView={{ opacity: 1, scale: 1, rotate: -8 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
               >
                 <motion.div 
                   className="visual-inner-square"
@@ -418,9 +415,6 @@ const ServicesPage: React.FC = () => {
                 <span>{t('services.page.optimized.features.goals') || 'Goal-Oriented'}</span>
               </div>
             </div>
-            <Link href="/contact" className="services-learn-more">
-              {t('services.page.optimized.learnMore') || 'Learn More'} <span>→</span>
-            </Link>
           </motion.div>
           <motion.div 
             className="services-optimized-visual"
@@ -625,9 +619,6 @@ const ServicesPage: React.FC = () => {
                   </div>
                   <h3 className="service-card-title">{service.title}</h3>
                   <p className="service-card-body">{service.description}</p>
-                  <Link href={service.href} className="service-card-link">
-                    {t('services.page.grid.learnMore') || t('services.cards.0.link') || 'Learn More'} <span>→</span>
-                  </Link>
                 </motion.div>
               );
             })}
@@ -737,31 +728,6 @@ const ServicesPage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="services-cta-section">
-        <div className="services-cta-container">
-          <motion.div 
-            className="services-cta-content"
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <h2 className="services-cta-title">{t('services.page.cta.title') || 'Ready to grow your business?'}</h2>
-            <p className="services-cta-description">
-              {t('services.page.cta.description') || 'Let\'s discuss how our services can help you achieve your goals and drive measurable results. Get in touch today for a free consultation.'}
-            </p>
-            <div className="services-cta-buttons">
-              <Link href="/contact" className="services-cta-btn-primary">
-                {t('services.page.cta.primary') || 'Get Started'} <span>→</span>
-              </Link>
-              <Link href="/contact" className="services-cta-btn-secondary">
-                {t('services.page.cta.secondary') || 'Contact Sales'}
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
     </motion.div>
   );
 };

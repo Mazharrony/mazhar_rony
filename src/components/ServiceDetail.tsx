@@ -857,11 +857,6 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
                 {t('services.detail.cta.primary')}
               </Link>
             </motion.div>
-            <motion.div variants={itemVariants}>
-              <Link href="/services" className="cta-btn-ghost">
-                {t('services.detail.cta.secondary')}
-              </Link>
-            </motion.div>
           </motion.div>
         </div>
       </motion.section>
