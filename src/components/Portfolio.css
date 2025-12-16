@@ -446,3 +446,53 @@
     font-size: 1rem;
   }
 }
+
+/* View All Button */
+.portfolio-view-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+  padding-top: 2rem;
+}
+
+.portfolio-view-all-btn {
+  padding: 0.875rem 2rem;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+  border: 1px solid transparent;
+}
+
+.portfolio-view-all-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+}
+
+.portfolio-view-all-btn span {
+  transition: transform 0.3s ease;
+}
+
+.portfolio-view-all-btn:hover span {
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .portfolio-view-all {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+  }
+
+  .portfolio-view-all-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+  }
+}

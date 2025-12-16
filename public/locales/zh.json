@@ -952,6 +952,170 @@
           }
         }
       }
+    },
+    "page": {
+      "hero": {
+        "label": "数字服务",
+        "title": "服务",
+        "subtitle": "为您的业务需求量身定制的综合数字解决方案",
+        "ctaPrimary": "开始",
+        "ctaSecondary": "联系销售",
+        "stats": {
+          "growth": "增长",
+          "reach": "覆盖",
+          "roi": "投资回报率"
+        }
+      },
+      "intro": {
+        "label": "数字优先平台",
+        "title": "通过我们的服务简化您的增长",
+        "description": "专注于结果的解决方案，旨在消除摩擦并将您的业务连接到快速增长机会",
+        "features": {
+          "outcome": {
+            "title": "结果导向",
+            "description": "每项服务都设计有可衡量的结果，确保您的投资带来切实的价值"
+          },
+          "data": {
+            "title": "数据驱动",
+            "description": "由分析和洞察支持的战略决策，以持续优化性能"
+          },
+          "fast": {
+            "title": "快速执行",
+            "description": "快速部署和快速周转时间，同时不妥协质量"
+          }
+        }
+      },
+      "optimized": {
+        "label": "性能优先",
+        "title": "为结果优化",
+        "description": "专注于性能设计，我们的服务采用数据驱动策略、持续优化和高级分析，确保可衡量的增长和最大投资回报率",
+        "learnMore": "了解更多",
+        "features": {
+          "analytics": "实时分析",
+          "tracking": "性能跟踪",
+          "goals": "目标导向"
+        },
+        "grid": {
+          "strategy": "策略",
+          "content": "内容",
+          "analytics": "分析",
+          "optimization": "优化"
+        }
+      },
+      "features": {
+        "extensibility": {
+          "title": "可扩展性",
+          "description": "我们非常重视可扩展性，我们的服务提供灵活的框架，允许与您现有的工具和工作流程无缝集成。无论您使用 Shopify、WordPress 还是自定义平台，我们都能确保兼容性和流畅运行",
+          "items": [
+            "API 集成",
+            "第三方工具",
+            "自定义工作流程"
+          ]
+        },
+        "options": {
+          "title": "无限选择",
+          "description": "凭借无限的选择，我们的服务提供无与伦比的灵活性和选择，确保我们能够根据您独特的业务需求定制解决方案。从初创公司到企业，我们适应您的规模和需求",
+          "items": [
+            "可扩展解决方案",
+            "自定义套餐",
+            "灵活定价"
+          ]
+        },
+        "security": {
+          "title": "安全与可靠性",
+          "description": "您的业务数据和数字资产受到行业标准安全措施的保护。我们实施强大的协议、定期备份和监控，确保您的运营顺畅运行而不中断",
+          "items": [
+            "数据保护",
+            "定期备份",
+            "24/7 监控"
+          ]
+        }
+      },
+      "capabilities": {
+        "multiplatform": {
+          "title": "多平台",
+          "description": "在 Instagram、Facebook、TikTok 等平台上无缝集成"
+        },
+        "creative": {
+          "title": "创意设计",
+          "description": "专业的视觉效果和内容，吸引注意力并推动参与"
+        },
+        "performance": {
+          "title": "绩效营销",
+          "description": "以转化为导向的活动，具有可衡量的投资回报率和清晰的分析"
+        },
+        "technical": {
+          "title": "技术卓越",
+          "description": "网站优化、SEO 和技术改进，以实现最佳性能"
+        },
+        "strategic": {
+          "title": "战略规划",
+          "description": "全面的品牌战略和长期增长规划"
+        },
+        "ecommerce": {
+          "title": "电子商务解决方案",
+          "description": "从设置到转化优化的完整在线商店管理"
+        }
+      },
+      "process": {
+        "label": "我们的流程",
+        "title": "我们如何工作",
+        "subtitle": "提供重要结果的简化方法",
+        "steps": {
+          "discovery": {
+            "title": "发现",
+            "description": "我们首先了解您的业务目标、目标受众和当前挑战，以创建量身定制的策略"
+          },
+          "strategy": {
+            "title": "策略",
+            "description": "基于洞察，我们制定具有明确目标、时间表和成功指标的全面计划"
+          },
+          "execution": {
+            "title": "执行",
+            "description": "我们的团队精确实施策略，保持质量标准并满足截止日期"
+          },
+          "optimization": {
+            "title": "优化",
+            "description": "持续监控和改进确保您的活动和解决方案以最高效率运行"
+          }
+        }
+      },
+      "stats": {
+        "label": "结果说明一切",
+        "title": "经过验证的业绩记录",
+        "subtitle": "展示我们对提供价值的承诺的数字",
+        "growth": {
+          "value": "250%",
+          "label": "平均增长",
+          "description": "参与率增加"
+        },
+        "reach": {
+          "value": "2M+",
+          "label": "总覆盖",
+          "description": "通过活动覆盖的人员"
+        },
+        "roi": {
+          "value": "180%",
+          "label": "投资回报率改善",
+          "description": "平均广告支出回报"
+        },
+        "response": {
+          "value": "48小时",
+          "label": "响应时间",
+          "description": "平均参与响应"
+        }
+      },
+      "grid": {
+        "title": "不仅仅是服务",
+        "subtitle": "我们的综合方法超越了个人服务，提供增强整体业务绩效和增长的集成解决方案",
+        "learnMore": "了解更多"
+      },
+      "cta": {
+        "title": "准备好发展您的业务了吗？",
+        "description": "让我们讨论我们的服务如何帮助您实现目标并推动可衡量的结果。今天就联系我们进行免费咨询",
+        "primary": "开始",
+        "secondary": "联系销售"
+      }
     }
   },
   "journey": {
@@ -1073,6 +1237,7 @@
     "label": "作品集",
     "title": "精选作品",
     "subtitle": "展示最近的项目和合作",
+    "viewAll": "查看所有项目",
     "filter": {
       "all": "全部",
       "design": "设计",
@@ -1381,7 +1546,7 @@
       "intro": "我想建造感觉有生命力的工作——有性格的品牌、有温度的网站，以及在人关闭标签后仍留在脑海中的故事。",
       "body": "我想创造感觉人性化、有意向和安静强大的体验。",
       "closing": "最重要的是，我想与关心的人一起工作——那些重视意义胜过噪音、清晰胜过混乱、以及有意义的创造力的人。",
-        "final": "Together, we can create something that truly matters."
+      "final": "Together, we can create something that truly matters."
     }
   },
   "tools": {

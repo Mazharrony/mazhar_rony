@@ -952,6 +952,170 @@
           }
         }
       }
+    },
+    "page": {
+      "hero": {
+        "label": "Servicios Digitales",
+        "title": "Servicios",
+        "subtitle": "Soluciones digitales integrales adaptadas a las necesidades de su negocio",
+        "ctaPrimary": "Comenzar",
+        "ctaSecondary": "Contactar Ventas",
+        "stats": {
+          "growth": "Crecimiento",
+          "reach": "Alcance",
+          "roi": "ROI"
+        }
+      },
+      "intro": {
+        "label": "La plataforma digital primero",
+        "title": "Simplifique su crecimiento con nuestros servicios",
+        "description": "Soluciones centradas en resultados diseñadas para eliminar la fricción y conectar su negocio con oportunidades de crecimiento rápido",
+        "features": {
+          "outcome": {
+            "title": "Enfocado en resultados",
+            "description": "Cada servicio está diseñado con resultados medibles en mente, asegurando que su inversión entregue valor tangible"
+          },
+          "data": {
+            "title": "Basado en datos",
+            "description": "Decisiones estratégicas respaldadas por análisis e insights para optimizar el rendimiento continuamente"
+          },
+          "fast": {
+            "title": "Ejecución rápida",
+            "description": "Despliegue rápido y tiempos de respuesta rápidos sin comprometer la calidad"
+          }
+        }
+      },
+      "optimized": {
+        "label": "Rendimiento primero",
+        "title": "Optimizado para resultados",
+        "description": "Diseñado con un enfoque en el rendimiento, nuestros servicios emplean estrategias basadas en datos, optimización continua y análisis avanzados para asegurar un crecimiento medible y un ROI máximo",
+        "learnMore": "Saber más",
+        "features": {
+          "analytics": "Análisis en tiempo real",
+          "tracking": "Seguimiento de rendimiento",
+          "goals": "Orientado a objetivos"
+        },
+        "grid": {
+          "strategy": "Estrategia",
+          "content": "Contenido",
+          "analytics": "Análisis",
+          "optimization": "Optimización"
+        }
+      },
+      "features": {
+        "extensibility": {
+          "title": "Extensibilidad",
+          "description": "Con un fuerte énfasis en la extensibilidad, nuestros servicios ofrecen un marco flexible que permite la integración perfecta con sus herramientas y flujos de trabajo existentes. Ya sea que use Shopify, WordPress o plataformas personalizadas, garantizamos compatibilidad y operaciones fluidas",
+          "items": [
+            "Integraciones API",
+            "Herramientas de terceros",
+            "Flujos de trabajo personalizados"
+          ]
+        },
+        "options": {
+          "title": "Opciones infinitas",
+          "description": "Con una variedad de opciones infinitas, nuestros servicios brindan flexibilidad y elección sin precedentes, asegurando que podamos adaptar soluciones a las necesidades únicas de su negocio. Desde startups hasta empresas, nos adaptamos a su escala y requisitos",
+          "items": [
+            "Soluciones escalables",
+            "Paquetes personalizados",
+            "Precios flexibles"
+          ]
+        },
+        "security": {
+          "title": "Seguridad y confiabilidad",
+          "description": "Los datos de su negocio y los activos digitales están protegidos con medidas de seguridad estándar de la industria. Implementamos protocolos robustos, copias de seguridad regulares y monitoreo para asegurar que sus operaciones funcionen sin problemas sin interrupción",
+          "items": [
+            "Protección de datos",
+            "Copias de seguridad regulares",
+            "Monitoreo 24/7"
+          ]
+        }
+      },
+      "capabilities": {
+        "multiplatform": {
+          "title": "Multiplataforma",
+          "description": "Integración perfecta en Instagram, Facebook, TikTok y más"
+        },
+        "creative": {
+          "title": "Diseño Creativo",
+          "description": "Visuales y contenido profesional que captan la atención y generan engagement"
+        },
+        "performance": {
+          "title": "Marketing de Rendimiento",
+          "description": "Campañas optimizadas para conversión con ROI medible y análisis claros"
+        },
+        "technical": {
+          "title": "Excelencia Técnica",
+          "description": "Optimización de sitios web, SEO y mejoras técnicas para un rendimiento máximo"
+        },
+        "strategic": {
+          "title": "Planificación Estratégica",
+          "description": "Estrategia de marca integral y planificación de crecimiento a largo plazo"
+        },
+        "ecommerce": {
+          "title": "Soluciones de Comercio Electrónico",
+          "description": "Gestión completa de tienda en línea desde la configuración hasta la optimización de conversión"
+        }
+      },
+      "process": {
+        "label": "Nuestro proceso",
+        "title": "Cómo trabajamos",
+        "subtitle": "Un enfoque simplificado para entregar resultados que importan",
+        "steps": {
+          "discovery": {
+            "title": "Descubrimiento",
+            "description": "Comenzamos entendiendo sus objetivos comerciales, audiencia objetivo y desafíos actuales para crear una estrategia personalizada"
+          },
+          "strategy": {
+            "title": "Estrategia",
+            "description": "Basado en insights, desarrollamos un plan integral con objetivos claros, cronogramas y métricas de éxito"
+          },
+          "execution": {
+            "title": "Ejecución",
+            "description": "Nuestro equipo implementa la estrategia con precisión, manteniendo estándares de calidad y cumpliendo plazos"
+          },
+          "optimization": {
+            "title": "Optimización",
+            "description": "El monitoreo y refinamiento continuos aseguran que sus campañas y soluciones funcionen con la máxima eficiencia"
+          }
+        }
+      },
+      "stats": {
+        "label": "Los resultados hablan",
+        "title": "Historial comprobado",
+        "subtitle": "Números que demuestran nuestro compromiso de entregar valor",
+        "growth": {
+          "value": "250%",
+          "label": "Crecimiento promedio",
+          "description": "Aumento en las tasas de participación"
+        },
+        "reach": {
+          "value": "2M+",
+          "label": "Alcance total",
+          "description": "Personas alcanzadas a través de campañas"
+        },
+        "roi": {
+          "value": "180%",
+          "label": "Mejora de ROI",
+          "description": "Retorno promedio del gasto publicitario"
+        },
+        "response": {
+          "value": "48hrs",
+          "label": "Tiempo de respuesta",
+          "description": "Respuesta promedio de participación"
+        }
+      },
+      "grid": {
+        "title": "Más que solo un servicio",
+        "subtitle": "Nuestro enfoque integral va más allá de los servicios individuales, ofreciendo soluciones integradas que mejoran el rendimiento y crecimiento general del negocio",
+        "learnMore": "Saber más"
+      },
+      "cta": {
+        "title": "¿Listo para hacer crecer su negocio?",
+        "description": "Hablemos de cómo nuestros servicios pueden ayudarlo a alcanzar sus objetivos y generar resultados medibles. Contáctenos hoy para una consulta gratuita",
+        "primary": "Comenzar",
+        "secondary": "Contactar Ventas"
+      }
     }
   },
   "journey": {
@@ -1073,6 +1237,7 @@
     "label": "Portafolio",
     "title": "Trabajos seleccionados",
     "subtitle": "Una muestra de proyectos recientes y colaboraciones",
+    "viewAll": "Ver Todos los Proyectos",
     "filter": {
       "all": "Todos",
       "design": "Diseño",

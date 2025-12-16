@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import { fadeInUp, staggerContainer, motionConfig } from '../utils/motion';
@@ -688,6 +689,11 @@ const Portfolio: React.FC = () => {
   const filtered = activeCategory === 'all' 
     ? portfolioItems 
     : portfolioItems.filter(item => item.category === activeCategory);
+  
+  // Limit items shown on homepage (show only 6 items)
+  const ITEMS_PER_PAGE = 6;
+  const displayedItems = filtered.slice(0, ITEMS_PER_PAGE);
+  const hasMoreItems = filtered.length > ITEMS_PER_PAGE;
 
   const cardVariant = {
     hidden: { opacity: 0, y: 40, scale: 0.92, filter: 'blur(6px)' },
@@ -744,7 +750,7 @@ const Portfolio: React.FC = () => {
 
         <div className="grid grid-2">
           <AnimatePresence mode="popLayout">
-            {filtered.map((item: any, index: number) => {
+            {displayedItems.map((item: any, index: number) => {
               const isFirstThree = index < 3;
               return (
               <motion.div
@@ -907,6 +913,20 @@ const Portfolio: React.FC = () => {
             })}
           </AnimatePresence>
         </div>
+
+        {/* View All Button */}
+        {hasMoreItems && (
+          <motion.div 
+            className="portfolio-view-all"
+            initial={{ opacity: 0, y: 20 }}
+            animate={mounted && isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+          >
+            <Link href="/work" className="portfolio-view-all-btn">
+              {t('portfolio.viewAll') || 'View All Projects'} <span>→</span>
+            </Link>
+          </motion.div>
+        )}
 
         <AnimatePresence>
           {selectedItem && (

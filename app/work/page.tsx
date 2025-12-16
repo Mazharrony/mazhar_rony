@@ -80,23 +80,16 @@ const portfolioJsonLd = {
   ]
 };
 
-export default function WorkPage() {
+import WorkPage from '@/src/components/WorkPage';
+
+export default function Work() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(portfolioJsonLd) }}
       />
-      <section id="work" className="fold portfolio">
-        <div className="container">
-          <h1 className="page-title">Portfolio & Projects</h1>
-          {/* 
-            NOTE: Import and use your Portfolio component here
-            Or create a full-page version with more detailed project views
-          */}
-          <p>Full portfolio page coming soon. For now, see the work section on the homepage.</p>
-        </div>
-      </section>
+      <WorkPage />
     </>
   );
 }

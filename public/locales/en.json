@@ -62,6 +62,158 @@
         "description": "Custom web apps that are fast, clean, and actually solve problems. Modern tech, zero bloat."
       }
     ],
+    "page": {
+      "hero": {
+        "label": "Digital Services",
+        "title": "Services",
+        "subtitle": "Comprehensive digital solutions tailored to your business needs",
+        "ctaPrimary": "Get Started",
+        "ctaSecondary": "Contact Sales",
+        "stats": {
+          "growth": "Growth",
+          "reach": "Reach",
+          "roi": "ROI"
+        }
+      },
+      "intro": {
+        "label": "The digital-first platform",
+        "title": "Simplify your growth with our services",
+        "description": "Outcome-focused solutions designed to eliminate friction and connect your business to rapid growth opportunities.",
+        "features": {
+          "outcome": {
+            "title": "Outcome Focused",
+            "description": "Every service is designed with measurable results in mind, ensuring your investment delivers tangible value."
+          },
+          "data": {
+            "title": "Data-Driven",
+            "description": "Strategic decisions backed by analytics and insights to optimize performance continuously."
+          },
+          "fast": {
+            "title": "Fast Execution",
+            "description": "Rapid deployment and quick turnaround times without compromising on quality."
+          }
+        }
+      },
+      "optimized": {
+        "label": "Performance First",
+        "title": "Optimized for results",
+        "description": "Designed with a focus on performance, our services employ data-driven strategies, continuous optimization, and advanced analytics to ensure measurable growth and maximum ROI.",
+        "learnMore": "Learn More",
+        "features": {
+          "analytics": "Real-time Analytics",
+          "tracking": "Performance Tracking",
+          "goals": "Goal-Oriented"
+        },
+        "grid": {
+          "strategy": "Strategy",
+          "content": "Content",
+          "analytics": "Analytics",
+          "optimization": "Optimization"
+        }
+      },
+      "features": {
+        "extensibility": {
+          "title": "Extensibility",
+          "description": "With a strong emphasis on extensibility, our services offer a flexible framework that allows seamless integration with your existing tools and workflows. Whether you're using Shopify, WordPress, or custom platforms, we ensure compatibility and smooth operations.",
+          "items": ["API Integrations", "Third-party Tools", "Custom Workflows"]
+        },
+        "options": {
+          "title": "Infinite options",
+          "description": "With an array of infinite options, our services provide unparalleled flexibility and choice, ensuring we can tailor solutions to your unique business needs. From startups to enterprises, we adapt to your scale and requirements.",
+          "items": ["Scalable Solutions", "Custom Packages", "Flexible Pricing"]
+        },
+        "security": {
+          "title": "Security & Reliability",
+          "description": "Your business data and digital assets are protected with industry-standard security measures. We implement robust protocols, regular backups, and monitoring to ensure your operations run smoothly without interruption.",
+          "items": ["Data Protection", "Regular Backups", "24/7 Monitoring"]
+        }
+      },
+      "capabilities": {
+        "multiplatform": {
+          "title": "Multi-Platform",
+          "description": "Seamless integration across Instagram, Facebook, TikTok, and more."
+        },
+        "creative": {
+          "title": "Creative Design",
+          "description": "Professional visuals and content that capture attention and drive engagement."
+        },
+        "performance": {
+          "title": "Performance Marketing",
+          "description": "Conversion-optimized campaigns with measurable ROI and clear analytics."
+        },
+        "technical": {
+          "title": "Technical Excellence",
+          "description": "Website optimization, SEO, and technical improvements for peak performance."
+        },
+        "strategic": {
+          "title": "Strategic Planning",
+          "description": "Comprehensive brand strategy and long-term growth planning."
+        },
+        "ecommerce": {
+          "title": "E-commerce Solutions",
+          "description": "Complete online store management from setup to conversion optimization."
+        }
+      },
+      "process": {
+        "label": "Our Process",
+        "title": "How we work",
+        "subtitle": "A streamlined approach to delivering results that matter",
+        "steps": {
+          "discovery": {
+            "title": "Discovery",
+            "description": "We start by understanding your business goals, target audience, and current challenges to create a tailored strategy."
+          },
+          "strategy": {
+            "title": "Strategy",
+            "description": "Based on insights, we develop a comprehensive plan with clear objectives, timelines, and success metrics."
+          },
+          "execution": {
+            "title": "Execution",
+            "description": "Our team implements the strategy with precision, maintaining quality standards and meeting deadlines."
+          },
+          "optimization": {
+            "title": "Optimization",
+            "description": "Continuous monitoring and refinement ensure your campaigns and solutions perform at peak efficiency."
+          }
+        }
+      },
+      "stats": {
+        "label": "Results That Speak",
+        "title": "Proven track record",
+        "subtitle": "Numbers that demonstrate our commitment to delivering value",
+        "growth": {
+          "value": "250%",
+          "label": "Average Growth",
+          "description": "Increase in engagement rates"
+        },
+        "reach": {
+          "value": "2M+",
+          "label": "Total Reach",
+          "description": "People reached across campaigns"
+        },
+        "roi": {
+          "value": "180%",
+          "label": "ROI Improvement",
+          "description": "Average return on ad spend"
+        },
+        "response": {
+          "value": "48hrs",
+          "label": "Response Time",
+          "description": "Average engagement response"
+        }
+      },
+      "grid": {
+        "title": "More than just a service",
+        "subtitle": "Our comprehensive approach goes beyond individual services, offering integrated solutions that enhance overall business performance and growth.",
+        "learnMore": "Learn More"
+      },
+      "cta": {
+        "title": "Ready to grow your business?",
+        "description": "Let's discuss how our services can help you achieve your goals and drive measurable results. Get in touch today for a free consultation.",
+        "primary": "Get Started",
+        "secondary": "Contact Sales"
+      }
+    },
     "detail": {
       "badge": "Service Details",
       "overview": {
@@ -691,6 +843,7 @@
     "label": "Portfolio",
     "title": "Selected work",
     "subtitle": "A showcase of recent projects and collaborations",
+    "viewAll": "View All Projects",
     "filter": {
       "all": "All",
       "design": "Design",
