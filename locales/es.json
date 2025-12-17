@@ -57,6 +57,50 @@
     "description2": "Hábil en desarrollar, ejecutar y analizar estrategias de marketing basadas en datos que aumentan la visibilidad de la marca y generan resultados medibles. Con experiencia gestionando múltiples marcas como @corechamps, @musclerulz, @prosciencenutra y @jnknutrition, manejando todas las operaciones digitales desde diseño de contenido y producción de video hasta optimización de campañas publicitarias y mantenimiento web",
     "skills": ["SEO", "Google Ads", "Meta Ads", "Estrategia de Contenido", "Producción de Video", "Shopify", "WordPress", "Figma", "Photoshop", "Estrategia de Marca"]
   },
+  "aboutPage": {
+    "title": "Si tienes curiosidad, empieza aquí.",
+    "subtitle": "Una historia tranquila sobre cómo aprendí a crear — y por qué todavía me importa hacer las cosas bien.",
+    "identity": {
+      "body1": "Soy Mazhar Roni — Director Creativo y Especialista en Marketing Digital en Dubái.",
+      "body2": "Construyo marcas, contenido, anuncios y sitios web que se sienten calmados, premium y efectivos — con estrategia detrás de la estética."
+    },
+    "story": {
+      "intro": "No empecé con un estudio ni un gran equipo. Empecé con curiosidad — y un internet lento.",
+      "laptop": "Mi primera “estación de trabajo” fue un portátil compartido. Aprendí mirando, copiando, fallando y volviendo a intentar.",
+      "smartphone": "Luego, un smartphone fue mi cámara, mi editor y mi portafolio — mi forma de practicar cada día.",
+      "freelance": "Los proyectos freelance me enseñaron lo que un cliente realmente necesita: claridad, velocidad y resultados medibles.",
+      "viral": "Algunas publicaciones se volvieron virales. Otras campañas no. Ambas me enseñaron cómo funciona la atención — y cómo se gana la confianza.",
+      "agency": "Trabajar en equipo mejoró mi proceso: investigación primero, luego creatividad, luego iteración — sin adivinar.",
+      "covid": "En temporadas difíciles, aprendí a mantenerme constante y seguir aprendiendo — incluso cuando la motivación es baja.",
+      "dubai": "Dubái subió el estándar. Tuve que mejorar — en calidad, comunicación y ejecución.",
+      "today": "Hoy sigo aprendiendo — construyendo sistemas que hacen que las marcas se sientan intencionales, modernas y memorables."
+    },
+    "beliefs": {
+      "title": "Cosas en las que creo",
+      "list": [
+        "La claridad vence a la complejidad.",
+        "El diseño es emoción — pero necesita estructura.",
+        "La consistencia construye confianza más rápido que el hype.",
+        "La velocidad importa, pero la calidad importa más.",
+        "El buen trabajo debe poder medirse."
+      ]
+    },
+    "howIWork": {
+      "title": "Cómo trabajo",
+      "list": [
+        "Empiezo por el objetivo y la audiencia.",
+        "Creo un plan simple y avanzo rápido.",
+        "Lanzo, mido y optimizo.",
+        "Mantengo la comunicación clara y tranquila.",
+        "Protejo la calidad — incluso con plazos ajustados."
+      ]
+    },
+    "closing": {
+      "line1": "Si buscas un trabajo calmado y premium — con estrategia real detrás…",
+      "line2": "Construyamos algo de lo que te sientas orgulloso.",
+      "cta": "Hablemos"
+    }
+  },
   "services": {
     "title": "Servicios",
     "subtitle": "Lo que ofrezco",

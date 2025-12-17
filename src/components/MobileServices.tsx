@@ -10,6 +10,8 @@ interface Service {
   titleKey: string;
   bodyKey: string;
   href: string;
+  icon: React.ComponentType<{ size?: number }>;
+  color: string;
 }
 
 interface MobileServicesProps {
@@ -280,6 +282,7 @@ const MobileServices: React.FC<MobileServicesProps> = ({ services }) => {
         >
           {services.map((service, index) => {
             const style = cardStyles[index] || { scale: 1, opacity: 1, x: 0, y: 0, zIndex: index };
+            const IconComponent = service.icon;
             return (
               <motion.article
                 key={service.id}
@@ -309,8 +312,12 @@ const MobileServices: React.FC<MobileServicesProps> = ({ services }) => {
                 style={{
                   zIndex: style.zIndex,
                   position: 'relative',
+                  ['--accent-color' as any]: service.color,
                 }}
               >
+              <div className="mobile-service-card-icon" aria-hidden="true">
+                <IconComponent size={22} />
+              </div>
               <h3 className="mobile-service-card-title">
                 {t(service.titleKey)}
               </h3>
@@ -352,7 +359,7 @@ const MobileServices: React.FC<MobileServicesProps> = ({ services }) => {
                   mass: 0.8,
                 }}
                 onClick={(e) => e.stopPropagation()}
-                style={{ touchAction: 'pan-y', overflow: 'hidden' }}
+                style={{ touchAction: 'pan-y', overflow: 'hidden', ['--accent-color' as any]: services[detailIndex]?.color }}
               >
                 {/* Header with Navigation */}
                 <div className="mobile-services-detail-header-bar">

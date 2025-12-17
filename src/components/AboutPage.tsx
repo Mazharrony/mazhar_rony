@@ -11,16 +11,24 @@ const AboutPage: React.FC = () => {
   
   // Refs for scroll animations
   const titleRef = useRef(null);
+  const statsRef = useRef(null);
   const identityRef = useRef(null);
   const storyRef = useRef(null);
+  const dubaiRef = useRef(null);
+  const skillsRef = useRef(null);
+  const philosophyRef = useRef(null);
   const beliefsRef = useRef(null);
   const workRef = useRef(null);
   const closingRef = useRef(null);
 
   // View detection
   const titleInView = useInView(titleRef, { once: false, margin: "-100px" });
+  const statsInView = useInView(statsRef, { once: false, margin: "-100px" });
   const identityInView = useInView(identityRef, { once: false, margin: "-100px" });
   const storyInView = useInView(storyRef, { once: false, margin: "-100px" });
+  const dubaiInView = useInView(dubaiRef, { once: false, margin: "-100px" });
+  const skillsInView = useInView(skillsRef, { once: false, margin: "-100px" });
+  const philosophyInView = useInView(philosophyRef, { once: false, margin: "-100px" });
   const beliefsInView = useInView(beliefsRef, { once: false, margin: "-100px" });
   const workInView = useInView(workRef, { once: false, margin: "-100px" });
   const closingInView = useInView(closingRef, { once: false, margin: "-100px" });
@@ -31,14 +39,63 @@ const AboutPage: React.FC = () => {
     visible: { opacity: 1, y: 0 }
   };
 
+  const getString = (key: string) => {
+    const v = t(key) as unknown;
+    return typeof v === 'string' ? v : '';
+  };
+
+  const getArray = <T,>(key: string): T[] => {
+    const v = t(key) as unknown;
+    return Array.isArray(v) ? (v as T[]) : [];
+  };
+
   // Get beliefs and work style arrays
-  const beliefs = Array.isArray(t('aboutPage.beliefs.list')) 
-    ? (t('aboutPage.beliefs.list') as unknown as string[]) 
-    : [];
+  const beliefs = getArray<string>('aboutPage.beliefs.list');
     
-  const workStyle = Array.isArray(t('aboutPage.howIWork.list'))
-    ? (t('aboutPage.howIWork.list') as unknown as string[])
-    : [];
+  const workStyle = getArray<string>('aboutPage.howIWork.list');
+
+  type StatItem = { icon?: string; value?: string; label?: string };
+  type SkillItem = { name?: string; level?: string; category?: string };
+  type PhilosophyItem = { icon?: string; title?: string; description?: string };
+
+  const stats = getArray<StatItem>('aboutPage.stats.list');
+  const skills = getArray<SkillItem>('aboutPage.skills.list');
+  const philosophy = getArray<PhilosophyItem>('aboutPage.philosophy.list');
+
+  const identityParagraphKeys = [
+    'aboutPage.identity.body1',
+    'aboutPage.identity.body2',
+    'aboutPage.identity.body3',
+    'aboutPage.identity.body4',
+    'aboutPage.identity.body5',
+    'aboutPage.identity.body6',
+    'aboutPage.identity.body7',
+  ];
+
+  const storyParagraphKeys = [
+    'aboutPage.story.intro',
+    'aboutPage.story.laptop',
+    'aboutPage.story.studio',
+    'aboutPage.story.learning',
+    'aboutPage.story.smartphone',
+    'aboutPage.story.freelance',
+    'aboutPage.story.viral',
+    'aboutPage.story.agency',
+    'aboutPage.story.agencyStruggle',
+    'aboutPage.story.restaurant',
+    'aboutPage.story.covid',
+    'aboutPage.story.dubai',
+  ];
+
+  const dubaiParagraphKeys = [
+    'aboutPage.dubai.intro',
+    'aboutPage.dubai.tools',
+    'aboutPage.dubai.learning',
+    'aboutPage.dubai.routine',
+    'aboutPage.dubai.growth',
+    'aboutPage.dubai.change',
+    'aboutPage.dubai.today',
+  ];
 
   return (
     <section className="about-page">
@@ -53,9 +110,42 @@ const AboutPage: React.FC = () => {
           variants={fadeInUp}
           transition={{ duration: 0.7 }}
         >
+          {getString('aboutPage.hero.label') && (
+            <span className="about-hero-label">{getString('aboutPage.hero.label')}</span>
+          )}
           <h1>{t('aboutPage.title')}</h1>
           <p className="about-subtitle">{t('aboutPage.subtitle')}</p>
         </motion.div>
+
+        {/* (1.5) Stats */}
+        {stats.length > 0 && (
+          <motion.div
+            ref={statsRef}
+            className="about-stats"
+            initial="hidden"
+            animate={statsInView ? "visible" : "hidden"}
+            variants={fadeInUp}
+            transition={{ duration: 0.7, delay: 0.05 }}
+          >
+            {getString('aboutPage.stats.title') && (
+              <h3 className="about-section-title">{getString('aboutPage.stats.title')}</h3>
+            )}
+            <div className="about-stats-grid">
+              {stats.map((s, idx) => (
+                <motion.div
+                  key={`${s.label || 'stat'}-${idx}`}
+                  className="about-stat-card"
+                  variants={fadeInUp}
+                  transition={{ duration: 0.6, delay: 0.08 + idx * 0.05 }}
+                >
+                  <div className="about-stat-icon" aria-hidden="true">{s.icon || '•'}</div>
+                  <div className="about-stat-value">{s.value || ''}</div>
+                  <div className="about-stat-label">{s.label || ''}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
 
         {/* (2) Identity Summary */}
         <motion.div 
@@ -66,8 +156,15 @@ const AboutPage: React.FC = () => {
           variants={fadeInUp}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
-          <p>{t('aboutPage.identity.body1')}</p>
-          <p>{t('aboutPage.identity.body2')}</p>
+          {getString('aboutPage.identity.title') && (
+            <h3 className="about-section-title">{getString('aboutPage.identity.title')}</h3>
+          )}
+          {identityParagraphKeys
+            .map((k) => getString(k))
+            .filter(Boolean)
+            .map((text, idx) => (
+              <p key={`identity-${idx}`}>{text}</p>
+            ))}
         </motion.div>
 
         {/* (3) Journey Story - Chapter Style */}
@@ -77,78 +174,132 @@ const AboutPage: React.FC = () => {
           initial="hidden"
           animate={storyInView ? "visible" : "hidden"}
         >
-          <motion.div 
-            className="story-block"
-            variants={fadeInUp}
-            transition={{ duration: 0.7, delay: 0.1 }}
-          >
-            <p>{t('aboutPage.story.intro')}</p>
-          </motion.div>
-
-          <motion.div 
-            className="story-block"
-            variants={fadeInUp}
-            transition={{ duration: 0.7, delay: 0.15 }}
-          >
-            <p>{t('aboutPage.story.laptop')}</p>
-          </motion.div>
-
-          <motion.div 
-            className="story-block"
-            variants={fadeInUp}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            <p>{t('aboutPage.story.smartphone')}</p>
-          </motion.div>
-
-          <motion.div 
-            className="story-block"
-            variants={fadeInUp}
-            transition={{ duration: 0.7, delay: 0.25 }}
-          >
-            <p>{t('aboutPage.story.freelance')}</p>
-          </motion.div>
-
-          <motion.div 
-            className="story-block"
-            variants={fadeInUp}
-            transition={{ duration: 0.7, delay: 0.3 }}
-          >
-            <p>{t('aboutPage.story.viral')}</p>
-          </motion.div>
-
-          <motion.div 
-            className="story-block"
-            variants={fadeInUp}
-            transition={{ duration: 0.7, delay: 0.35 }}
-          >
-            <p>{t('aboutPage.story.agency')}</p>
-          </motion.div>
-
-          <motion.div 
-            className="story-block"
-            variants={fadeInUp}
-            transition={{ duration: 0.7, delay: 0.4 }}
-          >
-            <p>{t('aboutPage.story.covid')}</p>
-          </motion.div>
-
-          <motion.div 
-            className="story-block"
-            variants={fadeInUp}
-            transition={{ duration: 0.7, delay: 0.45 }}
-          >
-            <p>{t('aboutPage.story.dubai')}</p>
-          </motion.div>
-
-          <motion.div 
-            className="story-block"
-            variants={fadeInUp}
-            transition={{ duration: 0.7, delay: 0.5 }}
-          >
-            <p>{t('aboutPage.story.today')}</p>
-          </motion.div>
+          {getString('aboutPage.story.title') && (
+            <motion.h3
+              className="about-section-title"
+              variants={fadeInUp}
+              transition={{ duration: 0.7, delay: 0.05 }}
+            >
+              {getString('aboutPage.story.title')}
+            </motion.h3>
+          )}
+          {storyParagraphKeys
+            .map((k) => getString(k))
+            .filter(Boolean)
+            .map((text, idx) => (
+              <motion.div
+                key={`story-${idx}`}
+                className="story-block"
+                variants={fadeInUp}
+                transition={{ duration: 0.7, delay: 0.1 + idx * 0.05 }}
+              >
+                <p>{text}</p>
+              </motion.div>
+            ))}
         </motion.div>
+
+        {/* (3.5) Dubai Chapter */}
+        {dubaiParagraphKeys.some((k) => Boolean(getString(k))) && (
+          <motion.div
+            ref={dubaiRef}
+            className="about-dubai"
+            initial="hidden"
+            animate={dubaiInView ? "visible" : "hidden"}
+          >
+            {getString('aboutPage.dubai.title') && (
+              <motion.h3
+                className="about-section-title"
+                variants={fadeInUp}
+                transition={{ duration: 0.7, delay: 0.05 }}
+              >
+                {getString('aboutPage.dubai.title')}
+              </motion.h3>
+            )}
+            {dubaiParagraphKeys
+              .map((k) => getString(k))
+              .filter(Boolean)
+              .map((text, idx) => (
+                <motion.div
+                  key={`dubai-${idx}`}
+                  className="story-block"
+                  variants={fadeInUp}
+                  transition={{ duration: 0.7, delay: 0.1 + idx * 0.05 }}
+                >
+                  <p>{text}</p>
+                </motion.div>
+              ))}
+          </motion.div>
+        )}
+
+        {/* (3.6) Skills */}
+        {skills.length > 0 && (
+          <motion.div
+            ref={skillsRef}
+            className="about-skills"
+            initial="hidden"
+            animate={skillsInView ? "visible" : "hidden"}
+          >
+            {getString('aboutPage.skills.title') && (
+              <motion.h3
+                className="about-section-title"
+                variants={fadeInUp}
+                transition={{ duration: 0.7 }}
+              >
+                {getString('aboutPage.skills.title')}
+              </motion.h3>
+            )}
+            <div className="about-skills-grid">
+              {skills.map((sk, idx) => (
+                <motion.div
+                  key={`${sk.name || 'skill'}-${idx}`}
+                  className="about-skill-card"
+                  variants={fadeInUp}
+                  transition={{ duration: 0.6, delay: 0.08 + idx * 0.05 }}
+                >
+                  <div className="about-skill-top">
+                    <div className="about-skill-name">{sk.name || ''}</div>
+                    <div className="about-skill-level">{sk.level || ''}</div>
+                  </div>
+                  <div className="about-skill-category">{sk.category || ''}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
+        {/* (3.7) Philosophy / Approach */}
+        {philosophy.length > 0 && (
+          <motion.div
+            ref={philosophyRef}
+            className="about-philosophy"
+            initial="hidden"
+            animate={philosophyInView ? "visible" : "hidden"}
+          >
+            {getString('aboutPage.philosophy.title') && (
+              <motion.h3
+                className="about-section-title"
+                variants={fadeInUp}
+                transition={{ duration: 0.7 }}
+              >
+                {getString('aboutPage.philosophy.title')}
+              </motion.h3>
+            )}
+            <div className="about-philosophy-grid">
+              {philosophy.map((p, idx) => (
+                <motion.div
+                  key={`${p.title || 'philosophy'}-${idx}`}
+                  className="about-philosophy-card"
+                  variants={fadeInUp}
+                  transition={{ duration: 0.6, delay: 0.08 + idx * 0.05 }}
+                >
+                  <div className="about-philosophy-icon" aria-hidden="true">{p.icon || '•'}</div>
+                  <div className="about-philosophy-title">{p.title || ''}</div>
+                  <div className="about-philosophy-desc">{p.description || ''}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
 
         {/* (4) Beliefs / Values Grid */}
         <motion.div 

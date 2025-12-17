@@ -17,7 +17,6 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ id, index, total, isRTL, t 
   const itemRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const inView = useFramerInView(itemRef, { once: true, margin: '-100px' });
 
   useEffect(() => {
@@ -73,8 +72,6 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ id, index, total, isRTL, t 
         delay: index * 0.15,
         ease: [0.22, 1, 0.36, 1]
       }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
       role="article"
       aria-label={`${role} at ${company}, ${location} from ${period}`}
     >

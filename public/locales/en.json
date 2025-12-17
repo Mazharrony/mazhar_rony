@@ -735,7 +735,7 @@
     "items": {
       "now": {
         "badge": "Current",
-        "period": "2022 - Present",
+        "period": "May 2025 - Present",
         "role": "Creative Director & Digital Marketing Specialist",
         "company": "JNK Nutrition",
         "location": "Dubai, UAE",
@@ -749,10 +749,10 @@
       },
       "network": {
         "badge": "Previous",
-        "period": "2019 - 2022",
-        "role": "Marketing Agency Founder & Creative Lead",
-        "company": "Self-Employed / Agency",
-        "location": "Bangladesh",
+        "period": "January 2023 - February 2025",
+        "role": "Marketing and IT Executive",
+        "company": "Avion Realty Properties LLC",
+        "location": "Dubai, UAE",
         "summary": "Founded and operated a small marketing agency while building a product printing business. Managed client relationships and delivered creative solutions across multiple industries.",
         "highlights": [
           "Established and grew a marketing agency from the ground up",
@@ -763,10 +763,10 @@
       },
       "early": {
         "badge": "Beginning",
-        "period": "2012 - 2018",
-        "role": "Freelance Creative & Self-Taught Designer",
-        "company": "Freelance",
-        "location": "Bangladesh",
+        "period": "February 2022 - December 2022",
+        "role": "Admin & Marketing",
+        "company": "Gheroub Al Shams",
+        "location": "Sharjah, UAE",
         "summary": "Started my journey as a student with a gifted laptop. Self-taught Photoshop and design skills, transitioned to mobile editing during the Instagram boom, and built my first client base through freelance work.",
         "highlights": [
           "Self-taught Photoshop and design fundamentals in a village studio",
@@ -847,7 +847,7 @@
     "filter": {
       "all": "All",
       "design": "Design",
-      "branding": "Branding",
+      "branding": "Branding (Packaging)",
       "content": "Content",
       "web": "Web"
     },

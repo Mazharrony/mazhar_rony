@@ -14,15 +14,11 @@ interface PortfolioItem {
   category: string;
   image: string;
   images?: string[]; // Gallery of images for single product
+  href?: string;
   tools?: string[];
   results?: string;
   description?: string;
   url?: string;
-}
-
-interface PortfolioModalProps {
-  item: PortfolioItem | null;
-  onClose: () => void;
 }
 
 interface WebMockupPlaceholderProps {
@@ -201,257 +197,7 @@ const WebMockupPlaceholder: React.FC<WebMockupPlaceholderProps> = ({ domain, tit
   );
 };
 
-const PortfolioModal: React.FC<PortfolioModalProps> = ({ item, onClose }) => {
-  const { t } = useLanguage();
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  if (!item) return null;
-  
-  const images = item.images && item.images.length > 0 ? item.images : [item.image];
-  const currentImage = images[currentImageIndex];
-
-  return (
-    <motion.div
-      className="portfolio-modal-backdrop"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={onClose}
-    >
-      <motion.div
-        className="portfolio-modal-box"
-        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.9, y: 20 }}
-        transition={{ duration: 0.3 }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button className="modal-close" onClick={onClose}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M18 6L6 18M6 6l12 12" />
-          </svg>
-        </button>
-
-        <div className="modal-content">
-          <motion.div
-            className="modal-image"
-            layoutId={`portfolio-image-${item.id}`}
-            style={{ position: 'relative' }}
-          >
-            {item.category === 'web' ? (
-              <WebMockupPlaceholder 
-                domain={item.url?.replace('https://', '').replace('http://', '').split('/')[0] || ''}
-                title={item.title}
-              />
-            ) : currentImage.startsWith('/') ? (
-              <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '400px' }}>
-                <Image 
-                  src={currentImage} 
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-                  style={{ 
-                    objectFit: 'contain', 
-                    borderRadius: '12px', 
-                    backgroundColor: '#f5f5f5'
-                  }}
-                  priority={currentImageIndex === 0}
-                />
-              </div>
-            ) : (
-              <div style={{ background: currentImage, width: '100%', height: '100%', borderRadius: '12px' }} />
-            )}
-            
-            {/* Image Gallery Navigation */}
-            {images.length > 1 && (
-              <>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-                  }}
-                  style={{
-                    position: 'absolute',
-                    left: '16px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    background: 'rgba(0, 0, 0, 0.6)',
-                    backdropFilter: 'blur(10px)',
-                    border: 'none',
-                    borderRadius: '50%',
-                    width: '40px',
-                    height: '40px',
-                    color: 'white',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    zIndex: 10,
-                    transition: 'all 0.2s'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(0, 0, 0, 0.8)';
-                    e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'rgba(0, 0, 0, 0.6)';
-                    e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-                  }}
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M15 18l-6-6 6-6"/>
-                  </svg>
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-                  }}
-                  style={{
-                    position: 'absolute',
-                    right: '16px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    background: 'rgba(0, 0, 0, 0.6)',
-                    backdropFilter: 'blur(10px)',
-                    border: 'none',
-                    borderRadius: '50%',
-                    width: '40px',
-                    height: '40px',
-                    color: 'white',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    zIndex: 10,
-                    transition: 'all 0.2s'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(0, 0, 0, 0.8)';
-                    e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'rgba(0, 0, 0, 0.6)';
-                    e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
-                  }}
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M9 18l6-6-6-6"/>
-                  </svg>
-                </button>
-                
-                {/* Image Indicators */}
-                <div style={{
-                  position: 'absolute',
-                  bottom: '16px',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  display: 'flex',
-                  gap: '8px',
-                  zIndex: 10
-                }}>
-                  {images.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setCurrentImageIndex(index);
-                      }}
-                      style={{
-                        width: currentImageIndex === index ? '24px' : '8px',
-                        height: '8px',
-                        borderRadius: '4px',
-                        border: 'none',
-                        background: currentImageIndex === index ? 'white' : 'rgba(255, 255, 255, 0.5)',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s',
-                        padding: 0
-                      }}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-          </motion.div>
-
-          <div className="modal-info">
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-            >
-              {item.title}
-            </motion.h2>
-
-            <motion.p
-              className="modal-description"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.15 }}
-            >
-              {item.description || `A detailed project case study for ${item.title}. Click to explore more details about our approach and the final outcomes.`}
-            </motion.p>
-
-            {item.tools && item.tools.length > 0 && (
-              <motion.div
-                className="modal-tools"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-              >
-                <h4>{t('portfolio.modal.toolsUsed')}</h4>
-                <div className="tools-list">
-                  {item.tools.map((tool: string, idx: number) => (
-                    <span key={idx} className="tool-tag">{tool}</span>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-
-            {item.results && (
-              <motion.div
-                className="modal-results"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.25 }}
-              >
-                <h4>{t('portfolio.modal.results')}</h4>
-                <p>{item.results}</p>
-              </motion.div>
-            )}
-
-            {item.url ? (
-              <motion.a
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary modal-cta"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                style={{ textDecoration: 'none', display: 'inline-block' }}
-              >
-                Visit Website →
-              </motion.a>
-            ) : (
-              <motion.button
-                className="btn btn-primary modal-cta"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {t('portfolio.modal.cta')}
-              </motion.button>
-            )}
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-};
+// PortfolioModal removed (simple gallery – no popups)
 
 const Portfolio: React.FC = () => {
   const ref = React.useRef(null);
@@ -460,7 +206,6 @@ const Portfolio: React.FC = () => {
   const { t } = useLanguage();
 
   const [activeCategory, setActiveCategory] = useState('all');
-  const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
 
   // Prevent hydration mismatch by only animating after mount
@@ -475,7 +220,7 @@ const Portfolio: React.FC = () => {
       id: 'bcaa', 
       title: 'BCAA Social Media Poster', 
       category: 'content',
-      image: '/portfolio/images/BCAA.jpg',
+      image: '/portfolio/social/BCAA.jpg',
       tools: ['Photoshop', 'Illustrator', 'Canva'],
       results: 'Engaging social media poster that increased product visibility and engagement.',
       description: 'Social media poster design for BCAA supplement product with modern, fitness-focused aesthetic optimized for Instagram and Facebook.'
@@ -484,7 +229,7 @@ const Portfolio: React.FC = () => {
       id: 'beef-isolate', 
       title: 'Beef Isolate Social Media Poster', 
       category: 'content',
-      image: '/portfolio/images/BEEF ISOLATE.jpg',
+      image: '/portfolio/social/BEEF ISOLATE.jpg',
       tools: ['Photoshop', 'Illustrator', 'Canva'],
       results: 'High-performing social media content that drives brand awareness and conversions.',
       description: 'Social media poster for beef isolate supplement with clean, premium branding designed for social platforms.'
@@ -493,7 +238,7 @@ const Portfolio: React.FC = () => {
       id: 'carbox-kiwi', 
       title: 'Carbox Kiwi Social Media Poster', 
       category: 'content',
-      image: '/portfolio/images/CARBOX KIWI.jpg',
+      image: '/portfolio/social/CARBOX KIWI.jpg',
       tools: ['Photoshop', 'Illustrator', 'Canva'],
       results: 'Vibrant social media creative that stands out in competitive feed.',
       description: 'Colorful and energetic social media poster for fruit-flavored supplement product optimized for engagement.'
@@ -502,7 +247,7 @@ const Portfolio: React.FC = () => {
       id: 'core-champs-cla', 
       title: 'Core Champs CLA Social Media Poster', 
       category: 'content',
-      image: '/portfolio/images/CORE CHAMPS CLA.jpg',
+      image: '/portfolio/social/CORE CHAMPS CLA.jpg',
       tools: ['Photoshop', 'Figma', 'Adobe Creative Suite'],
       results: 'Cohesive social media content that increased brand recognition and engagement.',
       description: 'Social media poster design for Core Champs CLA supplement line with strong brand identity.'
@@ -511,7 +256,7 @@ const Portfolio: React.FC = () => {
       id: 'core-champs-collagen', 
       title: 'Core Champs Collagen Social Media Poster', 
       category: 'content',
-      image: '/portfolio/images/CORE CHAMPS COLLAGEN JUICY PEACH 28SV.jpg',
+      image: '/portfolio/social/CORE CHAMPS COLLAGEN JUICY PEACH 28SV.jpg',
       tools: ['Photoshop', 'Figma', 'Adobe Creative Suite'],
       results: 'Premium social media content that elevates brand perception and drives sales.',
       description: 'Sophisticated social media poster for collagen supplement with peach flavor variant designed for social platforms.'
@@ -520,7 +265,7 @@ const Portfolio: React.FC = () => {
       id: 'creatine', 
       title: 'Creatine Social Media Poster', 
       category: 'content',
-      image: '/portfolio/images/CREATINE 1 KG.jpg',
+      image: '/portfolio/social/CREATINE 1 KG.jpg',
       tools: ['Photoshop', 'Illustrator', 'Canva'],
       results: 'Professional social media content that communicates product value and drives conversions.',
       description: 'Social media poster design for 1KG creatine supplement product optimized for Instagram and Facebook feeds.'
@@ -529,7 +274,7 @@ const Portfolio: React.FC = () => {
       id: 'isolate', 
       title: 'Isolate Social Media Poster', 
       category: 'content',
-      image: '/portfolio/images/ISOLATE.jpg',
+      image: '/portfolio/social/ISOLATE.jpg',
       tools: ['Photoshop', 'Illustrator', 'Canva'],
       results: 'Clean, modern social media content that appeals to fitness enthusiasts and drives engagement.',
       description: 'Minimalist social media poster design for isolate supplement product created for social media platforms.'
@@ -538,7 +283,7 @@ const Portfolio: React.FC = () => {
       id: 'muscle-show', 
       title: 'Muscle Show 2025 Social Media Campaign', 
       category: 'content',
-      image: '/portfolio/images/Muscle Show 2025.jpg',
+      image: '/portfolio/social/Muscle Show 2025.jpg',
       tools: ['CapCut', 'Adobe Premiere', 'Canva', 'Photoshop'],
       results: 'High-impact social media campaign creative that generated significant engagement and event attendance.',
       description: 'Social media poster and campaign creative for Muscle Show 2025 fitness event designed for maximum reach and engagement.'
@@ -547,7 +292,7 @@ const Portfolio: React.FC = () => {
       id: 'nitrix-xtreme', 
       title: 'Nitrix Xtreme Social Media Poster', 
       category: 'content',
-      image: '/portfolio/images/NITRIX XTREME.jpg',
+      image: '/portfolio/social/NITRIX XTREME.jpg',
       tools: ['Photoshop', 'Figma', 'Adobe Creative Suite'],
       results: 'Bold social media content that captures extreme fitness positioning and drives brand awareness.',
       description: 'High-energy social media poster design for Nitrix Xtreme supplement line optimized for social platforms.'
@@ -556,7 +301,7 @@ const Portfolio: React.FC = () => {
       id: 'rdx-xtreme-social', 
       title: 'RDX Xtreme Social Media Poster', 
       category: 'content',
-      image: '/portfolio/images/RDX XTREME SOCIAL.jpg',
+      image: '/portfolio/social/RDX XTREME SOCIAL.jpg',
       tools: ['CapCut', 'Canva', 'After Effects', 'Photoshop'],
       results: 'Engaging social media content that drives brand awareness and increases follower engagement.',
       description: 'Social media poster creative for RDX Xtreme brand designed for Instagram, Facebook, and other social platforms.'
@@ -565,7 +310,7 @@ const Portfolio: React.FC = () => {
       id: 'whey', 
       title: 'Whey Protein Social Media Poster', 
       category: 'content',
-      image: '/portfolio/images/WHEY.jpg',
+      image: '/portfolio/social/WHEY.jpg',
       tools: ['Photoshop', 'Illustrator', 'Canva'],
       results: 'Professional social media content that communicates product quality and drives conversions.',
       description: 'Premium social media poster design for whey protein supplement product optimized for social media engagement.'
@@ -590,17 +335,76 @@ const Portfolio: React.FC = () => {
       id: 'rdx-shot-pre-workout',
       title: 'RDX Shot - Pre Workout Branding',
       category: 'branding',
-      image: '/portfolio/images/rdx-shot-main.png',
+      image: '/portfolio/jnk/rdx-shot/rdx-shot-main.png',
       images: [
-        '/portfolio/images/rdx-shot-main.png',
-        '/portfolio/images/rdx-shot-layer4.jpg',
-        '/portfolio/images/rdx-shot-layer3.jpg',
-        '/portfolio/images/rdx-shot-layer2.jpg',
-        '/portfolio/images/rdx-shot-layer1.jpg'
+        '/portfolio/jnk/rdx-shot/rdx-shot-main.png',
+        '/portfolio/jnk/rdx-shot/rdx-shot-coco-cherry.png',
+        '/portfolio/jnk/rdx-shot/rdx-shot-fruit-punch.png',
+        '/portfolio/jnk/rdx-shot/rdx-shot-green-apple.png',
+        '/portfolio/jnk/rdx-shot/rdx-shot-tropical.png',
+        '/portfolio/jnk/rdx-shot/rdx-shot-layer4.jpg',
+        '/portfolio/jnk/rdx-shot/rdx-shot-layer3.jpg',
+        '/portfolio/jnk/rdx-shot/rdx-shot-layer2.jpg',
+        '/portfolio/jnk/rdx-shot/rdx-shot-layer1.jpg'
       ],
+      href: '/label-concepts/rdx-shot',
       tools: ['Photoshop', 'Illustrator', '3D Design'],
       results: 'Complete branding package for RDX Shot pre-workout product line with premium packaging design across all flavor variants.',
       description: 'Comprehensive branding design for Core Champs RDX Shot pre-workout supplement. Features modern packaging mockups for multiple flavor variants, product photography, and cohesive brand identity. Includes individual bottle designs and multi-pack box mockups with updated, correctly sized images.'
+    },
+    {
+      id: 'label-concept-multi-vitamin',
+      title: 'Multi Vitamin — Label Concept',
+      category: 'branding',
+      image: '/portfolio/jnk/multi-vitamin/mv-01.png',
+      images: [
+        '/portfolio/jnk/multi-vitamin/mv-01.png',
+        '/portfolio/jnk/multi-vitamin/mv-01.png',
+        '/portfolio/jnk/multi-vitamin/mv-02.png',
+        '/portfolio/jnk/multi-vitamin/mv-03.png',
+        '/portfolio/jnk/multi-vitamin/mv-04.png',
+        '/portfolio/jnk/multi-vitamin/mv-05.png',
+        '/portfolio/jnk/multi-vitamin/mv-06.png',
+        '/portfolio/jnk/multi-vitamin/mv-07.png'
+      ],
+      href: '/label-concepts/multi-vitamin',
+      tools: ['Photoshop', 'Illustrator'],
+      results: 'A clean, premium packaging direction that balances nutrition clarity with a modern shelf-first look.',
+      description: 'Branding (packaging) label concept for a Multi Vitamin product. The focus was on strong hierarchy for key benefits, controlled color, and a premium finish that reads instantly on shelf and in e-commerce.'
+    },
+    {
+      id: 'label-concept-demon-oni',
+      title: 'Demon Oni — Label Concept',
+      category: 'branding',
+      image: '/portfolio/jnk/demon-oni/demon-01.png',
+      images: [
+        '/portfolio/jnk/demon-oni/demon-01.png',
+        '/portfolio/jnk/demon-oni/demon-02.png',
+        '/portfolio/jnk/demon-oni/demon-03.png',
+        '/portfolio/jnk/demon-oni/demon-04.png',
+        '/portfolio/jnk/demon-oni/demon-05.png',
+        '/portfolio/jnk/demon-oni/demon-06.png'
+      ],
+      href: '/label-concepts/demon-oni',
+      tools: ['Photoshop', 'Illustrator'],
+      results: 'A bold, aggressive packaging concept designed for high-energy positioning and strong visual impact.',
+      description: 'Branding (packaging) label concept for “Demon Oni”. Built around an intense, graphic identity with high contrast and strong iconography—designed to feel powerful, collectible, and instantly recognizable.'
+    },
+    {
+      id: 'label-concept-dominate',
+      title: 'Dominate — Pre-Workout Label Concept',
+      category: 'branding',
+      image: '/portfolio/jnk/dominate/dom-01.png',
+      images: [
+        '/portfolio/jnk/dominate/dom-01.png',
+        '/portfolio/jnk/dominate/dom-02.png',
+        '/portfolio/jnk/dominate/dom-03.png',
+        '/portfolio/jnk/dominate/dom-04.png'
+      ],
+      href: '/label-concepts/dominate',
+      tools: ['Photoshop', 'Illustrator'],
+      results: 'A performance-driven packaging direction that communicates intensity while staying clean and premium.',
+      description: 'Branding (packaging) label concept for a pre-workout product. Focused on strong typography, fast readability, and a “performance” visual language that looks premium across mockups and digital listings.'
     },
     // Website Projects
     {
@@ -752,11 +556,19 @@ const Portfolio: React.FC = () => {
           <AnimatePresence mode="popLayout">
             {displayedItems.map((item: any, index: number) => {
               const isFirstThree = index < 3;
+              const isLink = Boolean(item.href);
+              const isExternalLink = item.category === 'web' && Boolean(item.url);
+              const isSocial = item.category === 'content';
+              const prefersWhiteBg =
+                typeof item.image === 'string' &&
+                item.image.toLowerCase().endsWith('.png') &&
+                (String(item.id || '').includes('rdx-shot') || String(item.image).includes('/portfolio/jnk/rdx-shot/'));
+              const isClickable = isLink || isExternalLink;
               return (
               <motion.div
                 key={item.id}
-                className="portfolio-card"
-                onClick={() => setSelectedItem(item.id)}
+                className={`portfolio-card ${isLink ? 'is-link' : ''}`}
+                onClick={undefined}
                 custom={index}
                 layout={mounted}
                 initial={false}
@@ -769,16 +581,26 @@ const Portfolio: React.FC = () => {
                   boxShadow: '0 20px 60px rgba(0,0,0,0.18)',
                   transition: { duration: 0.35, ease: [0.4, 0, 0.2, 1] }
                 }}
-                role="button"
-                tabIndex={0}
-                aria-label={`View ${item.title} portfolio item`}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    setSelectedItem(item.id);
-                  }
-                }}
+                role={undefined}
+                tabIndex={undefined}
+                aria-label={isClickable ? `Open ${item.title}` : item.title}
+                onKeyDown={undefined}
               >
+                {isLink ? (
+                  <Link href={item.href as string} className="portfolio-card-link" aria-label={`Open ${item.title}`}>
+                    <span className="sr-only">Open {item.title}</span>
+                  </Link>
+                ) : isExternalLink ? (
+                  <a
+                    href={item.url as string}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="portfolio-card-link"
+                    aria-label={`Open ${item.title} website`}
+                  >
+                    <span className="sr-only">Open {item.title}</span>
+                  </a>
+                ) : null}
                 <motion.div 
                   className="portfolio-image grayscale" 
                   layoutId={`portfolio-image-${item.id}`}
@@ -801,7 +623,7 @@ const Portfolio: React.FC = () => {
                         alt={item.title}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        style={{ objectFit: 'contain', backgroundColor: '#f5f5f5' }}
+                        style={{ objectFit: isSocial ? 'cover' : 'contain', backgroundColor: prefersWhiteBg ? '#ffffff' : '#f5f5f5' }}
                         loading={isFirstThree ? 'eager' : 'lazy'}
                         priority={isFirstThree}
                         onError={() => {
@@ -846,68 +668,69 @@ const Portfolio: React.FC = () => {
                     </div>
                   )}
                 </motion.div>
-                <motion.div 
-                  className="portfolio-overlay"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div>
-                    {item.category === 'web' && (
-                      <motion.div
-                        style={{ 
-                          position: 'absolute', 
-                          top: '20px', 
-                          right: '20px',
-                          background: 'rgba(255, 255, 255, 0.2)',
-                          backdropFilter: 'blur(10px)',
-                          borderRadius: '8px',
-                          padding: '8px 12px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '6px'
-                        }}
-                        initial={{ scale: 0, opacity: 0 }}
-                        whileHover={{ scale: 1, opacity: 1 }}
+                {!isSocial && (
+                  <motion.div 
+                    className="portfolio-overlay"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div>
+                      {item.category === 'web' && (
+                        <motion.div
+                          style={{ 
+                            position: 'absolute', 
+                            top: '20px', 
+                            right: '20px',
+                            background: 'rgba(255, 255, 255, 0.2)',
+                            backdropFilter: 'blur(10px)',
+                            borderRadius: '8px',
+                            padding: '8px 12px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '6px'
+                          }}
+                          initial={{ scale: 0, opacity: 0 }}
+                          whileHover={{ scale: 1, opacity: 1 }}
+                          transition={{ delay: 0.05 }}
+                        >
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M21 12c0 1.2-1.5 2.7-1.5 2.7s-1.5-1.5-1.5-2.7 1.5-2.7 1.5-2.7S21 10.8 21 12zM3 12c0 1.2 1.5 2.7 1.5 2.7s1.5-1.5 1.5-2.7-1.5-2.7-1.5-2.7S3 10.8 3 12zM12 21c1.2 0 2.7-1.5 2.7-1.5S13.2 18 12 18s-2.7 1.5-2.7 1.5S10.8 21 12 21zM12 3C10.8 3 9.3 4.5 9.3 4.5S10.8 6 12 6s2.7-1.5 2.7-1.5S13.2 3 12 3z"/>
+                            <circle cx="12" cy="12" r="2"/>
+                          </svg>
+                          <span style={{ fontSize: '0.75rem', fontWeight: 600 }}>Website</span>
+                        </motion.div>
+                      )}
+                      <motion.h4
+                        initial={{ y: 10, opacity: 0 }}
+                        whileHover={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.05 }}
                       >
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M21 12c0 1.2-1.5 2.7-1.5 2.7s-1.5-1.5-1.5-2.7 1.5-2.7 1.5-2.7S21 10.8 21 12zM3 12c0 1.2 1.5 2.7 1.5 2.7s1.5-1.5 1.5-2.7-1.5-2.7-1.5-2.7S3 10.8 3 12zM12 21c1.2 0 2.7-1.5 2.7-1.5S13.2 18 12 18s-2.7 1.5-2.7 1.5S10.8 21 12 21zM12 3C10.8 3 9.3 4.5 9.3 4.5S10.8 6 12 6s2.7-1.5 2.7-1.5S13.2 3 12 3z"/>
-                          <circle cx="12" cy="12" r="2"/>
-                        </svg>
-                        <span style={{ fontSize: '0.75rem', fontWeight: 600 }}>Website</span>
-                      </motion.div>
-                    )}
-                    <motion.h4
-                      initial={{ y: 10, opacity: 0 }}
-                      whileHover={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.05 }}
-                    >
-                      {item.title}
-                    </motion.h4>
-                    <motion.p 
-                      className="category-tag"
-                      initial={{ y: 10, opacity: 0 }}
-                      whileHover={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.1 }}
-                    >
-                      {item.category}
-                    </motion.p>
-                    <motion.button 
-                      className="view-link"
-                      initial={{ y: 10, opacity: 0 }}
-                      whileHover={{ y: 0, opacity: 1, x: 4 }}
-                      transition={{ delay: 0.15 }}
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedItem(item.id);
-                      }}
-                    >
-                      {item.url ? 'Visit Website →' : 'View →'}
-                    </motion.button>
-                  </div>
-                </motion.div>
+                        {item.title}
+                      </motion.h4>
+                      <motion.p 
+                        className="category-tag"
+                        initial={{ y: 10, opacity: 0 }}
+                        whileHover={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.1 }}
+                      >
+                        {item.category}
+                      </motion.p>
+                      <motion.button 
+                        className="view-link"
+                        initial={{ y: 10, opacity: 0 }}
+                        whileHover={{ y: 0, opacity: 1, x: 4 }}
+                        transition={{ delay: 0.15 }}
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                        }}
+                      >
+                        {isLink ? 'Open →' : isExternalLink ? 'Visit Website →' : 'View →'}
+                      </motion.button>
+                    </div>
+                  </motion.div>
+                )}
               </motion.div>
               );
             })}
@@ -928,14 +751,7 @@ const Portfolio: React.FC = () => {
           </motion.div>
         )}
 
-        <AnimatePresence>
-          {selectedItem && (
-            <PortfolioModal 
-              item={portfolioItems.find(i => i.id === selectedItem) || null}
-              onClose={() => setSelectedItem(null)}
-            />
-          )}
-        </AnimatePresence>
+        {/* No popup/modal: simple gallery */}
       </div>
     </section>
   );

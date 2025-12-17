@@ -23,6 +23,66 @@
   text-align: left;
 }
 
+.about-hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+.about-section-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 28px;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================
+   (1.5) STATS
+   ============================================ */
+.about-stats {
+  margin-bottom: 90px;
+}
+
+.about-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.about-stat-card {
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 18px 18px;
+  box-shadow: var(--shadow);
+}
+
+.about-stat-icon {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 10px;
+}
+
+.about-stat-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.about-stat-label {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
 .about-title-block h1 {
   font-size: 3.5rem;
   line-height: 1.15;
@@ -47,12 +107,8 @@
 .about-identity {
   margin-bottom: 80px;
   padding: 40px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.dark .about-identity {
-  border-color: rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .about-identity p {
@@ -93,17 +149,94 @@
 }
 
 /* ============================================
+   (3.5/3.6/3.7) EXTRA SECTIONS
+   ============================================ */
+.about-dubai,
+.about-skills,
+.about-philosophy {
+  margin-bottom: 100px;
+}
+
+.about-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.about-skill-card {
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 18px 18px;
+  box-shadow: var(--shadow);
+}
+
+.about-skill-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.about-skill-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.about-skill-level {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  border: 1px solid hsla(var(--border-color-hsl) / 0.5);
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.about-skill-category {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.about-philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.about-philosophy-card {
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 18px 18px;
+  box-shadow: var(--shadow);
+}
+
+.about-philosophy-icon {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.about-philosophy-title {
+  font-weight: 650;
+  color: var(--text-primary);
+}
+
+.about-philosophy-desc {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* ============================================
    (4) BELIEFS / VALUES GRID
    ============================================ */
 
 .about-beliefs {
   margin-bottom: 100px;
   padding: 60px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.dark .about-beliefs {
-  border-color: rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--border-color);
 }
 
 .about-beliefs h3 {
@@ -122,11 +255,7 @@
 
 .belief-item {
   padding: 20px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-}
-
-.dark .belief-item {
-  border-color: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid hsla(var(--border-color-hsl) / 0.35);
 }
 
 .belief-item span {
@@ -183,11 +312,7 @@
 .about-closing {
   text-align: center;
   padding: 80px 0 40px;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.dark .about-closing {
-  border-color: rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--border-color);
 }
 
 .closing-line {
@@ -256,6 +381,21 @@
   .about-identity p {
     font-size: 1.05rem;
     line-height: 1.7;
+  }
+
+  .about-section-title {
+    font-size: 1.4rem;
+    margin-bottom: 22px;
+  }
+
+  .about-stats-grid,
+  .about-skills-grid,
+  .about-philosophy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-stat-value {
+    font-size: 1.4rem;
   }
 
   .about-story {
@@ -339,6 +479,12 @@
   .beliefs-grid {
     grid-template-columns: 1fr;
   }
+
+  .about-stats-grid,
+  .about-skills-grid,
+  .about-philosophy-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Small Tablet (640px - 767px) */
@@ -356,6 +502,12 @@
   }
 
   .beliefs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-stats-grid,
+  .about-skills-grid,
+  .about-philosophy-grid {
     grid-template-columns: 1fr;
   }
 }

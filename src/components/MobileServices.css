@@ -176,7 +176,20 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.015) 0%, transparent 100%);
+  background: linear-gradient(135deg, var(--accent-color, #6366f1)15 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.17, 0.67, 0.3, 1);
+  pointer-events: none;
+}
+
+.mobile-service-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--accent-color, #6366f1) 50%, transparent 100%);
   opacity: 0;
   transition: opacity 0.35s cubic-bezier(0.17, 0.67, 0.3, 1);
   pointer-events: none;
@@ -185,6 +198,44 @@
 .mobile-service-card:active {
   transform: scale(0.98);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* show accent wash + top line when pressed (mobile-friendly) */
+.mobile-service-card:active::before {
+  opacity: 1;
+}
+
+.mobile-service-card:active::after {
+  opacity: 1;
+}
+
+/* Icon badge (same vibe as Services page) */
+.mobile-service-card-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--accent-color, #6366f1)22 0%, var(--accent-color, #6366f1)10 100%);
+  border: 1px solid var(--accent-color, #6366f1)30;
+  border-radius: 16px;
+  color: var(--accent-color, #6366f1);
+  margin-bottom: 0.35rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-service-card-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent-color, #6366f1) 0%, transparent 100%);
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.mobile-service-card-icon svg {
+  color: var(--accent-color, #6366f1);
 }
 
 .mobile-service-card-title {
