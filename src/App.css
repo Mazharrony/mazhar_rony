@@ -5,35 +5,17 @@
 }
 
 :root {
-  /* Premium tokens (HSL) — Dark by default */
-  --text: 240 10% 92%;
-  --muted: 240 6% 70%;
-
-  --bg: 240 12% 6%;
-  --bg2: 240 14% 10%;
-
-  --card: 240 10% 10%;
-  --card2: 240 10% 12%;
-  --stroke: 0 0% 100%;
-
-  /* Accent (keep ONE hero accent) */
-  --accent: 265 95% 70%;   /* violet */
-  --accent2: 200 95% 62%;  /* cyan (secondary glow only) */
-
-  --shadowRgb: 0 0% 0%;
-
-  /* Back-compat variables used across existing CSS */
-  --bg-primary: hsl(var(--bg));
-  --bg-secondary: hsl(var(--bg2));
-  --bg-card: hsla(var(--card) / 0.70);
-  --text-primary: hsl(var(--text));
-  --text-secondary: hsl(var(--muted));
-  --border-color: hsla(0 0% 100% / 0.10);
-  --accent-primary: hsl(var(--accent));
-
-  --shadow: 0 14px 40px hsla(var(--shadowRgb) / 0.45);
-  --shadow-hover: 0 22px 70px hsla(var(--shadowRgb) / 0.62);
-  --shadow-ring: 0 0 0 1px hsla(0 0% 100% / 0.06);
+  /* Light Mode */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f8f8;
+  --bg-card: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --border-color: #e0e0e0;
+  --accent-primary: #6366f1;
+  --shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 18px 50px rgba(0, 0, 0, 0.12);
+  --shadow-ring: 0 0 0 1px rgba(0, 0, 0, 0.06);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   
   /* Theme transition timing */
@@ -41,30 +23,34 @@
   --theme-transition-easing: cubic-bezier(0.25, 0.1, 0.25, 1.0);
 }
 
-/* Light mode tokens when NOT dark (matches current ThemeProvider behavior) */
-body:not(.dark) {
-  --text: 240 10% 10%;
-  --muted: 240 4% 38%;
-  --bg: 0 0% 98%;
-  --bg2: 240 10% 96%;
-  --card: 0 0% 100%;
-  --card2: 240 10% 98%;
-  --stroke: 240 10% 20%;
-  --accent: 265 85% 55%;
-  --accent2: 200 85% 50%;
-  --shadowRgb: 240 10% 20%;
+.App.dark {
+  /* Dark Premium Gradient (recommended) */
+  --bg-primary: #0E0E11;
+  --bg-secondary: #141419;
+  --bg-card: #1A1A1F;
+  --text-primary: #ffffff;
+  --text-secondary: #B6B6C2;
+  --border-color: #2A2A33;
+  /* Use ONE accent color */
+  --accent-primary: #8B5CF6;
+  --shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+  --shadow-hover: 0 22px 70px rgba(0, 0, 0, 0.62);
+  --shadow-ring: 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
 
-  --bg-primary: hsl(var(--bg));
-  --bg-secondary: hsl(var(--bg2));
-  --bg-card: hsla(var(--card) / 0.85);
-  --text-primary: hsl(var(--text));
-  --text-secondary: hsl(var(--muted));
-  --border-color: hsla(240 10% 20% / 0.10);
-  --accent-primary: hsl(var(--accent));
-
-  --shadow: 0 10px 28px hsla(var(--shadowRgb) / 0.10);
-  --shadow-hover: 0 18px 50px hsla(var(--shadowRgb) / 0.14);
-  --shadow-ring: 0 0 0 1px hsla(240 10% 20% / 0.06);
+body.dark {
+  /* Dark Premium Gradient (recommended) */
+  --bg-primary: #0E0E11;
+  --bg-secondary: #141419;
+  --bg-card: #1A1A1F;
+  --text-primary: #ffffff;
+  --text-secondary: #B6B6C2;
+  --border-color: #2A2A33;
+  /* Use ONE accent color */
+  --accent-primary: #8B5CF6;
+  --shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+  --shadow-hover: 0 22px 70px rgba(0, 0, 0, 0.62);
+  --shadow-ring: 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
 html {
@@ -78,28 +64,53 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: hsl(var(--text));
-  background:
-    radial-gradient(1200px 600px at 20% 0%, hsla(var(--accent) / .20), transparent 60%),
-    radial-gradient(900px 500px at 80% 20%, hsla(var(--accent2) / .14), transparent 60%),
-    linear-gradient(180deg, hsl(var(--bg)), hsl(var(--bg2)));
+  background-color: var(--bg-primary);
   color: var(--text-primary);
   transition: background-color var(--theme-transition-duration) var(--theme-transition-easing),
               color var(--theme-transition-duration) var(--theme-transition-easing);
   position: relative;
 }
 
-/* Subtle noise (SVG turbulence) — add class bg-noise on body */
-.bg-noise::before {
-  content: "";
+/* Premium ambient backdrop (adds depth without extra accent colors) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: -20%;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(900px 520px at 15% 10%, rgba(139, 92, 246, 0.18), transparent 62%),
+    radial-gradient(820px 520px at 85% 18%, rgba(139, 92, 246, 0.10), transparent 64%),
+    radial-gradient(900px 520px at 50% 120%, rgba(255, 255, 255, 0.06), transparent 60%);
+  filter: blur(18px);
+  opacity: 0;
+  transition: opacity var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+body.dark::before {
+  opacity: 1;
+}
+
+/* Subtle texture banding (very cheap, avoids flatness) */
+body::after {
+  content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
-  opacity: .06;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-  background-size: 240px 240px;
+  z-index: -1;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.02) 0px,
+    rgba(255, 255, 255, 0.02) 1px,
+    transparent 1px,
+    transparent 140px
+  );
+  opacity: 0;
+  transition: opacity var(--theme-transition-duration) var(--theme-transition-easing);
+}
+
+body.dark::after {
+  opacity: 0.10;
 }
 
 /* Enhanced transitions during theme change */

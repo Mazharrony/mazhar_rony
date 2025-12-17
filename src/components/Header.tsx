@@ -7,8 +7,6 @@ import { motion, useScroll } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import { useTheme } from '@/lib/ThemeContext';
 import './Header.css';
-import { GlassButton } from './ui/GlassButton';
-import { GlassPanel } from './ui/GlassPanel';
 
 const Header: React.FC = () => {
   const pathname = usePathname();
@@ -16,7 +14,6 @@ const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const [scrollY, setScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
   const { scrollY: motionScrollY } = useScroll();
 
   // Track scroll position for header shrink behavior
@@ -64,8 +61,6 @@ const Header: React.FC = () => {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="container">
-        {/* Premium glass shell */}
-        <GlassPanel className="mx-auto mt-5 px-4 py-3">
         <div className="header-inner">
           {/* ZONE 1: LEFT – Brand Name */}
           <div className="header-zone header-zone-left">
@@ -106,59 +101,44 @@ const Header: React.FC = () => {
 
           {/* ZONE 3: RIGHT – Controls (Language, Theme, CTA) */}
           <div className="header-zone header-zone-right">
-            {/* Utility capsule */}
-            <div className="flex items-center gap-2">
-              <div className="relative flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-1.5 backdrop-blur-glass">
-                {/* Language popover trigger */}
-                <button
-                  type="button"
-                  onClick={() => setLangOpen((v) => !v)}
-                  className="rounded-full px-2 py-1 text-xs text-white/80 hover:bg-white/10"
+            {/* Dedicated Actions Group - Fixed Position */}
+            <div className="header-actions">
+              {/* Language Toggle */}
+              <motion.div className="header-control language-control" whileHover={{ scale: 1.05 }}>
+                <select
+                  value={language}
+                  onChange={(e) => setLanguage(e.target.value as any)}
                   aria-label="Select language"
+                  className="language-select"
                 >
-                  🌐 {languages.find((l) => l.code === language)?.label || 'EN'}
-                </button>
-                <span className="px-1 text-white/20">•</span>
-                {/* Theme */}
-                <button
-                  type="button"
-                  onClick={toggleTheme}
-                  className="rounded-full px-2 py-1 text-xs text-white/80 hover:bg-white/10"
-                  aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-                >
-                  {theme === 'light' ? '☾' : '☀'}
-                </button>
+                  {languages.map((lang) => (
+                    <option key={lang.code} value={lang.code}>
+                      {lang.label}
+                    </option>
+                  ))}
+                </select>
+              </motion.div>
 
-                {/* Popover */}
-                {langOpen && (
-                  <div className="absolute right-0 top-[calc(100%+10px)] z-50 w-44 overflow-hidden rounded-2xl border border-white/10 bg-[hsla(var(--card)/.75)] backdrop-blur-glass shadow-glass">
-                    <div className="p-1">
-                      {languages.map((lang) => (
-                        <button
-                          key={lang.code}
-                          type="button"
-                          onClick={() => {
-                            setLanguage(lang.code as any);
-                            setLangOpen(false);
-                          }}
-                          className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm ${
-                            language === lang.code ? 'bg-white/10 text-white' : 'text-white/80 hover:bg-white/8'
-                          }`}
-                        >
-                          <span className="flex items-center gap-2">
-                            <span className="text-xs opacity-80">{lang.label}</span>
-                            <span className="text-xs opacity-70">{lang.name}</span>
-                          </span>
-                          {language === lang.code && <span className="text-xs opacity-80">✓</span>}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+              {/* Theme Toggle */}
+              <motion.button
+                className="header-control theme-toggle"
+                onClick={toggleTheme}
+                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {theme === 'light' ? '🌙' : '☀️'}
+              </motion.button>
 
+              {/* CTA Button: "Say hello" */}
               <Link href="/contact">
-                <GlassButton variant="primary">{t('header.cta')}</GlassButton>
+                <motion.button 
+                  className="header-cta"
+                  whileHover={{ scale: 1.03, boxShadow: '0 8px 20px rgba(0,0,0,0.08)' }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {t('header.cta')}
+                </motion.button>
               </Link>
             </div>
 
@@ -175,7 +155,6 @@ const Header: React.FC = () => {
             </motion.button>
           </div>
         </div>
-        </GlassPanel>
       </div>
 
       {/* Mobile Menu (Drawer) - Full Screen Overlay */}
