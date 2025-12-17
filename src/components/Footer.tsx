@@ -14,8 +14,8 @@ const Footer: React.FC = () => {
   // Footer navigation links
   const footerLinks = [
     { label: t('footer.nav.about'), href: '/about', key: 'footer-about' },
-    { label: t('footer.nav.journey'), href: '/journey', key: 'footer-journey' },
     { label: t('footer.nav.work'), href: '/work', key: 'footer-work' },
+    { label: t('footer.nav.services'), href: '/services', key: 'footer-services' },
     { label: t('footer.nav.contact'), href: '/contact', key: 'footer-contact' },
   ];
 

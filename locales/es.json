@@ -442,10 +442,10 @@
     "filter": {
       "all": "Todo",
       "social": "Redes Sociales",
-      "branding": "Branding",
+      "branding": "Packaging",
       "web": "Diseño Web",
       "video": "Producción Video",
-      "design": "Diseño",
+      "design": "Diseño y Contenido",
       "content": "Contenido"
     }
   },
@@ -488,8 +488,8 @@
     "cta": "quizás",
     "nav": {
       "about": "Acerca",
-      "journey": "Trayectoria",
       "work": "Trabajos",
+      "services": "Servicios",
       "contact": "Contacto"
     }
   },

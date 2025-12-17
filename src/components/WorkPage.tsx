@@ -349,13 +349,16 @@ const WorkPage: React.FC = () => {
     },
   ];
 
-  const categories = ['all', 'design', 'branding', 'content', 'web'];
+  // Merge "design" + "content" into a single tab (design).
+  const categories = ['all', 'design', 'branding', 'web'];
   const normalizeCategory = (c: string) => (c || '').trim().toLowerCase();
   const filtered =
     activeCategory === 'all'
       ? portfolioItems
       : portfolioItems.filter((item) => {
           const cat = normalizeCategory(item.category);
+          // Design tab includes both design + content items
+          if (activeCategory === 'design') return cat === 'design' || cat === 'content';
           // Web tab should only show real web projects (must have URL)
           if (activeCategory === 'web') return cat === 'web' && Boolean(item.url);
           return cat === activeCategory;
@@ -461,7 +464,9 @@ const WorkPage: React.FC = () => {
           >
             <AnimatePresence mode="popLayout">
               {filtered.map((item: PortfolioItem, index: number) => {
-                const categoryLabel = t(`portfolio.filter.${item.category}`) || item.category;
+                const mergedCategoryKey =
+                  normalizeCategory(item.category) === 'content' ? 'design' : item.category;
+                const categoryLabel = t(`portfolio.filter.${mergedCategoryKey}`) || mergedCategoryKey;
                 const domain = item.url?.replace('https://', '').replace('http://', '').split('/')[0] || '';
                 const isSocial = item.category === 'content';
                 const prefersWhiteBg =

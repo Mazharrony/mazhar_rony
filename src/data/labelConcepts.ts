@@ -33,7 +33,7 @@ export const labelConcepts: LabelConcept[] = [
       '/portfolio/jnk/multi-vitamin/mv-06.png',
       '/portfolio/jnk/multi-vitamin/mv-07.png',
     ],
-    role: 'Branding (Packaging) — Label concept + mockups',
+    role: 'Packaging — Label concept + mockups',
     deliverables: ['Label design', 'Packaging mockups', 'Visual system'],
     tools: ['Photoshop', 'Illustrator'],
     results:
@@ -57,7 +57,7 @@ export const labelConcepts: LabelConcept[] = [
       '/portfolio/jnk/demon-oni/demon-05.png',
       '/portfolio/jnk/demon-oni/demon-06.png',
     ],
-    role: 'Branding (Packaging) — Label concept + mockups',
+    role: 'Packaging — Label concept + mockups',
     deliverables: ['Label design', 'Packaging mockups', 'Icon + graphic system'],
     tools: ['Photoshop', 'Illustrator'],
     results:
@@ -79,7 +79,7 @@ export const labelConcepts: LabelConcept[] = [
       '/portfolio/jnk/dominate/dom-03.png',
       '/portfolio/jnk/dominate/dom-04.png',
     ],
-    role: 'Branding (Packaging) — Label concept + mockups',
+    role: 'Packaging — Label concept + mockups',
     deliverables: ['Label design', 'Packaging mockups', 'Typography system'],
     tools: ['Photoshop', 'Illustrator'],
     results:
@@ -109,7 +109,7 @@ export const labelConcepts: LabelConcept[] = [
       '/portfolio/jnk/rdx-shot/rdx-shot-layer2.jpg',
       '/portfolio/jnk/rdx-shot/rdx-shot-layer1.jpg'
     ],
-    role: 'Branding (Packaging) — Label concept + mockups',
+    role: 'Packaging — Label concept + mockups',
     deliverables: ['Label design', 'Variant mockups', 'Packaging system'],
     tools: ['Photoshop', 'Illustrator', '3D Mockups'],
     results:

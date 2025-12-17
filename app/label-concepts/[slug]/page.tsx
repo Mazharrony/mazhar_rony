@@ -17,10 +17,10 @@ export async function generateMetadata(
   const concept = getLabelConceptBySlug(slug);
 
   const title = concept
-    ? `${concept.title} – Branding (Packaging)`
-    : 'Label Concept – Branding (Packaging)';
+    ? `${concept.title} – Packaging`
+    : 'Label Concept – Packaging';
 
-  const description = concept?.description || 'Branding (packaging) label concept with mockups and design details.';
+  const description = concept?.description || 'Packaging label concept with mockups and design details.';
 
   const ogImage = concept?.heroImage
     ? `${SITE_URL}${concept.heroImage}`

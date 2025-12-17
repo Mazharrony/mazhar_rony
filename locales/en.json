@@ -448,10 +448,10 @@
     "filter": {
       "all": "All",
       "social": "Social Media",
-      "branding": "Branding (Packaging)",
+      "branding": "Packaging",
       "web": "Web Design",
       "video": "Video Production",
-      "design": "Design",
+      "design": "Design & Content",
       "content": "Content"
     }
   },
@@ -494,8 +494,8 @@
     "cta": "maybe.",
     "nav": {
       "about": "About",
-      "journey": "Journey",
       "work": "Work",
+      "services": "Services",
       "contact": "Contact"
     }
   },

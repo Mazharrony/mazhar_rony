@@ -37,7 +37,7 @@ export default function LabelConceptPage({ slug }: { slug: string }) {
             <div className="label-hero-breadcrumb">
               <Link href="/work">Work</Link>
               <span> / </span>
-              <span>Branding (Packaging)</span>
+              <span>Packaging</span>
             </div>
 
             <h1 className="label-hero-title">{concept.title}</h1>

@@ -442,10 +442,10 @@
     "filter": {
       "all": "全部",
       "social": "社交媒体",
-      "branding": "品牌",
+      "branding": "Packaging",
       "web": "网页设计",
       "video": "视频制作",
-      "design": "设计",
+      "design": "设计与内容",
       "content": "内容"
     }
   },
@@ -517,8 +517,8 @@
     "cta": "也许",
     "nav": {
       "about": "关于",
-      "journey": "历程",
       "work": "作品",
+      "services": "服务",
       "contact": "联系"
     }
   },
