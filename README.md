@@ -1,46 +1,52 @@
-# Getting Started with Create React App
+# Portfolio (Next.js)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal portfolio website built with **Next.js (App Router)** and **Tailwind CSS**.
 
-## Available Scripts
+## Tech stack
 
-In the project directory, you can run:
+- **Next.js** (App Router) + **React**
+- **TypeScript**
+- **Tailwind CSS**
 
-### `npm start`
+## Project structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- `app/`: routes, layouts, metadata (Next.js App Router)
+- `src/components/`: UI components used by pages in `app/`
+- `lib/`: shared logic (i18n, theme context, data)
+- `public/`: static assets
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting started
 
-### `npm test`
+Install dependencies:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm install
+```
 
-### `npm run build`
+If you need environment variables, copy `env.example` to `.env.local` and update the values.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Run the dev server:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm run dev
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Open `http://localhost:3000`.
 
-### `npm run eject`
+## Production
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Build:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm run build
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Start:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+npm run start
+```
 
-## Learn More
+## Deployment
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Deploy on **Vercel** (recommended for Next.js). Configure environment variables in Vercel Project Settings if needed.
