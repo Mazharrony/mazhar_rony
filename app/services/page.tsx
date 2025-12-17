@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import ServicesPage from '@/src/components/ServicesPage';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mazharrony.vercel.app';
 
@@ -98,23 +99,14 @@ const servicesJsonLd = {
   }
 };
 
-export default function ServicesPage() {
+export default function Services() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd) }}
       />
-      <section id="services" className="fold services">
-        <div className="container">
-          <h1 className="page-title">Services</h1>
-          {/* 
-            NOTE: Import and use your Services component here
-            Consider creating an expanded version with more details
-          */}
-          <p>Full services page coming soon. For now, see the services section on the homepage.</p>
-        </div>
-      </section>
+      <ServicesPage />
     </>
   );
 }

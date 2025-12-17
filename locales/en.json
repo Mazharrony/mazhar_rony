@@ -415,6 +415,11 @@
     "label": "Let's Connect",
     "title": "Have a project in mind?",
     "subtitle": "Let's create something together",
+    "teaser": {
+      "title": "Let's work together",
+      "description": "Ready to bring your vision to life? Let's discuss your project and create something amazing together.",
+      "cta": "Get in touch"
+    },
     "form": {
       "name": "Your Name",
       "email": "Your Email",

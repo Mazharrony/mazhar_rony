@@ -99,14 +99,14 @@ body:not(.dark) .work-hero-title {
   gap: 0.5rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid transparent;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, var(--accent-primary) 0%, #7C3AED 100%);
   color: #ffffff;
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.3);
 }
 
 .work-cta-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
 }
 
 /* Portfolio Section */
@@ -453,16 +453,16 @@ body:not(.dark) .tool-tag {
   align-items: center;
   gap: 0.5rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, var(--accent-primary) 0%, #7C3AED 100%);
   color: #ffffff;
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.3);
   border: none;
   cursor: pointer;
 }
 
 .work-cta-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
 }
 
 /* Responsive Design */

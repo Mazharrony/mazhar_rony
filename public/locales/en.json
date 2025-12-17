@@ -861,6 +861,11 @@
     "label": "Get in touch",
     "title": "Let's build something meaningful together.",
     "subtitle": "Whether it's a new project, collaboration, or just a conversation—I'm here.",
+    "teaser": {
+      "title": "Let's work together",
+      "description": "Ready to bring your vision to life? Let's discuss your project and create something amazing together.",
+      "cta": "Get in touch"
+    },
     "form": {
       "name": "Your Name",
       "namePlaceholder": "What should I call you?",

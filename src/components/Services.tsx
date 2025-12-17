@@ -1,6 +1,6 @@
 // src/components/Services.tsx
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import MobileServices from "./MobileServices";
 import "./Services.css";
@@ -8,11 +8,6 @@ import "./Services.css";
 const Services: React.FC = () => {
   const { t, language } = useLanguage();
   const sectionRef = useRef<HTMLElement | null>(null);
-  const stripRef = useRef<HTMLDivElement | null>(null);
-  const viewportRef = useRef<HTMLDivElement | null>(null);
-
-  const [maxOffset, setMaxOffset] = useState(0);
-  const [sectionHeight, setSectionHeight] = useState<number | null>(null);
   const [prefersReduced, setPrefersReduced] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -27,30 +22,8 @@ const Services: React.FC = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Measure strip width and viewport to derive maxOffset and required scroll height
-  useLayoutEffect(() => {
-    const measure = () => {
-      if (!stripRef.current || !viewportRef.current) return;
-      const stripWidth = stripRef.current.scrollWidth;
-      const viewportWidth = viewportRef.current.clientWidth;
-      const diff = Math.max(stripWidth - viewportWidth, 0);
-      setMaxOffset(diff);
-
-      if (typeof window !== "undefined") {
-        // 7x multiplier for ultra-fast horizontal scroll
-        setSectionHeight(diff * 7 + window.innerHeight);
-      }
-    };
-
-    // Use requestAnimationFrame for smoother measurements
-    const rafMeasure = () => {
-      requestAnimationFrame(measure);
-    };
-
-    rafMeasure();
-    window.addEventListener("resize", rafMeasure);
-    return () => window.removeEventListener("resize", rafMeasure);
-  }, [language]);
+  // keep language dependency (was used for measurement previously)
+  void language;
 
   // Respect prefers-reduced-motion
   useEffect(() => {
@@ -62,30 +35,6 @@ const Services: React.FC = () => {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  // Scroll progress: section enters viewport and exits
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
-
-  // Smooth spring animation for butter-smooth scrolling
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    mass: 0.5,
-    restDelta: 0.001,
-  });
-
-  // Map smooth progress to horizontal travel with easing
-  const stripX = useTransform(
-    smoothProgress,
-    [0, 1],
-    [0, -maxOffset || 0],
-    {
-      clamp: false, // Allow slight overscroll for natural feel
-    }
-  );
-
   const services = [
     { id: "social", titleKey: "services.items.0.title", bodyKey: "services.items.0.description", href: "/services/social-media-marketing" },
     { id: "content", titleKey: "services.items.1.title", bodyKey: "services.items.1.description", href: "/services/content-video-production" },
@@ -96,8 +45,23 @@ const Services: React.FC = () => {
     { id: "webapp", titleKey: "services.items.6.title", bodyKey: "services.items.6.description", href: "/services/web-app-development" },
   ];
 
-  const innerClass = prefersReduced ? "services-inner reduced" : "services-inner sticky";
-  const viewportClass = prefersReduced ? "services-viewport scrollable" : "services-viewport";
+  const containerVariants = prefersReduced
+    ? undefined
+    : {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { staggerChildren: 0.06, delayChildren: 0.08 } },
+      };
+
+  const cardVariants = prefersReduced
+    ? undefined
+    : {
+        hidden: { opacity: 0, y: 14 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] as const },
+        },
+      };
 
   // Render mobile component on mobile devices
   if (isMobile) {
@@ -110,41 +74,36 @@ const Services: React.FC = () => {
       id="services"
       className="fold services-section"
       ref={sectionRef}
-      style={prefersReduced ? undefined : { height: sectionHeight || "auto" }}
     >
-      <div className={innerClass}>
+      <div className="services-inner">
         <div className="services-header">
           <p className="services-pill">{t("services.label")}</p>
           <h2 className="services-title">{t("services.title")}</h2>
           <p className="services-subtitle">{t("services.subtitle")}</p>
         </div>
 
-        <div className="services-viewport" ref={viewportRef}>
-          <motion.div
-            className="services-strip"
-            ref={stripRef}
-            style={{ 
-              x: stripX,
-              willChange: 'transform',
-            }}
-            transition={{
-              type: "spring",
-              stiffness: 100,
-              damping: 30,
-              mass: 0.5,
-            }}
-          >
-            {services.map((service) => (
-              <article key={service.id} className="service-card">
-                <h3 className="service-card-title">{t(service.titleKey)}</h3>
-                <p className="service-card-body">{t(service.bodyKey)}</p>
-                <a href={service.href} className="service-card-link">
-                  {t("common.viewMore")} <span>→</span>
-                </a>
-              </article>
-            ))}
-          </motion.div>
-        </div>
+        <motion.div
+          className="services-grid"
+          variants={containerVariants}
+          initial={prefersReduced ? false : "hidden"}
+          whileInView={prefersReduced ? undefined : "visible"}
+          viewport={{ once: true, margin: "-10% 0px" }}
+        >
+          {services.map((service) => (
+            <motion.article
+              key={service.id}
+              className="service-card"
+              variants={cardVariants}
+              whileHover={prefersReduced ? undefined : { y: -6 }}
+            >
+              <h3 className="service-card-title">{t(service.titleKey)}</h3>
+              <p className="service-card-body">{t(service.bodyKey)}</p>
+              <a href={service.href} className="service-card-link">
+                {t("common.viewMore")} <span>→</span>
+              </a>
+            </motion.article>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

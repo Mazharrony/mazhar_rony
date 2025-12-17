@@ -452,29 +452,38 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 4rem;
-  padding-top: 2rem;
+  margin-top: 2.25rem;
+  padding-top: 0.75rem;
 }
 
 .portfolio-view-all-btn {
-  padding: 0.875rem 2rem;
-  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
   font-size: 0.9375rem;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  color: #ffffff;
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
-  border: 1px solid transparent;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color var(--theme-transition-duration, 2000ms)
+      var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1)),
+    border-color var(--theme-transition-duration, 2000ms)
+      var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1)),
+    color var(--theme-transition-duration, 2000ms)
+      var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1));
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 
 .portfolio-view-all-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+  border-color: rgba(99, 102, 241, 0.45);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
 }
 
 .portfolio-view-all-btn span {
@@ -487,12 +496,12 @@
 
 @media (max-width: 768px) {
   .portfolio-view-all {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
+    margin-top: 2rem;
+    padding-top: 0.5rem;
   }
 
   .portfolio-view-all-btn {
-    padding: 0.75rem 1.5rem;
+    padding: 0.6875rem 1.1rem;
     font-size: 0.875rem;
   }
 }

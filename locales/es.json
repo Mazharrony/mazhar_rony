@@ -409,6 +409,11 @@
     "label": "Conectemos",
     "title": "¿Tienes un proyecto en mente?",
     "subtitle": "Creemos algo juntos",
+    "teaser": {
+      "title": "Trabajemos juntos",
+      "description": "¿Listo para dar vida a tu visión? Hablemos de tu proyecto y creemos algo increíble juntos.",
+      "cta": "Ponte en contacto"
+    },
     "form": {
       "name": "Tu Nombre",
       "email": "Tu Email",

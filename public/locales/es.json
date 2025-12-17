@@ -1255,6 +1255,11 @@
     "label": "Contacto",
     "title": "Construyamos algo significativo juntos.",
     "subtitle": "Ya sea un nuevo proyecto, colaboración o solo una conversación—estoy aquí.",
+    "teaser": {
+      "title": "Trabajemos juntos",
+      "description": "¿Listo para dar vida a tu visión? Hablemos de tu proyecto y creemos algo increíble juntos.",
+      "cta": "Ponte en contacto"
+    },
     "form": {
       "name": "Tu nombre",
       "namePlaceholder": "¿Cómo debería llamarte?",
