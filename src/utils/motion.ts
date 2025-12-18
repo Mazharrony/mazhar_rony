@@ -179,13 +179,14 @@ export const useMagneticEffect = (strength: number = 0.3) => {
     const node = ref.current;
     if (!node) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (e: Event) => {
+      const me = e as MouseEvent;
       const rect = node.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
       
-      x.current = (e.clientX - centerX) * strength;
-      y.current = (e.clientY - centerY) * strength;
+      x.current = (me.clientX - centerX) * strength;
+      y.current = (me.clientY - centerY) * strength;
 
       nodeX.current += (x.current - nodeX.current) * 0.1;
       nodeY.current += (y.current - nodeY.current) * 0.1;

@@ -32,8 +32,6 @@ const ScrollProgress: React.FC = () => {
         scaleY: velocityScale,
       }}
       initial={{ scaleX: 0, scaleY: 1 }}
-      animate={{ scaleX, scaleY: velocityScale }}
-      transition={{ type: 'spring', stiffness: 150, damping: 25 }}
     />
   );
 };

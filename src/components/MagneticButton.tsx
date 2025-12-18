@@ -3,7 +3,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
-interface MagneticButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface MagneticButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onAnimationStart' | 'onAnimationEnd'> {
   children: React.ReactNode;
   strength?: number;
   className?: string;
@@ -107,7 +107,7 @@ const MagneticButton: React.FC<MagneticButtonProps> = ({
       whileTap={{
         scale: 0.95,
       }}
-      {...props}
+      {...(props as any)}
     >
       <span className="magnetic-button-content">{children}</span>
     </motion.button>
