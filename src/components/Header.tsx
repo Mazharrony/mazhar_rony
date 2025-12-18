@@ -28,6 +28,8 @@ const Header: React.FC = () => {
   // Header shrinks slightly when scrolled (80px → 60px)
   const headerHeight = scrollY > 20 ? 60 : 80;
   const isScrolled = scrollY > 20;
+  const headerOpacity = scrollY > 20 ? 0.98 : 1;
+  const headerBlur = scrollY > 20 ? 'blur(10px)' : 'blur(0px)';
 
   // Navigation items: match spec (About, Work, Services, Contact)
   // Note: Home is implied via brand click
@@ -55,9 +57,14 @@ const Header: React.FC = () => {
   return (
     <motion.header 
       className={`header ${isScrolled ? 'scrolled' : ''}`}
-      style={{ height: headerHeight }}
+      style={{ 
+        height: headerHeight,
+        opacity: headerOpacity,
+        backdropFilter: headerBlur,
+        WebkitBackdropFilter: headerBlur,
+      }}
       initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      animate={{ y: 0, opacity: headerOpacity }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="container">

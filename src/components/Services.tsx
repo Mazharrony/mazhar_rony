@@ -1,6 +1,6 @@
 // src/components/Services.tsx
 import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import MobileServices from "./MobileServices";
 import {
@@ -77,12 +77,25 @@ const Services: React.FC = () => {
     return <MobileServices services={services} />;
   }
 
+  // Scroll-based parallax for services section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+  
+  const servicesY = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const servicesOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.4, 1, 1, 0.4]);
+
   // Desktop version (unchanged)
   return (
-    <section
+    <motion.section
       id="services"
       className="fold services-section"
       ref={sectionRef}
+      style={{
+        y: servicesY,
+        opacity: servicesOpacity,
+      }}
     >
       <div className="services-inner">
         <div className="services-header">
@@ -98,15 +111,27 @@ const Services: React.FC = () => {
           whileInView={prefersReduced ? undefined : "visible"}
           viewport={{ once: true, margin: "-10% 0px" }}
         >
-          {services.map((service) => {
+          {services.map((service, idx) => {
             const IconComponent = service.icon;
             return (
             <motion.article
               key={service.id}
               className="service-card"
               variants={cardVariants}
-              whileHover={prefersReduced ? undefined : { y: -6 }}
-              style={{ '--accent-color': service.color } as React.CSSProperties}
+              whileHover={prefersReduced ? undefined : { 
+                y: -8,
+                scale: 1.02,
+                rotateX: -2,
+                rotateY: 2,
+                transition: {
+                  duration: 0.3,
+                  ease: [0.22, 1, 0.36, 1],
+                }
+              }}
+              style={{ 
+                '--accent-color': service.color,
+                transformStyle: 'preserve-3d',
+              } as React.CSSProperties}
             >
               <div className="service-card-icon" aria-hidden="true">
                 <IconComponent size={28} />
@@ -121,7 +146,7 @@ const Services: React.FC = () => {
           })}
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

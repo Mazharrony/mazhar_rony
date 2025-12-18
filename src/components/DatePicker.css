@@ -99,8 +99,8 @@ body.dark .date-picker-input.open {
   right: 0;
   z-index: 1000;
   background: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
   padding: 1.25rem;

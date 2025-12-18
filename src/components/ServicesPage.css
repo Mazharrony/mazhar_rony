@@ -120,7 +120,7 @@ body:not(.dark) .services-hero-title {
   background: var(--bg-card);
   border-color: var(--border-color);
   color: var(--text-primary);
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1),
               background-color var(--theme-transition-duration, 2000ms) var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1.0)),
               border-color var(--theme-transition-duration, 2000ms) var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1.0)),
@@ -183,7 +183,7 @@ body:not(.dark) .services-cta-secondary:hover {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 20px;
-  backdrop-filter: blur(12px);
+  backdrop-filter: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -275,7 +275,7 @@ body:not(.dark) .hero-service-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 20px;
-  backdrop-filter: blur(12px);
+  backdrop-filter: none;
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -503,7 +503,7 @@ body:not(.dark) .services-intro {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 20px;
-  backdrop-filter: blur(12px);
+  backdrop-filter: none;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               background-color var(--theme-transition-duration, 2000ms) var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1.0)),
               border-color var(--theme-transition-duration, 2000ms) var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1.0));
@@ -682,7 +682,7 @@ body:not(.dark) .intro-feature-item:hover {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
+  backdrop-filter: none;
   box-shadow: 
     0 4px 12px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -854,7 +854,7 @@ body:not(.dark) .optimized-feature {
   padding: 1.5rem;
   font-weight: 600;
   color: var(--text-primary);
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
   transition: all 0.3s ease,
               background-color var(--theme-transition-duration, 2000ms) var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1.0)),
               border-color var(--theme-transition-duration, 2000ms) var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1.0)),
@@ -921,7 +921,7 @@ body:not(.dark) .services-features {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 24px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               background-color var(--theme-transition-duration, 2000ms) var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1.0)),
               border-color var(--theme-transition-duration, 2000ms) var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1.0));
@@ -1070,7 +1070,7 @@ body:not(.dark) .services-capabilities {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 24px;
-  backdrop-filter: blur(12px);
+  backdrop-filter: none;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               background-color var(--theme-transition-duration, 2000ms) var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1.0)),
               border-color var(--theme-transition-duration, 2000ms) var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1.0));
@@ -1221,7 +1221,7 @@ body:not(.dark) .services-grid-section {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 28px;
-  backdrop-filter: blur(16px);
+  backdrop-filter: none;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1),
               background-color var(--theme-transition-duration, 2000ms) var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1.0)),
               border-color var(--theme-transition-duration, 2000ms) var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1.0));
@@ -1426,7 +1426,7 @@ body:not(.dark) .services-process {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 24px;
-  backdrop-filter: blur(12px);
+  backdrop-filter: none;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               background-color var(--theme-transition-duration, 2000ms) var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1.0)),
               border-color var(--theme-transition-duration, 2000ms) var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1.0));
@@ -1591,7 +1591,7 @@ body:not(.dark) .services-stats {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 28px;
-  backdrop-filter: blur(16px);
+  backdrop-filter: none;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1),
               background-color var(--theme-transition-duration, 2000ms) var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1.0)),
               border-color var(--theme-transition-duration, 2000ms) var(--theme-transition-easing, cubic-bezier(0.25, 0.1, 0.25, 1.0));
@@ -1774,7 +1774,7 @@ body:not(.dark) .services-cta-section {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
   color: var(--text-primary);
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
 }
 
 .services-cta-btn-secondary:hover {

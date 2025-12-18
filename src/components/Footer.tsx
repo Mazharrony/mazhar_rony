@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import './Footer.css';
 
@@ -10,6 +10,14 @@ const Footer: React.FC = () => {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-50px" });
   const { t } = useLanguage();
+  
+  // Scroll-based parallax for footer
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  });
+  
+  const footerY = useTransform(scrollYProgress, [0, 1], [20, -20]);
 
   // Footer navigation links
   const footerLinks = [
@@ -20,7 +28,13 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="footer" ref={ref}>
+    <motion.footer 
+      className="footer" 
+      ref={ref}
+      style={{
+        y: footerY,
+      }}
+    >
       <div className="container">
         <div className="footer-inner">
           {/* Left: Emotional tagline + links */}
@@ -78,7 +92,7 @@ const Footer: React.FC = () => {
           </motion.div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

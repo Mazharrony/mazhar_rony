@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { motion, useInView, AnimatePresence, useMotionValue, useSpring, useTransform, useScroll } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
-import { fadeInUp, staggerContainer, motionConfig } from '../utils/motion';
+import { fadeInUp, staggerContainer, motionConfig, useScrollReveal, useIndexedParallax } from '../utils/motion';
 import './Portfolio.css';
 
 interface PortfolioItem {
@@ -180,7 +180,7 @@ const WebMockupPlaceholder: React.FC<WebMockupPlaceholderProps> = ({ domain, tit
           height: '60px',
           borderRadius: '8px',
           background: 'rgba(255,255,255,0.15)',
-          backdropFilter: 'blur(10px)'
+          backdropFilter: 'none'
         }}></div>
         <div style={{
           position: 'absolute',
@@ -190,7 +190,7 @@ const WebMockupPlaceholder: React.FC<WebMockupPlaceholderProps> = ({ domain, tit
           height: '40px',
           borderRadius: '8px',
           background: 'rgba(255,255,255,0.15)',
-          backdropFilter: 'blur(10px)'
+          backdropFilter: 'none'
         }}></div>
       </div>
     </div>
@@ -198,6 +198,312 @@ const WebMockupPlaceholder: React.FC<WebMockupPlaceholderProps> = ({ domain, tit
 };
 
 // PortfolioModal removed (simple gallery – no popups)
+
+// Portfolio Card Component with 3D Tilt Effect
+interface PortfolioCardProps {
+  item: PortfolioItem;
+  index: number;
+  mounted: boolean;
+  cardVariant: any;
+  imageErrors: Record<string, boolean>;
+  setImageErrors: React.Dispatch<React.SetStateAction<Record<string, boolean>>>;
+  isFirstThree: boolean;
+  isLink: boolean;
+  isExternalLink: boolean;
+  isSocial: boolean;
+  prefersWhiteBg: boolean;
+  isClickable: boolean;
+}
+
+const PortfolioCard: React.FC<PortfolioCardProps> = ({
+  item,
+  index,
+  mounted,
+  cardVariant,
+  imageErrors,
+  setImageErrors,
+  isFirstThree,
+  isLink,
+  isExternalLink,
+  isSocial,
+  prefersWhiteBg,
+  isClickable,
+}) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Indexed scroll-parallax for this card
+  const { ref: parallaxRef, style: parallaxStyle } = useIndexedParallax(index, { base: 28, increment: 12, firstUp: true, mobileScale: 0.6 });
+  
+  const springConfig = { damping: 25, stiffness: 200 };
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [7.5, -7.5]), springConfig);
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-7.5, 7.5]), springConfig);
+  
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const x = (e.clientX - centerX) / (rect.width / 2);
+    const y = (e.clientY - centerY) / (rect.height / 2);
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+  
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      key={item.id}
+      className={`portfolio-card ${isLink ? 'is-link' : ''}`}
+      custom={index}
+      layout={mounted}
+      initial={false}
+      animate={mounted ? "visible" : "visible"}
+      exit="exit"
+      variants={mounted ? cardVariant : undefined}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: 'preserve-3d',
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+                whileHover={{
+                  scale: 1.05,
+                  z: 60,
+                  rotateX: -3,
+                  rotateY: 3,
+                  boxShadow: '0 30px 80px rgba(0,0,0,0.3)',
+                  transition: { 
+                    duration: 0.4, 
+                    ease: [0.22, 1, 0.36, 1],
+                    type: 'spring',
+                    stiffness: 300,
+                    damping: 20,
+                  }
+                }}
+      aria-label={isClickable ? `Open ${item.title}` : item.title}
+    >
+      {isLink ? (
+        <Link href={item.href as string} className="portfolio-card-link" aria-label={`Open ${item.title}`}>
+          <span className="sr-only">Open {item.title}</span>
+        </Link>
+      ) : isExternalLink ? (
+        <a
+          href={item.url as string}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="portfolio-card-link"
+          aria-label={`Open ${item.title} website`}
+        >
+          <span className="sr-only">Open {item.title}</span>
+        </a>
+      ) : null}
+      <motion.div ref={parallaxRef as any} style={parallaxStyle as any} className="reveal-wrapper">
+        <motion.div 
+          className="portfolio-image grayscale" 
+          layoutId={`portfolio-image-${item.id}`}
+          style={{ 
+            willChange: 'transform',
+            transformStyle: 'preserve-3d',
+          }}
+          whileHover={{
+            scale: 1.05,
+            filter: 'grayscale(0%) brightness(1.05)',
+            transition: { duration: 0.45, ease: [0.4, 0, 0.2, 1] }
+          }}
+        >
+          {item.category === 'web' ? (
+            <WebMockupPlaceholder 
+              domain={item.url?.replace('https://', '').replace('http://', '').split('/')[0] || ''}
+              title={item.title}
+            />
+          ) : item.image.startsWith('/') && !imageErrors[item.id] ? (
+            <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px' }}>
+              <Image 
+                src={item.image} 
+                alt={item.title}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                style={{ objectFit: isSocial ? 'cover' : 'contain', backgroundColor: prefersWhiteBg ? '#ffffff' : '#f5f5f5' }}
+                loading={isFirstThree ? 'eager' : 'lazy'}
+                priority={isFirstThree}
+                onError={() => {
+                  setImageErrors(prev => ({ ...prev, [item.id]: true }));
+                }}
+              />
+            </div>
+          ) : (
+            <div style={{ 
+              background: item.image, 
+              width: '100%', 
+              height: '100%',
+              position: 'relative',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              {item.category === 'web' && (
+                <div style={{
+                  position: 'absolute',
+                  top: '20px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  backdropFilter: 'none',
+                  borderRadius: '12px',
+                  padding: '8px 16px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  fontSize: '0.75rem',
+                  fontWeight: 600,
+                  color: 'rgba(255, 255, 255, 0.9)'
+                }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 12c0 1.2-1.5 2.7-1.5 2.7s-1.5-1.5-1.5-2.7 1.5-2.7 1.5-2.7S21 10.8 21 12zM3 12c0 1.2 1.5 2.7 1.5 2.7s1.5-1.5 1.5-2.7-1.5-2.7-1.5-2.7S3 10.8 3 12zM12 21c1.2 0 2.7-1.5 2.7-1.5S13.2 18 12 18s-2.7 1.5-2.7 1.5S10.8 21 12 21zM12 3C10.8 3 9.3 4.5 9.3 4.5S10.8 6 12 6s2.7-1.5 2.7-1.5S13.2 3 12 3z"/>
+                    <circle cx="12" cy="12" r="2"/>
+                  </svg>
+                  {item.url?.replace('https://', '').replace('http://', '').split('/')[0]}
+                </div>
+              )}
+            </div>
+          )}
+        </motion.div>
+        {!isSocial && (
+          <motion.div 
+            className="portfolio-overlay"
+            initial={{ opacity: 0 }}
+            whileHover={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div>
+              {item.category === 'web' && (
+                <motion.div
+                  style={{ 
+                    position: 'absolute', 
+                    top: '20px', 
+                    right: '20px',
+                    background: 'rgba(255, 255, 255, 0.2)',
+                    backdropFilter: 'none',
+                    borderRadius: '8px',
+                    padding: '8px 12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px'
+                  }}
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileHover={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.05 }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 12c0 1.2-1.5 2.7-1.5 2.7s-1.5-1.5-1.5-2.7 1.5-2.7 1.5-2.7S21 10.8 21 12zM3 12c0 1.2 1.5 2.7 1.5 2.7s1.5-1.5 1.5-2.7-1.5-2.7-1.5-2.7S3 10.8 3 12zM12 21c1.2 0 2.7-1.5 2.7-1.5S13.2 18 12 18s-2.7 1.5-2.7 1.5S10.8 21 12 21zM12 3C10.8 3 9.3 4.5 9.3 4.5S10.8 6 12 6s2.7-1.5 2.7-1.5S13.2 3 12 3z"/>
+                    <circle cx="12" cy="12" r="2"/>
+                  </svg>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 600 }}>Website</span>
+                </motion.div>
+              )}
+              <motion.h4
+                initial={{ y: 10, opacity: 0 }}
+                whileHover={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.05 }}
+              >
+                {item.title}
+              </motion.h4>
+              <motion.p 
+                className="category-tag"
+                initial={{ y: 10, opacity: 0 }}
+                whileHover={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.1 }}
+              >
+                {item.category}
+              </motion.p>
+              <motion.button 
+                className="view-link"
+                initial={{ y: 10, opacity: 0 }}
+                whileHover={{ y: 0, opacity: 1, x: 4 }}
+                transition={{ delay: 0.15 }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
+                {isLink ? 'Open →' : isExternalLink ? 'Visit Website →' : 'View →'}
+              </motion.button>
+            </div>
+          </motion.div>
+        )}
+      </motion.div>
+      {!isSocial && (
+        <motion.div 
+          className="portfolio-overlay"
+          initial={{ opacity: 0 }}
+          whileHover={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          <div>
+            {item.category === 'web' && (
+              <motion.div
+                style={{ 
+                  position: 'absolute', 
+                  top: '20px', 
+                  right: '20px',
+                  background: 'rgba(255, 255, 255, 0.2)',
+                  backdropFilter: 'none',
+                  borderRadius: '8px',
+                  padding: '8px 12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}
+                initial={{ scale: 0, opacity: 0 }}
+                whileHover={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.05 }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M21 12c0 1.2-1.5 2.7-1.5 2.7s-1.5-1.5-1.5-2.7 1.5-2.7 1.5-2.7S21 10.8 21 12zM3 12c0 1.2 1.5 2.7 1.5 2.7s1.5-1.5 1.5-2.7-1.5-2.7-1.5-2.7S3 10.8 3 12zM12 21c1.2 0 2.7-1.5 2.7-1.5S13.2 18 12 18s-2.7 1.5-2.7 1.5S10.8 21 12 21zM12 3C10.8 3 9.3 4.5 9.3 4.5S10.8 6 12 6s2.7-1.5 2.7-1.5S13.2 3 12 3z"/>
+                  <circle cx="12" cy="12" r="2"/>
+                </svg>
+                <span style={{ fontSize: '0.75rem', fontWeight: 600 }}>Website</span>
+              </motion.div>
+            )}
+            <motion.h4
+              initial={{ y: 10, opacity: 0 }}
+              whileHover={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.05 }}
+            >
+              {item.title}
+            </motion.h4>
+            <motion.p 
+              className="category-tag"
+              initial={{ y: 10, opacity: 0 }}
+              whileHover={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.1 }}
+            >
+              {item.category}
+            </motion.p>
+            <motion.button 
+              className="view-link"
+              initial={{ y: 10, opacity: 0 }}
+              whileHover={{ y: 0, opacity: 1, x: 4 }}
+              transition={{ delay: 0.15 }}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            >
+              {isLink ? 'Open →' : isExternalLink ? 'Visit Website →' : 'View →'}
+            </motion.button>
+          </div>
+        </motion.div>
+      )}
+    </motion.div>
+  );
+};
 
 const Portfolio: React.FC = () => {
   const ref = React.useRef(null);
@@ -510,23 +816,34 @@ const Portfolio: React.FC = () => {
   const hasMoreItems = filtered.length > ITEMS_PER_PAGE;
 
   const cardVariant = {
-    hidden: { opacity: 0, y: 40, scale: 0.92, filter: 'blur(6px)' },
+    hidden: { 
+      opacity: 0, 
+      y: 60, 
+      scale: 0.85, 
+      rotateX: -15,
+    },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
       scale: 1,
-      filter: 'blur(0px)',
+      rotateX: 0,
       transition: {
-        duration: 0.65,
-        delay: i * 0.12,
+        duration: 0.8,
+        delay: i * 0.1,
         ease: motionConfig.easing.smooth,
+        type: 'spring',
+        stiffness: 100,
+        damping: 15,
       },
     }),
     exit: {
       opacity: 0,
-      scale: 0.9,
-      filter: 'blur(4px)',
-      transition: { duration: 0.4 }
+      scale: 0.85,
+      rotateX: 15,
+      transition: { 
+        duration: 0.4,
+        ease: [0.4, 0, 0.2, 1]
+      }
     }
   };
 
@@ -574,174 +891,23 @@ const Portfolio: React.FC = () => {
                 item.image.toLowerCase().endsWith('.png') &&
                 (String(item.id || '').includes('rdx-shot') || String(item.image).includes('/portfolio/jnk/rdx-shot/'));
               const isClickable = isLink || isExternalLink;
+              
               return (
-              <motion.div
-                key={item.id}
-                className={`portfolio-card ${isLink ? 'is-link' : ''}`}
-                onClick={undefined}
-                custom={index}
-                layout={mounted}
-                initial={false}
-                animate={mounted ? "visible" : "visible"}
-                exit="exit"
-                variants={mounted ? cardVariant : undefined}
-                whileHover={{
-                  y: -12,
-                  scale: 1.02,
-                  boxShadow: '0 20px 60px rgba(0,0,0,0.18)',
-                  transition: { duration: 0.35, ease: [0.4, 0, 0.2, 1] }
-                }}
-                role={undefined}
-                tabIndex={undefined}
-                aria-label={isClickable ? `Open ${item.title}` : item.title}
-                onKeyDown={undefined}
-              >
-                {isLink ? (
-                  <Link href={item.href as string} className="portfolio-card-link" aria-label={`Open ${item.title}`}>
-                    <span className="sr-only">Open {item.title}</span>
-                  </Link>
-                ) : isExternalLink ? (
-                  <a
-                    href={item.url as string}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="portfolio-card-link"
-                    aria-label={`Open ${item.title} website`}
-                  >
-                    <span className="sr-only">Open {item.title}</span>
-                  </a>
-                ) : null}
-                <motion.div 
-                  className="portfolio-image grayscale" 
-                  layoutId={`portfolio-image-${item.id}`}
-                  whileHover={{
-                    scale: 1.08,
-                    filter: 'grayscale(0%)',
-                    transition: { duration: 0.45 }
-                  }}
-                  style={{ willChange: 'transform' }}
-                >
-                  {item.category === 'web' ? (
-                    <WebMockupPlaceholder 
-                      domain={item.url?.replace('https://', '').replace('http://', '').split('/')[0] || ''}
-                      title={item.title}
-                    />
-                  ) : item.image.startsWith('/') && !imageErrors[item.id] ? (
-                    <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '300px' }}>
-                      <Image 
-                        src={item.image} 
-                        alt={item.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        style={{ objectFit: isSocial ? 'cover' : 'contain', backgroundColor: prefersWhiteBg ? '#ffffff' : '#f5f5f5' }}
-                        loading={isFirstThree ? 'eager' : 'lazy'}
-                        priority={isFirstThree}
-                        onError={() => {
-                          setImageErrors(prev => ({ ...prev, [item.id]: true }));
-                        }}
-                      />
-                    </div>
-                  ) : (
-                    <div style={{ 
-                      background: item.image, 
-                      width: '100%', 
-                      height: '100%',
-                      position: 'relative',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}>
-                      {item.category === 'web' && (
-                        <div style={{
-                          position: 'absolute',
-                          top: '20px',
-                          left: '50%',
-                          transform: 'translateX(-50%)',
-                          background: 'rgba(255, 255, 255, 0.1)',
-                          backdropFilter: 'blur(10px)',
-                          borderRadius: '12px',
-                          padding: '8px 16px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '8px',
-                          fontSize: '0.75rem',
-                          fontWeight: 600,
-                          color: 'rgba(255, 255, 255, 0.9)'
-                        }}>
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M21 12c0 1.2-1.5 2.7-1.5 2.7s-1.5-1.5-1.5-2.7 1.5-2.7 1.5-2.7S21 10.8 21 12zM3 12c0 1.2 1.5 2.7 1.5 2.7s1.5-1.5 1.5-2.7-1.5-2.7-1.5-2.7S3 10.8 3 12zM12 21c1.2 0 2.7-1.5 2.7-1.5S13.2 18 12 18s-2.7 1.5-2.7 1.5S10.8 21 12 21zM12 3C10.8 3 9.3 4.5 9.3 4.5S10.8 6 12 6s2.7-1.5 2.7-1.5S13.2 3 12 3z"/>
-                            <circle cx="12" cy="12" r="2"/>
-                          </svg>
-                          {item.url?.replace('https://', '').replace('http://', '').split('/')[0]}
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </motion.div>
-                {!isSocial && (
-                  <motion.div 
-                    className="portfolio-overlay"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div>
-                      {item.category === 'web' && (
-                        <motion.div
-                          style={{ 
-                            position: 'absolute', 
-                            top: '20px', 
-                            right: '20px',
-                            background: 'rgba(255, 255, 255, 0.2)',
-                            backdropFilter: 'blur(10px)',
-                            borderRadius: '8px',
-                            padding: '8px 12px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '6px'
-                          }}
-                          initial={{ scale: 0, opacity: 0 }}
-                          whileHover={{ scale: 1, opacity: 1 }}
-                          transition={{ delay: 0.05 }}
-                        >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M21 12c0 1.2-1.5 2.7-1.5 2.7s-1.5-1.5-1.5-2.7 1.5-2.7 1.5-2.7S21 10.8 21 12zM3 12c0 1.2 1.5 2.7 1.5 2.7s1.5-1.5 1.5-2.7-1.5-2.7-1.5-2.7S3 10.8 3 12zM12 21c1.2 0 2.7-1.5 2.7-1.5S13.2 18 12 18s-2.7 1.5-2.7 1.5S10.8 21 12 21zM12 3C10.8 3 9.3 4.5 9.3 4.5S10.8 6 12 6s2.7-1.5 2.7-1.5S13.2 3 12 3z"/>
-                            <circle cx="12" cy="12" r="2"/>
-                          </svg>
-                          <span style={{ fontSize: '0.75rem', fontWeight: 600 }}>Website</span>
-                        </motion.div>
-                      )}
-                      <motion.h4
-                        initial={{ y: 10, opacity: 0 }}
-                        whileHover={{ y: 0, opacity: 1 }}
-                        transition={{ delay: 0.05 }}
-                      >
-                        {item.title}
-                      </motion.h4>
-                      <motion.p 
-                        className="category-tag"
-                        initial={{ y: 10, opacity: 0 }}
-                        whileHover={{ y: 0, opacity: 1 }}
-                        transition={{ delay: 0.1 }}
-                      >
-                        {item.category}
-                      </motion.p>
-                      <motion.button 
-                        className="view-link"
-                        initial={{ y: 10, opacity: 0 }}
-                        whileHover={{ y: 0, opacity: 1, x: 4 }}
-                        transition={{ delay: 0.15 }}
-                        type="button"
-                        onClick={(e) => {
-                          e.preventDefault();
-                        }}
-                      >
-                        {isLink ? 'Open →' : isExternalLink ? 'Visit Website →' : 'View →'}
-                      </motion.button>
-                    </div>
-                  </motion.div>
-                )}
-              </motion.div>
+                <PortfolioCard
+                  key={item.id}
+                  item={item}
+                  index={index}
+                  mounted={mounted}
+                  cardVariant={cardVariant}
+                  imageErrors={imageErrors}
+                  setImageErrors={setImageErrors}
+                  isFirstThree={isFirstThree}
+                  isLink={isLink}
+                  isExternalLink={isExternalLink}
+                  isSocial={isSocial}
+                  prefersWhiteBg={prefersWhiteBg}
+                  isClickable={isClickable}
+                />
               );
             })}
           </AnimatePresence>

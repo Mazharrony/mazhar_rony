@@ -66,8 +66,8 @@ const FinalCTA: React.FC = () => {
 
           <motion.div 
             className="cta-content"
-            initial={{ opacity: 0, x: 50, filter: 'blur(10px)' }}
-            animate={isInView ? { opacity: 1, x: 0, filter: 'blur(0px)' } : { opacity: 0, x: 50, filter: 'blur(10px)' }}
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.h2

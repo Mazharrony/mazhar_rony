@@ -94,6 +94,8 @@
     background-color var(--theme-transition-duration) var(--theme-transition-easing);
   position: relative;
   overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
 .service-card::before {

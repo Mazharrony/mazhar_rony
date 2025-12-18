@@ -278,7 +278,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
           variants={cardVariants} 
           whileHover="hover"
           style={{
-            filter: overviewBlur.get() ? `blur(${overviewBlur})px` : 'blur(0px)',
+            filter: 'none',
           }}
         >
           <motion.span className="card-number" variants={numberVariants}>
@@ -293,7 +293,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ slug }) => {
           whileHover="hover"
           style={{
             y: whyY,
-            filter: whyBlur.get() ? `blur(${whyBlur})px` : 'blur(0px)',
+            filter: 'none',
           }}
         >
           <motion.span className="card-number" variants={numberVariants}>

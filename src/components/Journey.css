@@ -135,7 +135,7 @@
   width: 10px;
   background: none;
   opacity: 0.9;
-  filter: blur(1px);
+  filter: none;
   pointer-events: none;
 }
 

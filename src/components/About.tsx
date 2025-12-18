@@ -14,12 +14,11 @@ const About: React.FC = () => {
   const skills = (t('about.skills') as any) || [];
 
   const skillVariant = {
-    hidden: { opacity: 0, scale: 0.8, y: 15, filter: 'blur(4px)' },
+    hidden: { opacity: 0, scale: 0.8, y: 15 },
     visible: (i: number) => ({
       opacity: 1,
       scale: 1,
       y: 0,
-      filter: 'blur(0px)',
       transition: {
         duration: 0.5,
         delay: i * 0.06,
@@ -34,8 +33,8 @@ const About: React.FC = () => {
         <div className="about-inner">
           <motion.div 
             className="about-left"
-            initial={{ opacity: 0, x: -50, filter: 'blur(8px)' }}
-            animate={isInView ? { opacity: 1, x: 0, filter: 'blur(0px)' } : { opacity: 0, x: -50, filter: 'blur(8px)' }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.span 
@@ -64,8 +63,8 @@ const About: React.FC = () => {
 
           <motion.div 
             className="about-right"
-            initial={{ opacity: 0, x: 50, filter: 'blur(8px)' }}
-            animate={isInView ? { opacity: 1, x: 0, filter: 'blur(0px)' } : { opacity: 0, x: 50, filter: 'blur(8px)' }}
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.p

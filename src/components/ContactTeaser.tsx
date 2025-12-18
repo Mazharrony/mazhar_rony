@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import Link from 'next/link';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import './ContactTeaser.css';
 
@@ -10,11 +10,24 @@ const ContactTeaser: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const { t } = useLanguage();
+  
+  // Scroll-based parallax for contact teaser
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  });
+  
+  const teaserY = useTransform(scrollYProgress, [0, 1], [30, -30]);
+  const teaserOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.6, 1, 1, 0.6]);
 
   return (
-    <section 
+    <motion.section 
       ref={ref}
       className="contact-teaser"
+      style={{
+        y: teaserY,
+        opacity: teaserOpacity,
+      }}
     >
       <div className="container">
         <motion.div
@@ -50,7 +63,7 @@ const ContactTeaser: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

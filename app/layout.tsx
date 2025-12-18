@@ -7,22 +7,33 @@ import Header from '@/src/components/Header';
 import Footer from '@/src/components/Footer';
 import DarkModeSuggestion from '@/src/components/DarkModeSuggestion';
 import LanguageConfirmation from '@/lib/i18n/LanguageConfirmation';
+import ScrollProgressClient from '@/src/components/ScrollProgress';
 import '../src/index.css';
 import '../src/App.css';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
-// Use environment variable with fallback
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mazharrony.vercel.app';
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://mazharrony.vercel.app';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Mazhar Rony – Creative Digital Specialist in Dubai (Design, Marketing, Web)',
-    template: '%s | Mazhar Rony'
+    default:
+      'Mazhar Rony – Creative Digital Specialist in Dubai (Design, Marketing, Web)',
+    template: '%s | Mazhar Rony',
   },
-  description: 'Portfolio of Mazhar Rony, a Dubai-based digital creative specializing in branding, social content, web experiences and performance-focused design.',
-  keywords: ['digital marketing', 'branding', 'web design', 'Dubai', 'creative', 'social media', 'content production'],
+  description:
+    'Portfolio of Mazhar Rony, a Dubai-based digital creative specializing in branding, social content, web experiences and performance-focused design.',
+  keywords: [
+    'digital marketing',
+    'branding',
+    'web design',
+    'Dubai',
+    'creative',
+    'social media',
+    'content production',
+  ],
   authors: [{ name: 'Mazhar Rony' }],
   creator: 'Mazhar Rony',
   openGraph: {
@@ -31,23 +42,23 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: 'Mazhar Rony Portfolio',
     title: 'Mazhar Rony – Creative Digital Specialist in Dubai',
-    description: 'Portfolio of Mazhar Rony, a Dubai-based digital creative specializing in branding, social content, web experiences and performance-focused design.',
-    // TODO: Add your actual OG image URL
-    images: [{
-      url: `${SITE_URL}/og-image.jpg`,
-      width: 1200,
-      height: 630,
-      alt: 'Mazhar Rony Portfolio'
-    }],
+    description:
+      'Portfolio of Mazhar Rony, a Dubai-based digital creative specializing in branding, social content, web experiences and performance-focused design.',
+    images: [
+      {
+        url: `${SITE_URL}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: 'Mazhar Rony Portfolio',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Mazhar Rony – Creative Digital Specialist in Dubai',
-    description: 'Portfolio of Mazhar Rony, a Dubai-based digital creative specializing in branding, social content, web experiences and performance-focused design.',
-    // TODO: Add your actual OG image URL
+    description:
+      'Portfolio of Mazhar Rony, a Dubai-based digital creative specializing in branding, social content, web experiences and performance-focused design.',
     images: [`${SITE_URL}/og-image.jpg`],
-    // TODO: Add your Twitter handle if applicable
-    // creator: '@yourhandle',
   },
   robots: {
     index: true,
@@ -62,7 +73,6 @@ export const metadata: Metadata = {
   },
 };
 
-// JSON-LD Structured Data for Person and Website
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -71,43 +81,39 @@ const jsonLd = {
       '@id': `${SITE_URL}/#person`,
       name: 'Mazhar Rony',
       jobTitle: 'Creative Digital Specialist',
-      description: 'Digital creative specializing in branding, social media marketing, content production, web design, and performance marketing.',
+      description:
+        'Digital creative specializing in branding, social media marketing, content production, web design, and performance marketing.',
       url: SITE_URL,
-      image: `${SITE_URL}/profile-image.jpg`, // TODO: Add your profile image
+      image: `${SITE_URL}/profile-image.jpg`,
       homeLocation: {
         '@type': 'Place',
         address: {
           '@type': 'PostalAddress',
           addressLocality: 'Dubai',
-          addressCountry: 'AE'
-        }
+          addressCountry: 'AE',
+        },
       },
-      sameAs: [
-        // Add your actual social media URLs here
-        // 'https://www.linkedin.com/in/mazharrony',
-        // 'https://www.instagram.com/mazharrony',
-        // 'https://www.behance.net/mazharrony',
-      ]
     },
     {
       '@type': 'WebSite',
       '@id': `${SITE_URL}/#website`,
       url: SITE_URL,
       name: 'Mazhar Rony Portfolio',
-      description: 'Professional portfolio showcasing digital marketing, branding, and creative work',
+      description:
+        'Professional portfolio showcasing digital marketing, branding, and creative work',
       publisher: {
-        '@id': `${SITE_URL}/#person`
+        '@id': `${SITE_URL}/#person`,
       },
       potentialAction: {
         '@type': 'SearchAction',
         target: {
           '@type': 'EntryPoint',
-          urlTemplate: `${SITE_URL}/work?q={search_term_string}`
+          urlTemplate: `${SITE_URL}/work?q={search_term_string}`,
         },
-        'query-input': 'required name=search_term_string'
-      }
-    }
-  ]
+        'query-input': 'required name=search_term_string',
+      },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -127,6 +133,7 @@ export default function RootLayout({
         <ErrorBoundary>
           <LanguageProvider>
             <ThemeProvider>
+              <ScrollProgressClient />
               <LanguageConfirmation />
               <Header />
               <main>{children}</main>

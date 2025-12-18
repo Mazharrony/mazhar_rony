@@ -181,7 +181,7 @@
   border-radius: 20px;
   padding: 32px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
   position: relative;
   width: calc(50% - 48px);
   opacity: 0;
@@ -644,7 +644,7 @@
   width: 100%;
   text-align: left;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   z-index: 2;
@@ -741,7 +741,7 @@
   color: var(--text-primary);
   white-space: nowrap;
   z-index: 3;
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
   box-sizing: border-box;
   min-width: fit-content;
   will-change: transform, opacity;

@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useInView, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useInView, useMotionValue, useSpring, useTransform, AnimatePresence, useScroll } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import './Hero.css';
+import { useScrollReveal } from '../utils/motion';
 
 const PRIMARY_TOOLS = ['photoshop', 'illustrator', 'figma', 'canva', 'capcut'];
 const SECONDARY_TOOLS = ['googleads', 'meta', 'analytics', 'shopify', 'wordpress'];
@@ -111,12 +112,27 @@ const Hero: React.FC = () => {
   const isInView = useInView(containerRef, { once: false, amount: 0.2 });
   const { t } = useLanguage();
   
+  // Scroll-based parallax effects
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end start'],
+  });
+  
+  // Parallax transforms based on scroll
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.3]);
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
+  
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   
   const springConfig = { damping: 25, stiffness: 150 };
   const x = useSpring(mouseX, springConfig);
   const y = useSpring(mouseY, springConfig);
+
+  // Scroll reveal hooks for title/copy
+  const { ref: titleRef, style: titleStyle } = useScrollReveal({ speed: 30 });
+  const { ref: copyRef, style: copyStyle } = useScrollReveal({ speed: 22 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -139,28 +155,53 @@ const Hero: React.FC = () => {
       <div className="container">
         <motion.div 
           className="hero-inner"
+          style={{
+            y: heroY,
+            opacity: heroOpacity,
+            scale: heroScale,
+          }}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
         >
           <div className="hero-left">
             <motion.span 
               className="section-label"
-              initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
-              animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 40, filter: 'blur(8px)' }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{ delay: 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
               {t('hero.title')}
             </motion.span>
             
+            {/* Title with scroll-reactive reveal */}
             <motion.h1
-              initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
-              animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: 40, filter: 'blur(8px)' }}
+              ref={titleRef as any}
+              style={titleStyle as any}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{ delay: 0.3, duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+              className="hero-title-text"
             >
-              {t('header.brand')}
+              {t('header.brand').split(' ').map((word: string, i: number) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ 
+                    delay: 0.3 + (i * 0.1), 
+                    duration: 0.6,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  style={{ display: 'inline-block', marginRight: '0.3em' }}
+                >
+                  {word}
+                </motion.span>
+              ))}
             </motion.h1>
             
             <motion.p
+              ref={copyRef as any}
+              style={copyStyle as any}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ delay: 0.45, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -175,7 +216,7 @@ const Hero: React.FC = () => {
               transition={{ delay: 0.6, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
               <motion.button 
-                className="btn btn-primary"
+                className="btn btn-primary hero-cta-button"
                 whileHover={{ 
                   scale: 1.05, 
                   y: -4,
@@ -183,16 +224,41 @@ const Hero: React.FC = () => {
                   transition: { duration: 0.3 }
                 }}
                 whileTap={{ scale: 0.97 }}
+                style={{
+                  position: 'relative',
+                  overflow: 'hidden',
+                }}
               >
-                {t('hero.cta')}
+                <motion.span
+                  style={{ position: 'relative', zIndex: 1 }}
+                  whileHover={{ x: 2 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {t('hero.cta')}
+                </motion.span>
+                <motion.div
+                  className="button-shimmer"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '100%' }}
+                  transition={{ duration: 0.6, ease: 'easeInOut' }}
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
+                    pointerEvents: 'none',
+                  }}
+                />
               </motion.button>
             </motion.div>
           </div>
 
           <motion.div 
             className="hero-right"
-            initial={{ opacity: 0, x: 50, filter: 'blur(10px)' }}
-            animate={isInView ? { opacity: 1, x: 0, filter: 'blur(0px)' } : { opacity: 0, x: 50, filter: 'blur(10px)' }}
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ delay: 0.5, duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}

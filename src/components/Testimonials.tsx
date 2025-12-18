@@ -43,12 +43,11 @@ const Testimonials: React.FC = () => {
       ];
 
   const cardVariant = {
-    hidden: { opacity: 0, y: 50, scale: 0.92, filter: 'blur(10px)' },
+    hidden: { opacity: 0, y: 50, scale: 0.92 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
       scale: 1,
-      filter: 'blur(0px)',
       transition: {
         duration: 0.75,
         delay: i * 0.18,

@@ -1,0 +1,66 @@
+.magnetic-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+}
+
+.magnetic-button-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.magnetic-button-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.875rem 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.magnetic-button-primary:hover {
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+.magnetic-button-secondary {
+  background: transparent;
+  color: var(--text-primary, #1a1a1a);
+  padding: 0.875rem 2rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--border-color, #e5e5e5);
+}
+
+.magnetic-button-secondary:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.magnetic-button-ghost {
+  background: transparent;
+  color: var(--text-primary, #1a1a1a);
+  padding: 0.5rem 1rem;
+}
+
+body.dark .magnetic-button-secondary {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary, #ffffff);
+}
+
+body.dark .magnetic-button-secondary:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+body.dark .magnetic-button-ghost {
+  color: var(--text-primary, #ffffff);
+}
+

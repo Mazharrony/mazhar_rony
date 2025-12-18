@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useId, useMemo, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import './Tools.css';
 
@@ -117,9 +117,28 @@ const Tools: React.FC = () => {
   const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement | null>(null);
   const isInView = useInView(sectionRef, { amount: 0.2, once: false });
+  
+  // Scroll-based parallax for tools section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+  
+  const toolsY = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const toolsOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.5, 1, 1, 0.5]);
+  const toolsScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.98, 1, 0.98]);
 
   return (
-    <section id="tools" className="fold tools-section" ref={sectionRef}>
+    <motion.section 
+      id="tools" 
+      className="fold tools-section" 
+      ref={sectionRef}
+      style={{
+        y: toolsY,
+        opacity: toolsOpacity,
+        scale: toolsScale,
+      }}
+    >
       <div className="container">
         <motion.div
           className="tools-header"
@@ -210,7 +229,7 @@ const Tools: React.FC = () => {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useIndexedParallax } from '../utils/motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
 import './WorkPage.css';
 
@@ -40,7 +41,7 @@ const WebMockupPlaceholder: React.FC<WebMockupPlaceholderProps> = ({ domain, tit
             borderRadius: '14px',
             background: 'rgba(255,255,255,0.06)',
             border: '1px solid rgba(255,255,255,0.10)',
-            backdropFilter: 'blur(10px)',
+            backdropFilter: 'none',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
@@ -524,8 +525,12 @@ const WorkPage: React.FC = () => {
                 const isInternalLink = Boolean(item.href);
                 const isExternalLink = item.category === 'web' && Boolean(item.url);
 
+                const { ref: parallaxRef, style: parallaxStyle } = useIndexedParallax(index, { base: 28, increment: 14, firstUp: true, mobileScale: 0.6 });
+
                 return (
                   <motion.div
+                    ref={parallaxRef as any}
+                    style={parallaxStyle as any}
                     key={item.id}
                     className={`work-card ${(isInternalLink || isExternalLink) ? 'is-link' : ''}`}
                     variants={cardVariants}

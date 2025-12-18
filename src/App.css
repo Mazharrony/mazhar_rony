@@ -82,7 +82,7 @@ body::before {
     radial-gradient(900px 520px at 15% 10%, rgba(139, 92, 246, 0.18), transparent 62%),
     radial-gradient(820px 520px at 85% 18%, rgba(139, 92, 246, 0.10), transparent 64%),
     radial-gradient(900px 520px at 50% 120%, rgba(255, 255, 255, 0.06), transparent 60%);
-  filter: blur(18px);
+  filter: none;
   opacity: 0;
   transition: opacity var(--theme-transition-duration) var(--theme-transition-easing);
 }
