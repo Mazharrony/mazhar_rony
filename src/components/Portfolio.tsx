@@ -489,10 +489,20 @@ const Portfolio: React.FC = () => {
     }
   ];
 
-  const categories = ['all', 'design', 'branding', 'content', 'web'];
-  const filtered = activeCategory === 'all' 
-    ? portfolioItems 
-    : portfolioItems.filter(item => item.category === activeCategory);
+  // Merge "design" + "content" into a single tab (design) for the homepage.
+  const categories = ['all', 'design', 'branding', 'web'];
+  const normalizeCategory = (c: string) => (c || '').trim().toLowerCase();
+  const filtered =
+    activeCategory === 'all'
+      ? portfolioItems
+      : portfolioItems.filter((item) => {
+          const cat = normalizeCategory(item.category);
+          // Design tab includes both design + content items
+          if (activeCategory === 'design') return cat === 'design' || cat === 'content';
+          // Web tab should only show real web projects (must have URL)
+          if (activeCategory === 'web') return cat === 'web' && Boolean(item.url);
+          return cat === activeCategory;
+        });
   
   // Limit items shown on homepage (show only 6 items)
   const ITEMS_PER_PAGE = 6;
