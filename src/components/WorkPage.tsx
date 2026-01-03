@@ -3,10 +3,14 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useIndexedParallax } from '../utils/motion';
+import { motion } from 'framer-motion';
 import { useLanguage } from '@/lib/i18n/LanguageProvider';
+import { getAllWebProjectSlugs } from '@/lib/data/webProjects';
 import './WorkPage.css';
+
+interface WorkPageProps {
+  jsonLd?: any;
+}
 
 interface WebMockupPlaceholderProps {
   domain: string;
@@ -16,47 +20,40 @@ interface WebMockupPlaceholderProps {
 const WebMockupPlaceholder: React.FC<WebMockupPlaceholderProps> = ({ domain, title }) => {
   const getGradient = (d: string) => {
     const schemes: Record<string, string> = {
-      'cmcauto.ae': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      'benex.ae': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-      'avionrealty.ae': 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-      'naharalmadinatyping.com': 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-      'eaglerestaurant.ae': 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)',
-      'shobkichu.com.bd': 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
-      'evafurniture.ae': 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
-      'prosciencenutra.com': 'linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%)',
+      'cmcauto.ae': 'linear-gradient(135deg, #666666 0%, #4a4a4a 100%)',
+      'benex.ae': 'linear-gradient(135deg, #808080 0%, #5a5a5a 100%)',
+      'avionrealty.ae': 'linear-gradient(135deg, #737373 0%, #525252 100%)',
+      'naharalmadinatyping.com': 'linear-gradient(135deg, #8c8c8c 0%, #6b6b6b 100%)',
+      'eaglerestaurant.ae': 'linear-gradient(135deg, #999999 0%, #707070 100%)',
+      'shobkichu.com.bd': 'linear-gradient(135deg, #7a7a7a 0%, #595959 100%)',
+      'evafurniture.ae': 'linear-gradient(135deg, #8a8a8a 0%, #666666 100%)',
+      'prosciencenutra.com': 'linear-gradient(135deg, #757575 0%, #555555 100%)',
+      'omnex-five.vercel.app': 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)',
+      'bridge-seven-delta.vercel.app': 'linear-gradient(135deg, #7c7c7c 0%, #5a5a5a 100%)',
+      'inventory-app-brown-two.vercel.app': 'linear-gradient(135deg, #8b7355 0%, #6b5a45 100%)',
+      'xotools.vercel.app': 'linear-gradient(135deg, #6a6a6a 0%, #4d4d4d 100%)',
+      'prosciencenutra.vercel.app': 'linear-gradient(135deg, #757575 0%, #555555 100%)',
     };
-    return schemes[d] || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+    return schemes[d] || 'linear-gradient(135deg, #666666 0%, #4a4a4a 100%)';
   };
 
   const gradient = getGradient(domain);
 
   return (
-    <div style={{ width: '100%', height: '100%', position: 'relative', borderRadius: 0, overflow: 'hidden', background: '#0b0b0b' }}>
-      <div style={{ position: 'absolute', inset: 0, background: gradient, opacity: 0.22 }} />
-      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '18px' }}>
-        <div
-          style={{
-            width: '100%',
-            height: '100%',
-            borderRadius: '14px',
-            background: 'rgba(255,255,255,0.06)',
-            border: '1px solid rgba(255,255,255,0.10)',
-            backdropFilter: 'none',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            padding: '16px',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px' }}>
-            <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.8)', fontWeight: 600 }}>{domain || 'Website'}</div>
-            <div style={{ width: 36, height: 8, borderRadius: 999, background: 'rgba(255,255,255,0.16)' }} />
-          </div>
-          <div>
-            <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#fff', lineHeight: 1.2 }}>{title}</div>
-            <div style={{ marginTop: 6, fontSize: '0.82rem', color: 'rgba(255,255,255,0.72)' }}>Website Project</div>
-          </div>
-        </div>
+    <div style={{ 
+      width: '100%', 
+      height: '100%', 
+      background: gradient,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      padding: '1.25rem',
+    }}>
+      <div style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', fontWeight: 500 }}>
+        {domain || 'Website'}
+      </div>
+      <div style={{ fontSize: '0.9375rem', fontWeight: 500, color: 'var(--text-primary)', lineHeight: 1.4 }}>
+        {title}
       </div>
     </div>
   );
@@ -75,9 +72,130 @@ interface PortfolioItem {
   url?: string;
 }
 
-const WorkPage: React.FC = () => {
+interface PortfolioCardProps {
+  item: PortfolioItem;
+  index: number;
+  normalizeCategory: (c: string) => string;
+  cardVariants: any;
+}
+
+// Separate component to properly use hooks
+const PortfolioCard: React.FC<PortfolioCardProps> = ({ item, index, normalizeCategory, cardVariants }) => {
+  const { t } = useLanguage();
+  
+  const mergedCategoryKey = normalizeCategory(item.category) === 'content' ? 'design' : item.category;
+  const categoryLabel = t(`portfolio.filter.${mergedCategoryKey}`) || mergedCategoryKey;
+  const domain = item.url?.replace('https://', '').replace('http://', '').split('/')[0] || '';
+  const isSocial = item.category === 'content';
+  const prefersWhiteBg =
+    item.image.toLowerCase().endsWith('.png') &&
+    (item.id.includes('rdx-shot') || item.image.includes('/portfolio/jnk/rdx-shot/'));
+
+  const CardInner = (
+    <>
+      <div className="work-card-image">
+        {item.category === 'web' && item.url ? (
+          <WebMockupPlaceholder domain={domain} title={item.title} />
+        ) : item.image.startsWith('/') ? (
+          <div
+            style={{
+              position: 'relative',
+              width: '100%',
+              height: '100%',
+              minHeight: '300px',
+              backgroundColor: prefersWhiteBg ? 'var(--bg-primary)' : 'var(--bg-primary)',
+            }}
+          >
+            <Image 
+              src={item.image} 
+              alt={item.title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              style={{ objectFit: 'cover', backgroundColor: prefersWhiteBg ? 'var(--bg-primary)' : 'var(--bg-primary)' }}
+              loading={index < 6 ? 'eager' : 'lazy'}
+              priority={index < 3}
+            />
+          </div>
+        ) : (
+          <div style={{ 
+            background: item.image, 
+            width: '100%', 
+            height: '100%',
+            minHeight: '300px'
+          }} />
+        )}
+        {!isSocial && (
+          <div className="work-card-overlay">
+            <h3>{item.title}</h3>
+            <span className="work-card-category">{categoryLabel}</span>
+          </div>
+        )}
+      </div>
+      {!isSocial && (
+        <div className="work-card-meta">
+          <div className="work-card-title">{item.title}</div>
+          <div className="work-card-tag">{categoryLabel}</div>
+        </div>
+      )}
+    </>
+  );
+
+  const isInternalLink = Boolean(item.href);
+  const isWebProject = item.category === 'web' && Boolean(item.url);
+  const webProjectSlugs = getAllWebProjectSlugs();
+  const isWebProjectDetail = isWebProject && webProjectSlugs.includes(item.id);
+
+  return (
+    <motion.div
+      key={item.id}
+      className={`work-card ${(isInternalLink || isWebProjectDetail) ? 'is-link' : ''}`}
+      variants={cardVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {isInternalLink ? (
+        <Link href={item.href as string} className="work-card-link" aria-label={`Open ${item.title}`}>
+          {CardInner}
+        </Link>
+      ) : isWebProjectDetail ? (
+        <Link
+          href={`/work/${item.id}`}
+          className="work-card-link"
+          aria-label={`View ${item.title} details`}
+        >
+          {CardInner}
+        </Link>
+      ) : (
+        CardInner
+      )}
+    </motion.div>
+  );
+};
+
+const WorkPage: React.FC<WorkPageProps> = ({ jsonLd }) => {
   const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState('all');
+
+  // Add JSON-LD script if provided
+  React.useEffect(() => {
+    if (jsonLd && typeof window !== 'undefined') {
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.text = JSON.stringify(jsonLd);
+      script.id = 'portfolio-json-ld';
+      
+      // Remove existing script if present
+      const existing = document.getElementById('portfolio-json-ld');
+      if (existing) existing.remove();
+      
+      document.head.appendChild(script);
+      
+      return () => {
+        const scriptToRemove = document.getElementById('portfolio-json-ld');
+        if (scriptToRemove) scriptToRemove.remove();
+      };
+    }
+  }, [jsonLd]);
 
   const portfolioItems: PortfolioItem[] = [
     { 
@@ -348,6 +466,56 @@ const WorkPage: React.FC = () => {
       description: 'Complete WordPress e-commerce website for ProScience Nutra, a nutrition and supplement store. Features product catalog organized by goals (Muscle Building, Energy & Performance, Recovery, Weight Management), shopping cart, wishlist, and promotional campaigns.',
       url: 'https://prosciencenutra.com'
     },
+    {
+      id: 'omnex',
+      title: 'OMNEX - Oil & Gas Solutions',
+      category: 'web',
+      image: '',
+      tools: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+      results: 'Modern, high-performance B2B website showcasing global energy solutions with comprehensive product catalogs and streamlined inquiry systems.',
+      description: 'Next.js website for OMNEX, a global provider of oil & gas solutions and electrical supplies. Features product catalogs, technical specifications, global reach information, and comprehensive service offerings.',
+      url: 'https://omnex-five.vercel.app'
+    },
+    {
+      id: 'bridge',
+      title: 'BRIDGE - Business Development & Advisory',
+      category: 'web',
+      image: '',
+      tools: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+      results: 'Professional business advisory website with clear service descriptions, client success stories, and streamlined consultation booking.',
+      description: 'Next.js website for BRIDGE, a business development and advisory firm in Dubai. Features service offerings, market entry strategies, business setup guidance, and client testimonials.',
+      url: 'https://bridge-seven-delta.vercel.app'
+    },
+    {
+      id: 'jnk-inventory',
+      title: 'JNK Nutrition - Sales & Inventory System',
+      category: 'web',
+      image: '',
+      tools: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+      results: 'Comprehensive sales and inventory management system enabling real-time tracking and improved operational efficiency.',
+      description: 'Next.js application for JNK Nutrition sales and inventory management. Features sales tracking, inventory management, product catalog, and comprehensive reporting capabilities.',
+      url: 'https://inventory-app-brown-two.vercel.app'
+    },
+    {
+      id: 'xotools',
+      title: 'XOTools - Online Utility Tools',
+      category: 'web',
+      image: '',
+      tools: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+      results: 'Fast and efficient online tools platform providing instant access to utility tools including image converters, QR code generators, and PDF utilities.',
+      description: 'Next.js platform offering a suite of fast and free online tools accessible directly from the browser. Features image converters, QR code generators, PDF utilities, and various productivity tools.',
+      url: 'https://xotools.vercel.app'
+    },
+    {
+      id: 'proscience-nutra-nextjs',
+      title: 'ProScience Nutra - Next.js Platform',
+      category: 'web',
+      image: '',
+      tools: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+      results: 'Modern, high-performance supplement e-commerce platform with fast loading times and optimized product presentation.',
+      description: 'Next.js e-commerce website for ProScience Nutra, featuring premium science-backed supplements. Built with modern web technologies for optimal performance and user experience.',
+      url: 'https://prosciencenutra.vercel.app'
+    },
   ];
 
   // Merge "design" + "content" into a single tab (design).
@@ -370,79 +538,61 @@ const WorkPage: React.FC = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
+        staggerChildren: 0.05,
+        delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
       transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1] as const,
+        duration: 0.3,
       },
     },
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
       transition: {
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1] as const,
+        duration: 0.3,
       },
     },
-    hover: {
-      y: -8,
-      transition: { duration: 0.4 },
-    },
+    hover: {},
   };
 
   return (
-    <motion.div 
-      className="work-page"
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-    >
+    <div className="work-page">
       {/* Hero Section */}
       <section className="work-hero">
         <div className="work-hero-container">
-          <motion.div className="work-hero-content" variants={itemVariants}>
-            <motion.p className="work-hero-label" variants={itemVariants}>
+          <div className="work-hero-content">
+            <p className="work-hero-label">
               {t('work.label') || 'Portfolio & Projects'}
-            </motion.p>
-            <motion.h1 className="work-hero-title" variants={itemVariants}>
+            </p>
+            <h1 className="work-hero-title">
               {t('work.title') || 'Portfolio & Projects'}
-            </motion.h1>
-            <motion.p className="work-hero-subtitle" variants={itemVariants}>
+            </h1>
+            <p className="work-hero-subtitle">
               {t('work.subtitle') || 'Explore my portfolio of branding projects, social media campaigns, web experiences, and creative work for clients across Dubai and beyond.'}
-            </motion.p>
-            <motion.div className="work-hero-cta" variants={itemVariants}>
+            </p>
+            <div className="work-hero-cta">
               <Link href="/contact" className="work-cta-primary">
                 {t('work.cta') || 'Get In Touch'} <span>→</span>
               </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Portfolio Grid Section */}
       <section className="work-portfolio">
         <div className="work-portfolio-container">
-          <motion.div 
-            className="work-filters"
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
+          <div className="work-filters">
             <div className="work-filters-container">
               {categories.map((cat: string) => (
                 <button
@@ -454,119 +604,25 @@ const WorkPage: React.FC = () => {
                 </button>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div 
-            className="work-grid"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <AnimatePresence mode="popLayout">
-              {filtered.map((item: PortfolioItem, index: number) => {
-                const mergedCategoryKey =
-                  normalizeCategory(item.category) === 'content' ? 'design' : item.category;
-                const categoryLabel = t(`portfolio.filter.${mergedCategoryKey}`) || mergedCategoryKey;
-                const domain = item.url?.replace('https://', '').replace('http://', '').split('/')[0] || '';
-                const isSocial = item.category === 'content';
-                const prefersWhiteBg =
-                  item.image.toLowerCase().endsWith('.png') &&
-                  (item.id.includes('rdx-shot') || item.image.includes('/portfolio/jnk/rdx-shot/'));
-                const CardInner = (
-                  <>
-                  <div className="work-card-image">
-                    {item.category === 'web' && item.url ? (
-                      <WebMockupPlaceholder domain={domain} title={item.title} />
-                    ) : item.image.startsWith('/') ? (
-                      <div
-                        style={{
-                          position: 'relative',
-                          width: '100%',
-                          height: '100%',
-                          minHeight: '300px',
-                          backgroundColor: prefersWhiteBg ? '#ffffff' : '#0b0b0b',
-                        }}
-                      >
-                        <Image 
-                          src={item.image} 
-                          alt={item.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          style={{ objectFit: 'cover', backgroundColor: prefersWhiteBg ? '#ffffff' : '#0b0b0b' }}
-                          loading={index < 6 ? 'eager' : 'lazy'}
-                          priority={index < 3}
-                        />
-                      </div>
-                    ) : (
-                      <div style={{ 
-                        background: item.image, 
-                        width: '100%', 
-                        height: '100%',
-                        minHeight: '300px'
-                      }} />
-                    )}
-                    {!isSocial && (
-                      <div className="work-card-overlay">
-                        <h3>{item.title}</h3>
-                        <span className="work-card-category">{categoryLabel}</span>
-                      </div>
-                    )}
-                  </div>
-                  {!isSocial && (
-                    <div className="work-card-meta">
-                      <div className="work-card-title">{item.title}</div>
-                      <div className="work-card-tag">{categoryLabel}</div>
-                    </div>
-                  )}
-                  </>
-                );
-
-                const isInternalLink = Boolean(item.href);
-                const isExternalLink = item.category === 'web' && Boolean(item.url);
-
-                const { ref: parallaxRef, style: parallaxStyle } = useIndexedParallax(index, { base: 28, increment: 14, firstUp: true, mobileScale: 0.6 });
-
-                return (
-                  <motion.div
-                    ref={parallaxRef as any}
-                    style={parallaxStyle as any}
-                    key={item.id}
-                    className={`work-card ${(isInternalLink || isExternalLink) ? 'is-link' : ''}`}
-                    variants={cardVariants}
-                    whileHover="hover"
-                    layout
-                    initial="hidden"
-                    animate="visible"
-                    exit="hidden"
-                  >
-                    {isInternalLink ? (
-                      <Link href={item.href as string} className="work-card-link" aria-label={`Open ${item.title}`}>
-                        {CardInner}
-                      </Link>
-                    ) : isExternalLink ? (
-                      <a
-                        href={item.url as string}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="work-card-link"
-                        aria-label={`Open ${item.title} website`}
-                      >
-                        {CardInner}
-                      </a>
-                    ) : (
-                      CardInner
-                    )}
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </motion.div>
+          <div className="work-grid">
+            {filtered.map((item: PortfolioItem, index: number) => (
+              <PortfolioCard
+                key={item.id}
+                item={item}
+                index={index}
+                normalizeCategory={normalizeCategory}
+                cardVariants={cardVariants}
+              />
+            ))}
+          </div>
         </div>
       </section>
-    </motion.div>
+    </div>
   );
 };
 
 export default WorkPage;
+
 
