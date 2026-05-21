@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --bg: #0A0B0E;
+    --hairline: rgba(255, 255, 255, 0.07);
+    --hairline-strong: rgba(255, 255, 255, 0.12);
+    --accent: #FF6B3D;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    font-optical-sizing: auto;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-ink-900 text-white/90 antialiased font-sans;
+    letter-spacing: -0.011em;
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      radial-gradient(70% 60% at 85% -10%, rgba(255, 107, 61, 0.10) 0%, transparent 60%),
+      radial-gradient(60% 50% at 0% 100%, rgba(255, 107, 61, 0.05) 0%, transparent 60%);
+    background-size: 22px 22px, auto, auto;
+    background-attachment: fixed;
+  }
+  ::selection {
+    @apply bg-accent/30 text-white;
+  }
+  *:focus-visible {
+    @apply outline-none ring-1 ring-accent/70 ring-offset-2 ring-offset-ink-900 rounded-md;
+  }
+  /* Display headings use Bricolage Grotesque with display optical size */
+  h1, h2, h3, h4 {
+    @apply font-display;
+    font-optical-sizing: auto;
+    font-variation-settings: "opsz" 32;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+  h1 {
+    font-variation-settings: "opsz" 96;
+    letter-spacing: -0.045em;
+  }
+  h2 {
+    font-variation-settings: "opsz" 64;
+    letter-spacing: -0.035em;
+  }
+  /* Instrument Serif needs more breathing room */
+  .font-serif {
+    letter-spacing: -0.015em;
+  }
+  /* Tabular figures for numeric UI elements */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+  /* Mono refinement — JetBrains Mono works well as-is, just no ligatures in UI labels */
+  .font-mono {
+    font-feature-settings: "calt" 0, "liga" 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Refined card — single hairline border, no chunky blur */
+  .card {
+    @apply relative bg-white/[0.015] border border-white/[0.07] rounded-2xl;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  .card-hover:hover {
+    @apply bg-white/[0.03] border-white/[0.14];
+  }
+  /* Legacy glass alias for components that still reference it */
+  .glass {
+    @apply card;
+  }
+  .glass-strong {
+    @apply relative bg-ink-900/70 border border-white/[0.08] rounded-2xl backdrop-blur-xl;
+  }
+  /* Restrained gradient — white to soft white. Use sparingly. */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #ffffff 55%,
+      rgba(255, 255, 255, 0.5) 100%
+    );
+  }
+  /* Accent gradient — for one or two highlights only */
+  .gradient-accent {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(120deg, #ffffff 0%, #FFB18B 55%, #FF6B3D 100%);
+  }
+  .gradient-border {
+    position: relative;
+  }
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.04) 45%,
+      rgba(255, 107, 61, 0.45)
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+  .section {
+    @apply relative py-24 md:py-32 scroll-mt-24;
+  }
+  .section-divider {
+    @apply mx-auto h-px max-w-[1240px] bg-gradient-to-r from-transparent via-white/10 to-transparent;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.22em] text-white/45;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium bg-white text-ink-900 hover:bg-white/90 transition-colors;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium border border-white/[0.12] bg-white/[0.03] hover:bg-white/[0.07] hover:border-white/20 transition-colors;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] px-2.5 py-1 text-[11px] text-white/55 font-mono;
+  }
+  .input {
+    @apply w-full rounded-lg border border-white/[0.08] bg-white/[0.02] px-3.5 py-3 text-sm text-white placeholder:text-white/30 transition-colors focus:border-accent/60 focus:bg-white/[0.04] focus:outline-none;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+  .noise,
+  .grain {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  .mask-fade-x {
+    mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  }
+}
