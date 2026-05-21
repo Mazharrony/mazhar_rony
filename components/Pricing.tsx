@@ -11,7 +11,7 @@ export function Pricing() {
     <section id="pricing" className="section">
       <div className="container">
         <SectionHeading
-          number="06"
+          number="07"
           eyebrow="Pricing"
           title="Honest, affordable,"
           italic="negotiable."

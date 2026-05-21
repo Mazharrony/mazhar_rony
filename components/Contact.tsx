@@ -84,7 +84,7 @@ export function Contact() {
     <section id="contact" className="section">
       <div className="container">
         <SectionHeading
-          number="09"
+          number="10"
           eyebrow="Get in touch"
           title="Let's build"
           italic="something good."

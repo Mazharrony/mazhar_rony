@@ -11,7 +11,7 @@ export function FAQ() {
     <section id="faq" className="section">
       <div className="container max-w-3xl">
         <SectionHeading
-          number="08"
+          number="09"
           eyebrow="FAQ"
           title="Questions,"
           italic="answered."

@@ -9,7 +9,7 @@ export function Testimonials() {
     <section id="testimonials" className="section">
       <div className="container">
         <SectionHeading
-          number="07"
+          number="08"
           eyebrow="Kind words"
           title="What clients"
           italic="say."
