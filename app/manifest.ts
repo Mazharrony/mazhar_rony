@@ -1,0 +1,17 @@
+import type { MetadataRoute } from "next";
+import { site } from "@/data/site";
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: `${site.name} — ${site.role}`,
+    short_name: site.shortName,
+    description: site.tagline,
+    start_url: "/",
+    display: "standalone",
+    background_color: "#0A0A0B",
+    theme_color: "#0A0A0B",
+    icons: [
+      { src: "/icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" },
+    ],
+  };
+}

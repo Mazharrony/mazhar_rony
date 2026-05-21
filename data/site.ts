@@ -19,6 +19,11 @@ export const site = {
     { label: "Happy clients", value: "15+" },
     { label: "Tech stacks", value: "10+" },
   ],
+  priceRange: "AED 1,200 – AED 10,000+",
+  socials: {
+    github: "https://github.com/Mazharrony",
+    linkedin: "https://www.linkedin.com/in/mazharrony/",
+  },
 } as const;
 
 export const waLink = (msg?: string) =>
