@@ -18,7 +18,7 @@ export default async function OG() {
           justifyContent: "space-between",
           padding: "80px",
           background:
-            "radial-gradient(1200px 600px at 100% 0%, rgba(255,140,90,0.18), transparent 60%), radial-gradient(900px 600px at 0% 100%, rgba(124,123,255,0.15), transparent 60%), #0A0A0B",
+            "linear-gradient(135deg, #0A0A0B 0%, #14110F 55%, #1A1310 100%)",
           color: "white",
           fontFamily: "system-ui, -apple-system, Segoe UI, sans-serif",
         }}
@@ -47,6 +47,8 @@ export default async function OG() {
         <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
           <div
             style={{
+              display: "flex",
+              flexWrap: "wrap",
               fontSize: 88,
               fontWeight: 700,
               lineHeight: 1.02,
@@ -54,8 +56,8 @@ export default async function OG() {
               maxWidth: 980,
             }}
           >
-            {site.name}
-            <span style={{ color: "rgba(255,255,255,0.55)" }}> — {site.role}</span>
+            <span>{site.name}</span>
+            <span style={{ color: "rgba(255,255,255,0.55)" }}>&nbsp;— {site.role}</span>
           </div>
           <div
             style={{
